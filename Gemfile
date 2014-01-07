@@ -4,6 +4,8 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.2'
 
 group :development, :test do
+	gem 'better_errors'
+	gem 'binding_of_caller'
 	gem 'capybara'
 	gem 'cucumber-rails', require: false
 	gem 'database_cleaner'
