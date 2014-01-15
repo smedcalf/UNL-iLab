@@ -6,63 +6,48 @@
         = javascript_include_tag "application" => true
         = csrf_meta_tags
         %body{ data: { version: "4.0"} }
-            / #include virtual="/wdn/templates_4.0/includes/skipnav.html"
+            = render 'wdn/skip_nav'
             #wdn_wrapper
                 %input.wdn-content-slide.wdn-input-driver#wdn_menu_toggle{ type: "checkbox", value: "Show navigation menu" }
-                / #include virtual="/wdn/templates_4.0/includes/noscript-padding.html"
+                = render 'wdn/noscript_padding'
                 %header.wdn-content-slide.wdn-band#header{ role: "banner"}
-                    / #include virtual="/wdn/templates_4.0/includes/wdnResources.html"
+                    = render 'wdn/wdnResources'
                     .wdn-inner-wrapper
-                        / #include virtual="/wdn/templates_4.0/includes/logo.html"
+                        = render 'wdn/logo'
                         #wdn_resources
-                            / #include virtual="/wdn/templates_4.0/includes/idm.html"
-                            / #include virtual="/wdn/templates_4.0/includes/wdnTools.html"
+                            / = render 'wdn/idm'
+                            = render 'wdn/wdnTools'
                         %span#wdn_institution_title University of Nebraska&ndash;Lincoln
-                    / #include virtual="/wdn/templates_4.0/includes/apps.html"
+                    = render 'wdn/apps'
                     .wdn-inner-wrapper
                         #wdn_site_title
-                            %span
-                                / TemplateBeginEditable name="titlegraphic"
-                                The Title of My Site
-                                / TemplateEndEditable
+                            %span The Title of My Site
                 .wdn-band#wdn_navigation_bar{ role: "navigation" }
                     %nav.wdn-inner-wrapper#breadcrumbs
                         / WDN: see glossary item 'breadcrumbs'
                         %h3.wdn_list_descriptor.wdn-text-hidden Breadcrumbs
-                        / TemplateBeginEditable name="breadcrumbs"
                         %ul
                             %li
                                 %a.wdn-icon-home{href: "http://www.unl.edu/", title: "University of Nebraska&ndash;Lincoln"} UNL
                             %li
                                 %a{ href: "#", title: "Site Title" } Site Title
                             %li
-                        / TemplateEndEditable
                     #wdn_navigation_wrapper
                         %nav.wdn-band#navigation{ role: "navigation"}
                             %h3.wdn_list_descriptor.wdn-text-hidden Navigation
-                            / TemplateBeginEditable name="navlinks"
-                            / #include virtual="../sharedcode/navigation.html"
-                            / TemplateEndEditable
+                            = render 'layouts/navigation'
                             %label.wdn-icon-menu{ for: "wdn_menu_toggle" } Menu
-                / Navigation Trigger
                 .wdn-menu-trigger.wdn-content-slide
                     %label.wdn-icon-menu{ for: "wdn_menu_toggle" } Menu
-                / End navigation trigger
                 .wdn-content-slide#wdn_content_wrapper{ role: "main" }
                     .wdn-band
                         .wdn-inner-wrapper
                             #pagetitle
-                                / TemplateBeginEditable name="pagetitle"
                                 %h1 Please Title Your Page Here
-                                / TemplateEndEditable
                     .wdn-main#maincontent
-                        / THIS IS THE MAIN CONTENT AREA; WDN: see glossary item 'main content area'
-                        / TemplateBeginEditable name="maincontentarea"
                         .wdn-band
                             .wdn-inner-wrapper
                                 %p Impress your audience with awesome content!
-                        / TemplateEndEditable
-                        / THIS IS THE END OF THE MAIN CONTENT AREA.
                 .wdn-band.wdn-content-slide#wdn_optional_footer
                     .wdn-inner-wrapper
                         / TemplateBeginEditable name="optionalfooter"
@@ -71,22 +56,17 @@
                     .wdn-band#wdn_footer_related
                         .wdn-inner-wrapper
                             / TemplateBeginEditable name="leftcollinks"
-                            / #include virtual="../sharedcode/relatedLinks.html"
+                            = render 'wdn/relatedLinks'
                             / TemplateEndEditable
                     .wdn-band
                         .wdn-inner-wrapper
                             .footer_col#wdn_footer_contact
                                 %h3 Contact Us
                                 .wdn-contact-wrapper
-                                    / TemplateBeginEditable name="contactinfo"
-                                    / #include virtual="../sharedcode/footerContactInfo.html"
-                                    / TemplateEndEditable
+                                    = render 'wdn/footerContactInfo'
                             #wdn_copyright
                                 .wdn-footer-text
-                                    / TemplateBeginEditable name="footercontent"
-                                    / #include virtual="../sharedcode/footer.html"
-                                    / TemplateEndEditable
-                                    / #include virtual="/wdn/templates_4.0/includes/wdn.html"
-                            / #include virtual="/wdn/templates_4.0/includes/logos.html"
-                    / #include virtual="/wdn/templates_4.0/includes/footer_floater.html"
-                / #include virtual="/wdn/templates_4.0/includes/noscript.html"
+                                    = render 'wdn/footer'
+                                    = render 'wdn/wdn'
+                            = render 'wdn/logos'
+                = render 'wdn/noscript'
