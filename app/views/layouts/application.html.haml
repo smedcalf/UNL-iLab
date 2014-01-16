@@ -21,7 +21,7 @@
                     = render 'wdn/apps'
                     .wdn-inner-wrapper
                         #wdn_site_title
-                            %span The Title of My Site
+                            %span iLab
                 .wdn-band#wdn_navigation_bar{ role: "navigation" }
                     %nav.wdn-inner-wrapper#breadcrumbs
                         / WDN: see glossary item 'breadcrumbs'
@@ -43,11 +43,11 @@
                     .wdn-band
                         .wdn-inner-wrapper
                             #pagetitle
-                                %h1 Please Title Your Page Here
+                                %h1= yield(:page_title)
                     .wdn-main#maincontent
                         .wdn-band
                             .wdn-inner-wrapper
-                                %p Impress your audience with awesome content!
+                                = yield
                 .wdn-band.wdn-content-slide#wdn_optional_footer
                     .wdn-inner-wrapper
                         / TemplateBeginEditable name="optionalfooter"

@@ -28,5 +28,7 @@ module Ilab
         g.template_engine :haml
         g.test_framework :rspec
     end
+
+    config.assets.paths << Rails.root.join("app", "assets", "fonts")
   end
 end

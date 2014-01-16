@@ -19,3 +19,8 @@ $dark-neutral: #453E2B;
 $energetic: #D4440B;
 $light-energetic: #F35B1F;
 $dark-energetic: #B34E26;
+
+@font-face {
+  font-family:'wdn-icon';
+  src:font-url('wdn-icon.svg') format('svg');
+} 
