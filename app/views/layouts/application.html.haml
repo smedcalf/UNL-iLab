@@ -4,8 +4,9 @@
         %title iLab
         = stylesheet_link_tag    "application", media: "all"
         = javascript_include_tag "application" => true
+        = javascript_include_tag 'all'
         = csrf_meta_tags
-        %body{ data: { version: "4.0"} }
+        %body.fixed{ data: { version: "4.0"} }
             = render 'wdn/skip_nav'
             #wdn_wrapper
                 %input.wdn-content-slide.wdn-input-driver#wdn_menu_toggle{ type: "checkbox", value: "Show navigation menu" }
