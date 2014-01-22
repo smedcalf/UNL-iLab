@@ -1,0 +1,142 @@
+#wdn_search {
+
+    .wdn-icon-search {
+        text-indent: -999em;
+        position: absolute;
+        text-align: left;
+        font-size: 1em;
+        
+        &:before {
+            text-indent: 999em;
+        }
+        
+        @media @bp-nav-hidden {
+            color: #e7b5b5;
+            margin-top: -2px;
+        }
+
+        @media @bp-nav-full {
+            text-indent: 0;
+            position: static;
+            
+            &:before {
+                text-indent: 0;
+            }
+        }
+    }
+
+    input[type="submit"] {
+        display: none;
+    }
+}
+
+#wdn_search_form {
+    position: absolute;
+    z-index: 1; // Ensure we're above the site title
+
+    @media @bp-nav-hidden {
+        left: 50%;
+        top: 50px;
+        margin-left: -95px;
+    }
+
+    @media @bp-nav-full {
+        display: inline;
+        position: relative;
+        float: none;
+        right: 0;
+        top: -1px;
+    }
+}
+
+#q {
+    width: 5px;
+    border: 1px solid #d1ceb3;
+    padding: 5px 5px 5px 22px;
+    .brand-font();
+    .rem(16);
+    text-transform: uppercase;
+    line-height: 1;
+    color: darken(#d1ceb3, 45%);
+    .transition(width 0.3s ease);
+
+    &:focus {
+        outline: none;
+    }
+
+    @media @bp-nav-hidden {
+        width: 160px;
+        border: 0;
+        padding: 3px 10px 0 22px;
+        line-height: normal;
+        color: #e7b5b5;
+        background-color: transparent;
+
+        &::-webkit-input-placeholder {
+            color: #e7b5b5;
+        }
+
+        &:-moz-placeholder { /* Firefox 18- */
+            color: #e7b5b5;
+        }
+
+        &::-moz-placeholder { /* Firefox 19+ */
+            color: #e7b5b5;
+        }
+
+        &:-ms-input-placeholder {  
+            color: #e7b5b5;
+        }
+
+        &:focus {
+            outline: none;
+            color: #fff;
+        }
+    }
+
+    @media @bp-nav-full {
+        width: 0;
+        padding: 0;
+        border-color: fadeout(#d1ceb3, 100%);
+        //line-height: normal;
+        background-color: fadeout(#fff, 100%);
+
+        &::-webkit-input-placeholder {
+           opacity: 0.8;
+           color: darken(#d1ceb3, 25%);
+           padding-top: 2px;
+        }
+
+        &:-moz-placeholder { /* Firefox 18- */
+           opacity: 0.8;
+           color: darken(#d1ceb3, 25%);
+           padding-top: 2px;
+        }
+
+        &::-moz-placeholder { /* Firefox 19+ */
+           opacity: 0.8; 
+           color: darken(#d1ceb3, 25%);
+           padding-top: 2px;
+        }
+
+        &:-ms-input-placeholder {  
+           opacity: 0.8; 
+           color: darken(#d1ceb3, 25%);
+           padding-top: 2px;
+        }
+
+        &:focus {
+            width: 150px;
+            padding: 2px 5px;
+            border-color: darken(#d1ceb3, 10%);
+            background-color: fadeout(#fff, 5%);
+        }
+    }
+
+    @media @bp-nav-max {
+
+        &:focus {
+            width: 200px;
+        }
+    }
+}

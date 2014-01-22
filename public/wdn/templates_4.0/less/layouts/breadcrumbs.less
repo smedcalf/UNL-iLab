@@ -1,0 +1,125 @@
+#breadcrumbs {
+    .sans-serif-font();
+    .rem(10);
+    opacity: 0.7;
+
+    @media @bp3 {
+        width: 60rem;
+    }
+    
+    li {
+        display: inline-block;
+        text-transform: none;
+
+        @media @bp-nav-full {
+            color: @base-text;
+            vertical-align: bottom;
+        }
+
+        &:first-child { // First element to be replaced with 'home' icon.
+            
+            a {
+                text-indent: -99em;
+                .rem(12,14);
+                width: 1.07em;
+                white-space: nowrap;
+                padding: 0 0 2px 0 !important;
+
+                 @media @bp-nav-full {
+                    padding: 0 !important;
+                 } 
+
+                &:before {
+                    font-family: "wdn-icon";
+                    font-style: normal;
+                    font-weight: normal;
+                    text-indent: 99em;
+                    content: '🔨';
+                    speak: none;
+                    display: inline-block;
+                    text-decoration: inherit;
+                    margin-right: 0.254em;
+                    text-align: center;
+                    font-variant: normal;
+                    text-transform: none;
+                }
+
+            }
+        }
+
+        &:after {
+            font-family: "wdn-icon";
+            text-indent: 99em;
+            font-style: normal;
+            font-weight: normal;
+            speak: none;
+            content: '\F0C8';
+            .rem(14,20);
+            margin: 0 0.254em 0 0.422em;
+            line-height: inherit;
+            color: fadeout(#fff, 25%);
+            vertical-align: middle;
+
+            @media @bp-nav-full {
+                color: fadeout(@base-text, 45%);
+                line-height: normal;
+            }
+        }
+
+        &:last-child {
+            padding: 3px 0;
+
+            &:after {
+                display: none;
+            }
+        }
+
+        &.last-link:last-child {
+            padding: 0;
+        }
+    }  
+    
+    .selected a {
+        position: relative;
+
+        &:after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 12px solid transparent;
+            border-right: 12px solid transparent;
+            border-bottom: 12px solid #fff;
+            position: absolute;
+            left: ~"-webkit-calc(50% - 12px)";
+            left: ~"-moz-calc(50% - 12px)";
+            left: ~"calc(50% - 12px)";
+            bottom: -8px;
+        }
+    }
+
+    // Styles specific to the full view
+    @media @bp-nav-full {
+        color: @base-text;
+        
+        .selected a:after {
+            border-bottom-color: #5f5f4e;
+        }
+    }
+
+    a {
+        display: inline-block;
+        overflow: hidden;
+        vertical-align: bottom;
+        padding: 4px 0;
+
+        // Styles specific to the full view
+        @media @bp-nav-full {
+            color: @base-text;
+            padding: 6px 0 3px 0;
+        }
+    }
+    
+    .storednav {
+        display: none;
+    }
+}

@@ -1,0 +1,30 @@
+@media @bp-nav-hidden {
+    .wdn-resource-login-trigger {
+		.nav-scrolling & {
+			position: fixed;
+			top: 2px;
+			z-index: (@nav-z-index + 1);
+			.transition(right 0.3s ease);
+		}
+		
+		.nav-scrolling #wdn_menu_toggle:checked ~ .wdn-content-slide & {
+			right: -@nav-width;
+		}
+    }
+}
+
+.loggedin {
+	&:hover {
+	    #wdn_idm_user_options {
+	        display: block;
+	    }
+    }
+    
+    #wdn_idm_username {
+    	background-position: 0 center;
+    	
+	    &:before {
+	    	content: "";
+		}
+	}
+}
