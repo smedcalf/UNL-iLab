@@ -15,9 +15,6 @@
                     = render 'wdn/wdnResources'
                     .wdn-inner-wrapper
                         = render 'wdn/logo'
-                        #wdn_resources
-                            / = render 'wdn/idm'
-                            = render 'wdn/wdnTools'
                         %span#wdn_institution_title University of Nebraska&ndash;Lincoln
                     = render 'wdn/apps'
                     .wdn-inner-wrapper
@@ -32,10 +29,6 @@
                 .wdn-menu-trigger.wdn-content-slide
                     %label.wdn-icon-menu{ for: "wdn_menu_toggle" } Menu
                 .wdn-content-slide#wdn_content_wrapper{ role: "main" }
-                    .wdn-band
-                        .wdn-inner-wrapper
-                            #pagetitle
-                                %h1 Page Title Goes Here
                     .wdn-main#maincontent
                         .wdn-band
                             .wdn-inner-wrapper
@@ -47,9 +40,7 @@
                 %footer.wdn-content-slide#footer{ role: "contentinfo" }
                     .wdn-band#wdn_footer_related
                         .wdn-inner-wrapper
-                            / TemplateBeginEditable name="leftcollinks"
                             = render 'wdn/relatedLinks'
-                            / TemplateEndEditable
                     .wdn-band
                         .wdn-inner-wrapper
                             .footer_col#wdn_footer_contact
