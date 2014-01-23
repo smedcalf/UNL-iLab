@@ -1,0 +1,34 @@
+%h1 New Student
+
+= form_for @student, url: { action: "create" } do |f|
+  = f.label :email, "Email"
+  = f.text_field :email
+  = f.label :first_name, "First Name"
+  = f.text_field :first_name
+  = f.label :last_name, "Last Name"
+  = f.text_field :last_name
+  %legend Major
+  %ol
+    %li
+      = f.radio_button :major, "Computer Science"
+      = f.label :major_computer_science, "Computer Science"
+    %li
+      = f.radio_button :major, "Computer Engineering"
+      = f.label :major_computer_engineering, "Computer Engineering"
+  %legend Semester
+  %ol
+    %li
+      = f.radio_button :semester, "Fall"
+      = f.label :semester_fall, "Fall"
+    %li
+      = f.radio_button :semester, "Spring"
+      = f.label :semester_spring, "Spring"
+  %legend Availability
+  %ol
+    %li
+      = f.radio_button :availability, "1"
+      = f.label :availability_1, "One Semester"
+    %li
+      = f.radio_button :availability, "2"
+      = f.label :availability_2, "Two Semesters"
+  = f.submit "Submit"
