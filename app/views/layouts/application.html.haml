@@ -15,12 +15,24 @@
                     = render 'wdn/wdnResources'
                     .wdn-inner-wrapper
                         = render 'wdn/logo'
+                        #wdn_resources
+                            / = render 'wdn/idm'
+                            = render 'wdn/wdnTools'
                         %span#wdn_institution_title University of Nebraska&ndash;Lincoln
                     = render 'wdn/apps'
                     .wdn-inner-wrapper
                         #wdn_site_title
                             %span CSE Innovation Lab
                 .wdn-band#wdn_navigation_bar{ role: "navigation" }
+                    %nav.wdn-inner-wrapper#breadcrumbs
+                        / WDN: see glossary item 'breadcrumbs'
+                        %h3.wdn_list_descriptor.wdn-text-hidden Breadcrumbs
+                        %ul
+                            %li
+                                %a.wdn-icon-home{href: "http://www.unl.edu/", title: "University of Nebraska&ndash;Lincoln"} UNL
+                            %li
+                                %a{ href: "#", title: "Site Title" } Site Title
+                            %li
                     #wdn_navigation_wrapper
                         %nav.wdn-band#navigation{ role: "navigation"}
                             %h3.wdn_list_descriptor.wdn-text-hidden Navigation
@@ -29,6 +41,10 @@
                 .wdn-menu-trigger.wdn-content-slide
                     %label.wdn-icon-menu{ for: "wdn_menu_toggle" } Menu
                 .wdn-content-slide#wdn_content_wrapper{ role: "main" }
+                    .wdn-band
+                        .wdn-inner-wrapper
+                            #pagetitle
+                                %h1= yield(:page_title)
                     .wdn-main#maincontent
                         .wdn-band
                             .wdn-inner-wrapper
@@ -40,7 +56,9 @@
                 %footer.wdn-content-slide#footer{ role: "contentinfo" }
                     .wdn-band#wdn_footer_related
                         .wdn-inner-wrapper
+                            / TemplateBeginEditable name="leftcollinks"
                             = render 'wdn/relatedLinks'
+                            / TemplateEndEditable
                     .wdn-band
                         .wdn-inner-wrapper
                             .footer_col#wdn_footer_contact
