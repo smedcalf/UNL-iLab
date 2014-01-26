@@ -1,5 +1,6 @@
 Ilab::Application.routes.draw do
   
+  resources :sponsors
   resources :students
   resources :instructors
   
