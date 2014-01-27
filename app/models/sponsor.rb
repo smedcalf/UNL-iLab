@@ -1,4 +1,4 @@
-class Sponsors < ActiveRecord::Base
+class Sponsor < ActiveRecord::Base
 
   def full_name
     "#{self.first_name} #{self.last_name}"

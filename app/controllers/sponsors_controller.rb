@@ -1,10 +1,10 @@
 class SponsorsController < ApplicationController
   def index
-    @sponsors = Sponsors.all
+    @sponsors = Sponsor.all
   end
 
   def new
-    @sponsor = Sponsors.new
+    @sponsor = Sponsor.new
   end
 
   def show
