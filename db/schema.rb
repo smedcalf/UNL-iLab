@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140127194023) do
+ActiveRecord::Schema.define(version: 20140127193315) do
 
   create_table "instructors", force: true do |t|
     t.string   "email"
@@ -22,6 +22,23 @@ ActiveRecord::Schema.define(version: 20140127194023) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "projects", force: true do |t|
+    t.string   "project_name"
+    t.integer  "initial_capacity"
+    t.integer  "sponsors_id"
+    t.string   "sponsors_type"
+    t.integer  "current_capacity"
+    t.string   "semester"
+    t.string   "file_path"
+    t.string   "file_name"
+    t.boolean  "active"
+    t.boolean  "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "projects", ["sponsors_id", "sponsors_type"], name: "index_projects_on_sponsors_id_and_sponsors_type"
 
   create_table "sponsors", force: true do |t|
     t.string   "first_name"
