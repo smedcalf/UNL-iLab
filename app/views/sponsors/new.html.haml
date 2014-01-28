@@ -1,16 +1,18 @@
 %h1 New Sponsor
 
 = form_for @sponsor, url: { action: "create" } do |f|
+  %span.required *
   = f.label :email, "Email"
   = f.text_field :email
+  %span.required *
   = f.label :first_name, "First Name"
   = f.text_field :first_name
+  %span.required *
   = f.label :last_name, "Last Name"
   = f.text_field :last_name
+  %span.required *
   = f.label :orgnization, "Organization"
   = f.text_field :orgnization
-  %label Project Name
-  %input{type:"text"}
-  %label File &nbsp; (Optional)
-  %input{type:"file"}
   = f.submit "Submit"
+  %span.required *
+  denotes required field
