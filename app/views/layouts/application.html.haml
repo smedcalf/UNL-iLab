@@ -16,23 +16,12 @@
                     .wdn-inner-wrapper
                         = render 'wdn/logo'
                         #wdn_resources
-                            / = render 'wdn/idm'
-                            = render 'wdn/wdnTools'
                         %span#wdn_institution_title University of Nebraska&ndash;Lincoln
                     = render 'wdn/apps'
                     .wdn-inner-wrapper
                         #wdn_site_title
                             %span CSE Innovation Lab
                 .wdn-band#wdn_navigation_bar{ role: "navigation" }
-                    %nav.wdn-inner-wrapper#breadcrumbs
-                        / WDN: see glossary item 'breadcrumbs'
-                        %h3.wdn_list_descriptor.wdn-text-hidden Breadcrumbs
-                        %ul
-                            %li
-                                %a.wdn-icon-home{href: "http://www.unl.edu/", title: "University of Nebraska&ndash;Lincoln"} UNL
-                            %li
-                                %a{ href: "#", title: "Site Title" } Site Title
-                            %li
                     #wdn_navigation_wrapper
                         %nav.wdn-band#navigation{ role: "navigation"}
                             %h3.wdn_list_descriptor.wdn-text-hidden Navigation
