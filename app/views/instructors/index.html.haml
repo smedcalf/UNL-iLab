@@ -1,3 +1,17 @@
-%ul
-	- @instructors.each do |s|
-		%li= s.full_name
+%h1 Instructors
+%table.zentable
+	%tr
+		%thead
+			%th First Name
+			%th Last Name
+			%th Email
+			%th Classname
+			%th Semester
+	- @instructors.each do |i|
+		%tr
+			%td= i.first_name
+			%td= i.last_name
+			%td
+				%a{href: "mailto:#{i.email}"}= i.email
+			%td= i.classname
+			%td= i.semester
