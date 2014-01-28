@@ -1,13 +1,17 @@
 %h1 New Instructor
 
 = form_for @instructor, url: { action: "create" } do |f|
+  %span.required *
   = f.label :email, "Email"
   = f.text_field :email
+  %span.required *
   = f.label :first_name, "First Name"
   = f.text_field :first_name
+  %span.required *
   = f.label :last_name, "Last Name"
   = f.text_field :last_name
   .bp1-wdn-col-one-third
+    %span.required *
     = f.label "Class"
     %ol
       %li
@@ -17,6 +21,7 @@
         = f.radio_button :classname, "487"
         = f.label :classname_487, "CSCE487/CSCE489"
   .bp1-wdn-col-two-thirds
+    %span.required *
     = f.label "Semester"
     %ol
       %li
@@ -25,4 +30,8 @@
       %li
         = f.radio_button :semester, "Spring"
         = f.label :semester_spring, "Spring"
+  %ol
+    %li
+    %span.required *
+    denotes required field
   = f.submit "Submit"

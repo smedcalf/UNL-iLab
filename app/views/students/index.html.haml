@@ -1,4 +1,20 @@
-%ul
+%h1 Students
+%table.zentable
+	%tr
+		%thead
+			%th First Name
+			%th Last Name
+			%th Email
+			%th Major
+			%th Semester
+			%th Availability
 	- @students.each do |s|
-		%li= s.full_name
+		%tr
+			%td= s.first_name
+			%td= s.last_name
+			%td
+				%a{href: "mailto:#{s.email}"}= s.email
+			%td= s.major
+			%td= s.semester
+			%td= s.availability
 	
