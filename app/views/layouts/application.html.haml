@@ -3,8 +3,9 @@
     %head
         %title iLab
         = stylesheet_link_tag    "application", media: "all"
+        = stylesheet_link_tag   '/wdn/templates_4.0/css/all.css'
         = javascript_include_tag "application" => true
-        = javascript_include_tag 'all'
+        = javascript_include_tag '/wdn/templates_4.0/scripts/compressed/all'
         = csrf_meta_tags
         %body.fixed{ data: { version: "4.0"} }
             = render 'wdn/skip_nav'
@@ -31,10 +32,6 @@
                 .wdn-menu-trigger.wdn-content-slide
                     %label.wdn-icon-menu{ for: "wdn_menu_toggle" } Menu
                 .wdn-content-slide#wdn_content_wrapper{ role: "main"}
-                    .wdn-band
-                        .wdn-inner-wrapper
-                            #pagetitle
-                                -#%h1= yield(:page_title)
                     .wdn-main#maincontent
                         .wdn-band
                             .wdn-inner-wrapper
