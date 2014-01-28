@@ -3,7 +3,7 @@
 = form_for @sponsor, url: { action: "create" } do |f|
   %span.required *
   = f.label :email, "Email"
-  = f.text_field :email
+  = f.text_field :email, { required: true }
   %span.required *
   = f.label :first_name, "First Name"
   = f.text_field :first_name
