@@ -1,4 +1,25 @@
 %h1 sponsors
-%ul
-	- @sponsors.each do |s|
-		%li= s.full_name
+
+-#=flash.each do |key, value|
+-#  = value
+
+%table.zentable
+  %tr
+    %thead
+      %th First Name
+      %th Last Name
+      %th Organization
+      %th Email
+      %th Edit
+  -@sponsors.each do |s|
+    %tr
+    %td= s.first_name
+    %td= s.last_name
+    %td= s.orgnization
+    %td
+      %a{:href => "mailto:" + s.email }= s.email
+    %td
+      %select
+        %option{value: 'Please select'} Please Select
+        %option{value: 'edit'} Edit
+        %option{value: 'delete'} Delete
