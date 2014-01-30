@@ -1,6 +1,7 @@
 class StudentsController < ApplicationController
   def new
   	@student = Student.new
+    @url = "create"
   end
 
   def create
@@ -12,8 +13,27 @@ class StudentsController < ApplicationController
   	end
   end
 
+  def show
+    set_student
+  end
+
+  def edit
+    set_student
+    @url = "update"
+  end
+
   def index
   	@students = Student.all
+  end
+
+  def update
+    set_student
+    @url = "update"
+    if @student.update_attributes(student_params)
+      redirect_to student_path(@student.id)
+    else
+      render 'edit'
+    end
   end
 
   private
@@ -22,4 +42,8 @@ class StudentsController < ApplicationController
   		params.require(:student).permit(:email, :first_name, :last_name, :major, 
   			:availability, :semester)
   	end
+
+    def set_student
+      @student = Student.find_by_id(params[:id])
+    end
 end

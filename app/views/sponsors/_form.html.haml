@@ -1,0 +1,18 @@
+= form_for @sponsor, url: { action: @url } do |f|
+  %span.required *
+  = f.label :email, "Email"
+  = f.text_field :email, { required: true }
+  %span.required *
+  = f.label :first_name, "First Name"
+  = f.text_field :first_name
+  %span.required *
+  = f.label :last_name, "Last Name"
+  = f.text_field :last_name
+  %span.required *
+  = f.label :orgnization, "Organization"
+  = f.text_field :orgnization
+  %ol
+    %li
+    %span.required *
+    denotes required field
+  = f.submit "Submit"

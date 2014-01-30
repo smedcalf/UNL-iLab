@@ -1,1 +1,6 @@
-%h1= @student.full_name
+%h1
+	%strong= @student.full_name
+%h4= "Major: #{@student.major}"
+%h4= "Semester: #{@student.semester}"
+%h4= "Availability: #{pluralize(@student.availability, "semester")}"
+%a.wdn-button.wdn-button-triad{ href: edit_student_path(@student.id) } Edit
