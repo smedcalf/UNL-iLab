@@ -13,13 +13,10 @@
       %th Edit
   -@sponsors.each do |s|
     %tr
-    %td= s.first_name
-    %td= s.last_name
-    %td= s.orgnization
-    %td
-      %a{:href => "mailto:" + s.email }= s.email
-    %td
-      %select
-        %option{value: 'Please select'} Please Select
-        %option{value: 'edit'} Edit
-        %option{value: 'delete'} Delete
+      %td= s.first_name
+      %td= s.last_name
+      %td= s.orgnization
+      %td
+        %a{:href => "mailto:" + s.email }= s.email
+      %td
+        %b +
