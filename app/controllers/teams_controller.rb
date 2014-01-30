@@ -36,6 +36,13 @@ class TeamsController < ApplicationController
     end
   end
 
+  def add_students
+    team = Team.find_by_id(params[:team])
+    team.students << Student.find(params[:student])
+    team.save
+    redirect_to students_path
+  end
+
   private
 
     def team_params

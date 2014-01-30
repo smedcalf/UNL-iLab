@@ -1,2 +1,7 @@
 %h1= @team.name
+
+%h3 Members
+- @team.students.each do |s|
+	%h5
+		%a{href: student_path(s.id) }= s.full_name
 %a.wdn-button.wdn-button-triad{ href: edit_team_path(@team.id)} Edit

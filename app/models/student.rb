@@ -24,4 +24,12 @@ class Student < ActiveRecord::Base
 	def full_name
 		"#{self.first_name} #{self.last_name}"
 	end
+
+	def team_name
+		if self.team
+			self.team.name
+		else
+			""
+		end
+	end
 end

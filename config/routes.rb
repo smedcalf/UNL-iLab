@@ -5,6 +5,8 @@ Ilab::Application.routes.draw do
   resources :instructors
   resources :projects
   resources :teams
+
+  post 'teams/add_students', to: 'teams#add_students'
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

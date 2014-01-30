@@ -1,5 +1,7 @@
 %h1
 	%strong= @student.full_name
+- if @student.team
+	%h4= "Team: #{@student.team_name}"
 %h4= "Major: #{@student.major}"
 %h4= "Semester: #{@student.semester}"
 %h4= "Availability: #{pluralize(@student.availability, "semester")}"
