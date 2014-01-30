@@ -24,6 +24,7 @@ class StudentsController < ApplicationController
 
   def index
   	@students = Student.all
+    @teams = Team.all.sort_by { |t| t.name }
   end
 
   def update

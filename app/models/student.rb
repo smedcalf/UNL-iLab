@@ -16,11 +16,20 @@
 #
 
 class Student < ActiveRecord::Base
+	belongs_to :team
 
 	validates :first_name, presence: true
 	validates :last_name, presence: true
 
 	def full_name
 		"#{self.first_name} #{self.last_name}"
+	end
+
+	def team_name
+		if self.team
+			self.team.name
+		else
+			""
+		end
 	end
 end
