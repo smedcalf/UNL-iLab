@@ -1,2 +1,4 @@
-%h1 sponsors#show
-%p Find me in app/views/sponsors/show.html.haml
+%h1
+	%strong= @sponsor.full_name
+%h4= "Email: #{@sponsor.email}"
+%a.wdn-button.wdn-button-triad{ href: edit_sponsor_path(@sponsor.id) } Edit

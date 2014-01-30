@@ -1,0 +1,6 @@
+= form_for @team, url: { action: @url } do |f|
+	= render 'shared/error_messages', object: @team
+	%span.required *
+	= f.label :name, "Name"
+	= f.text_field :name
+	= f.submit "Submit"

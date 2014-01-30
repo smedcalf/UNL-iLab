@@ -1,4 +1,4 @@
-%h1 sponsors
+%h1 Sponsors
 
 -#=flash.each do |key, value|
 -#  = value
@@ -10,13 +10,13 @@
       %th Last Name
       %th Organization
       %th Email
-      %th Edit
+      %th
   -@sponsors.each do |s|
     %tr
-      %td= s.first_name
-      %td= s.last_name
-      %td= s.orgnization
-      %td
-        %a{:href => "mailto:" + s.email }= s.email
-      %td
-        %b +
+    %td= s.first_name
+    %td= s.last_name
+    %td= s.orgnization
+    %td
+      %a{:href => "mailto:" + s.email }= s.email
+    %td
+      %a.wdn-button.wdn-button-triad{ href: sponsor_path(s.id) } Show

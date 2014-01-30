@@ -7,6 +7,7 @@
 			%th Email
 			%th Classname
 			%th Semester
+			%th
 	- @instructors.each do |i|
 		%tr
 			%td= i.first_name
@@ -15,3 +16,5 @@
 				%a{href: "mailto:#{i.email}"}= i.email
 			%td= i.classname
 			%td= i.semester
+			%td
+				%a.wdn-button.wdn-button-triad{ href: instructor_path(i.id) } Show

@@ -5,6 +5,7 @@ class SponsorsController < ApplicationController
 
   def new
     @sponsor = Sponsor.new
+    @url = "create"
   end
 
   def create
@@ -17,13 +18,31 @@ class SponsorsController < ApplicationController
   end
 
   def show
+    set_sponsor
   end
 
   def edit
+    set_sponsor
+    @url = "update"
+  end
+
+  def update
+    set_sponsor
+    @url = "update"
+    if @sponsor.update_attributes(sponsor_params)
+      redirect_to sponsor_path(@sponsor.id)
+    else
+      render 'edit'
+    end
   end
 
   private
-  def sponsor_params
-    params.require(:sponsor).permit(:email, :first_name, :last_name, :orgnization, :type)
-  end
+
+    def sponsor_params
+      params.require(:sponsor).permit(:email, :first_name, :last_name, :orgnization, :type)
+    end
+
+    def set_sponsor
+      @sponsor = Sponsor.find_by_id(params[:id])
+    end
 end
