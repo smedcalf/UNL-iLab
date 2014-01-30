@@ -23,8 +23,9 @@
 				%td= s.last_name
 				%td
 					%a{href: "mailto:#{s.email}"}= s.email
-				%td 
-					%a{ href: team_path(s.team.id) }= s.team_name
+				%td
+					- if s.team
+						%a{ href: team_path(s.team.id) }= s.team_name
 				%td= s.major
 				%td= s.semester
 				%td= s.availability
