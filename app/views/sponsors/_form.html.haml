@@ -1,4 +1,5 @@
 = form_for @sponsor, url: { action: @url } do |f|
+  = render 'shared/error_messages', object: @sponsor
   %span.required *
   = f.label :email, "Email"
   = f.text_field :email, { required: true }

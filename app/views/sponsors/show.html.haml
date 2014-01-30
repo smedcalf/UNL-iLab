@@ -1,5 +1,4 @@
 %h1
 	%strong= @sponsor.full_name
-%h4= @sponsor.email
-%h4= @sponsor.type
+%h4= "Email: #{@sponsor.email}"
 %a.wdn-button.wdn-button-triad{ href: edit_sponsor_path(@sponsor.id) } Edit

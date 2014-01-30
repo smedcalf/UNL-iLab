@@ -1,0 +1,6 @@
+%h1
+	%strong= @instructor.full_name
+%h4= "Email: #{@instructor.email}"
+%h4= "Classname: #{@instructor.classname}"
+%h4= "Semeseter: #{@instructor.semester}"
+%a.wdn-button.wdn-button-triad{ href: edit_instructor_path(@instructor.id) } Edit
