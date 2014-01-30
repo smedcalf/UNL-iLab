@@ -5,7 +5,7 @@
         = stylesheet_link_tag    "application", media: "all"
         = stylesheet_link_tag   '/wdn/templates_4.0/css/all.css'
         = javascript_include_tag :application
-        = javascript_include_tag '/wdn/templates_4.0/scripts/compressed/all', { id: "wdn_dependents" }
+        = javascript_include_tag '/wdn/templates_4.0/scripts/compressed/all', media: 'all'
         = stylesheet_link_tag '//cloud.typography.com/7717652/616662/css/fonts.css'
         = stylesheet_link_tag '/wdn/templates_4.0/css/print.css', media: 'print'
         = csrf_meta_tags
@@ -34,10 +34,9 @@
                 .wdn-menu-trigger.wdn-content-slide
                     %label.wdn-icon-menu{ for: "wdn_menu_toggle" } Menu
                 .wdn-content-slide#wdn_content_wrapper{ role: "main"}
-                    .wdn-main#maincontent
-                        .wdn-band
-                            .wdn-inner-wrapper
-                                = yield
+                    .wdn-band
+                        .wdn-inner-wrapper
+                            = yield
                 .wdn-band.wdn-content-slide#wdn_optional_footer
                     .wdn-inner-wrapper
                         / TemplateBeginEditable name="optionalfooter"
