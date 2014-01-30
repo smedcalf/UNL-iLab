@@ -10,7 +10,7 @@
 			%th Availability
 			%th
 	- @students.each do |s|
-		%tr.clickable-row{ href: student_path(s.id) }
+		%tr{ href: student_path(s.id) }
 			%td= s.first_name
 			%td= s.last_name
 			%td

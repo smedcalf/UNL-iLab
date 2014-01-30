@@ -1,0 +1,12 @@
+%h1 Teams
+%table.zentable
+	%tr
+		%thead
+			%th Name
+			%th
+	- @teams.each do |t|
+		%tr{ href: team_path(t.id) }
+			%td= t.name
+			%td
+				%a.wdn-button.wdn-button-triad{ href: team_path(t.id) } Show
+	
