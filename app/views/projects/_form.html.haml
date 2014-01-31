@@ -1,0 +1,35 @@
+= form_for @project, url: { action: @url }, :html => {:multipart => true} do |f|
+  = render 'shared/error_messages', object: @project
+  %span.required *
+  = f.label :project_name, 'Project Name'
+  = f.text_field :project_name, {required: true}
+  %span.required *
+  = f.label :sponsor, 'Sponsor Name'
+  = select_tag 'sponsor', options_from_collection_for_select(Sponsor.all, 'id', 'full_name')
+  .bp1-wdn-col-one-third
+    %span.required *
+    =f.label :semester, 'Semester'
+    %ol
+      %li
+        = f.radio_button :semester, 'Fall'
+        = f.label :semester_fall, 'Fall'
+      %li
+        = f.radio_button :semester, 'Spring'
+        = f.label :semester_spring, 'Spring'
+  .bp1-wdn-col-one-third
+    =f.label :active, 'Active Now'
+    %br
+    =f.check_box :active
+  .bp1-wdn-col-one-third
+    %ul
+      %li
+        %span.required *
+        =f.label :initial_capacity, 'Initial Capacity'
+        =f.text_field :initial_capacity, {value: '4'}
+  =f.label :proposal, 'Proposal'
+  =f.file_field :proposal
+  %ol
+    %li
+    %span.required *
+    denotes required field
+  = f.submit "Submit"
