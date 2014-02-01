@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   def index
-
+    @projects = Project.all
   end
 
   def new
@@ -11,6 +11,7 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
+    @project.sponsor = Sponsor.find(project_params[:sponsor_id])
     if @project.save
       redirect_to projects_path
     else
@@ -26,7 +27,7 @@ class ProjectsController < ApplicationController
 
   private
   def project_params
-    params.require(:project).permit(:project_name, :initial_capacity, :sponsor_id, :sponsor_type, :semester, :current_capacity,
+    params.require(:project).permit(:project_name, :initial_capacity, :sponsor_id, :semester, :current_capacity,
                                     :proposal, :active, :status)
   end
 end

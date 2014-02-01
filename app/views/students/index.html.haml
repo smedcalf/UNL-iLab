@@ -4,7 +4,7 @@
 	%section.wdn-grid-set
 		.wdn-col-one-half
 			= select_tag "team", options_from_collection_for_select(@teams, "id", "name"), include_prompt: "Select team"
-		.wdn-col-one-half
+		.wdn-col-one-hal
 			= submit_tag "Submit"
 	%table.zentable
 		%tr
@@ -34,4 +34,3 @@
 				%td= s.availability
 				%td
 					%a.wdn-button.wdn-button-triad{ href: student_path(s.id) } Show
-	

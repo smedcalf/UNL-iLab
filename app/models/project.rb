@@ -12,10 +12,10 @@ class Project < ActiveRecord::Base
   private
   def set_defaults
     if self.new_record?
-      self.initial_capacity = 4
+      self.initial_capacity = 4 if self.initial_capacity.blank?
       self.current_capacity = self.initial_capacity
-      self.active = 0
-      self.status = 0
+      self.active = 0 if self.active.blank?
+      self.status = 0 if self.status.blank?
     end
   end
 

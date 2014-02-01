@@ -4,8 +4,8 @@
   = f.label :project_name, 'Project Name'
   = f.text_field :project_name, {required: true}
   %span.required *
-  = f.label :sponsor, 'Sponsor Name'
-  = select_tag 'sponsor', options_from_collection_for_select(Sponsor.all, 'id', 'full_name')
+  = f.label :sponsor_id, 'Sponsor Name'
+  = f.select :sponsor_id, options_for_select(Sponsor.all.map{ |c| [c.full_name, c.id] }, selected_key = f.object.sponsor_id)
   .bp1-wdn-col-one-third
     %span.required *
     =f.label :semester, 'Semester'
