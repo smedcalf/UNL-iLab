@@ -1,11 +1,13 @@
 class TeamsController < ApplicationController
   def new
     @team = Team.new
+    @projects = Project.all
   end
 
   def create
     @url = "create"
     @team = Team.new(team_params)
+    @team.project = Project.find(team_params[:project_id])
     if @team.save
       redirect_to teams_path
     else
@@ -46,7 +48,7 @@ class TeamsController < ApplicationController
   private
 
     def team_params
-      params.require(:team).permit(:name)
+      params.require(:team).permit(:name, :project_id)
     end
 
     def set_team

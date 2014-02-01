@@ -1,8 +1,8 @@
 = form_for @team, url: { action: @url } do |f|
 	= render 'shared/error_messages', object: @team
 	%span.required *
-	= f.label :name, "Project"
-	= f.text_field :name
+	= f.label :project_id, "Project"
+	= f.select :project_id, options_for_select(Project.all.map{ |p| [p.project_name, p.id] }, selected_key = f.object.project_id)
 	%span.required *
 	= f.label :name, "Name"
 	= f.text_field :name
