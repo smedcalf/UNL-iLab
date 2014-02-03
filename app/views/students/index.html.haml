@@ -31,6 +31,8 @@
                     %td
                         - if s.team
                             %a{ href: team_path(s.team.id) }= s.team_name
+                        - else
+                            Not Assigned
                     %td= s.major
                     %td= s.semester
                     %td= s.availability
