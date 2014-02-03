@@ -1,6 +1,7 @@
 %h1 Students
 .maincontent#maincontent
     = form_tag("teams/add_students", method: "post") do
+        -# need add error message = render 'shared/error_messages', object: flash
         = label_tag  "team", "Assign to"
         %section.wdn-grid-set
             .wdn-col-one-half

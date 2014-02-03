@@ -40,9 +40,14 @@ class TeamsController < ApplicationController
 
   def add_students
     team = Team.find_by_id(params[:team])
-    team.students << Student.find(params[:student])
-    team.save
-    redirect_to students_path
+    if params[:student]
+      Student.where(:id => params[:student]).update_all(:status => true)
+      team.students << Student.find(params[:student])
+      team.save
+      redirect_to students_path
+    else
+      redirect_to students_path
+    end
   end
 
   def delete_teams
