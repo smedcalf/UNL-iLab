@@ -17,9 +17,11 @@
         = f.radio_button :semester, 'Spring'
         = f.label :semester_spring, 'Spring'
   .bp1-wdn-col-one-third
+    =f.check_box :active
     =f.label :active, 'Active Now'
     %br
-    =f.check_box :active
+    =f.check_box :status
+    =f.label :status, 'Enable for Apply'
   .bp1-wdn-col-one-third
     %ul
       %li

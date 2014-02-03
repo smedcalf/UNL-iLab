@@ -23,4 +23,17 @@ $dark-energetic: #B34E26;
 @font-face {
   font-family:'wdn-icon';
   src:font-url('wdn-icon.svg') format('svg');
-} 
+}
+
+.inline {
+  display: inline;
+  padding: 2px 0 2px 0;
+}
+.content-li {
+  list-style: none;
+}
+
+#maincontent{
+  padding-top: 10px;
+  padding-bottom: 20px;
+}

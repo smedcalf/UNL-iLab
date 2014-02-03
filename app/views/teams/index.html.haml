@@ -1,14 +1,18 @@
 %h1 Teams
 .maincontent#maincontent
+  = form_tag("teams/delete_teams", method: "post") do
     %table.zentable
-        %tr
-            %thead
-                %th Name
-                %th Project
-                %th
-        - @teams.each do |t|
-            %tr{ href: team_path(t.id) }
-                %td= t.name
-                %td= Project.find(t.project_id).project_name
-                %td
-                    %a.wdn-button.wdn-button-triad{ href: team_path(t.id) } Show
+      %tr
+        %thead
+          %th
+          %th Name
+          %th Project
+          %th
+      - @teams.each do |t|
+        %tr{ href: team_path(t.id) }
+          %td{style: 'text-align: center'}= check_box_tag 'team[]', t.id
+          %td= t.name
+          %td= Project.find(t.project_id).project_name
+          %td
+            %a.wdn-button.wdn-button-triad{ href: team_path(t.id) } Show
+    = submit_tag 'Delete', {style: 'background: rgb(224, 95, 84)'}

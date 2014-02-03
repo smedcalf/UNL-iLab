@@ -45,6 +45,11 @@ class TeamsController < ApplicationController
     redirect_to students_path
   end
 
+  def delete_teams
+    Team.destroy(params[:team])
+    redirect_to teams_path
+  end
+
   private
 
     def team_params

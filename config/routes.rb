@@ -7,7 +7,8 @@ Ilab::Application.routes.draw do
   resources :teams
 
   post 'teams/add_students', to: 'teams#add_students'
-  
+  post 'teams/delete_teams', to: 'teams#delete_teams'
+  post 'projects/manage_projects', to: 'projects#manage_projects'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

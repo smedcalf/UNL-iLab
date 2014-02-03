@@ -1,36 +1,37 @@
 %h1 Students
-= form_tag("teams/add_students", method: "post") do
-	= label_tag  "team", "Assign to"
-	%section.wdn-grid-set
-		.wdn-col-one-half
-			= select_tag "team", options_from_collection_for_select(@teams, "id", "name"), include_prompt: "Select team"
-		.wdn-col-one-hal
-			= submit_tag "Submit"
-	%table.zentable
-		%tr
-			%thead
-				%th
-				%th First Name
-				%th Last Name
-				%th Email
-				%th Team
-				%th Major
-				%th Semester
-				%th Availability
-				%th
-		- @students.each do |s|
-			%tr{ href: student_path(s.id) }
-				%td
-					= check_box_tag 'student[]', s.id
-				%td= s.first_name
-				%td= s.last_name
-				%td
-					%a{href: "mailto:#{s.email}"}= s.email
-				%td
-					- if s.team
-						%a{ href: team_path(s.team.id) }= s.team_name
-				%td= s.major
-				%td= s.semester
-				%td= s.availability
-				%td
-					%a.wdn-button.wdn-button-triad{ href: student_path(s.id) } Show
+.maincontent#maincontent
+    = form_tag("teams/add_students", method: "post") do
+        = label_tag  "team", "Assign to"
+        %section.wdn-grid-set
+            .wdn-col-one-half
+                = select_tag "team", options_from_collection_for_select(@teams, "id", "name"), include_prompt: "Select team"
+            .wdn-col-one-hal
+                = submit_tag "Submit"
+        %table.zentable
+            %tr
+                %thead
+                    %th
+                    %th First Name
+                    %th Last Name
+                    %th Email
+                    %th Team
+                    %th Major
+                    %th Semester
+                    %th Availability
+                    %th
+            - @students.each do |s|
+                %tr{ href: student_path(s.id) }
+                    %td
+                        = check_box_tag 'student[]', s.id
+                    %td= s.first_name
+                    %td= s.last_name
+                    %td
+                        %a{href: "mailto:#{s.email}"}= s.email
+                    %td
+                        - if s.team
+                            %a{ href: team_path(s.team.id) }= s.team_name
+                    %td= s.major
+                    %td= s.semester
+                    %td= s.availability
+                    %td
+                        %a.wdn-button.wdn-button-triad{ href: student_path(s.id) } Show
