@@ -1,8 +1,8 @@
 class Project < ActiveRecord::Base
   belongs_to :sponsor, polymorphic: true
   has_many :team, :dependent => :destroy
-  validates :project_name, :initial_capacity, :semester, :sponsor,  :presence => true
-  validates :project_name, :uniqueness => true
+  validates :name, :initial_capacity, :semester, :sponsor,  :presence => true
+  validates :name, :uniqueness => true
 
   after_initialize :set_defaults
 

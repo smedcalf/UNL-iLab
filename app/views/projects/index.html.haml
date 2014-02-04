@@ -19,7 +19,7 @@
         -@projects.each do |p|
           %tr
             %td{style: 'text-align: center'}= check_box_tag 'project[]', p.id
-            %td= p.project_name
+            %td= p.name
             %td
               %a{href: sponsor_path(p.sponsor)}= Sponsor.find(p.sponsor).full_name
             %td= p.semester

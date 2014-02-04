@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20140131202306) do
   end
 
   create_table "projects", force: true do |t|
-    t.string   "project_name"
+    t.string   "name"
     t.integer  "initial_capacity"
     t.integer  "sponsor_id"
     t.string   "sponsor_type"
