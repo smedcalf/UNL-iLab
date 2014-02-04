@@ -1,4 +1,4 @@
-%h1= @project.project_name
+%h1= @project.name
 %span.wdn-button.wdn-button-complement{style: 'font-size: 8px; vertical-align: top'}
   - if @project.active
     Active
@@ -20,7 +20,7 @@
   .wdn-grid-set-fifths
     .wdn-col-one-fifth
       %h4.inline Project Name
-    .wdn-col-four-fifths= @project.project_name
+    .wdn-col-four-fifths= @project.name
   .wdn-grid-set-fifths
     .wdn-col-one-fifth
       %h4.inline Sponsor Name
