@@ -1,0 +1,13 @@
+%h1 Sponsors
+
+.maincontent#maincontent
+    %table.zentable
+        %tr
+            %thead
+                %th Username
+                %th
+        -@users.each do |u|
+            %tr
+                %td= u.name
+                %td
+                    %a.wdn-button.wdn-button-triad{ href: user_path(u.id) } Show

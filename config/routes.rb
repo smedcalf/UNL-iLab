@@ -5,6 +5,9 @@ Ilab::Application.routes.draw do
   resources :instructors
   resources :projects
   resources :teams
+  resources :users
+
+  get 'register', to: 'users#new'
 
   post 'teams/add_students', to: 'teams#add_students'
   post 'teams/delete_teams', to: 'teams#delete_teams'

@@ -1,0 +1,15 @@
+%h1 Edit
+
+.maincontent#maincontent
+		= form_for @user, url: { action: @url } do |f|
+			= render 'shared/error_messages', object: @user
+			%span.required *
+			= f.label :old_password, "Old Password"
+			= f.password_field :old_password
+			%span.required *
+			= f.label :password, "Password"
+			= f.password_field :password
+			%span.required *
+			= f.label :password_confirmation, "Password Confirmation"
+			= f.password_field :password_confirmation
+			= f.submit "Submit"
