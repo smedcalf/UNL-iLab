@@ -1,4 +1,6 @@
 class TeamsController < ApplicationController
+  before_action :signed_in_user
+  
   def new
     @team = Team.new
     @projects = Project.all

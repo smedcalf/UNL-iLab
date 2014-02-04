@@ -1,4 +1,6 @@
 class StudentsController < ApplicationController
+  before_action :signed_in_user
+  
   def new
   	@student = Student.new
     @url = "create"

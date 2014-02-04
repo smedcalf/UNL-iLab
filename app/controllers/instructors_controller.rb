@@ -1,4 +1,5 @@
 class InstructorsController < ApplicationController
+	before_action :signed_in_user
 
 	def new
 		@instructor = Instructor.new

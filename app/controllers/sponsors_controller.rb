@@ -1,4 +1,6 @@
 class SponsorsController < ApplicationController
+  before_action :signed_in_user
+  
   def index
     @sponsors = Sponsor.all
   end

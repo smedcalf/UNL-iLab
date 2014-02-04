@@ -1,21 +1,25 @@
 Ilab::Application.routes.draw do
-  
-  resources :sponsors
-  resources :students
+
   resources :instructors
   resources :projects
+  resources :sessions, only: [:new, :create, :destroy]
+  resources :sponsors
+  resources :students
   resources :teams
   resources :users
 
+  # Named Routes
   get 'register', to: 'users#new'
-
+  get 'login', to: 'sessions#new'
+  get 'signout', to: 'sessions#destroy'
   post 'teams/add_students', to: 'teams#add_students'
   post 'teams/delete_teams', to: 'teams#delete_teams'
   post 'projects/manage_projects', to: 'projects#manage_projects'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
-  root to: 'static_pages#test'
+  root to: 'sessions#new'
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
