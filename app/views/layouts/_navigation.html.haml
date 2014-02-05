@@ -1,27 +1,69 @@
-%ul
-    %li
-        %a{ href: projects_path } Projects
-        %ul
-            %li
-                %a{ href: new_project_path } New
-    %li
-        %a{ href: teams_path } Teams
-        %ul
-            %li
-                %a{ href: new_team_path } New
-    %li
-        %a{ href: sponsors_path } Sponsors
-        %ul
-            %li
-                %a{ href: new_sponsor_path } New
-    %li
-        %a{ href: instructors_path } Instructors
-        %ul
-            %li
-                %a{ href: new_instructor_path } New
-    %li
-        %a{ href: students_path } Students
-        %ul
-            %li
-                %a{ href: new_student_path } New
+-# Instructor Navigation
 
+- if signed_in?
+  %ul
+    %li
+      %a{ href: '/' } Home
+      %ul
+        %li
+          %a{ href: "http://unl.edu", title: 'UNL Homepage'} UNL Homepage
+          %a{ href: "http://cse.unl.edu/InnovationLab", title: 'Innovation Lab Homepage' } Innovation Lab
+    %li
+      %a{ href: '#', title: 'Application Tables' } Application
+      %ul
+        %li
+          %a{ href: '#', title: 'User Registration' } User Registration
+          %a{ href: '#', title: 'Student Application' } Student Application
+    %li
+      %a{ href: projects_path, title: 'Projects table' } Projects
+      %ul
+        %li
+          %a{ href: sponsors_path, title: 'Sponsor Table' } Current Sponsors Table
+          %a{ href: new_sponsor_path, title: 'Create New Sponsor' } New Sponsor Form
+          %a{ href: new_project_path, title: 'create New Project' } New Project Form
+    %li
+      %a{ href: teams_path, title: 'Team Table' } Teams
+      %ul
+        %li
+          %a{ href: new_team_path, title: 'Create New Team' } New Team Form
+          %a{ href: '#', title: 'Team Work History' } Team Work Track
+          %a{ href: '#', title: 'Team Notification' } Team Notification
+    %li
+      %a{ href: students_path, title: 'Student Table' } Students
+      %ul
+        %li
+          %a{ href: new_student_path, title: 'Create New student' } New Student Form
+    %li
+      %a{ href: '#', title: 'Some Useful Links' } Links
+      %ul
+        %li
+          %a{ href: '#' } some useful links
+
+  -# Not signed in navigation
+- else
+  %ul
+    %li
+      %a{ href: projects_path } Projects
+      %ul
+        %li
+          %a{ href: new_project_path } New
+    %li
+      %a{ href: teams_path } Teams
+      %ul
+        %li
+          %a{ href: new_team_path } New
+    %li
+      %a{ href: sponsors_path } Sponsors
+      %ul
+        %li
+          %a{ href: new_sponsor_path } New
+    %li
+      %a{ href: instructors_path } Instructors
+      %ul
+        %li
+          %a{ href: new_instructor_path } New
+    %li
+      %a{ href: students_path } Students
+      %ul
+        %li
+          %a{ href: new_student_path } New

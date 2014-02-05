@@ -1,4 +1,19 @@
 %h1
-	%strong= @sponsor.full_name
-%h4= "Email: #{@sponsor.email}"
+  %strong= @sponsor.full_name
+%hr
+.maincontent#maincontent
+  %h4.inline Email:
+  %h4.inline
+    %a{href: "mailto:#{@sponsor.email}"}= @sponsor.email
+  %br
+  %h4.inline Project:
+  - if @projects.empty?
+    No Sponsor was created.
+  - else
+    - @projects.each do |s|
+      %h4.inline
+        %a{href: project_path(s.id)}=s.name
+        %span.tab
+  %br
+  %h4.inline= "Orgnization: #{@sponsor.orgnization}"
 %a.wdn-button.wdn-button-triad{ href: edit_sponsor_path(@sponsor.id) } Edit

@@ -26,8 +26,9 @@ $dark-energetic: #B34E26;
 }
 
 .inline {
-  display: inline;
-  padding: 2px 0 2px 0;
+  display: inline-table;
+  padding: 0;
+  margin: 10px;
 }
 .content-li {
   list-style: none;
@@ -36,4 +37,10 @@ $dark-energetic: #B34E26;
 #maincontent{
   padding-top: 10px;
   padding-bottom: 20px;
+}
+.tab {
+  padding-right: 10px;
+}
+.line-padding{
+  padding-top: 12px !important;
 }

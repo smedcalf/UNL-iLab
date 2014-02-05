@@ -21,6 +21,7 @@ class SponsorsController < ApplicationController
 
   def show
     set_sponsor
+    @projects = Project.where(:sponsor_id => params[:id])
   end
 
   def edit
