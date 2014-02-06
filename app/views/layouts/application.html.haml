@@ -24,7 +24,7 @@
                                     .wdn-profile-options
                                         %a.wdn-icon-user.wdn-idm-login{href: edit_user_path(current_user.id), title: "Edit Profile"}= current_user.name
                                         |
-                                        %a{href: 'signout', title: 'logout'} Logout
+                                        %a{href: '/signout', title: 'logout'} Logout
                             = render 'wdn/wdnTools'
                         %span#wdn_institution_title University of Nebraska&ndash;Lincoln
                     = render 'wdn/apps'
