@@ -6,4 +6,5 @@
 			%a{ href: '#'} Close this notice
 		.message
 			- object.errors.full_messages.each do |msg|
+				%h4 Error Notice
 				%p= msg

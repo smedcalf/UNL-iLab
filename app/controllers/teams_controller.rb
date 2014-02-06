@@ -9,11 +9,16 @@ class TeamsController < ApplicationController
   def create
     @url = "create"
     @team = Team.new(team_params)
-    @team.project = Project.find(team_params[:project_id])
-    if @team.save
-      redirect_to teams_path
+    if team_params[:project_id]
+      @team.project = Project.find(team_params[:project_id])
+      if @team.save
+        redirect_to teams_path
+      else
+        render 'new'
+      end
     else
-      render 'new'
+      flash[:error] = 'Please select project to make a team'
+      redirect_to :back
     end
   end
 
