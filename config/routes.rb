@@ -2,7 +2,8 @@ Ilab::Application.routes.draw do
 
   resources :instructors
   resources :projects
-  resources :sessions, only: [:new, :create, :destroy]
+  resources :sessions, only: [:new, :create, :destroy, :index]
+  resources :static_pages
   resources :sponsors
   resources :students
   resources :teams
@@ -15,6 +16,7 @@ Ilab::Application.routes.draw do
   post 'teams/add_students', to: 'teams#add_students'
   post 'teams/delete_teams', to: 'teams#delete_teams'
   post 'projects/manage_projects', to: 'projects#manage_projects'
+  post 'users/manage_users', to: 'users#manage_users'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

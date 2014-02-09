@@ -36,7 +36,7 @@ module SessionsHelper
 
 	def signed_in_user
 		unless signed_in?
-			redirect_to login_path
+			redirect_to :back
 		end
 	end
 end

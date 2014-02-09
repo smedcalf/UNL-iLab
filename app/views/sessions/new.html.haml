@@ -18,6 +18,12 @@
             = f.submit 'Login'
             %input.wdn-button.wdn-button-{type: "reset", value: "CLEAR", name: "reset", style: "color: #a5a5a5"}
             %a Fogot Password?
+            %h4.inline{style: 'float: right'}
+              %a{href: "register"}Sign Up
 
-    .wdn-col-two-fifths.wdn-infographic.wdn-infographic-globe-triad{style: "padding-left: 50px"}
-      %b Links
+    .wdn-col-two-fifths.wdn-infographic.wdn-infographic-globe-triad
+      %ul
+        %h4 Links
+        %li.content-li
+          %h5
+            %a{href: new_user_path} Sign Up

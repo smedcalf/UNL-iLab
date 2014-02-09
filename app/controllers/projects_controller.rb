@@ -41,15 +41,20 @@ class ProjectsController < ApplicationController
   end
 
   def manage_projects
-    case params[:commit]
-      when 'delete'
-        Project.destroy(params[:project])
-      when 'activate'
-        Project.where(:id => params[:project]).update_all(:active => true)
-      when 'enable'
-        Project.where(:id => params[:project]).update_all(:status => true)
+    if params[:project].nil?
+      flash[:error] = 'No project was selected!'
+      redirect_to projects_path
+    else
+      case params[:commit]
+        when 'delete'
+          Project.destroy(params[:project])
+        when 'activate'
+          Project.where(:id => params[:project]).update_all(:active => true)
+        when 'enable'
+          Project.where(:id => params[:project]).update_all(:status => true)
+      end
+      redirect_to projects_path
     end
-    redirect_to projects_path
   end
 
   private

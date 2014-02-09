@@ -6,28 +6,29 @@
   %span.required *
   = f.label :sponsor_id, 'Sponsor Name'
   = f.select :sponsor_id, options_for_select(Sponsor.all.map{ |c| [c.full_name, c.id] }, selected_key = f.object.sponsor_id)
-  .bp1-wdn-col-one-third
-    %span.required *
-    =f.label :semester, 'Semester'
-    %ol
-      %li
-        = f.radio_button :semester, 'Fall'
-        = f.label :semester_fall, 'Fall'
-      %li
-        = f.radio_button :semester, 'Spring'
-        = f.label :semester_spring, 'Spring'
-  .bp1-wdn-col-one-third
-    =f.check_box :active
-    =f.label :active, 'Active Now'
-    %br
-    =f.check_box :status
-    =f.label :status, 'Enable for Apply'
-  .bp1-wdn-col-one-third
-    %ul
-      %li
-        %span.required *
-        =f.label :initial_capacity, 'Initial Capacity'
-        =f.text_field :initial_capacity, {value: '4'}
+  .wdn-grid-set
+    .bp1-wdn-col-one-third
+      %span.required *
+      =f.label :semester, 'Semester'
+      %ol
+        %li
+          = f.radio_button :semester, 'Fall'
+          = f.label :semester_fall, 'Fall'
+        %li
+          = f.radio_button :semester, 'Spring'
+          = f.label :semester_spring, 'Spring'
+    .bp1-wdn-col-one-third
+      =f.check_box :active
+      =f.label :active, 'Active Now'
+      %br
+      =f.check_box :status
+      =f.label :status, 'Enable for Apply'
+    .bp1-wdn-col-one-third
+      %ul
+        %li
+          %span.required *
+          =f.label :initial_capacity, 'Initial Capacity'
+          =f.text_field :initial_capacity, {value: '4'}
   =f.label :proposal, 'Proposal'
   =f.file_field :proposal
   %ol

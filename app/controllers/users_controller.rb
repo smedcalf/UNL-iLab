@@ -6,21 +6,36 @@ class UsersController < ApplicationController
 		@url = "create"
 	end
 
-	def index
+  def manage_users
+    case params[:commit]
+      when 'delete'
+        User.destroy(params[:user])
+      when 'assign'
+        User.where(:id => params[:user]).update_all(:type => params[:type])
+    end
+    redirect_to users_path
+  end
+
+  def index
 		@users = User.all
 	end
 
 	def show
 		set_user
-	end
+  end
+
+  def home
+
+  end
 
 	def create
 		@user = User.new(user_params)
 		if @user.save
 			redirect_to user_path(@user.id)
+      flash[:success] = 'Congratulations!!! Your account has been created!'
       sign_in(@user)
-		else
-			render 'new'
+    else
+      redirect_to :back
 		end
 	end
 

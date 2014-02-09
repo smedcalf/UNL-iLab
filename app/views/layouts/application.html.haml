@@ -43,6 +43,7 @@
                 .wdn-content-slide#wdn_content_wrapper{ role: "main"}
                     .wdn-band
                         .wdn-inner-wrapper
+                            -#= render 'shared/success_messages'
                             = yield
                 .wdn-band.wdn-content-slide#wdn_optional_footer
                     .wdn-inner-wrapper

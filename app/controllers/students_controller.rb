@@ -9,6 +9,7 @@ class StudentsController < ApplicationController
   def create
   	@student = Student.new(student_params)
   	if @student.save
+      flash[:success] = 'Congratulations!!! New student was created successfully!'
   		redirect_to students_path
   	else
   		render 'new'
@@ -43,7 +44,7 @@ class StudentsController < ApplicationController
 
   	def student_params
   		params.require(:student).permit(:email, :first_name, :last_name, :major, 
-  			:availability, :semester)
+  			:availability, :semester, :classname)
   	end
 
     def set_student

@@ -15,8 +15,8 @@
           %tr{ href: team_path(t.id) }
             %td{style: 'text-align: center'}= check_box_tag 'team[]', t.id
             %td= t.name
-            %td= Project.find(t.project_id).project_name
+            %td= Project.find(t.project_id).name
             %td
               %a.wdn-button.wdn-button-triad{ href: team_path(t.id) } Show
       %span{style: 'font-size: 25px;'} &#8627;
-      = submit_tag 'Delete', {style: 'font-size: 10px; background: rgb(224, 95, 84)'}
+      = submit_tag 'Delete', {style: 'font-size: 10px; background: rgb(224, 95, 84)', confirm: 'Are you confirm to delete?'}

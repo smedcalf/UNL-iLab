@@ -5,6 +5,7 @@
     %p No project was created.
   - else
     = form_tag("projects/manage_projects", method: "post") do
+      = render 'shared/error_messages', object: @project
       %table.zentable
         %tr
           %thead
@@ -37,4 +38,4 @@
       %span{style: 'font-size: 25px;'} &#8627;
       = submit_tag 'activate', {style: 'font-size: 10px; background: rgb(79, 199, 146)'}
       = submit_tag 'enable', {style: 'font-size: 10px; background: rgb(84, 157, 224)'}
-      = submit_tag 'delete', {style: 'font-size: 10px; background: rgb(224, 95, 84)'}
+      = submit_tag 'delete', {style: 'font-size: 10px; background: rgb(224, 95, 84)', confirm: 'Are you confirm to delete?'}
