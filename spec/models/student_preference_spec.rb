@@ -1,20 +1,17 @@
 # == Schema Information
 #
-# Table name: instructors
+# Table name: student_preferences
 #
 #  id         :integer          not null, primary key
-#  email      :string(255)
-#  classname  :string(255)
-#  semester   :string(255)
-#  first_name :string(255)
-#  last_name  :string(255)
+#  student_id :integer
+#  project_id :integer
+#  rating     :integer
 #  created_at :datetime
 #  updated_at :datetime
-#  user_id    :integer
 #
 
 require 'spec_helper'
 
-describe Instructor do
+describe StudentPreference do
   pending "add some examples to (or delete) #{__FILE__}"
 end

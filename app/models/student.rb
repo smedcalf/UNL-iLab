@@ -13,10 +13,13 @@
 #  status       :integer
 #  created_at   :datetime
 #  updated_at   :datetime
+#  team_id      :integer
+#  user_id      :integer
 #
 
 class Student < ActiveRecord::Base
 	belongs_to :team
+	has_many :student_preferences, dependent: :destroy
 
 	validates :email, :first_name, :last_name,  :major,
             :semester, :classname, :availability, presence: true

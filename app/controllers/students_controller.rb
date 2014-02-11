@@ -12,6 +12,7 @@ class StudentsController < ApplicationController
       flash[:success] = 'Congratulations!!! New student was created successfully!'
   		redirect_to students_path
   	else
+      flash.now[:error] = @student.errors.full_messages
   		render 'new'
   	end
   end

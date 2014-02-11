@@ -1,2 +1,12 @@
 %h1= @user.name
-%a.wdn-button.wdn-button-triad{ href: edit_user_path(@user.id) } Edit
+= render 'shared/error_messages'
+- if @user.utype = "student"
+	= render 'student'
+- elsif @user.type = "instructor"
+	= render 'instructor'
+- elsif @user.type = "sponsor"
+	= render 'sposnor'
+- elsif @user.type = "admin"
+	= render 'admin'
+- else
+	%h1 User type has not been set, please contact an admin to get this fixed.

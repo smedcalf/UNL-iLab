@@ -51,7 +51,21 @@ class UsersController < ApplicationController
 
 	def update
 		set_user
-		# To Do!
+		@url = 'update'
+		if @user.authenticate(params[:user][:old_password])
+			@user.password = params[:user][:password]
+			@user.password_confirmation = params[:user][:password_confirmation]
+			if @user.save
+				flash[:success] = "Password changed"
+				redirect_to user_path(@user.id)
+			else
+				flash.now[:error] = "Password and Confirmation did not match"
+				render 'edit'
+			end
+		else
+			flash.now[:error] = "Password was wrong"
+			render 'edit'
+		end
 	end
 
 	private
