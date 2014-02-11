@@ -30,5 +30,7 @@ module Ilab
     end
 
     config.assets.paths << Rails.root.join("app", "assets", "fonts")
+
+    I18n.enforce_available_locales = false
   end
 end

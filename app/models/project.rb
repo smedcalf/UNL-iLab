@@ -24,7 +24,9 @@
 
 class Project < ActiveRecord::Base
   belongs_to :sponsor, polymorphic: true
-  has_many :team, :dependent => :destroy
+  has_many :team, dependent: :destroy
+  has_many :student_preferences, dependent: :destroy
+
   validates :name, :initial_capacity, :semester, :sponsor,  :presence => true
   validates :name, :uniqueness => true
 

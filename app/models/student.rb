@@ -19,6 +19,7 @@
 
 class Student < ActiveRecord::Base
 	belongs_to :team
+	has_many :student_preferences, dependent: :destroy
 
 	validates :email, :first_name, :last_name,  :major,
             :semester, :classname, :availability, presence: true
