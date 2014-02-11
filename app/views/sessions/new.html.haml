@@ -1,7 +1,7 @@
 %h2 iLab Login
 .maincontent#maincontent
   .wdn-grid-set
-    .zenbox.wdn-col-three-fifths
+    .wdn-col-three-fifths
       = form_for :session, url: sessions_path do |f|
         %fieldset
           %legend Please fill your username and password
@@ -21,9 +21,8 @@
             %h4.inline{style: 'float: right'}
               %a{href: "register"}Sign Up
 
-    .wdn-col-two-fifths.wdn-infographic.wdn-infographic-globe-triad
+    .wdn-col-two-fifths
       %ul
-        %h4 Links
+        %h4 Contacts
         %li.content-li
-          %h5
-            %a{href: new_user_path} Sign Up
+          %p If you have any problem, please contact us.
