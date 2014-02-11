@@ -20,6 +20,6 @@
         %td= s.last_name
         %td= s.orgnization
         %td
-          %a{:href => "mailto:" + s.email }= s.email
+          %a.wdn-icon-mail{:href => "mailto:" + s.email }= s.email
         %td
           %a.wdn-button.wdn-button-triad{ href: sponsor_path(s.id) } Show

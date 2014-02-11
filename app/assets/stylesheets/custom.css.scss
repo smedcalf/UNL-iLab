@@ -38,6 +38,14 @@ $dark-energetic: #B34E26;
   padding-top: 10px;
   padding-bottom: 20px;
 }
+
+.content-box{
+  padding: 0 10px 0 10px;
+  background-color: rgba(255, 255, 255, 0.5);
+  box-shadow: inset 0 0 6px rgb(213, 213, 213);
+  margin-bottom: 10px;
+}
+
 .tab {
   padding-right: 10px;
 }

@@ -1,18 +1,18 @@
 %h1
   %strong= @sponsor.full_name
 %hr
-.maincontent#maincontent
+.maincontent#maincontent.content-box
   %h4.inline Email:
   %h4.inline
-    %a{href: "mailto:#{@sponsor.email}"}= @sponsor.email
+    %a.wdn-icon-mail{style: 'text-decoration: none', href: "mailto:#{@sponsor.email}"}= @sponsor.email
   %br
   %h4.inline Project:
   - if @projects.empty?
-    No Sponsor was created.
+    No Project.
   - else
     - @projects.each do |s|
       %h4.inline
-        %a{href: project_path(s.id)}=s.name
+        %a{style: 'text-decoration: underline', href: project_path(s.id)}=s.name
         %span.tab
   %br
   %h4.inline= "Orgnization: #{@sponsor.orgnization}"
