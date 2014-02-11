@@ -7,13 +7,18 @@ class UsersController < ApplicationController
 	end
 
   def manage_users
-    case params[:commit]
-      when 'delete'
-        User.destroy(params[:user])
-      when 'assign'
-        User.where(:id => params[:user]).update_all(:type => params[:type])
+    if params[:user].nil?
+      flash[:error] = "No sutdent was selected."
+      redirect_to users_path
+    else
+      case params[:commit]
+        when 'delete'
+          User.destroy(params[:user])
+        when 'assign'
+          User.where(:id => params[:user]).update_all(:utype => params[:utype])
+      end
+      redirect_to users_path
     end
-    redirect_to users_path
   end
 
   def index

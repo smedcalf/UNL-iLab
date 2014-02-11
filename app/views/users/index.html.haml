@@ -16,11 +16,11 @@
           %tr
             %td{style: 'text-align: center; width: 5%'}= check_box_tag 'user[]', u.id
             %td= u.name
-            %td= u.type
+            %td= u.utype
             %td
               =link_to 'Show', u, data:{ confirm: 'are you sure?'}
       %span{style: 'font-size: 25px;'} &#8627;
-      = select_tag 'type', options_for_select([['Please Select...', ''], ['instructor', 'instructor'],
+      = select_tag 'utype', options_for_select([['Please Select...', ''], ['instructor', 'instructor'],
       ['admin', 'admin'], ['student', 'student'], ['sponsor', 'sponsor']]), {style: 'width: 20%'}
       = submit_tag 'assign', {style: 'font-size: 10px; background: rgb(79, 199, 146)'}
       = submit_tag 'delete', {style: 'font-size: 10px; background: rgb(224, 95, 84)', confirm: 'Are you confirm to delete?'}
