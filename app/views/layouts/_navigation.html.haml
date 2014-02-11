@@ -1,5 +1,3 @@
--# Instructor Navigation
-
 - if signed_in?
   %ul
     %li
@@ -39,8 +37,6 @@
       %ul
         %li
           %a{ href: '#' } some useful links
-
-  -# Not signed in navigation
 - else
   %ul
     %li
@@ -70,44 +66,41 @@
         %li
           %a{ href: new_student_path } New
 
--# Navigation below is tamperary, we may need to modify it.
+/ Navigation below is tamperary, we may need to modify it.
 
--# After student login, it's better to show the announcement or to do list at the very front page
--#-# Student Navigation
--#
--#- if signed_in? && current_user.type == "student"
--#  %ul
--#    %li
--#      %a{ href: '/' } Home
--#      %ul
--#        %li
--#          %a{ href: "http://unl.edu", title: 'UNL Homepage'} UNL Homepage
--#          %a{ href: "http://cse.unl.edu/InnovationLab", title: 'Innovation Lab Homepage' } Innovation Lab
--#    %li
--#      %a{ href: '#', title: 'Show All Projects' } Projects
--#      %ul
--#        %li
--#          // before project apply, need to check if he's uploaded his resume and coverletters, if not link to handin to upload.
-            // we need check documents through cse database (where students handin their work)
-
-            // project apply is to give preference to the project he wants to apply.
-            // Preference of the project he doesn't apply will be set to 0 automatically after due date.
-            // (preference is from 0 ot 5. 5 is the best)
-
--#          %a{ href: '#', title: 'Apply for projects' } Project Apply
--#          %a{ href: '#', title: 'Application Status' } Application Status
-
-      // For teams, we may need add more later on.
--#    %li
--#      %a{ href: teams_path, title: 'Team Table' } Teams
--#      %ul
--#        %li
--#          %a{ href: new_team_path, title: 'Create New Team' } Team Members
--#          %a{ href: '#', title: 'Team Work History' } Team Work Track
--#          %a{ href: '#', title: 'Team Notification' } Team Notification
--#    %li
--#      %a{ href: '#', title: 'Some Recommended Tools ' } Tools
--#      %ul
--#        %li
--#          %a{ href: '#' } some useful tools
+/ After student login, it's better to show the announcement or to do list at the very front page
+/ Student Navigation
+/
+/ if signed_in? && current_user.type == "student"
+/  %ul
+/    %li
+/      %a{ href: '/' } Home
+/      %ul
+/        %li
+/          %a{ href: "http://unl.edu", title: 'UNL Homepage'} UNL Homepage
+/          %a{ href: "http://cse.unl.edu/InnovationLab", title: 'Innovation Lab Homepage' } Innovation Lab
+/    %li
+/      %a{ href: '#', title: 'Show All Projects' } Projects
+/      %ul
+/        %li
+/ before project apply, need to check if he's uploaded his resume and coverletters, if not link to handin to upload.
+/ we need check documents through cse database (where students handin their work)
+/ project apply is to give preference to the project he wants to apply.
+/ Preference of the project he doesn't apply will be set to 0 automatically after due date.
+/ (preference is from 0 ot 5. 5 is the best)
+/          %a{ href: '#', title: 'Apply for projects' } Project Apply
+/           %a{ href: '#', title: 'Application Status' } Application Status
+/ For teams, we may need add more later on.
+/     %li
+/       %a{ href: teams_path, title: 'Team Table' } Teams
+/       %ul
+/         %li
+/           %a{ href: new_team_path, title: 'Create New Team' } Team Members
+/          %a{ href: '#', title: 'Team Work History' } Team Work Track
+/          %a{ href: '#', title: 'Team Notification' } Team Notification
+/    %li
+/      %a{ href: '#', title: 'Some Recommended Tools ' } Tools
+/      %ul
+/        %li
+/          %a{ href: '#' } some useful tools
 
