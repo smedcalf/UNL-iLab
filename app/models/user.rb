@@ -1,6 +1,11 @@
 class User < ActiveRecord::Base
 	has_secure_password
 
+	# Really only has one of these
+	has_one :student
+	has_one :instructor
+	has_one :sponsor
+
 	validates :name, presence: true, uniqueness: { case_sensitive: false} 
 	validates :password, length: { minimum: 6 }
 
