@@ -17,4 +17,12 @@ class StudentPreference < ActiveRecord::Base
 	validates :project_id, presence: true
 	validates :student_id, presence: true
 	validates :rating, presence: true
+
+  def student
+    Student.find(self.student_id)
+  end
+
+  def project
+    Project.find(self.project_id)
+  end
 end

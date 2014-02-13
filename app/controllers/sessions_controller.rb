@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
 			user = User.find_by(name: params[:session][:name].downcase)
 			if user && user.authenticate(params[:session][:password])
 				sign_in user
-				redirect_to projects_path
+				redirect_to user_path(current_user.id)
 			else
 				redirect_to root_url
 			end

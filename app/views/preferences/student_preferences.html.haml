@@ -1,0 +1,20 @@
+%h1 Student Preferences
+.maincontent#maincontent
+  - if @student_preferences.empty?
+    %p No Student Preferences.
+  - else
+    %table.cool
+      %tr
+        %thead
+          %th Student
+          %th Project
+          %th Rating
+          %th
+      -@student_preferences.each do |sp|
+        %tr
+        %td
+          %a{href: student_path(sp.student_id)}= sp.student.full_name
+        %td
+          %a{href: project_path(sp.project_id)}= sp.project.name
+        %td= sp.rating
+        %td Show

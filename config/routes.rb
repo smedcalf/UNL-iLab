@@ -1,11 +1,14 @@
 Ilab::Application.routes.draw do
 
+  get "preferences/student_preferences"
+  get "preferences/sponsor_preferences"
   resources :instructors
   resources :projects
   resources :sessions, only: [:new, :create, :destroy, :index]
   resources :static_pages
   resources :sponsors
   resources :students
+  resources :student_preferences
   resources :teams
   resources :users
 
@@ -17,6 +20,7 @@ Ilab::Application.routes.draw do
   post 'teams/delete_teams', to: 'teams#delete_teams'
   post 'projects/manage_projects', to: 'projects#manage_projects'
   post 'users/manage_users', to: 'users#manage_users'
+  get 'user/edit_profile/:id' => 'users#edit_profile', :as => :edit_profile_user
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

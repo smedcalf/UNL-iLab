@@ -29,7 +29,13 @@ class UsersController < ApplicationController
 		set_user
   end
 
-  def home
+  def edit_profile
+    case current_user.utype
+      when 'instructor'
+        redirect_to edit_instructor_path(current_user.instructor.id)
+      when 'sponsor'
+        redirect_to edit_sponsor_path(current_user.sponsor.id)
+    end
 
   end
 

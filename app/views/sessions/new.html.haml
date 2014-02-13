@@ -1,7 +1,7 @@
 %h2 iLab Login
 .maincontent#maincontent
   .wdn-grid-set
-    .wdn-col-three-fifths
+    .wdn-col-three-fifths.zenbox.primary
       = form_for :session, url: sessions_path do |f|
         %fieldset
           %legend Please fill your username and password
@@ -16,7 +16,7 @@
               %span.required *
               denotes required field
             = f.submit 'Login'
-            %input.wdn-button.wdn-button-{type: "reset", value: "CLEAR", name: "reset", style: "color: #a5a5a5"}
+            %input.wdn-button.wdn-button-energetic{type: "reset", value: "CLEAR", name: "reset", style: "color: #a5a5a5"}
             %a Fogot Password?
             %h4.inline{style: 'float: right'}
               %a{href: "register"}Sign Up

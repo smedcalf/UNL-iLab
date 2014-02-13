@@ -1,12 +1,17 @@
 %h1= @user.name
 = render 'shared/error_messages'
-- if @user.utype = "student"
+- case (@user.utype)
+- when "student"
 	= render 'student'
-- elsif @user.type = "instructor"
+	%p student
+- when "instructor"
 	= render 'instructor'
-- elsif @user.type = "sponsor"
-	= render 'sposnor'
-- elsif @user.type = "admin"
+	%p instructor
+- when "sponsor"
+	= render 'sponsor'
+	%p sponsor
+- when "admin"
 	= render 'admin'
+	%p admin
 - else
 	%h1 User type has not been set, please contact an admin to get this fixed.
