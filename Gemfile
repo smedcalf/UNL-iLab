@@ -3,8 +3,9 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
 gem 'bcrypt-ruby'
-
+gem 'ruby-trello'
 gem 'paperclip'
+require 'securerandom'
 
 group :development, :test do
 	gem 'annotate'
