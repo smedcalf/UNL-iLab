@@ -6,5 +6,6 @@ class PreferencesController < ApplicationController
   end
 
   def sponsor_preferences
+    @sponsor_preferences = SponsorPreference.all
   end
 end

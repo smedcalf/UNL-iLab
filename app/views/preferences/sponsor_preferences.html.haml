@@ -1,2 +1,23 @@
-%h1 Preferences#sponsor_preference
-%p Find me in app/views/preferences/sponsor_preferences.html.haml
+%h1 Sponsor Preferences
+.maincontent#maincontent
+  - if @sponsor_preferences.empty?
+    %p No Student Preferences.
+  - else
+    %table.soothing
+      %tr
+        %thead
+          %th Project
+          %th Sponsor
+          %th Student
+          %th Rating
+          %th
+      -@sponsor_preferences.each do |sp|
+        %tr
+          %td
+            %a{href: project_path(sp.project_id)}= sp.project.name
+          %td
+            %a{href: sponsor_path(sp.sponsor.id)}= sp.sponsor.full_name
+          %td
+            %a{href: student_path(sp.student_id)}= sp.student.full_name
+          %td= sp.rating
+          %td Show

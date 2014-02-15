@@ -25,4 +25,8 @@ class StudentPreference < ActiveRecord::Base
   def project
     Project.find(self.project_id)
   end
+
+  def sponsor
+    Sponsor.find(self.project.sponsor_id)
+  end
 end
