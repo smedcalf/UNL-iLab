@@ -41,9 +41,18 @@ class UsersController < ApplicationController
 
 	def create
 		@user = User.new(user_params)
+		
+		unless User.any?
+			@user.utype = "admin"
+		end
+
 		if @user.save
 			redirect_to user_path(@user.id)
-      flash[:success] = 'Congratulations!!! Your account has been created!'
+			if @user.utype == "admin"
+  	    flash[:success] = 'Account has been created and you are set to an admin'
+			else
+				flash[:success] = 'Congratulations!!! Your account has been created!'
+			end
       sign_in(@user)
     else
       redirect_to :back
