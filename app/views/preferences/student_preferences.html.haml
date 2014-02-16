@@ -8,6 +8,7 @@
         %thead
           %th Student
           %th Project
+          %th Sponsor
           %th Rating
           %th
       -@student_preferences.each do |sp|
@@ -16,5 +17,7 @@
           %a{href: student_path(sp.student_id)}= sp.student.full_name
         %td
           %a{href: project_path(sp.project_id)}= sp.project.name
+        %td
+          %a{href: sponsor_path(sp.sponsor.id)}= sp.sponsor.full_name
         %td= sp.rating
         %td Show

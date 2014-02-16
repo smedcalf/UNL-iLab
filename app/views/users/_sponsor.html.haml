@@ -1,1 +1,25 @@
-%p This is sponsor page
+%h1 What to Do Next?
+.maincontent#maincontent
+  .content-box
+    .tag-button.wdn-button.wdn-button-energetic{style: 'float: right'}
+      %a{style: 'color: white'} Edit
+    %h6 # Week 1
+    %p This is first job, and some links below....
+    %div{style:'text-align: right'}
+      Post By
+      .tag-button.wdn-button.wdn-button-triad Zhen Wang
+    %div{style:'text-align: right'}
+      @
+      =Date.yesterday.to_s
+
+  .content-box
+    .tag-button.wdn-button.wdn-button-energetic{style: 'float: right'}
+      %a{style: 'color: white'} Edit
+    %h6 # Week 2
+    %p This is second job
+    %div{style:'text-align: right'}
+      Post By
+      .tag-button.wdn-button.wdn-button-triad Zhen Wang
+    %div{style:'text-align: right'}
+      @
+      =Date.today.to_formatted_s
