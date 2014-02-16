@@ -43,13 +43,13 @@ class UsersController < ApplicationController
 		@user = User.new(user_params)
 		
 		unless User.any?
-			@user.utype = "admin"
+			@user.utype = "instructor"
 		end
 
 		if @user.save
 			redirect_to user_path(@user.id)
-			if @user.utype == "admin"
-  	    flash[:success] = 'Account has been created and you are set to an admin'
+			if @user.utype == "instructor"
+  	    flash[:success] = 'Account has been created and you are set to an instructor(admin)'
 			else
 				flash[:success] = 'Congratulations!!! Your account has been created!'
 			end
