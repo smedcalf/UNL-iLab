@@ -20,6 +20,7 @@ Ilab::Application.routes.draw do
   post 'teams/delete_teams', to: 'teams#delete_teams'
   post 'projects/manage_projects', to: 'projects#manage_projects'
   post 'users/manage_users', to: 'users#manage_users'
+  get 'sponsors/preference/:id' => 'sponsors#preference', :as => :preference_sponsor
   get 'user/edit_profile/:id' => 'users#edit_profile', :as => :edit_profile_user
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -11,6 +11,9 @@ class InstructorsController < ApplicationController
 
 	def create
 		@instructor = Instructor.new(instructor_params)
+    if current_user.utype == "instructor"
+      @instructor.user_id = current_user.id
+    end
 		if @instructor.save
 			redirect_to instructors_path
 		else
