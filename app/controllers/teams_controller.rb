@@ -49,17 +49,16 @@ class TeamsController < ApplicationController
     if params[:team].nil?
       flash[:error] = 'No team was selected'
       redirect_to students_path
-    else if params[:student].nil?
+    elsif params[:student].nil?
            flash[:error] = "No student was selected"
            redirect_to students_path
-         else
+    else
         team = Team.find_by_id(params[:team])
         Student.where(:id => params[:student]).update_all(:status => true)
         team.students << Student.find(params[:student])
         team.save
         flash[:success] = "Student has been successfully assigned."
         redirect_to students_path
-        end
     end
   end
 
@@ -71,7 +70,7 @@ class TeamsController < ApplicationController
   private
 
     def team_params
-      params.require(:team).permit(:name, :project_id)
+      params.require(:team).permit(:name, :project_id, :google_drive)
     end
 
     def set_team

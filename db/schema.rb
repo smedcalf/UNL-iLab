@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(version: 20140215220313) do
   create_table "teams", force: true do |t|
     t.string  "name"
     t.integer "project_id"
+    t.string  "google_drive"
   end
 
   create_table "users", force: true do |t|

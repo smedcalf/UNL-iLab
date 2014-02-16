@@ -2,9 +2,10 @@
 #
 # Table name: teams
 #
-#  id         :integer          not null, primary key
-#  name       :string(255)
-#  project_id :integer
+#  id           :integer          not null, primary key
+#  name         :string(255)
+#  project_id   :integer
+#  google_drive :string(255)
 #
 
 class Team < ActiveRecord::Base
