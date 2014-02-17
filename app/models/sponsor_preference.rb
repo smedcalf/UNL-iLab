@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: sponsor_preferences
+#
+#  id         :integer          not null, primary key
+#  student_id :integer
+#  project_id :integer
+#  rating     :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 class SponsorPreference < ActiveRecord::Base
   has_one :project
   has_one :student
