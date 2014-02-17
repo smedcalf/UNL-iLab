@@ -1,0 +1,26 @@
+%h1 Student Preferences
+.maincontent#maincontent
+  - if @student_preferences.empty?
+    %p No Student Preferences.
+  - else
+
+    %table.cool
+      %tr
+        %thead
+          %th Project
+          %th Sponsor
+          %th Student
+          %th Rating
+          %th Your Rating
+          %th
+      -@student_preferences.each do |sp|
+        %tr
+          %td
+            %a{href: project_path(sp.project_id)}= sp.project.name
+          %td
+            %a{href: sponsor_path(sp.sponsor.id)}= sp.sponsor.full_name
+          %td
+            %a{href: student_path(sp.student_id)}= sp.student.full_name
+          %td= sp.rating
+          %td= SponsorPreference.where(:student_id => sp.student_id, :project_id => sp.project_id).first.rating
+          %td update

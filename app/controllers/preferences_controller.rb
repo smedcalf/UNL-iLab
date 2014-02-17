@@ -8,4 +8,8 @@ class PreferencesController < ApplicationController
   def sponsor_preferences
     @sponsor_preferences = SponsorPreference.all
   end
+
+  def update_sponsor_preference
+
+  end
 end

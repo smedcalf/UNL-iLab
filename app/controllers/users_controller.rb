@@ -30,13 +30,24 @@ class UsersController < ApplicationController
   end
 
   def edit_profile
-    case current_user.utype
-      when 'instructor'
-        redirect_to edit_instructor_path(current_user.instructor.id)
-      when 'sponsor'
-        redirect_to edit_sponsor_path(current_user.sponsor.id)
+    if current_user.utype.nil?
+      redirect_to edit_user_path(current_user)
+    else
+      case current_user.utype
+        when 'instructor'
+          if current_user.instructor.nil?
+            redirect_to new_instructor_path
+          else
+            redirect_to edit_instructor_path(current_user.instructor.id)
+          end
+        when 'sponsor'
+          if current_user.sponsor.nil?
+            redirect_to new_sponsor_path
+          else
+            redirect_to edit_sponsor_path(current_user.sponsor.id)
+          end
+      end
     end
-
   end
 
 	def create

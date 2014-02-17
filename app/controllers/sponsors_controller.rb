@@ -12,6 +12,9 @@ class SponsorsController < ApplicationController
 
   def create
     @sponsor = Sponsor.new(sponsor_params)
+    if current_user.utype == "sponsor"
+      @sponsor.user_id = current_user.id
+    end
     if @sponsor.save
       redirect_to sponsors_path, :notice => 'New sponsor has been created successfully.'
     else
@@ -37,6 +40,16 @@ class SponsorsController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def preference
+    @projects = Project.where(:sponsor_id => User.find(params[:id]).sponsor)
+    @student_preferences = StudentPreference.where(:project_id => @projects.ids)
+
+  end
+
+  def update_preference
+
   end
 
   private
