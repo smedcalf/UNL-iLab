@@ -37,7 +37,7 @@ print_errors("Instructor creation errors", i)
 
 	# Create sponsors 1, 2
 	s= Sponsor.create(first_name: (i + 1).to_s, last_name: "Sponsor",
-			orgnization: "Org " + (1 + i).to_s, 
+			organization: "Org " + (1 + i).to_s, 
 			email: "sponsor" + (1+ i).to_s + "@example.com", user_id: i + 2)
 
 	print_errors("Sponsor creation errors", s)
