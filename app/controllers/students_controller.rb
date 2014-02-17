@@ -1,5 +1,6 @@
 class StudentsController < ApplicationController
   before_action :signed_in_user
+  before_action :signed_in_admin
   
   def new
   	@student = Student.new
@@ -45,7 +46,7 @@ class StudentsController < ApplicationController
 
   	def student_params
   		params.require(:student).permit(:email, :first_name, :last_name, :major, 
-  			:availability, :semester, :classname)
+  			:availability, :semester, :classname, :avatar)
   	end
 
     def set_student

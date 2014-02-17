@@ -25,6 +25,8 @@ class Student < ActiveRecord::Base
 	validates :email, :first_name, :last_name,  :major,
             :semester, :classname, :availability, presence: true
 
+  has_attached_file :avatar
+
 	def full_name
 		"#{self.first_name} #{self.last_name}"
 	end

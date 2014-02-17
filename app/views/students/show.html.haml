@@ -1,5 +1,7 @@
 %h1
 	%strong= @student.full_name
+- if @student.avatar
+	= image_tag @student.avatar.url, size: "150"
 - if @student.team
 	%h4= "Team: #{@student.team_name}"
 %h4= "Major: #{@student.major}"

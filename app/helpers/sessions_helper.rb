@@ -39,4 +39,14 @@ module SessionsHelper
 			redirect_to :back
 		end
 	end
+
+	def signed_in_admin
+		unless signed_in?
+			redirect_to root_url
+		end
+
+		unless current_user.utype = "instructor"
+			not_found
+		end
+	end
 end
