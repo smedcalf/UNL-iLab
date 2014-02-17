@@ -46,6 +46,8 @@ class UsersController < ApplicationController
           else
             redirect_to edit_sponsor_path(current_user.sponsor.id)
           end
+        else
+          redirect_to edit_user_path(current_user)
       end
     end
   end
