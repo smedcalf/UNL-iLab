@@ -1,4 +1,5 @@
 - if signed_in?
+  -# This is admin navigation
   - if current_user.utype == "admin"
     %ul
       %li
@@ -28,9 +29,9 @@
         %ul
           %li
             %a{ href: teams_path, title: 'Team Table' } All Teams Table
-            %a{ href: new_team_path, title: 'Create New Team' } New Team Form
             %a{ href: '#', title: 'Team Work History' } Team Work Track
             %a{ href: '#', title: 'Team Notification' } Team Notification
+            %a{ href: new_team_path, title: 'Create New Team' } New Team Form
       %li
         %a.cursor-pointer Students
         %ul
@@ -43,6 +44,8 @@
         %ul
           %li
             %a{ href: '#' } some useful links
+
+    -# This is instructor navigation
   - elsif current_user.utype == "instructor"
     %ul
       %li
@@ -72,9 +75,9 @@
         %ul
           %li
             %a{ href: teams_path, title: 'Team Table' } All Teams Table
-            %a{ href: new_team_path, title: 'Create New Team' } New Team Form
             %a{ href: '#', title: 'Team Work History' } Team Work Track
             %a{ href: '#', title: 'Team Notification' } Team Notification
+            %a{ href: new_team_path, title: 'Create New Team' } New Team Form
       %li
         %a.cursor-pointer Students
         %ul
@@ -87,6 +90,8 @@
         %ul
           %li
             %a{ href: '#' } some useful links
+
+    -#This is sponsor navigation
   - elsif current_user.utype == 'sponsor'
     %ul
       %li
@@ -99,37 +104,54 @@
         %a{ href: '#', title: 'Application Tables' } Application
         %ul
           %li
-            %a{ href: users_path, title: 'User Registration' } User Registration
             %a{ href: preference_sponsor_path(current_user), title: 'Student Preference' } Student Application
-            %a{ href: preferences_sponsor_preferences_path, title: 'Sponsor Preference' } Sponsor Preferences
+            -#%a{ href: preferences_sponsor_preferences_path, title: 'Sponsor Preference' } Sponsor Preferences
       %li
-        %a.cursor-pointer Projects
+        %a.cursor-pointer Project
         %ul
           %li
             %a{ href: projects_path, title: 'Projects table' } Current Project Table
-            %a{ href: sponsors_path, title: 'Sponsor Table' } Current Sponsors Table
-            %a{ href: new_sponsor_path, title: 'Create New Sponsor' } New Sponsor Form
             %a{ href: new_project_path, title: 'create New Project' } New Project Form
       %li
-        %a.cursor-pointer Teams
+        %a.cursor-pointer Team
         %ul
           %li
-            %a{ href: teams_path, title: 'Team Table' } All Teams Table
-            %a{ href: new_team_path, title: 'Create New Team' } New Team Form
             %a{ href: '#', title: 'Team Work History' } Team Work Track
             %a{ href: '#', title: 'Team Notification' } Team Notification
-      %li
-        %a.cursor-pointer Students
-        %ul
-          %li
-            %a{ href: students_path, title: 'Student Table' } All Students Table
-            %a{ href: new_student_path, title: 'Create New student' } New Student Form
-            %a{ href: '#', title: 'Assign Student to Team' } Team Assignment
       %li
         %a.cursor-pointer Links
         %ul
           %li
             %a{ href: '#' } some useful links
+
+    -# This is student navigation
+  - elsif current_user.utype == 'student'
+    %ul
+      %li
+        %a{ href: '/' } Home
+        %ul
+          %li
+            %a{ href: "http://unl.edu", title: 'UNL Homepage'} UNL Homepage
+            %a{ href: "http://cse.unl.edu/InnovationLab", title: 'Innovation Lab Homepage' } Innovation Lab
+      %li
+        %a.cursor-pointer Projects
+        %ul
+          %li
+            %a{ href: '#', title: 'Apply for projects' } Project Apply
+            %a{ href: '#', title: 'Application Status' } Application Status
+      %li
+        %a.cursor-pointer Team
+        %ul
+          %li
+            %a{ href: team_path(1), title: 'Create New Team' } Team Members
+            %a{ href: '#', title: 'Team Notification' } Team Notification
+            %a{ href: '#', title: 'Team Work History' } Team Work Track
+      %li
+        %a.cursor-pointer Links
+        %ul
+          %li
+            %a{ href: '#' } some useful tools
+      -# Default navigation after login
   - else
     %ul
       %li
@@ -138,6 +160,8 @@
           %li
             %a{ href: "http://unl.edu", title: 'UNL Homepage'} UNL Homepage
             %a{ href: "http://cse.unl.edu/InnovationLab", title: 'Innovation Lab Homepage' } Innovation Lab
+
+  -# Default navigation
 - else
   %ul
     %li
@@ -146,42 +170,3 @@
         %li
           %a{ href: "http://unl.edu", title: 'UNL Homepage'} UNL Homepage
           %a{ href: "http://cse.unl.edu/InnovationLab", title: 'Innovation Lab Homepage' } Innovation Lab
-
-/ Navigation below is tamperary, we may need to modify it.
-
-/ After student login, it's better to show the announcement or to do list at the very front page
-/ Student Navigation
-/
-/ if signed_in? && current_user.type == "student"
-/  %ul
-/    %li
-/      %a{ href: '/' } Home
-/      %ul
-/        %li
-/          %a{ href: "http://unl.edu", title: 'UNL Homepage'} UNL Homepage
-/          %a{ href: "http://cse.unl.edu/InnovationLab", title: 'Innovation Lab Homepage' } Innovation Lab
-/    %li
-/      %a{ href: '#', title: 'Show All Projects' } Projects
-/      %ul
-/        %li
-/ before project apply, need to check if he's uploaded his resume and coverletters, if not link to handin to upload.
-/ we need check documents through cse database (where students handin their work)
-/ project apply is to give preference to the project he wants to apply.
-/ Preference of the project he doesn't apply will be set to 0 automatically after due date.
-/ (preference is from 0 ot 5. 5 is the best)
-/          %a{ href: '#', title: 'Apply for projects' } Project Apply
-/           %a{ href: '#', title: 'Application Status' } Application Status
-/ For teams, we may need add more later on.
-/     %li
-/       %a{ href: teams_path, title: 'Team Table' } Teams
-/       %ul
-/         %li
-/           %a{ href: new_team_path, title: 'Create New Team' } Team Members
-/          %a{ href: '#', title: 'Team Work History' } Team Work Track
-/          %a{ href: '#', title: 'Team Notification' } Team Notification
-/    %li
-/      %a{ href: '#', title: 'Some Recommended Tools ' } Tools
-/      %ul
-/        %li
-/          %a{ href: '#' } some useful tools
-

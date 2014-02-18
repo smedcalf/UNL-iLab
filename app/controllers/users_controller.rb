@@ -46,6 +46,12 @@ class UsersController < ApplicationController
           else
             redirect_to edit_sponsor_path(current_user.sponsor.id)
           end
+        when 'student'
+          if current_user.student.nil?
+            redirect_to new_student_path
+          else
+            redirect_to edit_student_path(current_user.student.id)
+          end
         else
           redirect_to edit_user_path(current_user)
       end

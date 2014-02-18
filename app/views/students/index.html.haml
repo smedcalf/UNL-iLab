@@ -24,9 +24,13 @@
             %th Availability
             %th
         - @students.each do |s|
-          %tr{ href: student_path(s.id) }
+          %tr.thumb{ href: student_path(s.id) }
             %td
               = check_box_tag 'student[]', s.id
+              %span.callout.top-left
+                = image_tag s.avatar.url, width: 130, height: 155
+                %hr
+                  .disclaimer=s.full_name
             %td= s.first_name
             %td= s.last_name
             %td

@@ -1,6 +1,6 @@
 class StudentsController < ApplicationController
   before_action :signed_in_user
-  before_action :signed_in_admin
+  #before_action :signed_in_admin
   
   def new
   	@student = Student.new
@@ -9,9 +9,16 @@ class StudentsController < ApplicationController
 
   def create
   	@student = Student.new(student_params)
+    #if current_user.utype == "student"
+      @student.user_id = current_user.id
+    #end
   	if @student.save
       flash[:success] = 'Congratulations!!! New student was created successfully!'
-  		redirect_to students_path
+      if current_user.utype == "student"
+        redirect_to student_path(@student.id)
+      else
+  		  redirect_to students_path
+      end
   	else
       flash.now[:error] = @student.errors.full_messages
   		render 'new'

@@ -1,10 +1,17 @@
-%h1= @team.name
-.content-box
-  %h3 Members
-  - @team.students.each do |s|
-    %h5
-      %a{href: student_path(s.id) }= s.full_name
-- unless @team.google_drive.blank?
-  %h3
-    %a{href: @team.google_drive} Google Drive
-%a.wdn-button.wdn-button-triad{ href: edit_team_path(@team.id)} Edit
+- if @team.nil?
+  .maincontent#maincontent
+    %h1 You haven't been assigned to any team.
+- else
+  %h1= @team.name
+  %hr
+  .maincontent#maincontent
+    %h3 Members
+    %ul
+    - @team.students.each do |s|
+      %li
+        %a{href: student_path(s.id) }= s.full_name
+    - unless @team.google_drive.blank?
+      %p
+        %b
+          %a{href: @team.google_drive} Google Drive
+  %a.wdn-button.wdn-button-triad{ href: edit_team_path(@team.id)} Edit
