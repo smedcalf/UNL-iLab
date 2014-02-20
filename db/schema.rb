@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140217002850) do
+ActiveRecord::Schema.define(version: 20140220010644) do
 
   create_table "instructors", force: true do |t|
     t.string   "email"
@@ -94,6 +94,7 @@ ActiveRecord::Schema.define(version: 20140217002850) do
     t.string  "name"
     t.integer "project_id"
     t.string  "google_drive"
+    t.string  "trello_link"
   end
 
   create_table "users", force: true do |t|

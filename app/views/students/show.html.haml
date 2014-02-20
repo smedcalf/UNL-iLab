@@ -6,7 +6,13 @@
   - if @student.avatar
     .callout{style: "float: right"}= image_tag @student.avatar.url, size: "150"
   - if @student.team
-    %h4= "Team: #{@student.team_name}"
+    %h4
+      %span Team: 
+      %a{href: team_path(@student.team.id)}= @student.team.name
+    - if @student.team.trello_link.present?
+      %h4
+        %span Trello: 
+        %a{href: @student.team.trello_link} Trello
   %h4= "Major: #{@student.major}"
   %h4= "Semester: #{@student.semester}"
   %h4= "Availability: #{pluralize(@student.availability, "semester")}"

@@ -70,7 +70,7 @@ class TeamsController < ApplicationController
   private
 
     def team_params
-      params.require(:team).permit(:name, :project_id, :google_drive)
+      params.require(:team).permit(:name, :project_id, :google_drive, :trello_link)
     end
 
     def set_team
