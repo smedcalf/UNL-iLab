@@ -3,4 +3,5 @@
 %h4= "Email: #{@instructor.email}"
 %h4= "Classname: #{@instructor.classname}"
 %h4= "Semeseter: #{@instructor.semester}"
-%a.wdn-button.wdn-button-triad{ href: edit_instructor_path(@instructor.id) } Edit
+- if current_instructor?(@instructor.id)
+	%a.wdn-button.wdn-button-triad{ href: edit_instructor_path(@instructor.id) } Edit

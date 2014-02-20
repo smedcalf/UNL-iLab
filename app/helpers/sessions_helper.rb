@@ -36,16 +36,69 @@ module SessionsHelper
 
 	def signed_in_user
 		unless signed_in?
-			redirect_to :back
+			redirect_to root_url
 		end
 	end
 
-	def signed_in_admin
-		unless signed_in?
-			redirect_to root_url
+	def signed_in_instructor
+		unless current_user.instructor?
+			not_found
 		end
+	end
 
-		unless current_user.utype = "instructor"
+	def signed_in_student
+		unless  current_user.student?
+			not_found
+		end
+	end
+
+	def signed_in_sponsor
+		unless current_user.sponsor?
+			not_found
+		end
+	end
+
+	def current_instructor?(id)
+		if current_user.instructor? && current_user.instructor.id == id
+			true
+		else
+			false
+		end
+	end
+
+	def current_student?(id)
+		if current_user.student? && current_user.student.id == id
+			true
+		else
+			false
+		end
+	end
+
+	def current_sponsor?(id)
+		if current_user.sponsor? && current_user.sponsor.id == id
+			true
+		else
+			false
+		end
+	end
+
+	def correct_instructor
+		unless (current_user.instructor? &&
+			current_user.instructor.id.to_s == params[:id])
+			not_found
+		end
+	end
+
+	def correct_student
+		unless (current_user.student? &&
+			current_user.student.id.to_s == params[:id])
+			not_found
+		end
+	end
+
+	def correct_sponsor
+		unless (current_user.instructor? &&
+			current_user.sponsor.id.to_s == params[:id])
 			not_found
 		end
 	end

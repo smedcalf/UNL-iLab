@@ -1,5 +1,6 @@
 class TeamsController < ApplicationController
   before_action :signed_in_user
+  before_action :signed_in_instructor, except: :index
   
   def new
     @team = Team.new

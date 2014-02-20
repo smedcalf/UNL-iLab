@@ -1,5 +1,7 @@
 class InstructorsController < ApplicationController
 	before_action :signed_in_user
+	before_action :signed_in_instructor
+	before_action :correct_instructor, only: [:edit, :update]
 
 	def new
 		@instructor = Instructor.new

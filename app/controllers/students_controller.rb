@@ -1,6 +1,5 @@
 class StudentsController < ApplicationController
   before_action :signed_in_user
-  #before_action :signed_in_admin
   
   def new
   	@student = Student.new
