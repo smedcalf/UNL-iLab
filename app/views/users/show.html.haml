@@ -1,16 +1,1 @@
-= render 'shared/error_messages'
-- case (@user.utype)
-- when "student"
-	= render 'student'
-	%p= current_user.utype
-- when "instructor"
-	= render 'instructor'
-	%p= current_user.utype
-- when "sponsor"
-	= render 'sponsor'
-	%p= current_user.utype
-- when "admin"
-	= render 'admin'
-	%p= current_user.utype
-- else
-	%h1 User type has not been set, please contact an admin to get this fixed.
+%h1 User type has not been set, please contact an admin to get this fixed.
