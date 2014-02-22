@@ -1,7 +1,7 @@
 %h1
   %strong= @sponsor.full_name
 %hr
-.maincontent#maincontent.content-box
+.maincontent#maincontent
   %h4.inline Email:
   %h4.inline
     %a.wdn-icon-mail{style: 'text-decoration: none', href: "mailto:#{@sponsor.email}"}= @sponsor.email
@@ -16,4 +16,5 @@
         %span.tab
   %br
   %h4.inline= "Orgnization: #{@sponsor.organization}"
-%a.wdn-button.wdn-button-triad{ href: edit_sponsor_path(@sponsor.id) } Edit
+  %br
+    %a.wdn-button.wdn-button-triad{ style: "padding-left: 12px; padding-right: 12px", href: edit_sponsor_path(@sponsor.id) } Edit

@@ -41,7 +41,7 @@ module SessionsHelper
 	end
 
 	def signed_in_instructor
-		unless current_user.instructor?
+		unless current_user.instructor? || current_user.utype == "admin"
 			not_found
 		end
 	end
