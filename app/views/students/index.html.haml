@@ -8,7 +8,7 @@
       = label_tag  "team", "Assign to"
       %section.wdn-grid-set
         .wdn-col-one-half
-          = select_tag "team", options_from_collection_for_select(@teams, "id", "name"), include_prompt: "Select team"
+          = select_tag "team", options_from_collection_for_select(@teams, "id", "name"), :prompt => "Please Select a Team"
         .wdn-col-one-hal
           = submit_tag "Submit"
       %table.zentable

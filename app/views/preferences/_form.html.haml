@@ -1,0 +1,16 @@
+= form_for @student_preference, url: { action: @url } do |f|
+  = render 'shared/error_messages', object: @student_preference
+  %span.required *
+  = f.label :student_id, "Student"
+  = f.text_field :student_id, { required: true }, :value => current_user.student_id
+  %span.required *
+  = f.label :project_id, "Project"
+  = f.text_field :project_id, :value => @project.id
+  %span.required *
+  = f.label :rating, "Rating"
+  = f.select :rating, [0,1,2,3,4,5], :prompt => "Please Select"
+  %ol
+    %li
+    %span.required *
+    denotes required field
+  = f.submit "Submit"

@@ -1,0 +1,51 @@
+%h1 Apply for Projects
+.wdn-main.maincontent#maincontent
+  - if @projects.empty?
+    %p No project currently.
+  - else
+    %table.zentable
+      %tr
+        %thead
+          %th
+          %th Project Name
+          %th Sponsor Name
+          %th Proposal
+          %th Active
+          %th Status
+          %th Preference
+          %th
+      -@projects.each do |p|
+        -next if p.semester != current_user.student.semester
+        -#-next if p.active != true
+        %tr
+          %td{style: 'text-align: center'}= check_box_tag 'project[]', p.id
+          %td
+            %a{ href: project_path(p.id), title: 'Show Project' }=p.name
+          %td
+            %a{href: sponsor_path(p.sponsor)}= Sponsor.find(p.sponsor).full_name
+          %td
+            - if p.proposal?
+              %a{href: "#{p.proposal.url}"}= p.proposal_file_name
+            - else
+              No Proposal
+          %td
+            - if p.active
+              Available
+            - else
+              Not Available
+          %td
+            - if p.status
+              Open
+            - else
+              Closed
+          - if StudentPreference.where(:student_id => current_user.student.id, :project_id => p.id).first.nil?
+            %td
+              No Rate
+            %td
+              %a.wdn-button.wdn-button-triad{ href: new_student_preference_path(p.id) } Rate
+          - else
+            %td
+              - @sp = StudentPreference.where(:student_id => current_user.student.id, :project_id => p.id).first
+              =@sp.rating
+            %td
+              %a.wdn-button.wdn-button-triad{ href: edit_student_preference_path(@sp.id) } Edit

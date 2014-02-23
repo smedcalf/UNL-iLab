@@ -48,6 +48,10 @@ class StudentsController < ApplicationController
     end
   end
 
+  def preference
+    @projects = Project.all
+  end
+
   private
 
   	def student_params

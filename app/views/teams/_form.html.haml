@@ -2,7 +2,7 @@
   = render 'shared/error_messages', object: @team
   %span.required *
   = f.label :project_id, "Project"
-  = f.select :project_id, options_for_select(Project.all.map{ |p| [p.name, p.id] }, selected_key = f.object.project_id)
+  = f.select :project_id, options_for_select(Project.all.map{ |p| [p.name, p.id] }, selected_key = f.object.project_id), :include_blank => 'Please Select a Project'
   %span.required *
   = f.label :name, "Name"
   = f.text_field :name

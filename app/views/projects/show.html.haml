@@ -9,8 +9,8 @@
     Open
   - else
     Close
-
-%a.wdn-button.wdn-button-triad{href: edit_project_path(@project.id), style: 'float: right' } Edit
+- if current_user.student.nil?
+  %a.wdn-button.wdn-button-triad{href: edit_project_path(@project.id), style: 'float: right' } Edit
 
 %hr
 .wdn-grid-set
