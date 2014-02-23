@@ -1,9 +1,9 @@
 Ilab::Application.routes.draw do
 
   get "student_preferences/index"
-  get "student_preferences/new/:id" => 'student_preferences#new', :as => :new_student_preference
-  get "student_preferences/edit/:id" => 'student_preferences#edit', :as => :edit_student_preference
-  get "student_preferences/show"
+  get "student_preferences/new/:id" => "student_preferences#new", :as => :new_student_preference
+  get "student_preferences/edit/:id" => "student_preferences#edit", :as => :edit_student_preference
+  get "student_preferences/show/:id" => "student_preferences#show", :as => :show_student_preference
   get "preferences/student_preferences"
   get "preferences/sponsor_preferences"
   resources :instructors
@@ -25,7 +25,7 @@ Ilab::Application.routes.draw do
   post 'projects/manage_projects', to: 'projects#manage_projects'
   post 'users/manage_users', to: 'users#manage_users'
   get 'sponsors/preference/:id' => 'sponsors#preference', :as => :preference_sponsor
-  get 'students/preference/:id' => 'students#preference', :as => :preference_student
+  get 'students/apply/:id' => 'students#apply', :as => :apply_student
   get 'user/edit_profile/:id' => 'users#edit_profile', :as => :edit_profile_user
 
   # The priority is based upon order of creation: first created -> highest priority.

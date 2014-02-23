@@ -48,7 +48,7 @@ class StudentsController < ApplicationController
     end
   end
 
-  def preference
+  def apply
     @projects = Project.all
   end
 

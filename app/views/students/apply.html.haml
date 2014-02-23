@@ -1,5 +1,6 @@
 %h1 Apply for Projects
 .wdn-main.maincontent#maincontent
+  = render 'shared/error_messages'
   - if @projects.empty?
     %p No project currently.
   - else

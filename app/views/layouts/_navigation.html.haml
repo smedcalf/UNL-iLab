@@ -137,8 +137,8 @@
         %a.cursor-pointer Projects
         %ul
           %li
-            %a{ href: preference_student_path, title: 'Apply for projects' } Project Apply
-            %a{ href: '#', title: 'Application Status' } Application Status
+            %a{ href: apply_student_path, title: 'Apply for projects' } Project Apply
+            %a{ href: show_student_preference_path(current_user.student.id), title: 'Application Status' } Application Status
       %li
         %a.cursor-pointer Team
         %ul
