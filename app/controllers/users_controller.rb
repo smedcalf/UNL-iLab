@@ -28,14 +28,18 @@ class UsersController < ApplicationController
 	def show
 		set_user
 		case @user.utype
-		when "student"
-			redirect_to student_path(@user.student.id)
-		when "instructor"
-			redirect_to instructor_path(@user.instructor.id)
-		when "sponsor"
-			redirect_to sponsor_path(@user.sponsor.id)
-		else
-			render 'show'
+      when "student"
+        if @user.student.nil?
+          redirect_to new_student_path
+        else
+          redirect_to student_path(@user.student.id)
+        end
+      when "instructor"
+        redirect_to instructor_path(@user.instructor.id)
+      when "sponsor"
+        redirect_to sponsor_path(@user.sponsor.id)
+      else
+        render 'show'
 		end
   end
 

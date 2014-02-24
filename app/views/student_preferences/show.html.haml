@@ -1,7 +1,7 @@
 %h1 Application Status
 
 .maincontent#maincontent
-  - if @student_preferences.nil?
+  - if @student_preferences.empty?
     You haven't applied for any projects
   - else
     %table.zentable
