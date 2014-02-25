@@ -1,8 +1,9 @@
 %h1 Student Application
 
 =form_tag("/sponsor_preferences/preference", remote: true, update: "maincontent", method: "post", id: "preference") do
+  = render 'shared/error_messages'
   .inline{style: "width: 35%"}
-    =select_tag :id, options_for_select(@projects.map{|project| [project.name, project.id]})
+    =select_tag :id, options_for_select(@projects.map{|project| [project.name, project.id]}), :class => "no-margin"
   .inline
     =submit_tag "submit"
 .maincontent#maincontent

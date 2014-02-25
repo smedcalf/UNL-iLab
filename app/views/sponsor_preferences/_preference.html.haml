@@ -5,16 +5,16 @@
     %table.zentable.cool
       %tr
         %thead
-          %th
+          -#%th
           %th Project Name
           %th Student Name
           %th Proposal
           %th Your Preference
           %th Sponsor Preference
-          %th
+          -#%th
       -@student_preferences.each do |sp|
         %tr
-          %td{style: 'text-align: center'}= check_box_tag 'student_preference[]', sp.id
+          -#%td{style: 'text-align: center'}= check_box_tag 'student_preference[]', sp.id
           %td
             %a{ href: project_path(sp.project.id), title: 'Show Project' }=sp.project.name
           %td
@@ -28,19 +28,13 @@
             = sp.rating
           %td
             - @sponsor_preference = sp.student.sponsor_preferences.find{ |s| s.project == sp.project }
-            -#- if @sponsor_preference.nil?
-            -#  Not Yet
-            -#- else
-            -#  -#= @sponsor_preference.rating
-            - @options = []
-            - (0..5).to_a.each do |n|
-              - @options << { id: sp.id.to_s + "_" + n.to_s, name: n.to_s}
+
             - if @sponsor_preference.nil?
-              = select_tag "rating[]", options_from_collection_for_select(@options, 'id', 'name'), :prompt => "Please Select"
+              = select_tag "rating[#{sp.id}][]", options_for_select([0, 1, 2, 3, 4, 5]), :prompt => "Please Select", :class => "no-margin"
             - else
-              = select_tag "rating[]", options_for_select([0, 1, 2, 3, 4, 5], @sponsor_preference.rating)
-          %td
-            %a.wdn-button.wdn-button-triad{ href: edit_student_preference_path(sp.id) } Edit
-  = f.submit
+              = select_tag "rating[#{sp.id}][]", options_for_select([0, 1, 2, 3, 4, 5], @sponsor_preference.rating), :class => "no-margin"
+          -#%td
+          -#  %a.wdn-button.wdn-button-triad{ href: edit_student_preference_path(sp.id) } Edit
+  = f.submit "Save"
 
 
