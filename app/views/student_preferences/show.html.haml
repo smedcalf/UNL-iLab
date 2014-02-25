@@ -4,14 +4,15 @@
   - if @student_preferences.empty?
     You haven't applied for any projects
   - else
-    %table.zentable
+    %table.zentable.cool
       %tr
         %thead
           %th
           %th Project Name
           %th Sponsor Name
           %th Proposal
-          %th Preference
+          %th Your Preference
+          %th Sponsor Preference
           %th
       -@student_preferences.each do |sp|
         - @project = Project.find(sp.project_id)
@@ -28,7 +29,14 @@
             - else
               No Proposal
           %td
-            %td
-              %a.wdn-button.wdn-button-triad{ href: edit_student_preference_path(sp.id) } Edit
+            = sp.rating
+          %td
+            - @sponsor_preference = SponsorPreference.where(:project_id => sp.project_id, :student_id => sp.student_id).first
+            - if @sponsor_preference.nil?
+              Not Yet
+            - else
+              =@sponsor_preference.rating
+          %td
+            %a.wdn-button.wdn-button-triad{ href: edit_student_preference_path(sp.id) } Edit
 
 

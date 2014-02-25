@@ -4,7 +4,8 @@ class StudentPreferencesController < ApplicationController
   end
 
   def new
-    @projects = Project.all.map { |project| [project.name, project.id] }
+    @student = Student.find_by_user_id(current_user.id)
+    @projects = Project.where(:semester => @student.semester).map { |project| [project.name, project.id] }
     @project = Project.find(params[:id])
     @student_preference = StudentPreference.new
     @url = 'create'
@@ -18,7 +19,7 @@ class StudentPreferencesController < ApplicationController
     @student_preference = StudentPreference.new(student_preference_params)
     if @student_preference.save
       flash[:success] = "Your rating was saved"
-      redirect_to apply_student_path(current_user.id)
+      redirect_to apply_student_path(current_user.student.id)
     else
       flash[:error] = @student_preference.errors.full_messages
       redirect_to :back
@@ -27,7 +28,8 @@ class StudentPreferencesController < ApplicationController
 
   def edit
     set_student_preference
-    @projects = Project.all.map { |project| [project.name, project.id] }
+    @student = Student.find_by_user_id(current_user.id)
+    @projects = Project.where(:semester => @student.semester).map { |project| [project.name, project.id] }
     @project = Project.find(set_student_preference.project_id)
     @url = "update"
   end
@@ -37,7 +39,7 @@ class StudentPreferencesController < ApplicationController
     @url = "update"
     if @student_preference.update_attributes(student_preference_params)
       flash[:success] = "Your rating was updated"
-      redirect_to apply_student_path(current_user.id)
+      redirect_to apply_student_path(current_user.student.id)
     else
       flash[:error] = "Your rating faild to updated"
       redirect_to :back

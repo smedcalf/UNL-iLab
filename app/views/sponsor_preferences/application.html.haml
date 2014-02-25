@@ -1,0 +1,6 @@
+%h1 Student Application
+
+=form_tag("sponsor_preference/preference", remote: true, update: "maincontent", method: "post", id: "preference") do
+  .inline{style: "width: 35%"}=select_tag "Project", options_for_select(@projects.map{|project| [project.name, project.id]})
+  .inline=submit_tag "submit"
+.maincontent#maincontent

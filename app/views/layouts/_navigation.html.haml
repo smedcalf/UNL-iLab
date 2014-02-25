@@ -104,7 +104,7 @@
         %a{ href: '#', title: 'Application Tables' } Application
         %ul
           %li
-            %a{ href: preference_sponsor_path(current_user), title: 'Student Preference' } Student Application
+            %a{ href: application_sponsor_preference_path(current_user.sponsor.id), title: 'Student Preference' } Student Application
             -#%a{ href: preferences_sponsor_preferences_path, title: 'Sponsor Preference' } Sponsor Preferences
       %li
         %a.cursor-pointer Project
@@ -138,7 +138,7 @@
         %ul
           %li
             - if !current_user.student.nil?
-              %a{ href: apply_student_path(current_user.id), title: 'Apply for projects' } Project Apply
+              %a{ href: apply_student_path(current_user.student.id), title: 'Apply for projects' } Project Apply
               %a{ href: show_student_preference_path(current_user.student.id), title: 'Application Status' } Application Status
             - else
               %a{ href: new_student_path, title: 'Apply for projects', onclick: 'alert("Please create your account first")' } Project Apply
@@ -147,7 +147,7 @@
         %a.cursor-pointer Team
         %ul
           %li
-            %a{ href: team_path(1), title: 'Create New Team' } Team Members
+            %a{ href: team_path(Team.find(current_user.student.team_id)), title: 'Create New Team' } Team Members
             %a{ href: '#', title: 'Team Notification' } Team Notification
             %a{ href: '#', title: 'Team Work History' } Team Work Track
       %li
