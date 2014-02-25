@@ -14,6 +14,12 @@ class SponsorPreferencesController < ApplicationController
   end
 
   def preference
-    @student_preferences = StudentPreference.find
+    @student_preferences = StudentPreference.where(:project_id => params[:id])
+    render partial: "preference", locals: { student_preferences: @student_preferences }
+  end
+
+  def update
+    hkj
+    render text: params.to_s
   end
 end

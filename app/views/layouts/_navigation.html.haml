@@ -147,7 +147,7 @@
         %a.cursor-pointer Team
         %ul
           %li
-            %a{ href: team_path(Team.find(current_user.student.team_id)), title: 'Create New Team' } Team Members
+            -#%a{ href: team_path(Team.find(current_user.student.team_id)), title: 'Create New Team' } Team Members
             %a{ href: '#', title: 'Team Notification' } Team Notification
             %a{ href: '#', title: 'Team Work History' } Team Work Track
       %li

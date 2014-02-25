@@ -5,6 +5,8 @@ Ilab::Application.routes.draw do
   get "sponsor_preferences/show"
   get "student_preferences/index"
   get "sponsor_preferences/application/:id" => "sponsor_preferences#application", :as => :application_sponsor_preference
+  post "sponsor_preferences/preference" => "sponsor_preferences#preference"
+  post "sponsor_preferences/update" => "sponsor_preferences#update"
   get "student_preferences/new/:id" => "student_preferences#new", :as => :new_student_preference
   get "student_preferences/edit/:id" => "student_preferences#edit", :as => :edit_student_preference
   get "student_preferences/show/:id" => "student_preferences#show", :as => :show_student_preference
