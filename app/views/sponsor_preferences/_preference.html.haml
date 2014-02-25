@@ -1,24 +1,24 @@
-= form_for :preferences, url: '/sponsor_preferences/update', method: 'post' do |f|
-  - if @student_preferences.empty?
-    You haven't applied for any projects
-  - else
-    %table.zentable.cool
+- if @student_preferences.empty?
+  No one applied for this project
+- else
+  = form_for :preferences, url: '/sponsor_preferences/update', method: 'post' do |f|
+    %table.zentable.energetic
       %tr
         %thead
           -#%th
-          %th Project Name
           %th Student Name
+          %th Project Name
           %th Proposal
-          %th Your Preference
+          %th Student Preference
           %th Sponsor Preference
           -#%th
       -@student_preferences.each do |sp|
         %tr
           -#%td{style: 'text-align: center'}= check_box_tag 'student_preference[]', sp.id
           %td
-            %a{ href: project_path(sp.project.id), title: 'Show Project' }=sp.project.name
-          %td
             %a{href: student_path(sp.student_id)}= sp.student.full_name
+          %td
+            %a{ href: project_path(sp.project.id), title: 'Show Project' }=sp.project.name
           %td
             - if sp.project.proposal?
               %a{href: "#{sp.project.proposal.url}"}= sp.project.proposal_file_name
@@ -35,6 +35,6 @@
               = select_tag "rating[#{sp.id}][]", options_for_select([0, 1, 2, 3, 4, 5], @sponsor_preference.rating), :class => "no-margin"
           -#%td
           -#  %a.wdn-button.wdn-button-triad{ href: edit_student_preference_path(sp.id) } Edit
-  = f.submit "Save"
+    = f.submit "Save", style: "float: right; background: rgb(231, 172, 126)"
 
 
