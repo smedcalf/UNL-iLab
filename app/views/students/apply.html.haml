@@ -41,7 +41,7 @@
               Closed
           - if StudentPreference.where(:student_id => current_user.student.id, :project_id => p.id).first.nil?
             %td
-              No Rate
+              No Rating
             %td
               %a.wdn-button.wdn-button-triad{ href: new_student_preference_path(p.id) } Rate
           - else
