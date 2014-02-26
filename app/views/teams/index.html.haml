@@ -17,12 +17,11 @@
           %tr{ href: team_path(t.id) }
             %td{style: 'text-align: center'}= check_box_tag 'team[]', t.id
             %td= t.name
-            %td= Project.find(t.project_id).name
+            %td= t.project.name
             %td
               %a{ href: "#{t.google_drive}", target: "_blank"} Google Drive
             %td
-              - @students = Student.where(:team_id => t.id)
-              - @students.each do |s|
+              - t.students.each do |s|
                 %a{ href: student_path(s.id), style: "margin-right: 8px" }= s.full_name
             %td
               %a.wdn-button.wdn-button-triad{ href: team_path(t.id) } Show
