@@ -5,7 +5,10 @@
   = f.text_field :name, {required: true}
   %span.required *
   = f.label :sponsor_id, 'Sponsor Name'
-  = f.select :sponsor_id, options_for_select(Sponsor.all.map{ |c| [c.full_name, c.id] }, selected_key = f.object.sponsor_id)
+  - if current_user.sponsor.nil?
+    = f.select :sponsor_id, options_for_select(Sponsor.all.map{ |c| [c.full_name, c.id] }, selected_key = f.object.sponsor_id), :include_blank => "Please select a sponsor"
+  - else
+    = f.select :sponsor_id, options_for_select([[current_user.sponsor.full_name, current_user.sponsor.id]])
   .wdn-grid-set
     .bp1-wdn-col-one-third
       %span.required *
@@ -17,12 +20,14 @@
         %li
           = f.radio_button :semester, 'Spring'
           = f.label :semester_spring, 'Spring'
-    .bp1-wdn-col-one-third
-      =f.check_box :active
-      =f.label :active, 'Active Now'
-      %br
-      =f.check_box :status
-      =f.label :status, 'Enable for Apply'
+    - if current_user.sponsor.nil?
+      .bp1-wdn-col-one-third
+        =f.check_box :active
+        =f.label :active, 'Active Now'
+        %br
+        =f.check_box :status
+        =f.label :status, 'Enable for Apply'
+
     .bp1-wdn-col-one-third
       %ul
         %li

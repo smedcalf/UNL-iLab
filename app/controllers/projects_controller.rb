@@ -2,7 +2,11 @@ class ProjectsController < ApplicationController
   before_action :signed_in_user
   
   def index
-    @projects = Project.all
+    if current_user.sponsor.nil?
+      @projects = Project.all
+    else
+      @projects = Project.where(:sponsor_id => current_user.sponsor.id)
+    end
   end
 
   def new

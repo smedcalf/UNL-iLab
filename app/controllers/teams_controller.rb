@@ -33,7 +33,12 @@ class TeamsController < ApplicationController
   end
 
   def index
-    @teams = Team.all
+    if current_user.sponsor.nil?
+      @teams = Team.all
+    else
+      @projects = Project.where(:sponsor_id => current_user.sponsor.id)
+      @teams = Team.where(:project_id => @projects.ids)
+    end
   end
 
   def update
