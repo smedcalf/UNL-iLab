@@ -10,12 +10,14 @@
     - @team.students.each do |s|
       %li
         %a{href: student_path(s.id) }= s.full_name
-    - if @team.google_drive.present?
-      %p
-        %b
-          %a{href: @team.google_drive} Google Drive
-    - if @team.trello_link.present?
-      %p
-        %b
-          %a{href: @team.trello_link} Trello
+    - if instructor? || sponsor? || (@team.has_user? current_user)
+      - if @team.google_drive.present?
+        %p
+          %b
+            %a{href: @team.google_drive} Google Drive
+      - if @team.trello_link.present?
+        %p
+          %b
+            %a{href: @team.trello_link} Trello
+- if instructor?
   %a.wdn-button.wdn-button-triad{ href: edit_team_path(@team.id)} Edit

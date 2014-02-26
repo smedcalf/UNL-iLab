@@ -13,4 +13,10 @@ class Team < ActiveRecord::Base
 	has_many :students
 
 	validates :name, presence: true, uniqueness: true
+
+	def has_user?(user)
+		if user.student?
+			students.include? user.student
+		end
+	end
 end

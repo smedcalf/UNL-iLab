@@ -34,6 +34,18 @@ module SessionsHelper
 		self.current_user = nil
 	end
 
+	def student?
+		current_user.student?
+	end
+
+	def sponsor?
+		current_user.sponsor?
+	end
+
+	def instructor?
+		current_user.instructor?
+	end
+
 	def signed_in_user
 		unless signed_in?
 			redirect_to root_url

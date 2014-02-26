@@ -19,6 +19,7 @@
 
 class Student < ActiveRecord::Base
 	belongs_to :team
+	belongs_to :user
 	has_many :student_preferences, dependent: :destroy
   has_many :sponsor_preferences, dependent: :destroy
 
