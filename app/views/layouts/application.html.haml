@@ -26,7 +26,7 @@
                             -if signed_in?
                                 .wdn-resource-label.wdn-resource-login-trigger.loggedin#wdn_identity_management{role: 'navigation'}
                                     .wdn-profile-options
-                                        %a.wdn-icon-user.wdn-idm-login{href: edit_profile_user_path(current_user), title: "Edit Profile"}= current_user.name
+                                        %a.wdn-icon-user.wdn-idm-login{href: edit_user_path(current_user), title: "Edit Profile"}= current_user.name
                                         |
                                         %a{href: '/signout', title: 'logout'} Logout
                             = render 'wdn/wdnTools'

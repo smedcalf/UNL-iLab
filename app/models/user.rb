@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
 	has_one :instructor
 	has_one :sponsor
 
-	validates :name, presence: true, uniqueness: { case_sensitive: false} 
+	validates :name, presence: true, uniqueness: { case_sensitive: false}
 	validates :password, length: { minimum: 6 }
 
 	def User.new_remember_token
@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
 	end
 
 	def instructor?
-		self.utype == "instructor"
+		 self.utype == "instructor"
 	end
 
 	def student?
@@ -39,6 +39,6 @@ class User < ActiveRecord::Base
 	end
 
 	def sponsor?
-		self.sponsor == "sponsor"
+		self.utype == "sponsor"
 	end
 end

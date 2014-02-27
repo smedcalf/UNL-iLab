@@ -1,6 +1,6 @@
 class SponsorsController < ApplicationController
   before_action :signed_in_user
-  
+
   def index
     @sponsors = Sponsor.all
   end
@@ -12,9 +12,10 @@ class SponsorsController < ApplicationController
 
   def create
     @sponsor = Sponsor.new(sponsor_params)
-    if current_user.utype == "sponsor"
+    if current_user.sponsor?
       @sponsor.user_id = current_user.id
     end
+
     if @sponsor.save
       redirect_to sponsors_path, :notice => 'New sponsor has been created successfully.'
     else
@@ -45,7 +46,6 @@ class SponsorsController < ApplicationController
   def preference
     @projects = Project.where(:sponsor_id => User.find(params[:id]).sponsor)
     @student_preferences = StudentPreference.where(:project_id => @projects.ids)
-
   end
 
   def update_preference
@@ -61,4 +61,5 @@ class SponsorsController < ApplicationController
     def set_sponsor
       @sponsor = Sponsor.find_by_id(params[:id])
     end
+
 end

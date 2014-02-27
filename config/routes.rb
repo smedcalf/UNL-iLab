@@ -32,7 +32,6 @@ Ilab::Application.routes.draw do
   post 'users/manage_users', to: 'users#manage_users'
   get 'sponsors/preference/:id' => 'sponsors#preference', :as => :preference_sponsor
   get 'students/apply/:id' => 'students#apply', :as => :apply_student
-  get 'user/edit_profile/:id' => 'users#edit_profile', :as => :edit_profile_user
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

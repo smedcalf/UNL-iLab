@@ -25,11 +25,11 @@ class PreferencesController < ApplicationController
 
   private
 
-  def student_preference_params
-    params.require(:student).permit(:student_id, :project_id, :rating)
-  end
+    def student_preference_params
+      params.require(:student).permit(:student_id, :project_id, :rating)
+    end
 
-  def set_student_preference
-    @student_preference = StudentPreference.find_by_id(params[:id])
-  end
+    def set_student_preference
+      @student_preference = StudentPreference.find_by_id(params[:id])
+    end
 end

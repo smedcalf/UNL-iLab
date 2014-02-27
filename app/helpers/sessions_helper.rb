@@ -114,4 +114,10 @@ module SessionsHelper
 			not_found
 		end
 	end
+
+	def correct_user
+		unless(current_user.id.to_s == params[:id])
+			not_found
+		end
+	end
 end

@@ -35,12 +35,10 @@ class SponsorPreferencesController < ApplicationController
         @sponsor_preference.first.rating = rating
         @sponsor_preference.first.save
       end
-
     end
-    #render text: params[:rating].to_s
+
     flash[:success] = "Your rating was successfully saved!"
     redirect_to :back
-
   end
 
   private

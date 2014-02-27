@@ -1,11 +1,11 @@
 class ProjectsController < ApplicationController
   before_action :signed_in_user
-  
+
   def index
     if current_user.sponsor.nil?
       @projects = Project.all
     else
-      @projects = Project.where(:sponsor_id => current_user.sponsor.id)
+      @projects = current_user.sponsor.projects
     end
   end
 
@@ -62,13 +62,14 @@ class ProjectsController < ApplicationController
   end
 
   private
-  def project_params
-    params.require(:project).permit(:name, :initial_capacity, :sponsor_id, :semester, :current_capacity,
-                                    :proposal, :active, :status)
-  end
 
-  def set_project
-    @project = Project.find_by_id(params[:id])
-  end
+    def project_params
+      params.require(:project).permit(:name, :initial_capacity, :sponsor_id, :semester, :current_capacity,
+                                      :proposal, :active, :status)
+    end
+
+    def set_project
+      @project = Project.find_by_id(params[:id])
+    end
 
 end

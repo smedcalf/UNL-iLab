@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 	before_action :signed_in_user, except: [:new, :create]
+	before_action :correct_user, only: [:edit, :update]
 
 	def new
 		@user = User.new
@@ -27,54 +28,33 @@ class UsersController < ApplicationController
 
 	def show
 		set_user
-		case @user.utype
-      when "student"
-        if @user.student.nil?
-          redirect_to new_student_path
-        else
-          redirect_to student_path(@user.student.id)
-        end
-      when "instructor"
-        redirect_to instructor_path(@user.instructor.id)
-      when "sponsor"
-        redirect_to sponsor_path(@user.sponsor.id)
-      else
-        render 'show'
+
+		if @user.student?
+			redirect_to student_path(@user.student.id)
+		elsif @user.instructor?
+			redirect_to instructor_path(@user.instructor.id)
+		elsif @user.sponsor?
+			redirect_to sponsor_path(@user.sponsor.id)
+		else
+			render 'show'
 		end
   end
 
-  def edit_profile
-    if current_user.utype.nil?
-      redirect_to edit_user_path(current_user)
-    else
-      case current_user.utype
-        when 'instructor'
-          if current_user.instructor.nil?
-            redirect_to new_instructor_path
-          else
-            redirect_to edit_instructor_path(current_user.instructor.id)
-          end
-        when 'sponsor'
-          if current_user.sponsor.nil?
-            redirect_to new_sponsor_path
-          else
-            redirect_to edit_sponsor_path(current_user.sponsor.id)
-          end
-        when 'student'
-          if current_user.student.nil?
-            redirect_to new_student_path
-          else
-            redirect_to edit_student_path(current_user.student.id)
-          end
-        else
-          redirect_to edit_user_path(current_user)
-      end
-    end
-  end
+  # def edit
+	# 	if current_user.student?
+	# 		redirect_to edit_student_path(current_user.student.id)
+	# 	elsif current_user.sponsor?
+	# 		redirect_to edit_sponsor_path(current_user.sponsor.id)
+	# 	elsif current_user.instructor?
+	# 		redirect_to edit_instructor_path(current_user.instructor.id)
+	# 	else
+	# 		redirect_to edit_user_path(current_user)
+	# 	end
+  # end
 
 	def create
 		@user = User.new(user_params)
-		
+
 		unless User.any?
 			@user.utype = "instructor"
 		end

@@ -1,6 +1,6 @@
 class StudentsController < ApplicationController
   before_action :signed_in_user
-  
+
   def new
   	@student = Student.new
     @url = "create"
@@ -13,7 +13,7 @@ class StudentsController < ApplicationController
     #end
   	if @student.save
       flash[:success] = 'Congratulations!!! New student was created successfully!'
-      if current_user.utype == "student"
+      if current_user.student?
         redirect_to student_path(@student.id)
       else
   		  redirect_to students_path
@@ -55,7 +55,7 @@ class StudentsController < ApplicationController
   private
 
   	def student_params
-  		params.require(:student).permit(:email, :first_name, :last_name, :major, 
+  		params.require(:student).permit(:email, :first_name, :last_name, :major,
   			:availability, :semester, :classname, :avatar)
   	end
 
