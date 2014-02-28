@@ -11,6 +11,7 @@ $(document).ready(function(){
             alert('Error');
     });
 
+
 //    $('form#preference').submit(function() {
 //        var valuesToSubmit = $("form#preference").serialize();
 //        var url = $(this).attr('action');

@@ -9,10 +9,6 @@
         = stylesheet_link_tag '//cloud.typography.com/7717652/616662/css/fonts.css'
         = stylesheet_link_tag '/wdn/templates_4.0/css/print.css', media: 'print'
         = csrf_meta_tags
-        %script{ type: "text/javascript" }
-            WDN.initializePlugin('modal', [function() {
-            WDN.jQuery(".iframe").colorbox({iframe:true, width:"80%", height:"80%"});
-            WDN.jQuery(".test").colorbox({inline:true, width:"50%"}););
         %body.fixed{ data: { version: "4.0"} }
             = render 'wdn/skip_nav'
             #wdn_wrapper

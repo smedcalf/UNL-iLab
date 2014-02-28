@@ -184,3 +184,15 @@ table {
 select.no-margin {
   margin: 0 !important;
 }
+
+.wdn-main {
+  border-bottom-style: none;
+}
+
+tr.odd td.sorting_1 {
+  background-color: #e4dcb6 !important;
+}
+
+tr.even td.sorting_1 {
+  background-color: #d2caa5 !important;
+}

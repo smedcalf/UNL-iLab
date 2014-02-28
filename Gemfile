@@ -6,6 +6,9 @@ gem 'bcrypt-ruby'
 gem 'ruby-trello'
 gem 'paperclip'
 require 'securerandom'
+gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
+gem 'coffee-rails', '~> 4.0.0'
+gem 'jquery-ui-rails'
 
 group :development, :test do
 	gem 'annotate'

@@ -9,5 +9,10 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+ *= require dataTables/src/demo_table_jui
+ *= require jquery.ui.theme
+ *= require jquery.ui.core
+ *= require dataTables/extras/TableTools
+ *= require dataTables/extras/TableTools_JUI
  *= require_tree .
  */
