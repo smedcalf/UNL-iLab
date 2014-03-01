@@ -1,47 +1,51 @@
 %h1 Students
+%style
+  select {width: auto !important;}
+  input {width: auto !important;}
 .maincontent#maincontent
   - if @students.empty?
     No student was created.
   - else
     = form_tag("teams/add_students", method: "post") do
       = render 'shared/error_messages', object: nil
-      = label_tag  "team", "Assign to"
-      %section.wdn-grid-set
-        .wdn-col-one-half
-          = select_tag "team", options_from_collection_for_select(@teams, "id", "name"), :prompt => "Please Select a Team"
-        .wdn-col-one-hal
-          = submit_tag "Submit"
-      %table.zentable
-        %tr
-          %thead
+      %table.display#students
+        %thead
+          %tr
             %th
             %th First Name
             %th Last Name
             %th Email
             %th Team
-            %th Major
+            -#%th Major
             %th Semester
             %th Availability
             %th
-        - @students.each do |s|
-          %tr.thumb{ href: student_path(s.id) }
-            %td
-              = check_box_tag 'student[]', s.id
-              %span.callout.top-left
-                = image_tag s.avatar.url, width: 130, height: 155
-                %hr
-                  .disclaimer=s.full_name
-            %td= s.first_name
-            %td= s.last_name
-            %td
-              %a.wdn-icon-mail{href: "mailto:#{s.email}"}= s.email
-            %td
-              - if s.team
-                %a{ href: team_path(s.team.id) }= s.team_name
-              - else
-                Not Assigned
-            %td= s.major
-            %td= s.semester
-            %td= s.availability
-            %td
-              %a.wdn-button.wdn-button-triad{ href: student_path(s.id) } Show
+        %tbody
+          - @students.each do |s|
+            %tr.thumb
+              %td
+                = check_box_tag 'student[]', s.id
+                %span.callout.top-left
+                  = image_tag s.avatar.url, width: 130, height: 155
+                  %hr
+                    .disclaimer=s.full_name
+              %td= s.first_name
+              %td= s.last_name
+              %td
+                %a.wdn-icon-mail{href: "mailto:#{s.email}"}= s.email
+              %td
+                - if s.team
+                  %a{ href: team_path(s.team.id) }= s.team_name
+                - else
+                  Not Assigned
+              -#%td= s.major
+              %td= s.semester
+              %td= s.availability
+              %td
+                %a{ href: student_path(s.id) } &#10147;
+
+      -#= label_tag  "team", "Assign to"
+      %section.wdn-grid-set
+      = select_tag "team", options_from_collection_for_select(@teams, "id", "name"),
+      :prompt => "Please Select a Team",style: "width: auto", class: "wdn-col-one-half"
+      = submit_tag "Assign", class: "wdn-col-one-half", style: "margin: 0 10px;"

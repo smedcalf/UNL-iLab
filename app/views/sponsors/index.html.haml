@@ -1,4 +1,7 @@
 %h1 Sponsors
+%style
+  select {width: auto !important;}
+  input {width: auto !important;}
 
 -#=flash.each do |key, value|
 -#  = value
@@ -6,9 +9,10 @@
   - if @sponsors.empty?
     %p No Sponsor was created.
   - else
-    %table.zentable
-      %tr
-        %thead
+    %table.display#sponsors
+      %thead
+        %tr
+          %th
           %th First Name
           %th Last Name
           %th Organization
@@ -16,10 +20,12 @@
           %th
       -@sponsors.each do |s|
         %tr
-        %td= s.first_name
-        %td= s.last_name
-        %td= s.organization
-        %td
-          %a.wdn-icon-mail{:href => "mailto:" + s.email }= s.email
-        %td
-          %a.wdn-button.wdn-button-triad{ href: sponsor_path(s.id) } Show
+          %td
+            = check_box_tag 'sponsor[]', s.id
+          %td= s.first_name
+          %td= s.last_name
+          %td= s.organization
+          %td
+            %a.wdn-icon-mail{:href => "mailto:" + s.email }= s.email
+          %td
+            %a.wdn-button.wdn-button-triad{ href: sponsor_path(s.id) } Show

@@ -1,12 +1,15 @@
 %h1 Teams
+%style
+  select {width: auto !important;}
+  input {width: auto !important;}
 .maincontent#maincontent
   - if @teams.empty?
     %p No team was created.
   - else
     = form_tag("teams/delete_teams", method: "post") do
-      %table.soothing.zentable
-        %tr
-          %thead
+      %table.cool.display#teams
+        %thead
+          %tr
             %th
             %th Name
             %th Project
@@ -25,7 +28,8 @@
                 %a{ href: student_path(s.id), style: "margin-right: 8px" }= s.full_name
             %td
               %a.wdn-button.wdn-button-triad{ href: team_path(t.id) } Show
-      %span{ style: 'font-size: 25px; color: #979797' } &#8627;
       - if instructor?
-        = submit_tag 'Delete', {style: 'font-size: 10px; background: rgb(224, 95, 84)', confirm: 'Are you sure you want to delete this team?'}
-      %a.wdn-button.wdn-button.energetic{ href: "#" } Send Email
+        %div{style:"float: left"}
+          %span{ style: 'font-size: 25px; color: #979797' } &#8627;
+          = submit_tag 'Delete', {style: 'font-size: 10px; background: rgb(224, 95, 84)', confirm: 'Are you sure you want to delete this team?'}
+          %a.wdn-button.wdn-button.energetic{ href: "#" } Send Email
