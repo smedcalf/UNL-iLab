@@ -1,0 +1,71 @@
+%h1= "Event: " + @event.name
+= render 'shared/error_messages'
+
+- if @event.completed
+  %span.wdn-button.wdn-button-complete{style: 'font-size: 8px; vertical-align: top'} Completed
+- else
+  %span.wdn-button.wdn-button-incomplete{style: 'font-size: 8px; vertical-align: top'} Imcompleted
+- if @event.team_id != 0 && !@event.team_id.nil?
+  %span.wdn-button.wdn-button-team{style: 'font-size: 8px; vertical-align: top'}
+    Team Task
+- else
+  %span.wdn-button.wdn-button-personal{style: 'font-size: 8px; vertical-align: top'}
+    Personal Task
+
+%hr
+.wdn-main#maincontent
+  .wdn-col-one-third
+    Create by:
+    -@profile = User.find(@event.user_id).profile
+    %a{href: "mailto:#{@profile.email}"}= @profile.full_name
+  .wdn-col-one-third= "Create at: #{@event.created_at.strftime("%Y-%m-%d %H:%M:%S")}"
+  .wdn-col-one-third= "Update at: #{@event.updated_at.strftime("%Y-%m-%d %H:%M:%S")}"
+  %table.table-info{style: "width: 100%"}
+    %thead
+      %th{style: "width: 20%"}
+        %p.t-text Event Name:
+      %th
+        %p.c-text= @event.name
+    - if !@event.team_id.nil?
+      %thead
+        %th{style: "width: 20%"}
+          %p.t-text Assigned to:
+        %th
+          %p.c-text= Team.find(@event.team_id).name
+    %thead
+      %th
+        %p.t-text Priority:
+      %th
+        - if @event.priority == 3
+          %p.c-text HIGH
+        - elsif @event.priority == 2
+          %p.c-text MEDIUM
+        - else
+          %p.c-text LOW
+    %thead
+      %th
+        %p.t-text Start at:
+      %th
+        %p.c-text= @event.start_at.strftime("%Y-%m-%d")
+    %thead
+      %th
+        %p.t-text End at:
+      %th
+        %p.c-text= @event.end_at.strftime("%Y-%m-%d")
+    %thead
+      %th
+        %p.t-text Description:
+      %th
+        %p.c-text= @event.description
+    %thead
+      %th
+        %p.t-text URL:
+      %th
+        - if @event.url != "http://"
+          %a.c-text{href: "#{@event.url}", target: '_blank'}= @event.url
+        - else
+          %p.c-text No url
+- if !current_user.instructor.nil? || current_user.id == @event.user_id || current_user.student.team_id == @event.team_id
+  %a.wdn-button.wdn-button-triad{href: edit_event_path(@event.id) } Edit
+  =link_to "Delete", event_path(@event), :method => :delete, class: "wdn-button"
+%a.wdn-button.wdn-button-incomplete{href: calendar_path, style: "float: right" } Back to Calendar

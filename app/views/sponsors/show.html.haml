@@ -2,20 +2,27 @@
   %strong= @sponsor.full_name
 %hr
 .maincontent#maincontent
-  %h4.inline Email:
-  %h4.inline
-    %a.wdn-icon-mail{style: 'text-decoration: none', href: "mailto:#{@sponsor.email}"}= @sponsor.email
-  %br
-  %h4.inline Project:
-  - if @projects.empty?
-    No Project.
-  - else
-    - @projects.each do |s|
-      %h4.inline
-        %a{style: 'text-decoration: underline', href: project_path(s.id)}=s.name
-        %span.tab
-  %br
-  %h4.inline= "Orgnization: #{@sponsor.organization}"
-  %br
-    - if current_user.utype != "student" || current_user.id == @sponsor.user_id
-      %a.wdn-button.wdn-button-triad{ style: "padding-left: 12px; padding-right: 12px", href: edit_sponsor_path(@sponsor.id) } Edit
+  .wdn-col-one-third= "Create at: #{@sponsor.created_at.strftime("%Y-%m-%d %H:%M:%S")}"
+  .wdn-col-one-third= "Update at: #{@sponsor.updated_at.strftime("%Y-%m-%d %H:%M:%S")}"
+  %table.table-info
+    %thead
+      %th
+        %p.t-text Email:
+      %th
+        %a.c-text.wdn-icon-mail{style: 'text-decoration: none', href: "mailto:#{@sponsor.email}"}= @sponsor.email
+    %thead
+      %th
+        %p.t-text Project:
+      %th
+        - if @projects.empty?
+          %p.c-text No Projects
+        - else
+          - @projects.each do |p|
+            %a.c-text{style: 'margin-right: 10px', href: project_path(p.id)}=p.name
+    %thead
+      %th
+        %p.t-text Organization:
+      %th
+        %p.c-text=@sponsor.organization
+- if current_user.utype != "student" || current_user.id == @sponsor.user_id
+  %a.wdn-button.wdn-button-triad{href: edit_sponsor_path(@sponsor.id) } Edit

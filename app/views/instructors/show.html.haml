@@ -1,5 +1,7 @@
 %h1
 	%strong= @instructor.full_name
+= render 'shared/error_messages'
+%hr
 %h4= "Email: #{@instructor.email}"
 %h4= "Classname: #{@instructor.classname}"
 %h4= "Semeseter: #{@instructor.semester}"

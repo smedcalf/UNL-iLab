@@ -190,9 +190,80 @@ select.no-margin {
 }
 
 tr.odd td.sorting_1 {
-  background-color: #e4dcb6 !important;
+  background-color: rgba(228, 220, 182, 0.64) !important;
+//  opacity: 0.6;
 }
 
 tr.even td.sorting_1 {
-  background-color: #d2caa5 !important;
+  background-color: rgba(210, 202, 165, 0.44) !important;
+//  opacity: 0.7;
+}
+
+.table-info {
+  background: none;
+  border: none;
+  width: 60%;
+  float: left;
+}
+.t-text {
+  font-size: 30px;
+  font-weight: bold;
+  margin: auto !important;
+}
+.c-text {
+  font-size: 30px;
+  margin: auto !important;
+  margin-right: 18px !important;
+}
+.table-info th {
+  background: none;
+}
+
+.wdn-button-incomplete {
+  background: #a0a19c !important;
+}
+
+.wdn-button-complete {
+  background: #00BD3C !important;
+}
+
+.wdn-button-team {
+  background: #33bad0 !important;
+}
+
+.wdn-button-personal {
+  background: #3e73d0 !important;
+}
+.qtip-wdn{
+  -webkit-border-radius:3px;
+  -webkit-background-clip:padding-box;
+  -moz-border-radius:3px;
+  -moz-background-clip:padding;
+  border-radius:3px;
+  background-clip:padding-box;
+  border-width:0;
+  border-color:#b30000;
+  color:#fff;
+  box-shadow: 0 0 6px rgb(213, 213, 213) !important;
+  background:#b30000;
+  opacity: 0.8 !important;
+  font-size:12px !important;
+  line-height:1.662;
+  min-height: 120px !important;
+  min-width: 260px !important;
+}
+
+.ec-priority-1 {
+  background: #ffc966 !important;
+  color: #ffffff;
+}
+
+.ec-priority-2 {
+  background: #FFA500 !important;
+  color: #ffffff;
+}
+
+.ec-priority-3 {
+  background: #cc1616 !important;
+  color: #ffffff;
 }

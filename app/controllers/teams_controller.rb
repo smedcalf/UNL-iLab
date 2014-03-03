@@ -1,6 +1,6 @@
 class TeamsController < ApplicationController
   before_action :signed_in_user
-  before_action :signed_in_instructor, except: [:index, :show]
+  before_action :signed_in_instructor, except: [:index, :show, :work_track]
   
   def new
     @team = Team.new
@@ -66,6 +66,11 @@ class TeamsController < ApplicationController
         flash[:success] = "Student has been successfully assigned."
         redirect_to students_path
     end
+  end
+
+  def work_track
+    #@tasks = Event.where{(team_id == params[:id]) | (user_id == current_user.id)}
+    @tasks = Event.where("team_id = #{params[:id]} OR user_id = #{current_user.id}")
   end
 
   def delete_teams

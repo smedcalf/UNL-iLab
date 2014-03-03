@@ -11,7 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140220010644) do
+ActiveRecord::Schema.define(version: 20140303015050) do
+
+  create_table "events", force: true do |t|
+    t.string   "name"
+    t.datetime "start_at"
+    t.datetime "end_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "team_id"
+    t.string   "url"
+    t.integer  "priority"
+    t.text     "description"
+    t.boolean  "completed"
+    t.integer  "user_id"
+  end
 
   create_table "instructors", force: true do |t|
     t.string   "email"
@@ -70,6 +84,21 @@ ActiveRecord::Schema.define(version: 20140220010644) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "student_to_do_lists", force: true do |t|
+    t.string   "title"
+    t.integer  "student_id"
+    t.string   "student_type"
+    t.text     "description"
+    t.string   "link"
+    t.integer  "priority"
+    t.boolean  "completed",    default: false, null: false
+    t.date     "due_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "student_to_do_lists", ["student_id", "student_type"], name: "index_student_to_do_lists_on_student_id_and_student_type"
 
   create_table "students", force: true do |t|
     t.string   "email"

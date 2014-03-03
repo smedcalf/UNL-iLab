@@ -9,6 +9,8 @@
         = stylesheet_link_tag '//cloud.typography.com/7717652/616662/css/fonts.css'
         = stylesheet_link_tag '/wdn/templates_4.0/css/print.css', media: 'print'
         = csrf_meta_tags
+        %script{type: "text/javascript"}
+            WDN.initializePlugin('tooltip');
         %body.fixed{ data: { version: "4.0"} }
             = render 'wdn/skip_nav'
             #wdn_wrapper
@@ -22,9 +24,10 @@
                             -if signed_in?
                                 .wdn-resource-label.wdn-resource-login-trigger.loggedin#wdn_identity_management{role: 'navigation'}
                                     .wdn-profile-options
-                                        %a.wdn-icon-user.wdn-idm-login{href: edit_user_path(current_user), title: "Edit Profile"}= current_user.name
+                                        %a.wdn-icon-user.wdn-idm-login{href: change_password_user_path(current_user), title: "Change Password"}= current_user.name
                                         |
                                         %a{href: '/signout', title: 'logout'} Logout
+                                        %a.wdn-icon-calendar{href: calendar_path, style: "margin-left: 10px" } Calendar
                             = render 'wdn/wdnTools'
                         %span#wdn_institution_title University of Nebraska&ndash;Lincoln
                     = render 'wdn/apps'

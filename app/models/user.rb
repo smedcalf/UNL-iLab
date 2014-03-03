@@ -40,5 +40,15 @@ class User < ActiveRecord::Base
 
 	def sponsor?
 		self.utype == "sponsor"
-	end
+  end
+
+  def profile
+    if instructor?
+      self.instructor
+    elsif sponsor?
+      self.sponsor
+    else
+      self.student
+    end
+  end
 end

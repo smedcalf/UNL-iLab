@@ -1,0 +1,42 @@
+%style
+  select {width: auto !important;}
+= form_for @event, url: { action: @url }  do |f|
+  = render 'shared/error_messages', object: @event
+  %span.required *
+  = f.label :name, "Name (Title)"
+  = f.text_field :name
+  %span.required *
+  = f.label :description, "Description"
+  = f.text_area :description
+  = f.label :url, "URL"
+  = f.text_field :url, value: "http://"
+  %span.required *
+  = f.label :start_at, "Start Date"
+  = f.date_select :start_at, class: "date_picker"
+  %br
+  %span.required *
+  = f.label :end_at, "End Date"
+  = f.date_select :end_at, class: "date_picker"
+  %br
+  %span.required *
+  = f.label :priority, "Priority"
+  = f.select :priority, options_for_select([["High", 3], ["Medium", 2], ["Low", 1]], @event.priority)
+  %br
+  - if current_user.utype == "student"
+    = f.check_box :team_id
+    = f.label :team_id, "To Team"
+  - elsif current_user.utype == "sponsor"
+    -@teams = Team.where(:project_id => Project.where(:sponsor_id => current_user.sponsor.id).ids)
+    = f.label :team_id
+    = f.select :team_id, options_for_select(@teams.all.map{ |t| [t.name, t.id] }, @event.team_id), :include_blank => 'Please Select a Team'
+  - else
+    = f.label :team_id
+    = f.select :team_id, options_for_select(Team.all.map{ |t| [t.name, t.id] }, @event.team_id), :include_blank => 'Please Select a Team'
+  %br
+  = f.check_box :completed
+  = f.label :completed, "Completed"
+  %br
+  %span.required *
+  denotes required field
+  %br
+  = f.submit "Submit"

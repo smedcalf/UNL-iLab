@@ -1,9 +1,12 @@
 Ilab::Application.routes.draw do
 
-  get "sponsor_preferences/index"
-  get "sponsor_preferences/new"
-  get "sponsor_preferences/show"
-  get "student_preferences/index"
+  get '/events/:id' => 'calendar#show'
+  get '/events/:id/edit' => 'calendar#edit'
+  patch '/events/:id/update' => 'calendar#update'
+  delete '/events/:id' => 'calendar#delete'
+  get '/calendar(/:year(/:month))' => 'calendar#index', :as => :calendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
+  get '/task/new' => 'calendar#new', :as => :new_calendar
+  post '/calendar/create' => 'calendar#create'
   get "sponsor_preferences/application/:id" => "sponsor_preferences#application", :as => :application_sponsor_preference
   post "sponsor_preferences/preference" => "sponsor_preferences#preference"
   post "sponsor_preferences/update" => "sponsor_preferences#update"
@@ -19,6 +22,8 @@ Ilab::Application.routes.draw do
   resources :sponsors
   resources :students
   resources :student_preferences
+  resources :sponsor_preferences
+  resources :events
   resources :teams
   resources :users
 
@@ -27,9 +32,12 @@ Ilab::Application.routes.draw do
   get 'login', to: 'sessions#new'
   get 'signout', to: 'sessions#destroy'
   post 'teams/add_students', to: 'teams#add_students'
+  get 'teams/work_track/:id', to: 'teams#work_track', :as => :team_work_track
+  get '/team/:id/calendar' => 'calendar#team_calendar', :as => :team_calendar
   post 'teams/delete_teams', to: 'teams#delete_teams'
   post 'projects/manage_projects', to: 'projects#manage_projects'
   post 'users/manage_users', to: 'users#manage_users'
+  get 'users/:id/change_password', to: 'users#edit', :as => :change_password_user
   get 'sponsors/preference/:id' => 'sponsors#preference', :as => :preference_sponsor
   get 'students/apply/:id' => 'students#apply', :as => :apply_student
 

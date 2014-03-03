@@ -1,0 +1,75 @@
+%h1 Team Work Track
+
+.wdn-main#maincontent
+  %a.wdn-button.wdn-button-triad{href: new_calendar_path, style: "padding-left: 4px; padding-right: 4px; float: right"} Create Task
+  - if @tasks.nil?
+    No Incomplete Task now
+  - else
+    %h4 Incomplete Task
+    - @incomplete_tasks = @tasks.where(:completed => false)
+    - @complete_tasks = @tasks.where(:completed => true)
+    - if @tasks.where(:completed => false).empty?
+      No Incomplete Tasks
+    - else
+      %table.display#incomplete_tasks
+        %thead
+          %tr
+            %th Start at
+            %th Due at
+            %th Name
+            %th Priority
+            %th
+        %tbody
+          -@incomplete_tasks.each do |t|
+            %tr
+              %td= t.start_at.strftime("%Y-%m-%d")
+              %td= t.end_at.strftime("%Y-%m-%d")
+              %td= t.name
+              %td{class: "ec-priority-#{t.priority}"}
+                - if t.priority == 3
+                  HIGH
+                - elsif t.priority == 2
+                  MEDIUM
+                - else
+                  LOW
+              %td
+                %a.tooltip{href: event_path(t.id), title: t.description} See details
+
+    -#%ul
+    -#- @tasks.each do |t|
+    -#  - if t.completed == false
+    -#    %li
+    -#      ="Due at: #{t.end_at.strftime("%Y-%m-%d")}"
+    -#      &#10144;
+    -#      %a{href: event_path(t.id)}=t.name
+  %br
+  %br
+  .wdn-light-complement-band
+
+    %h4 Completed Task
+    -if @tasks.where(:completed => true).empty?
+      No Completed Tasks
+    - else
+      %table.display#incomplete_tasks
+        %thead
+          %tr
+            %th Start at
+            %th Complete at
+            %th Name
+            %th Priority
+            %th
+        %tbody
+          -@complete_tasks.each do |t|
+            %tr
+              %td= t.start_at.strftime("%Y-%m-%d")
+              %td= t.end_at.strftime("%Y-%m-%d")
+              %td= t.name
+              %td
+                - if t.priority == 3
+                  HIGH
+                - elsif t.priority == 2
+                  MEDIUM
+                - else
+                  LOW
+              %td
+                %a.tooltip{href: event_path(t.id), title: t.description} See details

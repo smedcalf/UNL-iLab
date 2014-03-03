@@ -1,7 +1,7 @@
 %h1 Teams
 %style
-  select {width: auto !important;}
-  input {width: auto !important;}
+  select {width: auto !important; font-size: 14px !important;}
+  input {width: auto !important; font-size: 14px !important;}
 .maincontent#maincontent
   - if @teams.empty?
     %p No team was created.
@@ -19,7 +19,8 @@
         - @teams.each do |t|
           %tr{ href: team_path(t.id) }
             %td{style: 'text-align: center'}= check_box_tag 'team[]', t.id
-            %td= t.name
+            %td
+              %a{ href: team_path(t.id) }= t.name
             %td= t.project.name
             %td
               %a{ href: "#{t.google_drive}", target: "_blank"} Google Drive
@@ -27,7 +28,9 @@
               - t.students.each do |s|
                 %a{ href: student_path(s.id), style: "margin-right: 8px" }= s.full_name
             %td
-              %a.wdn-button.wdn-button-triad{ href: team_path(t.id) } Show
+              %a.wdn-icon-calendar{ href: team_calendar_path(t.id) } Calendar
+              \/
+              %a{ href: team_work_track_path(t.id) } Track
       - if instructor?
         %div{style:"float: left"}
           %span{ style: 'font-size: 25px; color: #979797' } &#8627;
