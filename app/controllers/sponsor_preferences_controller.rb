@@ -41,6 +41,10 @@ class SponsorPreferencesController < ApplicationController
     redirect_to :back
   end
 
+  def all
+    @sponsor_preferences = SponsorPreference.all
+  end
+
   private
 
   def sponsor_preference_params
