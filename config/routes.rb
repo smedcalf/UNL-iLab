@@ -1,5 +1,5 @@
 Ilab::Application.routes.draw do
-
+  
   resources :events, controller: :calendar
   resources :instructors
   resources :sessions, only: [:new, :create, :destroy, :index]
@@ -18,6 +18,10 @@ Ilab::Application.routes.draw do
 
   resources :students do
     resources :preferences, controller: :student_preferences
+
+    member do
+      get    'apply', to: 'students#apply', as: :apply
+    end
   end
 
   resources :teams do
@@ -25,11 +29,11 @@ Ilab::Application.routes.draw do
     collection do
       post   'add-students', to: 'teams#add_students', as: :add
       post   'delete-teams', to: 'teams#delete_teams', as: :delete_multiple
-      get    'work-track', to: 'teams#work_track', as: :work_track
     end
 
     member do
       get    'calendar', to: 'calendar#team_calendar', :as => :calendar
+      get    'work-track', to: 'teams#work_track', as: :work_track
     end
   end
 
@@ -40,7 +44,7 @@ Ilab::Application.routes.draw do
     end
 
     member do
-      get    'change-password', to: 'users#edit'
+      get    'change-password', to: 'users#edit', as: :change_password
     end
   end
 
@@ -52,7 +56,6 @@ Ilab::Application.routes.draw do
 
   get    'calendar(/:year(/:month))' => 'calendar#index', :as => :calendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
   post   'calendar/create' => 'calendar#create'
-  get    'students/apply/:id' => 'students#apply', :as => :apply_student
   get    'task/new' => 'calendar#new', :as => :new_calendar
 
   # The priority is based upon order of creation: first created -> highest priority.

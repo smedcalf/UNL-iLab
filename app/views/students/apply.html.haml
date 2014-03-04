@@ -43,10 +43,10 @@
             %td
               No Rating
             %td
-              %a.wdn-button.wdn-button-triad{ href: new_student_preference_path(p.id) } Rate
+              %a.wdn-button.wdn-button-triad{ href: new_student_preference_path(current_user.student.id, { project_id: p.id } ) } Rate
           - else
             %td
               - @sp = StudentPreference.where(:student_id => current_user.student.id, :project_id => p.id).first
               =@sp.rating
             %td
-              %a.wdn-button.wdn-button-triad{ href: edit_student_preference_path(@sp.id) } Edit
+              %a.wdn-button.wdn-button-triad{ href: edit_student_preference_path(current_user.student.id, @sp.id) } Edit

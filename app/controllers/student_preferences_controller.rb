@@ -1,12 +1,13 @@
 class StudentPreferencesController < ApplicationController
+
   def index
-    #@student_preferences = StudentPreference.where(:student_id => current_user.student.id)
+    @student_preferences = StudentPreference.where(:student_id => current_user.student.id)
   end
 
   def new
     @student = Student.find_by_user_id(current_user.id)
     @projects = Project.where(:semester => @student.semester).map { |project| [project.name, project.id] }
-    @project = Project.find(params[:id])
+    @project = Project.find(params[:project_id])
     @student_preference = StudentPreference.new
     @url = 'create'
   end
@@ -47,6 +48,10 @@ class StudentPreferencesController < ApplicationController
   end
 
   def delete
+  end
+
+  def all
+
   end
 
 
