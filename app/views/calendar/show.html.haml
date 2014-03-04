@@ -67,5 +67,5 @@
           %p.c-text No url
 - if !current_user.instructor.nil? || current_user.id == @event.user_id || current_user.student.team_id == @event.team_id
   %a.wdn-button.wdn-button-triad{href: edit_event_path(@event.id) } Edit
-  =link_to "Delete", event_path(@event), :method => :delete, class: "wdn-button"
-%a.wdn-button.wdn-button-incomplete{href: calendar_path, style: "float: right" } Back to Calendar
+  =link_to "Delete", event_path(@event), :method => :delete, class: "wdn-button wdn-button-energetic"
+-#%a.wdn-button.wdn-button-incomplete{href: calendar_path, style: "float: right" } Back to Calendar

@@ -25,13 +25,21 @@
               %td= t.start_at.strftime("%Y-%m-%d")
               %td= t.end_at.strftime("%Y-%m-%d")
               %td= t.name
-              %td{class: "ec-priority-#{t.priority}"}
+              %td
                 - if t.priority == 3
-                  HIGH
+                  - @priority = "HIGH"
                 - elsif t.priority == 2
-                  MEDIUM
+                  -@priority = "MEDIUM"
                 - else
-                  LOW
+                  -@priority = "LOW"
+                %div{class: "td-priority-#{t.priority}", title: @priority} &nbsp
+              -#%td{class: "ec-priority-#{t.priority}"}
+              -#  - if t.priority == 3
+              -#    HIGH
+              -#  - elsif t.priority == 2
+              -#    MEDIUM
+              -#  - else
+              -#    LOW
               %td
                 %a.tooltip{href: event_path(t.id), title: t.description} See details
 

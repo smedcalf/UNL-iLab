@@ -6,5 +6,27 @@
   %a.wdn-button.wdn-button-triad{href: new_calendar_path, style: "float: right"} Create Task
 = render 'shared/error_messages'
 
+.wdn-grid-set-fourths{style: "font-size: 12px"}
+  .wdn-col-one-fourth
+    .wdn-col-one-half
+      .ec-priority-3 &nbsp
+    .wdn-col-one-half
+      High
+  .wdn-col-one-fourth
+    .wdn-col-one-half
+      .ec-priority-2 &nbsp
+    .wdn-col-one-half
+      Medium
+  .wdn-col-one-fourth
+    .wdn-col-one-half
+      .ec-priority-1 &nbsp
+    .wdn-col-one-half
+      Low
+  .wdn-col-one-fourth
+    .wdn-col-one-half
+      .ec-completed-true &nbsp
+    .wdn-col-one-half
+      Complete
+
 .wdn-main#maincontent
   = raw(event_calendar)

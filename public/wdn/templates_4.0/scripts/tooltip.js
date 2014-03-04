@@ -7,7 +7,7 @@ define(['jquery', 'require'], function($, require) {
 	attr = 'title',
 	attrBak = 'data-title',
 	mainSel = '#maincontent .tooltip[' + attr + ']',
-	tipStyleCls = 'qtip-wdn',
+	tipStyleCls = 'qtip-bootstrap',
 
 	_wdnQTip,
 

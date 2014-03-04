@@ -234,36 +234,40 @@ tr.even td.sorting_1 {
 .wdn-button-personal {
   background: #3e73d0 !important;
 }
-.qtip-wdn{
-  -webkit-border-radius:3px;
-  -webkit-background-clip:padding-box;
-  -moz-border-radius:3px;
-  -moz-background-clip:padding;
-  border-radius:3px;
-  background-clip:padding-box;
-  border-width:0;
-  border-color:#b30000;
-  color:#fff;
+.qtip{
   box-shadow: 0 0 6px rgb(213, 213, 213) !important;
-  background:#b30000;
-  opacity: 0.8 !important;
+  opacity: 0.9 !important;
   font-size:12px !important;
-  line-height:1.662;
-  min-height: 120px !important;
-  min-width: 260px !important;
+  min-height: 35px !important;
+  width: 200px !important;
 }
 
-.ec-priority-1 {
-  background: #ffc966 !important;
-  color: #ffffff;
+//.ec-priority-1 {
+////  border-bottom: 4px solid #ffc966 !important;
+//  color: #ffc966;
+//}
+//
+//.ec-priority-2 {
+////  border-bottom: 4px solid #FFA500 !important;
+//  color: #FFA500;
+//}
+//
+//.ec-priority-3 {
+////  border-bottom: 4px solid #cc1616 !important;
+//  color: #cc1616;
+//}
+
+.td-priority-1 {
+  background: #ffdc5c !important;
+  width: 30%;
 }
 
-.ec-priority-2 {
+.td-priority-2 {
   background: #FFA500 !important;
-  color: #ffffff;
+  width: 60%;
 }
 
-.ec-priority-3 {
+.td-priority-3 {
   background: #cc1616 !important;
-  color: #ffffff;
+  width: 100%;
 }

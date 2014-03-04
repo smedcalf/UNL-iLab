@@ -66,7 +66,7 @@ class CalendarController < ApplicationController
   end
 
   def delete
-    fsdfsds
+    #fsdfsds
     Event.destroy(params[:event])
     redirect_to calendar_path
   end
