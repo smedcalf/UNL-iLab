@@ -1,45 +1,62 @@
 Ilab::Application.routes.draw do
-
-  get '/events/:id' => 'calendar#show'
-  get '/events/:id/edit' => 'calendar#edit'
-  patch '/events/:id/update' => 'calendar#update'
-  delete '/events/:id' => 'calendar#delete'
-  get '/calendar(/:year(/:month))' => 'calendar#index', :as => :calendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
-  get '/task/new' => 'calendar#new', :as => :new_calendar
-  post '/calendar/create' => 'calendar#create'
-  get "sponsor_preferences/application/:id" => "sponsor_preferences#application", :as => :application_sponsor_preference
-  post "sponsor_preferences/preference" => "sponsor_preferences#preference"
-  post "sponsor_preferences/update" => "sponsor_preferences#update"
-  get "student_preferences/new/:id" => "student_preferences#new", :as => :new_student_preference
-  get "student_preferences/edit/:id" => "student_preferences#edit", :as => :edit_student_preference
-  get "student_preferences/show/:id" => "student_preferences#show", :as => :show_student_preference
-  get "preferences/student_preferences"
-  get "preferences/sponsor_preferences"
+  
+  resources :events, controller: :calendar
   resources :instructors
-  resources :projects
   resources :sessions, only: [:new, :create, :destroy, :index]
   resources :static_pages
-  resources :sponsors
-  resources :students
-  resources :student_preferences
-  resources :sponsor_preferences
-  resources :events
-  resources :teams
-  resources :users
+
+  # Messy routes
+  resources :projects do
+    collection do
+      post  'manage-projects', to: 'projects#manage_projects', as: :manage
+    end
+  end
+
+  resources :sponsors do
+    resources :preferences, controller: :sponsor_preferences
+  end
+
+  resources :students do
+    resources :preferences, controller: :student_preferences
+
+    member do
+      get    'apply', to: 'students#apply', as: :apply
+    end
+  end
+
+  resources :teams do
+
+    collection do
+      post   'add-students', to: 'teams#add_students', as: :add
+      post   'delete-teams', to: 'teams#delete_teams', as: :delete_multiple
+    end
+
+    member do
+      get    'calendar', to: 'calendar#team_calendar', :as => :calendar
+      get    'work-track', to: 'teams#work_track', as: :work_track
+    end
+  end
+
+  resources :users do
+
+    collection do
+      post   'manage-users', to: 'users#manage_users', as: :manage
+    end
+
+    member do
+      get    'change-password', to: 'users#edit', as: :change_password
+    end
+  end
 
   # Named Routes
-  get 'register', to: 'users#new'
-  get 'login', to: 'sessions#new'
-  get 'signout', to: 'sessions#destroy'
-  post 'teams/add_students', to: 'teams#add_students'
-  get 'teams/work_track/:id', to: 'teams#work_track', :as => :team_work_track
-  get '/team/:id/calendar' => 'calendar#team_calendar', :as => :team_calendar
-  post 'teams/delete_teams', to: 'teams#delete_teams'
-  post 'projects/manage_projects', to: 'projects#manage_projects'
-  post 'users/manage_users', to: 'users#manage_users'
-  get 'users/:id/change_password', to: 'users#edit', :as => :change_password_user
-  get 'sponsors/preference/:id' => 'sponsors#preference', :as => :preference_sponsor
-  get 'students/apply/:id' => 'students#apply', :as => :apply_student
+  # Session routes
+  get    'register', to: 'users#new'
+  get    'login', to: 'sessions#new'
+  get    'signout', to: 'sessions#destroy'
+
+  get    'calendar(/:year(/:month))' => 'calendar#index', :as => :calendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
+  post   'calendar/create' => 'calendar#create'
+  get    'task/new' => 'calendar#new', :as => :new_calendar
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

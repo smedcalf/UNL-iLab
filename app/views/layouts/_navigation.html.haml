@@ -140,7 +140,7 @@
           %li
             - if !current_user.student.nil?
               %a{ href: apply_student_path(current_user.student.id), title: 'Apply for projects' } Project Apply
-              %a{ href: show_student_preference_path(current_user.student.id), title: 'Application Status' } Application Status
+              %a{ href: student_preferences_path(current_user.student.id), title: 'Application Status' } Application Status
             - else
               %a{ href: new_student_path, title: 'Apply for projects', onclick: 'alert("Please create your account first")' } Project Apply
               %a{ href: new_student_path, title: 'Application Status', onclick: 'alert("Please create your account first")' } Application Status
@@ -150,7 +150,7 @@
           %li
             %a{ href: team_path(Team.find(current_user.student.team_id)), title: 'Team member' } Team Members
             %a{ href: '#', title: 'Team Notification' } Team Notification
-            %a{ href: team_work_track_path(current_user.student.team_id), title: 'Team Work History' } Team Work Track
+            %a{ href: work_track_team_path(current_user.student.team_id), title: 'Team Work History' } Team Work Track
       %li
         %a.cursor-pointer Links
         %ul
