@@ -14,17 +14,14 @@
       %table.display#incomplete_tasks
         %thead
           %tr
-            %th Start at
-            %th Due at
-            %th Name
             %th Priority
+            %th Due at
+            %th Start at
+            %th Name
             %th
         %tbody
           -@incomplete_tasks.each do |t|
             %tr
-              %td= t.start_at.strftime("%Y-%m-%d")
-              %td= t.end_at.strftime("%Y-%m-%d")
-              %td= t.name
               %td
                 - if t.priority == 3
                   - @priority = "HIGH"
@@ -32,7 +29,10 @@
                   -@priority = "MEDIUM"
                 - else
                   -@priority = "LOW"
-                %div{class: "td-priority-#{t.priority}", title: @priority} &nbsp
+                %div{class: "td-priority-#{t.priority}", title: @priority}=t.priority
+              %td= t.end_at.strftime("%Y-%m-%d")
+              %td= t.start_at.strftime("%Y-%m-%d")
+              %td= t.name
               -#%td{class: "ec-priority-#{t.priority}"}
               -#  - if t.priority == 3
               -#    HIGH
@@ -41,7 +41,7 @@
               -#  - else
               -#    LOW
               %td
-                %a.tooltip{href: event_path(t.id), title: t.description} See details
+                %a.tooltip.iframe{href: event_path(t.id), title: t.description} See details
 
     -#%ul
     -#- @tasks.each do |t|
@@ -61,23 +61,24 @@
       %table.display#incomplete_tasks
         %thead
           %tr
-            %th Start at
-            %th Complete at
-            %th Name
             %th Priority
+            %th Complete at
+            %th Start at
+            %th Name
             %th
         %tbody
           -@complete_tasks.each do |t|
             %tr
-              %td= t.start_at.strftime("%Y-%m-%d")
-              %td= t.end_at.strftime("%Y-%m-%d")
-              %td= t.name
               %td
                 - if t.priority == 3
-                  HIGH
+                  -@priority = "HIGH"
                 - elsif t.priority == 2
-                  MEDIUM
+                  -@priority = "MEDIUM"
                 - else
-                  LOW
+                  -@priority = "LOW"
+                %div{class: "td-priority-#{t.priority}", title: @priority}=t.priority
+              %td= t.end_at.strftime("%Y-%m-%d")
+              %td= t.start_at.strftime("%Y-%m-%d")
+              %td= t.name
               %td
                 %a.tooltip{href: event_path(t.id), title: t.description} See details
