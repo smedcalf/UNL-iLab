@@ -9,7 +9,7 @@ class SponsorPreferencesController < ApplicationController
   end
 
   def application
-    @projects = Project.where(:sponsor_id => params[:id])
+    @projects = Project.where(:sponsor_id => params[:sponsor_id])
     @url = "preference"
   end
 

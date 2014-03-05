@@ -28,7 +28,7 @@ class Project < ActiveRecord::Base
   has_many :student_preferences, dependent: :destroy
   has_many :sponsor_preferences, dependent: :destroy
 
-  validates :name, :initial_capacity, :semester, :sponsor,  :presence => true
+  validates :name, :initial_capacity, :semester, :sponsor_id, :presence => true
   validates :name, :uniqueness => true
 
   after_initialize :set_defaults

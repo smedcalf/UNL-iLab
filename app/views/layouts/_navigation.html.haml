@@ -13,8 +13,8 @@
         %ul
           %li
             %a{ href: users_path, title: 'User Registration' } User Registration
-            %a{ href: preferences_student_preferences_path, title: 'Student Preference' } Student Preferences
-            %a{ href: preferences_sponsor_preferences_path, title: 'Sponsor Preference' } Sponsor Preferences
+            %a{ href: all_student_preferences_instructors_path, title: 'Student Preference' } Student Preferences
+            %a{ href: all_sponsor_preferences_instructors_path, title: 'Sponsor Preference' } Sponsor Preferences
 
       %li
         %a.cursor-pointer Projects
@@ -59,8 +59,8 @@
         %ul
           %li
             %a{ href: users_path, title: 'User Registration' } User Registration
-            %a{ href: preferences_student_preferences_path, title: 'Student Preference' } Student Preferences
-            %a{ href: preferences_sponsor_preferences_path, title: 'Sponsor Preference' } Sponsor Preferences
+            %a{ href: all_student_preferences_instructors_path, title: 'Student Preference' } Student Preferences
+            %a{ href: all_sponsor_preferences_instructors_path, title: 'Sponsor Preference' } Sponsor Preferences
 
       %li
         %a.cursor-pointer Projects
@@ -104,7 +104,7 @@
         %a{ href: '#', title: 'Application Tables' } Application
         %ul
           %li
-            %a{ href: application_sponsor_preference_path(current_user.sponsor.id), title: 'Student Preference' } Student Application
+            %a{ href: application_sponsor_preferences_path(current_user.sponsor.id), title: 'Student Preference' } Student Application
             -#%a{ href: preferences_sponsor_preferences_path, title: 'Sponsor Preference' } Sponsor Preferences
       %li
         %a.cursor-pointer Project

@@ -1,7 +1,12 @@
 Ilab::Application.routes.draw do
   
   resources :events, controller: :calendar
-  resources :instructors
+  resources :instructors do
+    collection do
+      get 'student-preferences', to: 'student_preferences#all', as: :all_student_preferences
+      get 'sponsor-preferences', to: 'sponsor_preferences#all', as: :all_sponsor_preferences
+    end
+  end
   resources :sessions, only: [:new, :create, :destroy, :index]
   resources :static_pages
 
@@ -13,14 +18,18 @@ Ilab::Application.routes.draw do
   end
 
   resources :sponsors do
-    resources :preferences, controller: :sponsor_preferences
+    resources :preferences, controller: :sponsor_preferences do
+      collection do
+        get     'application', to: 'sponsor_preferences#application', as: :application
+      end
+    end
   end
 
   resources :students do
     resources :preferences, controller: :student_preferences
 
     member do
-      get    'apply', to: 'students#apply', as: :apply
+      get   'apply', to: 'students#apply', as: :apply
     end
   end
 
@@ -57,6 +66,7 @@ Ilab::Application.routes.draw do
   get    'calendar(/:year(/:month))' => 'calendar#index', :as => :calendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
   post   'calendar/create' => 'calendar#create'
   get    'task/new' => 'calendar#new', :as => :new_calendar
+  post   '/sponsor_preferences/preference', to: 'sponsor_preferences#preference'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
