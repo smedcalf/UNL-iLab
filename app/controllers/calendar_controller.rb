@@ -46,6 +46,21 @@ class CalendarController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+    @editable = false
+    case current_user.utype
+      when "instructor"
+        @editable = true
+      when "sponsor"
+        @project_id = Team.find(@event.team_id).project_id
+        @sponsor_id = Project.find(@project_id).sponsor_id
+        if @sponsor_id == current_user.sponsor.id
+          @editable = true
+        end
+      when "student"
+        if current_user.student.team_id == @event.team_id
+          @editable = true
+        end
+    end
   end
 
   def edit
