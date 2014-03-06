@@ -11,8 +11,9 @@
 // about supported directives.
 //
 //= require jquery
-//= require_tree .
+//= require jquery_ujs
 //= require dataTables/jquery.dataTables
 //= require dataTables/extras/TableTools
 //= require dataTables/extras/ZeroClipboard.js
 //= require jquery.ui.datepicker
+//= require_tree .

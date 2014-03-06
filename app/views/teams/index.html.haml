@@ -6,7 +6,7 @@
   - if @teams.empty?
     %p No team was created.
   - else
-    = form_tag("teams/delete_teams", method: "post") do
+    = form_tag("teams/delete-teams", method: "post") do
       %table.cool.display#teams
         %thead
           %tr
@@ -28,9 +28,9 @@
               - t.students.each do |s|
                 %a{ href: student_path(s.id), style: "margin-right: 8px" }= s.full_name
             %td
-              %a.wdn-icon-calendar{ href: team_calendar_path(t.id) } Calendar
+              %a.wdn-icon-calendar{ href: calendar_team_path(t.id) } Calendar
               \/
-              %a{ href: team_work_track_path(t.id) } Track
+              %a{ href: work_track_team_path(t.id) } Track
       - if instructor?
         %div{style:"float: left"}
           %span{ style: 'font-size: 25px; color: #979797' } &#8627;

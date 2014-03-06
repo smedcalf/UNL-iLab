@@ -1,7 +1,7 @@
 - if @student_preferences.empty?
   No one applied for this project
 - else
-  = form_for :preferences, url: '/sponsor_preferences/update', method: 'post' do |f|
+  = form_for :preferences, url: update_sponsor_preferences_path(@sponsor.id), method: 'post' do |f|
     %table.primary
       %tr
         %thead
@@ -36,5 +36,3 @@
           -#%td
           -#  %a.wdn-button.wdn-button-triad{ href: edit_student_preference_path(sp.id) } Edit
     = f.submit "Save", style: "float: right; background: rgb(231, 172, 126)"
-
-

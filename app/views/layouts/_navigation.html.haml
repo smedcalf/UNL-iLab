@@ -1,6 +1,5 @@
 - if signed_in?
-  -# This is admin navigation
-  - if current_user.utype == "admin"
+  - if current_user.utype == "instructor"
     %ul
       %li
         %a{ href: '/' } Home
@@ -13,54 +12,8 @@
         %ul
           %li
             %a{ href: users_path, title: 'User Registration' } User Registration
-            %a{ href: preferences_student_preferences_path, title: 'Student Preference' } Student Preferences
-            %a{ href: preferences_sponsor_preferences_path, title: 'Sponsor Preference' } Sponsor Preferences
-
-      %li
-        %a.cursor-pointer Projects
-        %ul
-          %li
-            %a{ href: projects_path, title: 'Projects table' } Current Project Table
-            %a{ href: sponsors_path, title: 'Sponsor Table' } Current Sponsors Table
-            %a{ href: new_sponsor_path, title: 'Create New Sponsor' } New Sponsor Form
-            %a{ href: new_project_path, title: 'create New Project' } New Project Form
-      %li
-        %a.cursor-pointer Teams
-        %ul
-          %li
-            %a{ href: teams_path, title: 'Team Table' } All Teams Table
-            %a{ href: '#', title: 'Team Work History' } Team Work Track
-            %a{ href: '#', title: 'Team Notification' } Team Notification
-            %a{ href: new_team_path, title: 'Create New Team' } New Team Form
-      %li
-        %a.cursor-pointer Students
-        %ul
-          %li
-            %a{ href: students_path, title: 'Student Table' } All Students Table
-            %a{ href: new_student_path, title: 'Create New student' } New Student Form
-            %a{ href: '#', title: 'Assign Student to Team' } Team Assignment
-      %li
-        %a.cursor-pointer Links
-        %ul
-          %li
-            %a{ href: '#' } some useful links
-
-    -# This is instructor navigation
-  - elsif current_user.utype == "instructor"
-    %ul
-      %li
-        %a{ href: '/' } Home
-        %ul
-          %li
-            %a{ href: "http://unl.edu", title: 'UNL Homepage'} UNL Homepage
-            %a{ href: "http://cse.unl.edu/InnovationLab", title: 'Innovation Lab Homepage' } Innovation Lab
-      %li
-        %a{ href: '#', title: 'Application Tables' } Application
-        %ul
-          %li
-            %a{ href: users_path, title: 'User Registration' } User Registration
-            %a{ href: preferences_student_preferences_path, title: 'Student Preference' } Student Preferences
-            %a{ href: preferences_sponsor_preferences_path, title: 'Sponsor Preference' } Sponsor Preferences
+            %a{ href: '#', title: 'Student Preference' } Student Preferences
+            %a{ href: '#', title: 'Sponsor Preference' } Sponsor Preferences
 
       %li
         %a.cursor-pointer Projects
@@ -104,8 +57,7 @@
         %a{ href: '#', title: 'Application Tables' } Application
         %ul
           %li
-            %a{ href: application_sponsor_preference_path(current_user.sponsor.id), title: 'Student Preference' } Student Application
-            -#%a{ href: preferences_sponsor_preferences_path, title: 'Sponsor Preference' } Sponsor Preferences
+            %a{ href: sponsor_preferences_path(current_user.sponsor.id), title: 'Student Preference' } Student Application
       %li
         %a.cursor-pointer Project
         %ul

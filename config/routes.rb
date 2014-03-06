@@ -1,5 +1,5 @@
 Ilab::Application.routes.draw do
-  
+
   resources :events, controller: :calendar
   resources :instructors
   resources :sessions, only: [:new, :create, :destroy, :index]
@@ -13,7 +13,12 @@ Ilab::Application.routes.draw do
   end
 
   resources :sponsors do
-    resources :preferences, controller: :sponsor_preferences
+    resources :preferences, controller: :sponsor_preferences do
+      collection do
+        post 'student', to: 'sponsor_preferences#student', as: :student
+        post 'update', to: 'sponsor_preferences#update_preferences', as: :update
+      end
+    end
   end
 
   resources :students do
