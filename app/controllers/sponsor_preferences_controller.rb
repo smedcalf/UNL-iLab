@@ -15,6 +15,11 @@ class SponsorPreferencesController < ApplicationController
   #   @url = "preference"
   # end
 
+  def application
+    @projects = Project.where(:sponsor_id => params[:sponsor_id])
+    @url = "preference"
+  end
+
   def student
     @sponsor = current_user.sponsor
     @student_preferences = StudentPreference.where(:project_id => params[:id])
@@ -42,6 +47,10 @@ class SponsorPreferencesController < ApplicationController
 
     flash[:success] = "Your rating was successfully saved!"
     redirect_to :back
+  end
+
+  def all
+    @sponsor_preferences = SponsorPreference.all
   end
 
   private

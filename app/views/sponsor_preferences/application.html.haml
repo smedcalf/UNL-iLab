@@ -1,9 +1,0 @@
-%h1 Student Application
-.zenbox
-  =form_tag("/sponsor_preferences/preference", remote: true, update: "maincontent", method: "post", id: "preference") do
-    = render 'shared/error_messages'
-    .inline{style: "width: 35%"}
-      =select_tag :id, options_for_select(@projects.map{|project| [project.name, project.id]}), :class => "no-margin", :prompt => "Please select project"
-    .inline
-    =submit_tag "Check"
-.maincontent#maincontent

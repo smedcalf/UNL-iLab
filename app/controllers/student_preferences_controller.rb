@@ -51,7 +51,7 @@ class StudentPreferencesController < ApplicationController
   end
 
   def all
-
+    @student_preferences = StudentPreference.all
   end
 
 

@@ -17,10 +17,12 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
-    @project.sponsor = Sponsor.find(project_params[:sponsor_id])
+    #@project.sponsor = Sponsor.find(project_params[:sponsor_id])
     if @project.save
+      flash[:success] = "New project was created."
       redirect_to projects_path
     else
+      flash[:error] = @project.errors.full_messages
       render 'new'
     end
   end
@@ -38,8 +40,10 @@ class ProjectsController < ApplicationController
     set_project
     @url = "update"
     if @project.update_attributes(project_params)
+      flash[:success] = "Project was successfully saved."
       redirect_to project_path(@project.id)
     else
+      flash[:error] = @project.errors.full_messages
       render 'edit'
     end
   end

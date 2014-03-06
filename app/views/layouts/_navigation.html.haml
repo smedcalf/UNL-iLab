@@ -12,9 +12,8 @@
         %ul
           %li
             %a{ href: users_path, title: 'User Registration' } User Registration
-            %a{ href: '#', title: 'Student Preference' } Student Preferences
-            %a{ href: '#', title: 'Sponsor Preference' } Sponsor Preferences
-
+            %a{ href: all_student_preferences_instructors_path, title: 'Student Preference' } Student Preferences
+            %a{ href: all_sponsor_preferences_instructors_path, title: 'Sponsor Preference' } Sponsor Preferences
       %li
         %a.cursor-pointer Projects
         %ul
@@ -43,8 +42,6 @@
         %ul
           %li
             %a{ href: '#' } some useful links
-
-    -#This is sponsor navigation
   - elsif current_user.utype == 'sponsor'
     %ul
       %li
@@ -76,8 +73,6 @@
         %ul
           %li
             %a{ href: '#' } some useful links
-
-    -# This is student navigation
   - elsif current_user.utype == 'student'
     %ul
       %li
@@ -108,7 +103,6 @@
         %ul
           %li
             %a{ href: '#' } some useful tools
-      -# Default navigation after login
   - else
     %ul
       %li
@@ -117,8 +111,6 @@
           %li
             %a{ href: "http://unl.edu", title: 'UNL Homepage'} UNL Homepage
             %a{ href: "http://cse.unl.edu/InnovationLab", title: 'Innovation Lab Homepage' } Innovation Lab
-
-  -# Default navigation
 - else
   %ul
     %li

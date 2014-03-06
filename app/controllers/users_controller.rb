@@ -16,7 +16,9 @@ class UsersController < ApplicationController
         when 'delete'
           User.destroy(params[:user])
         when 'assign'
-          User.where(:id => params[:user]).update_all(:utype => params[:utype])
+					if acceptable_utype
+          	User.where(:id => params[:user]).update_all(:utype => params[:utype])
+					end
       end
       redirect_to users_path
     end
@@ -104,5 +106,14 @@ class UsersController < ApplicationController
 
 		def set_user
 			@user = User.find_by_id(params[:id])
+		end
+
+		def acceptable_utype
+			if (params[:utype] == "instructor" ||
+				 params[:utype] == "student" ||
+				 params[:utype] == "sponsor")
+				true
+			end
+			false
 		end
 end
