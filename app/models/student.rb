@@ -39,4 +39,14 @@ class Student < ActiveRecord::Base
 			""
 		end
 	end
+
+	def avatar_url
+		unless self.avatar.exists?
+			# Add some fun and get unique kittens if picture is missing
+			pixels = self.full_name.hash % 150
+			"http://placekitten.com/#{150 + pixels}/#{150 + pixels}"
+		else
+			self.avatar.url
+		end
+	end
 end

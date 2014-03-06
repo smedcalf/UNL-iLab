@@ -26,7 +26,7 @@
               %td
                 = check_box_tag 'student[]', s.id
                 %span.callout.top-left
-                  = image_tag s.avatar.url, width: 130, height: 155
+                  = image_tag s.avatar_url, width: 130, height: 155
                   %hr
                     .disclaimer=s.full_name
               %td= s.first_name
