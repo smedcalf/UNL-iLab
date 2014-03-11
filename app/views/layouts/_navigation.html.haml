@@ -73,7 +73,7 @@
         %ul
           %li
             %a{ href: '#' } some useful links
-  - elsif current_user.utype == 'student'
+  - elsif current_user.utype == 'student' && !current_user.student.nil?
     %ul
       %li
         %a{ href: '/' } Home
