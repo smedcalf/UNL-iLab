@@ -6,7 +6,11 @@ class CalendarController < ApplicationController
 
     @shown_month = Date.civil(@year, @month)
     if current_user.student
-      @event_strips = Event.event_strips_for_month(@shown_month, :conditions => "user_id = #{current_user.id} OR team_id = #{current_user.student.team_id}")
+      if current_user.student.team_id
+        @event_strips = Event.event_strips_for_month(@shown_month, :conditions => "user_id = #{current_user.id} OR team_id = #{current_user.student.team_id}")
+      else
+        @event_strips = Event.event_strips_for_month(@shown_month, :conditions => "user_id = #{current_user.id}")
+      end
     else
       @event_strips = Event.event_strips_for_month(@shown_month, :conditions => "user_id = #{current_user.id} AND team_id is null")
     end

@@ -32,11 +32,23 @@ class UsersController < ApplicationController
 		set_user
 
 		if @user.student?
-			redirect_to student_path(@user.student.id)
-		elsif @user.instructor?
-			redirect_to instructor_path(@user.instructor.id)
-		elsif @user.sponsor?
-			redirect_to sponsor_path(@user.sponsor.id)
+      if @user.student.nil?
+        redirect_to new_student_path
+      else
+			  redirect_to student_path(@user.student.id)
+      end
+    elsif @user.instructor?
+      if @user.instructor.nil?
+			  redirect_to new_instructor_path
+      else
+        redirect_to instructor_path(@user.instructor.id)
+      end
+    elsif @user.sponsor?
+      if @user.sponsor.nil?
+			  redirect_to new_sponsor_path
+      else
+        redirect_to sponsor_path(@user.sponsor.id)
+      end
 		else
 			render 'show'
 		end

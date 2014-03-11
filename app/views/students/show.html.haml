@@ -13,10 +13,10 @@
     %h4
       %span Team:
       %a{href: team_path(@student.team.id)}= @student.team.name
-  - if @student.team.trello_link.present?
-    %h4
-      %span Trello:
-      %a{href: @student.team.trello_link} Trello
+    - if @student.team.trello_link.present?
+      %h4
+        %span Trello:
+        %a{href: @student.team.trello_link} Trello
   %h4
     Email:
     %a{href: "mailto:#{@student.email}"}= @student.email
