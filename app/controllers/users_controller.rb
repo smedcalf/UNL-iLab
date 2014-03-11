@@ -112,7 +112,7 @@ class UsersController < ApplicationController
 			if (params[:utype] == "instructor" ||
 				 params[:utype] == "student" ||
 				 params[:utype] == "sponsor")
-				true
+				return true
 			end
 			false
 		end

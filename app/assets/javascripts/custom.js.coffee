@@ -12,6 +12,8 @@ jQuery ->
       null,
       {"bSortable": false}
     ]
+
+    bStateSave: true
     oTableTools: {
     aButtons: [
       "copy",
@@ -28,6 +30,7 @@ jQuery ->
     aaSorting: [[ 1, "asc" ]]
     sPaginationType: "full_numbers",
     aLengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]]
+    iDisplayLength : -1
   )
 
   $('table#students').dataTable(
@@ -43,6 +46,7 @@ jQuery ->
       null,
       {"bSortable": false}
     ]
+    bStateSave: true
     oTableTools: {
       "aButtons": [
         "copy",
@@ -59,6 +63,7 @@ jQuery ->
     aaSorting: [[ 1, "asc" ]]
     sPaginationType: "full_numbers",
     aLengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]]
+    iDisplayLength : -1
   )
 
   $('table#teams').dataTable(
@@ -71,6 +76,7 @@ jQuery ->
       {"bSortable": false}
       {"bSortable": false}
     ]
+    bStateSave: true
     oTableTools: {
       "aButtons": [
         "copy",
@@ -87,6 +93,7 @@ jQuery ->
     aaSorting: [[ 1, "asc" ]]
     sPaginationType: "full_numbers",
     aLengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]]
+    iDisplayLength : -1
   )
 
   $('table#sponsors').dataTable(
@@ -99,6 +106,7 @@ jQuery ->
       {"bSortable": false}
       {"bSortable": false}
     ]
+    bStateSave: true
     oTableTools: {
       "aButtons": [
         "copy",
@@ -111,6 +119,7 @@ jQuery ->
         }
       ]
     }
+    iDisplayLength : -1
     bJQueryUI: true
     aaSorting: [[ 1, "asc" ]]
     sPaginationType: "full_numbers",
@@ -125,6 +134,7 @@ jQuery ->
       null,
       {"bSortable": false}
     ]
+    bStateSave: true
     oTableTools: {
       "aButtons": [
         "copy",
@@ -137,6 +147,7 @@ jQuery ->
         }
       ]
     }
+    iDisplayLength : -1
     bJQueryUI: true
     aaSorting: [[ 1, "asc" ]]
     sPaginationType: "full_numbers",
@@ -152,6 +163,7 @@ jQuery ->
       null,
       {"bSortable": false}
     ]
+    bStateSave: true
 #    oTableTools: {
 #      "aButtons": [
 #        "copy",
@@ -168,6 +180,7 @@ jQuery ->
     aaSorting: [[ 0, "desc" ]]
     sPaginationType: "full_numbers",
     aLengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]]
+    iDisplayLength : -1
   )
   $(".date_picker").datepicker()
 

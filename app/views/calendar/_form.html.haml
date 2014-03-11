@@ -28,10 +28,16 @@
   - elsif current_user.utype == "sponsor"
     -@teams = Team.where(:project_id => Project.where(:sponsor_id => current_user.sponsor.id).ids)
     = f.label :team_id
-    = f.select :team_id, options_for_select(@teams.all.map{ |t| [t.name, t.id] }, @event.team_id), :include_blank => 'Please Select a Team'
+    - if @team_id.nil?
+      = f.select :team_id, options_for_select(@teams.all.map{ |t| [t.name, t.id] }, @event.team_id), :include_blank => 'Please Select a Team'
+    - else
+      = f.select :team_id, options_for_select(@teams.all.map{ |t| [t.name, t.id] }, @team_id), :include_blank => 'Please Select a Team'
   - else
     = f.label :team_id
-    = f.select :team_id, options_for_select(Team.all.map{ |t| [t.name, t.id] }, @event.team_id), :include_blank => 'Please Select a Team'
+    - if @team_id.nil?
+      = f.select :team_id, options_for_select(Team.all.map{ |t| [t.name, t.id] }, @event.team_id), :include_blank => 'Please Select a Team'
+    - else
+      = f.select :team_id, options_for_select(Team.all.map{ |t| [t.name, t.id] }, @team_id), :include_blank => 'Please Select a Team'
   %br
   = f.check_box :completed
   = f.label :completed, "Completed"

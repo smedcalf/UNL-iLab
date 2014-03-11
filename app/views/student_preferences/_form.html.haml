@@ -11,6 +11,12 @@
   = f.label :rating, "Rating"
   = f.select :rating, [0,1,2,3,4,5], :prompt => "Please Select"
   -# TODO add upload coverletters and resume
+  %span.required *
+  = f.label :coverletter, "Cover Letter"
+  = f.file_field :coverletter
+  %span.required *
+  = f.label :resume, "Resume"
+  = f.file_field :resume
   %ol
     %li
     %span.required *

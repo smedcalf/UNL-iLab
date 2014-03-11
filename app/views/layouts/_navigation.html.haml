@@ -1,5 +1,5 @@
 - if signed_in?
-  - if current_user.utype == "instructor"
+  - if current_user.utype == "instructor" && !current_user.instructor.nil?
     %ul
       %li
         %a{ href: '/' } Home
@@ -42,7 +42,7 @@
         %ul
           %li
             %a{ href: '#' } some useful links
-  - elsif current_user.utype == 'sponsor'
+  - elsif current_user.utype == 'sponsor' && !current_user.sponsor.nil?
     %ul
       %li
         %a{ href: '/' } Home
@@ -73,7 +73,7 @@
         %ul
           %li
             %a{ href: '#' } some useful links
-  - elsif current_user.utype == 'student'
+  - elsif current_user.utype == 'student' && !current_user.student.nil?
     %ul
       %li
         %a{ href: '/' } Home
