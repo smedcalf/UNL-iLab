@@ -80,6 +80,12 @@ class CalendarController < ApplicationController
     end
   end
 
+  def new_team_task
+    @team_id = params[:id]
+    @event = Event.new
+    @url = "create"
+  end
+
   def delete
     #fsdfsds
     Event.destroy(params[:event])
