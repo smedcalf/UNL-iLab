@@ -110,7 +110,7 @@
 }
 
 .ec-today-bg {
-  background-color: #ffffdd;
+  /*background-color: #e2eea8;*/
 }
 
 .ec-row-table {
@@ -137,7 +137,13 @@ a.ec-day-link {
 }
 
 .ec-today-header {
-  background-color: #d7d7ba;
+  background-color: #fff9ce;
+}
+
+.ec-today-header:before {
+    content: "-- Today --";
+    /*font-family: "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace;*/
+    float: left;
 }
 
 .ec-weekend-day-header {

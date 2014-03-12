@@ -21,7 +21,8 @@
             %td= u.name
             %td= u.utype
             %td
-              =link_to 'Show', u, data:{ confirm: 'are you sure?'}
+              &#10146;
+              =link_to "See Details", u
       %div{style:"float: left"}
         %span{style: 'font-size: 25px;'} &#8627;
         = select_tag 'utype', options_for_select([['Please Select...', ''], ['Instructor', 'instructor'], ['Student', 'student'], ['Sponsor', 'sponsor']]), {style: 'width: 20%'}

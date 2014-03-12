@@ -70,7 +70,7 @@ class TeamsController < ApplicationController
 
   def work_track
     #@tasks = Event.where{(team_id == params[:id]) | (user_id == current_user.id)}
-    @tasks = Event.where("team_id = #{params[:id]} OR user_id = #{current_user.id}")
+    @tasks = Event.where("team_id = #{params[:id]}")
   end
 
   def delete_teams
