@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20140312233746) do
     t.string   "url"
     t.integer  "priority"
     t.text     "description"
-    t.boolean  "completed"
+    t.boolean  "completed",   default: false, null: false
     t.integer  "user_id"
   end
 
