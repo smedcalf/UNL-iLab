@@ -90,9 +90,9 @@ class CalendarController < ApplicationController
     @url = "create"
   end
 
-  def delete
+  def destroy
     #fsdfsds
-    Event.destroy(params[:event])
+    Event.destroy(params[:id])
     redirect_to calendar_path
   end
 

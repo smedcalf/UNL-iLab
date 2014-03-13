@@ -230,6 +230,7 @@ DEPENDENCIES
   jquery-datatables-rails!
   jquery-rails
   jquery-ui-rails
+  mail (= 2.5.4)
   paperclip
   pry-debugger
   pry-rails

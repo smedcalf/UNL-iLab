@@ -18,6 +18,7 @@ class UsersController < ApplicationController
         when 'assign'
 					if acceptable_utype
           	User.where(:id => params[:user]).update_all(:utype => params[:utype])
+            @user = User.find(params[:user])
 					end
       end
       redirect_to users_path
@@ -45,7 +46,7 @@ class UsersController < ApplicationController
       end
     elsif @user.sponsor?
       if @user.sponsor.nil?
-			  redirect_to new_sponsor_path
+
       else
         redirect_to sponsor_path(@user.sponsor.id)
       end
@@ -74,6 +75,7 @@ class UsersController < ApplicationController
 		end
 
 		if @user.save
+      UserMailer.registration_confirmation(@user).deliver
 			redirect_to user_path(@user.id)
 			if @user.utype == "instructor"
   	    flash[:success] = 'Account has been created and you are set to an instructor(admin)'
@@ -82,6 +84,7 @@ class UsersController < ApplicationController
 			end
       sign_in(@user)
     else
+      flash[:error] = @user.errors.full_messages
       redirect_to :back
 		end
 	end
@@ -113,7 +116,7 @@ class UsersController < ApplicationController
 	private
 
 		def user_params
-			params.require(:user).permit(:name, :password, :password_confirmation)
+			params.require(:user).permit(:name, :email, :password, :password_confirmation)
 		end
 
 		def set_user

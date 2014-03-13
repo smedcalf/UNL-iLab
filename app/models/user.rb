@@ -20,6 +20,7 @@ class User < ActiveRecord::Base
 	has_one :sponsor
 
 	validates :name, presence: true, uniqueness: { case_sensitive: false }
+  validates :email, presence: true, :uniqueness => true
 	validates :password, length: { minimum: 6 }
 
 	def User.new_remember_token

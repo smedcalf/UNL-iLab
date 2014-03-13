@@ -20,7 +20,7 @@ class StudentPreferencesController < ApplicationController
     @student_preference = StudentPreference.new(student_preference_params)
     if @student_preference.save
       flash[:success] = "Your rating was saved"
-      redirect_to apply_student_path(current_user.student.id)
+      redirect_to student_preference_path(:student_id => current_user.student.id, :id => @student_preference.id)
     else
       flash[:error] = @student_preference.errors.full_messages
       redirect_to :back
