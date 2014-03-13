@@ -15,9 +15,9 @@ class User < ActiveRecord::Base
 	has_secure_password
 
 	# Really only has one of these
-	has_one :student
-	has_one :instructor
-	has_one :sponsor
+	has_one :student, dependent: :destroy
+	has_one :instructor, dependent: :destroy
+	has_one :sponsor, dependent: :destroy
 
 	validates :name, presence: true, uniqueness: { case_sensitive: false }
   validates :email, presence: true, :uniqueness => true

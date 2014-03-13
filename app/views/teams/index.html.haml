@@ -2,7 +2,7 @@
 %style
   select {width: auto !important; font-size: 14px !important;}
   input {width: auto !important; font-size: 14px !important;}
-.maincontent#maincontent
+.wdn-main#maincontent
   - if @teams.empty?
     %p No team was created.
   - else
@@ -34,5 +34,5 @@
       - if instructor?
         %div{style:"float: left"}
           %span{ style: 'font-size: 25px; color: #979797' } &#8627;
-          = submit_tag 'Delete', {style: 'font-size: 10px; background: rgb(224, 95, 84)', confirm: 'Are you sure you want to delete this team?'}
+          = submit_tag 'Delete', {style: 'font-size: 10px !important; background: rgb(224, 95, 84)', confirm: 'Are you sure you want to delete this team?'}
           %a.wdn-button.wdn-button.energetic{ href: "#" } Send Email

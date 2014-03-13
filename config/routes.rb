@@ -29,6 +29,10 @@ Ilab::Application.routes.draw do
   resources :students do
     resources :preferences, controller: :student_preferences
 
+    collection do
+      post  'delete-students', to: 'students#destroy', as: :delete_multiple
+    end
+
     member do
       get   'apply', to: 'students#apply', as: :apply
     end
@@ -37,6 +41,7 @@ Ilab::Application.routes.draw do
   resources :teams do
 
     collection do
+      get    'team-assignment', to: 'teams#team_assignment', as: :assignment
       post   'add-students', to: 'teams#add_students', as: :add
       post   'delete-teams', to: 'teams#delete_teams', as: :delete_multiple
     end

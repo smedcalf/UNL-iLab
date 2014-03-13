@@ -1,4 +1,4 @@
-%h1 Students
+%h1 Team Assignment
 %style
   select {width: auto !important; font-size: 14px !important;}
   input {width: auto !important; font-size: 14px !important;}
@@ -6,8 +6,12 @@
   - if @students.empty?
     No student was created.
   - else
-    = form_tag("/students/delete-students", method: "post") do
-      = render 'shared/error_messages'
+    = form_tag("/teams/add-students", method: "post") do
+      = render 'shared/error_messages', object: nil
+      %section.wdn-grid-set{style: "float: right"}
+        = select_tag "team", options_from_collection_for_select(@teams, "id", "name"),
+        :prompt => "Please Select a Team",style: "width: auto", class: "wdn-col-one-half", style: "font-size: 18px !important"
+        = submit_tag "Assign", class: "wdn-col-one-half", style: "font-size: 10px !important; margin: 0 10px;"
       %table.display#students
         %thead
           %tr
@@ -42,9 +46,6 @@
               %td= s.semester
               %td= s.availability
               %td
-                %a{ href: student_path(s.id), style: "border-bottom: 0px", title: "show student" } &#10147; View
+                %a{ href: student_path(s.id), style: "border-bottom: 0px", title: "show student" } &#10147;
 
       -#= label_tag  "team", "Assign to"
-      %section.wdn-grid-set
-      %span{ style: 'font-size: 25px; color: #979797' } &#8627;
-      = submit_tag 'Delete', {style: 'font-size: 10px !important; background: rgb(224, 95, 84)', confirm: 'Are you sure you want to delete this student?'}

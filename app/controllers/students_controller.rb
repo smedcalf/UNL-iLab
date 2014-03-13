@@ -48,6 +48,11 @@ class StudentsController < ApplicationController
     end
   end
 
+  def destroy
+    Student.destroy(params[:student])
+    redirect_to students_path
+  end
+
   def apply
     @projects = Project.all
   end
