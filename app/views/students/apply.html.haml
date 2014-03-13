@@ -1,5 +1,5 @@
 %h1 Apply for Projects
-.wdn-main.maincontent#maincontent
+.wdn-main#maincontent
   = render 'shared/error_messages'
   - if @projects.empty?
     %p No project currently.
@@ -47,6 +47,6 @@
           - else
             %td
               - @sp = StudentPreference.where(:student_id => current_user.student.id, :project_id => p.id).first
-              =@sp.rating
+              %a{href: student_preference_path(:student_id => current_user.student.id, :id => @sp.id)}=@sp.rating
             %td
               %a.wdn-button.wdn-button-triad{ href: edit_student_preference_path(current_user.student.id, @sp.id) } Edit

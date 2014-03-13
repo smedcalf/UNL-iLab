@@ -41,7 +41,8 @@
         %a.cursor-pointer Links
         %ul
           %li
-            %a{ href: '#' } some useful links
+            %a{ href: "https://drive.google.com/‎", title: "Google Drive" } Google Drive
+            %a{ href: "https://trello.com‎", title: "Team cooperation tool"} Trello
   - elsif current_user.utype == 'sponsor' && !current_user.sponsor.nil?
     %ul
       %li
@@ -72,7 +73,8 @@
         %a.cursor-pointer Links
         %ul
           %li
-            %a{ href: '#' } some useful links
+            %a{ href: "https://drive.google.com/‎", title: "Google Drive" } Google Drive
+            %a{ href: "https://trello.com‎", title: "Team cooperation tool"} Trello
   - elsif current_user.utype == 'student' && !current_user.student.nil?
     %ul
       %li
@@ -81,12 +83,13 @@
           %li
             %a{ href: "http://unl.edu", title: 'UNL Homepage'} UNL Homepage
             %a{ href: "http://cse.unl.edu/InnovationLab", title: 'Innovation Lab Homepage' } Innovation Lab
-      %li
-        %a.cursor-pointer Projects
-        %ul
-          %li
-            %a{ href: apply_student_path(current_user.student.id), title: 'Apply for projects' } Project Apply
-            %a{ href: student_preferences_path(current_user.student.id), title: 'Application Status' } Application Status
+      - if current_user.student.team_id.nil?
+        %li
+          %a.cursor-pointer Projects
+          %ul
+            %li
+              %a{ href: apply_student_path(current_user.student.id), title: 'Apply for projects' } Project Apply
+              %a{ href: student_preferences_path(current_user.student.id), title: 'Application Status' } Application Status
       - if !current_user.student.team_id.nil?
         %li
           %a.cursor-pointer Team
@@ -99,7 +102,8 @@
         %a.cursor-pointer Links
         %ul
           %li
-            %a{ href: '#' } some useful tools
+            %a{ href: "https://drive.google.com/‎", title: "Google Drive" } Google Drive
+            %a{ href: "https://trello.com", title: "Team cooperation tool"} Trello
   - else
     %ul
       %li

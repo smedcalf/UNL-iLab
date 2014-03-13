@@ -27,21 +27,21 @@
               %td{style: 'text-align: center'}= check_box_tag 'project[]', p.id
               %td= p.name
               %td
-                %a{href: sponsor_path(p.sponsor)}= Sponsor.find(p.sponsor).full_name
+                %a{href: sponsor_path(p.sponsor_id)}= Sponsor.find(p.sponsor_id).full_name
               %td= p.semester
               %td= p.initial_capacity
               %td
                 - if p.proposal?
-                  %a{href: "#{p.proposal.url}"}= p.proposal_file_name
+                  %a{href: "#{p.proposal.url}", title: "#{p.proposal_file_name}"}= truncate(p.proposal_file_name, :length => 20, :omission => '...')
                 - else
                   No Proposal Upload
               %td= p.active
               %td= p.status
               %td
-                %a.wdn-button.wdn-button-triad{ href: project_path(p.id) } Show
+                %a.wdn-button.wdn-button-triad{ href: project_path(p.id), style: 'font-size: 10px !important;' } Show
       - if current_user.sponsor.nil?
         %div{style:"float: left"}
           %span{style: 'font-size: 25px;'} &#8627;
-          = submit_tag 'activate', {style: 'font-size: 10px; background: rgb(79, 199, 146)'}
-          = submit_tag 'enable', {style: 'font-size: 10px; background: rgb(84, 157, 224)'}
-          = submit_tag 'delete', {style: 'font-size: 10px; background: rgb(224, 95, 84)', confirm: 'Are you confirm to delete?'}
+          = submit_tag 'activate', {style: 'font-size: 10px !important; background: rgb(79, 199, 146)'}
+          = submit_tag 'enable', {style: 'font-size: 10px !important; background: rgb(84, 157, 224)'}
+          = submit_tag 'delete', {style: 'font-size: 10px !important; background: rgb(224, 95, 84)', confirm: 'Are you confirm to delete?'}

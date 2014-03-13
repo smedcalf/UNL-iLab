@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140303015050) do
+ActiveRecord::Schema.define(version: 20140312233746) do
 
   create_table "events", force: true do |t|
     t.string   "name"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20140303015050) do
     t.string   "url"
     t.integer  "priority"
     t.text     "description"
-    t.boolean  "completed",   default: false, null: false
+    t.boolean  "completed"
     t.integer  "user_id"
   end
 
@@ -83,6 +83,12 @@ ActiveRecord::Schema.define(version: 20140303015050) do
     t.integer  "rating"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "cover_letter_content_type"
+    t.string   "cover_letter_file_name"
+    t.integer  "cover_letter_file_size"
+    t.string   "resume_content_type"
+    t.string   "resume_file_name"
+    t.integer  "resume_file_size"
   end
 
   create_table "students", force: true do |t|

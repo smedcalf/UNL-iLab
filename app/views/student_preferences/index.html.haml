@@ -1,6 +1,8 @@
 %h1 Application Status
 
-.maincontent#maincontent
+= render 'shared/error_messages'
+
+.wdn-main#maincontent
   - if @student_preferences.empty?
     You haven't applied for any projects
   - else
@@ -29,7 +31,7 @@
             - else
               No Proposal
           %td
-            = sp.rating
+            %a{href: student_preference_path(:student_id => current_user.student.id, :id => sp.id)}=sp.rating
           %td
             - @sponsor_preference = SponsorPreference.where(:project_id => sp.project_id, :student_id => sp.student_id).first
             - if @sponsor_preference.nil?

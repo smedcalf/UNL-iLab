@@ -13,7 +13,7 @@ class StudentPreferencesController < ApplicationController
   end
 
   def show
-    @student_preferences = StudentPreference.where(:student_id => params[:id])
+    @student_preference = StudentPreference.find(params[:id])
   end
 
   def create
@@ -40,7 +40,7 @@ class StudentPreferencesController < ApplicationController
     @url = "update"
     if @student_preference.update_attributes(student_preference_params)
       flash[:success] = "Your rating was updated"
-      redirect_to apply_student_path(current_user.student.id)
+      redirect_to student_preference_path(:student_id => current_user.student.id, :id => @student_preference.id)
     else
       flash[:error] = "Your rating faild to updated"
       redirect_to :back
@@ -58,7 +58,7 @@ class StudentPreferencesController < ApplicationController
   private
 
   def student_preference_params
-    params.require(:student_preference).permit(:student_id, :project_id, :rating)
+    params.require(:student_preference).permit(:student_id, :project_id, :rating, :resume, :cover_letter)
   end
 
   def set_student_preference
