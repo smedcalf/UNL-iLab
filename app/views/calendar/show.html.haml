@@ -67,5 +67,5 @@
           %p.c-text No url
 - if @editable
   %a.wdn-button.wdn-button-triad{href: edit_event_path(@event.id) } Edit
-  =link_to "Delete", event_path(@event), :method => :delete, class: "wdn-button wdn-button-energetic"
+  =link_to "Delete", event_path(@event), :method => :delete, class: "wdn-button wdn-button-energetic", confirm: "Are you confirm to delete this task?"
 -#%a.wdn-button.wdn-button-incomplete{href: calendar_path, style: "float: right" } Back to Calendar
