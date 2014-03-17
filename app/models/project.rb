@@ -36,6 +36,10 @@ class Project < ActiveRecord::Base
   has_attached_file :proposal
 
 
+  def sponsor
+    Sponsor.find(self.sponsor_id)
+  end
+
   private
   def set_defaults
     if self.new_record?

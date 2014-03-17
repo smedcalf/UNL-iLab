@@ -14,19 +14,25 @@ class SponsorsController < ApplicationController
     @pwd = SecureRandom.hex(4)
     @user = User.new(:name => params[:sponsor][:email], :email => params[:sponsor][:email],
                      :password => @pwd, :password_confirmation => @pwd, :utype => "sponsor")
-    @user.save
-    @sponsor = Sponsor.new(sponsor_params)
-    if current_user.sponsor?
-      @sponsor.user_id = current_user.id
-    else
-      @sponsor.user_id = @user.id
-    end
+    if @user.valid?
+      @sponsor = Sponsor.new(sponsor_params)
+      if current_user.sponsor?
+        @sponsor.user_id = current_user.id
+      else
+        @sponsor.user_id = @user.id
+      end
 
-    if @sponsor.save
-      flash[:success] = "New sponsor has been created successfully. Username: #{@user.name}, Password: #{@pwd}"
-      redirect_to sponsors_path
+      if @sponsor.valid?
+        @user.save
+        @sponsor.save
+        flash[:success] = "New sponsor has been created successfully. Username: #{@user.name}, Password: #{@pwd}"
+        redirect_to sponsors_path
+      else
+        flash[:error] = @sponsor.errors.full_messages.join(", ").html_safe
+        render 'new'
+      end
     else
-      flash[:error] = @sponsor.errors.full_messages.join(", ").html_safe
+      flash.now[:error] = @user.errors.full_messages.join(", ").html_safe
       render 'new'
     end
   end

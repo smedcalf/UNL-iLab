@@ -11,13 +11,15 @@ class StudentsController < UsersController
     @user = User.new(:name => params[:student][:email], :email => params[:student][:email],
                      :password => @pwd, :password_confirmation => @pwd, :utype => "student")
     @student = Student.new(student_params)
-    if @user.save
+    if @user.valid?
       if current_user.utype == "student"
         @student.user_id = current_user.id
       else
         @student.user_id = @user.id
       end
-      if @student.save
+      if @student.valid?
+        @user.save
+        @student.save
         flash[:success] = "Congratulations!!! New student was created successfully!<br/> Username: #{@user.name} <br/> Password: #{@pwd}"
         if current_user.student?
           redirect_to student_path(@student.id)
