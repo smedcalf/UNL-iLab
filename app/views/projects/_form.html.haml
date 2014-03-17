@@ -13,13 +13,16 @@
     .bp1-wdn-col-one-third
       %span.required *
       =f.label :semester, 'Semester'
+      - @year = Time.now.year
+      - @semester_fall = "semester_fall_#{@year}"
+      - @semester_spring = "semester_spring_#{@year}"
       %ol
         %li
-          = f.radio_button :semester, 'Fall'
-          = f.label :semester_fall, 'Fall'
+          = f.radio_button :semester, "Fall #{@year}"
+          = f.label @semester_fall, "Fall #{@year}"
         %li
-          = f.radio_button :semester, 'Spring'
-          = f.label :semester_spring, 'Spring'
+          = f.radio_button :semester, "Spring #{@year}"
+          = f.label @semester_spring, "Spring #{@year}"
     - if current_user.sponsor.nil?
       .bp1-wdn-col-one-third
         =f.check_box :active
