@@ -84,7 +84,7 @@ class UsersController < ApplicationController
 			end
       sign_in(@user)
     else
-      flash[:error] = @user.errors.full_messages
+      flash[:error] = @user.errors.full_messages.join(", ").html_safe
       redirect_to :back
 		end
 	end

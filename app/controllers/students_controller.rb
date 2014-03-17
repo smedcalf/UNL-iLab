@@ -1,4 +1,4 @@
-class StudentsController < ApplicationController
+class StudentsController < UsersController
   before_action :signed_in_user
 
   def new
@@ -7,21 +7,31 @@ class StudentsController < ApplicationController
   end
 
   def create
-  	@student = Student.new(student_params)
-    #if current_user.utype == "student"
-      @student.user_id = current_user.id
-    #end
-  	if @student.save
-      flash[:success] = 'Congratulations!!! New student was created successfully!'
-      if current_user.student?
-        redirect_to student_path(@student.id)
+    @pwd = SecureRandom.hex(4)
+    @user = User.new(:name => params[:student][:email], :email => params[:student][:email],
+                     :password => @pwd, :password_confirmation => @pwd, :utype => "student")
+    @student = Student.new(student_params)
+    if @user.save
+      if current_user.utype == "student"
+        @student.user_id = current_user.id
       else
-  		  redirect_to students_path
+        @student.user_id = @user.id
       end
-  	else
-      flash.now[:error] = @student.errors.full_messages
-  		render 'new'
-  	end
+      if @student.save
+        flash[:success] = "Congratulations!!! New student was created successfully!<br/> Username: #{@user.name} <br/> Password: #{@pwd}"
+        if current_user.student?
+          redirect_to student_path(@student.id)
+        else
+          redirect_to students_path
+        end
+      else
+        flash.now[:error] = @student.errors.full_messages.join(", ").html_safe
+        render 'new'
+      end
+    else
+      flash.now[:error] = @user.errors.full_messages.join(", ").html_safe
+      render 'new'
+    end
   end
 
   def show

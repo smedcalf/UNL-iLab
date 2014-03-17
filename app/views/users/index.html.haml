@@ -2,6 +2,7 @@
 %style
   select {width: auto !important; font-size: 14px !important; }
   input {width: auto !important; font-size: 14px !important;}
+= render 'shared/error_messages'
 
 .maincontent#maincontent
   -if @users.empty?

@@ -22,7 +22,7 @@ class StudentPreferencesController < ApplicationController
       flash[:success] = "Your rating was saved"
       redirect_to student_preference_path(:student_id => current_user.student.id, :id => @student_preference.id)
     else
-      flash[:error] = @student_preference.errors.full_messages
+      flash[:error] = @student_preference.errors.full_messages.join(", ").html_safe
       redirect_to :back
     end
   end

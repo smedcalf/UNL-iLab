@@ -43,7 +43,7 @@ class CalendarController < ApplicationController
       flash[:success] = "Your event was successfully created."
       redirect_to calendar_path
     else
-      flash[:error] = @event.errors.full_messages
+      flash[:error] = @event.errors.full_messages.join(", ").html_safe
       redirect_to :back
     end
   end

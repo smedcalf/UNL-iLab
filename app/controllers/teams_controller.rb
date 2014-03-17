@@ -13,8 +13,10 @@ class TeamsController < ApplicationController
     if team_params[:project_id]
       @team.project = Project.find(team_params[:project_id])
       if @team.save
+        flash[:success] = "New team was successfully created. "
         redirect_to teams_path
       else
+        flash[:error] = @team.errors.full_messages.join(", ").html_safe
         render 'new'
       end
     else
@@ -45,8 +47,10 @@ class TeamsController < ApplicationController
     set_team
     @url = "update"
     if @team.update_attributes(team_params)
+      flash[:success] = "Team was successfully updated. "
       redirect_to team_path(@team.id)
     else
+      flash[:error] = @team.errors.full_messages.join(", ").html_safe
       render 'edit'
     end
   end

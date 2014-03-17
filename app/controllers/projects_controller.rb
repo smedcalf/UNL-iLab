@@ -22,7 +22,7 @@ class ProjectsController < ApplicationController
       flash[:success] = "New project was created."
       redirect_to projects_path
     else
-      flash[:error] = @project.errors.full_messages
+      flash[:error] = @project.errors.full_messages.join(", ").html_safe
       render 'new'
     end
   end
@@ -43,7 +43,7 @@ class ProjectsController < ApplicationController
       flash[:success] = "Project was successfully saved."
       redirect_to project_path(@project.id)
     else
-      flash[:error] = @project.errors.full_messages
+      flash[:error] = @project.errors.full_messages.join(", ").html_safe
       render 'edit'
     end
   end

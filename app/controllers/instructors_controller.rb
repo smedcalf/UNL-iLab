@@ -17,8 +17,10 @@ class InstructorsController < ApplicationController
       @instructor.user_id = current_user.id
     end
 		if @instructor.save
+      flash[:success] = "New Instructor was successfully created."
 			redirect_to instructors_path
-		else
+    else
+      flash[:error] = @instructor.errors.full_messages.join(", ").html_safe
 			render 'new'
 		end
 	end
@@ -36,8 +38,10 @@ class InstructorsController < ApplicationController
 		set_instructor
 		@url = "update"
 		if @instructor.update_attributes(instructor_params)
+      flash[:success] = "Profile was successfully saved."
 			redirect_to instructor_path(@instructor.id)
-		else
+    else
+      flash[:error] = @instructor.errors.full_messages.join(", ").html_safe
 			render 'edit'
 		end
 	end
