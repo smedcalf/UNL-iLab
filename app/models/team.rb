@@ -6,6 +6,7 @@
 #  name         :string(255)
 #  project_id   :integer
 #  google_drive :string(255)
+#  trello_link  :string(255)
 #
 
 class Team < ActiveRecord::Base

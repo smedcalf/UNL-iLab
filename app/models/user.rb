@@ -9,6 +9,7 @@
 #  created_at      :datetime
 #  updated_at      :datetime
 #  remember_tokens :string(255)
+#  email           :string(255)
 #
 
 class User < ActiveRecord::Base
