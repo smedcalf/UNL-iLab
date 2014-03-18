@@ -16,8 +16,10 @@
             %th Google Drive
             %th Team Members
             %th
+            %th
+        - @all_Teams = ""
         - @teams.each do |t|
-          %tr{ href: team_path(t.id) }
+          %tr{ href: team_path(t.id), style: "font-size: 14px" }
             %td{style: 'text-align: center'}= check_box_tag 'team[]', t.id
             %td
               %a{ href: team_path(t.id) }= t.name
@@ -25,14 +27,19 @@
             %td
               %a{ href: "#{t.google_drive}", target: "_blank"} Google Drive
             %td
+              - @emails = ""
               - t.students.each do |s|
+                -@emails = s.email+ ";" + @emails
                 %a{ href: student_path(s.id), style: "margin-right: 8px" }= s.full_name
             %td
               %a.wdn-icon-calendar{ href: calendar_team_path(t.id) } Calendar
               \/
               %a{ href: work_track_team_path(t.id) } Track
+            %td
+              %a.wdn-icon-mail{title: "Email to team", href: "mailto:#{@emails}"}
+            -@all_Teams = @emails + @all_Teams
       - if instructor?
         %div{style:"float: left"}
           %span{ style: 'font-size: 25px; color: #979797' } &#8627;
           = submit_tag 'Delete', {style: 'font-size: 10px !important; background: rgb(224, 95, 84)', confirm: 'Are you sure you want to delete this team?'}
-          %a.wdn-button.wdn-button.energetic{ href: "#" } Send Email
+          %a.wdn-button.wdn-button-triad{ style: "font-size: 10px !important;", href: "mailto:#{@all_Teams}" } Email All Teams

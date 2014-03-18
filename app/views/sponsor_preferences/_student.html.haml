@@ -1,7 +1,12 @@
+-#=javascript_include_tag 'sponsor_preferences'
 - if @student_preferences.empty?
   No one applied for this project
 - else
-  = form_for :preferences, url: update_sponsor_preferences_path(@sponsor.id), method: 'post' do |f|
+
+  = render 'shared/error_messages'
+  = form_for :preferences, url: update_sponsor_preferences_path(@sponsor.id),
+   method: 'post', remote: true, html: { class: "sponsor-preferences" } do |f|
+    = hidden_field_tag :project_id, @project_id
     %table.primary
       %tr
         %thead

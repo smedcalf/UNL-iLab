@@ -11,6 +11,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-ui-rails'
 gem 'event-calendar', :require => 'event_calendar'
 gem "mail", "2.5.4"
+#gem "jquery_context_menu-rails"
 
 group :development, :test do
 	gem 'annotate'

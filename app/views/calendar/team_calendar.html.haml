@@ -6,6 +6,7 @@
   %a.wdn-icon-plus.wdn-button.wdn-button-triad{href: new_task_team_path, style: "float: right"} Create Task
   %a.wdn-icon-info.wdn-button.wdn-button-energetic{href: work_track_team_path, style: "float: right; margin-right: 10px"} Work Track
 = render 'shared/error_messages'
+= hidden_field_tag :from, @from
 %hr
 .wdn-grid-set-fourths{style: "font-size: 12px"}
   .wdn-col-one-fourth

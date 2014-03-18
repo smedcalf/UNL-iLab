@@ -1,6 +1,6 @@
 %h1 Register
 
-.maincontent#maincontent
+.wdn-main#maincontent
 	= form_for @user, url: { action: @url } do |f|
 		= render 'shared/error_messages', object: @user
 		%span.required *

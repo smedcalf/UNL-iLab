@@ -23,6 +23,8 @@ class CalendarController < ApplicationController
     @shown_month = Date.civil(@year, @month)
     @event_strips = Event.event_strips_for_month(@shown_month, :conditions => "team_id = #{params[:id]}")
     @team = Team.find(params[:id])
+    @team_id = params[:id]
+    @from = @team_id
   end
 
   def new
@@ -41,7 +43,11 @@ class CalendarController < ApplicationController
 
     if @event.save
       flash[:success] = "Your event was successfully created."
-      redirect_to calendar_path
+      if @event.team_id
+        redirect_to calendar_team_path(@event.team_id)
+      else
+        redirect_to calendar_path
+      end
     else
       flash[:error] = @event.errors.full_messages.join(", ").html_safe
       redirect_to :back
@@ -88,12 +94,21 @@ class CalendarController < ApplicationController
     @team_id = params[:id]
     @event = Event.new
     @url = "create"
+    if @team_id
+      @from = @team_id
+    end
   end
 
   def destroy
-    #fsdfsds
+    @event = Event.find(params[:id])
+
     Event.destroy(params[:id])
-    redirect_to calendar_path
+
+    if @event.team_id
+      redirect_to calendar_team_path(@event.team_id)
+    else
+      redirect_to calendar_path
+    end
   end
 
   private

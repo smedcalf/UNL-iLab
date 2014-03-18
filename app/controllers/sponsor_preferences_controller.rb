@@ -22,8 +22,9 @@ class SponsorPreferencesController < ApplicationController
 
   def student
     @sponsor = current_user.sponsor
+    @project_id = params[:id]
     @student_preferences = StudentPreference.where(:project_id => params[:id])
-    render partial: "student", locals: { student_preferences: @student_preferences }
+    render partial: "student", locals: { student_preferences: @student_preferences, project_id: @project_id }
   end
 
   def update_preferences
@@ -45,8 +46,11 @@ class SponsorPreferencesController < ApplicationController
       end
     end
 
+    @sponsor = current_user.sponsor
+    @project_id = params[:project_id]
+    @student_preferences = StudentPreference.where(project_id: @project_id)
     flash[:success] = "Your rating was successfully saved!"
-    redirect_to :back
+    render partial: "student", locals: { student_preferences: @student_preferences, flash: flash, project_id: @project_id }
   end
 
   def all

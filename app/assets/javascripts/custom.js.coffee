@@ -73,7 +73,8 @@ jQuery ->
       null,
       null,
       {"bSortable": false},
-      {"bSortable": false}
+      {"bSortable": false},
+      {"bSortable": false},
       {"bSortable": false}
     ]
     bStateSave: true
@@ -183,4 +184,3 @@ jQuery ->
     iDisplayLength : -1
   )
   $(".date_picker").datepicker()
-
