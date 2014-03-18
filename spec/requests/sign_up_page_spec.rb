@@ -8,6 +8,7 @@ describe "Sign up" do
   describe "The first user" do
     before do
       fill_in "Username", with: "admin"
+      fill_in "Email", with: "admin@example.com"
       fill_in "Password", with: "password"
       fill_in "Password Confirmation", with: "password"
       click_button "Submit"
@@ -27,6 +28,7 @@ describe "Sign up" do
 
     before do
       fill_in "Username", with: "student"
+      fill_in "Email", with: "student@example.com"
       fill_in "Password", with: "password"
       fill_in "Password Confirmation", with: "password"
       click_button "Submit"
