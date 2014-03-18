@@ -7,7 +7,7 @@
     %table.zentable
       %tr
         %thead
-          %th
+          -#%th
           %th Project Name
           %th Sponsor Name
           %th Proposal
@@ -19,7 +19,7 @@
         -next if p.semester != current_user.student.semester
         -next if p.active != true
         %tr
-          %td{style: 'text-align: center'}= check_box_tag 'project[]', p.id
+          -#%td{style: 'text-align: center'}= check_box_tag 'project[]', p.id
           %td
             %a{ href: project_path(p.id), title: 'Show Project' }=p.name
           %td
@@ -43,10 +43,16 @@
             %td
               No Rating
             %td
-              %a.wdn-button.wdn-button-triad{ href: new_student_preference_path(current_user.student.id, { project_id: p.id } ) } Rate
+              - if p.status
+                %a.wdn-button.wdn-button-triad{ href: new_student_preference_path(current_user.student.id, { project_id: p.id } ) } Rate
+              - else
+                %a.wdn-button.wdn-button-triad.cursor-pointer{ onclick: "alert('Project has been closed to rate!')" } Rate
           - else
             %td
               - @sp = StudentPreference.where(:student_id => current_user.student.id, :project_id => p.id).first
               %a{href: student_preference_path(:student_id => current_user.student.id, :id => @sp.id)}=@sp.rating
             %td
-              %a.wdn-button.wdn-button-triad{ href: edit_student_preference_path(current_user.student.id, @sp.id) } Edit
+              - if p.status
+                %a.wdn-button.wdn-button-triad{ href: edit_student_preference_path(current_user.student.id, @sp.id) } Edit
+              - else
+                %a.wdn-button.wdn-button-triad.cursor-pointer{ onclick: "alert('Project has been closed to rate!')" } Edit

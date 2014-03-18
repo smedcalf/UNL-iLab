@@ -1,5 +1,5 @@
 %h1 Student Preferences
-.maincontent#maincontent
+.wdn-main#maincontent
   - if @student_preferences.empty?
     %p No Student Preferences.
   - else
@@ -19,5 +19,6 @@
           %a{href: project_path(sp.project_id)}= sp.project.name
         %td
           %a{href: sponsor_path(sp.sponsor.id)}= sp.sponsor.full_name
-        %td= sp.rating
+        %td
+          %a{href: student_preference_path(:student_id => sp.student_id, :id => sp.id)}= sp.rating
         %td Show

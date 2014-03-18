@@ -35,13 +35,23 @@
                   %a{href: "#{p.proposal.url}", title: "#{p.proposal_file_name}"}= truncate(p.proposal_file_name, :length => 20, :omission => '...')
                 - else
                   No Proposal Upload
-              %td= p.active
-              %td= p.status
+              %td
+                - if p.active
+                  Active
+                - else
+                  Inactive
+              %td
+                - if p.status
+                  Enabled
+                - else
+                  Disabled
               %td
                 %a.wdn-button.wdn-button-triad{ href: project_path(p.id), style: 'font-size: 10px !important;' } Show
       - if current_user.sponsor.nil?
         %div{style:"float: left"}
           %span{style: 'font-size: 25px;'} &#8627;
-          = submit_tag 'activate', {style: 'font-size: 10px !important; background: rgb(79, 199, 146)'}
-          = submit_tag 'enable', {style: 'font-size: 10px !important; background: rgb(84, 157, 224)'}
+          = submit_tag 'activate', {style: 'font-size: 10px !important; background: rgb(79, 199, 146)', confirm: 'Are you confirm to activate?'}
+          = submit_tag 'deactivate', {style: 'font-size: 10px !important; background: rgb(46, 124, 90)', confirm: 'Are you confirm to deactivate?'}
+          = submit_tag 'enable', {style: 'font-size: 10px !important; background: rgb(84, 157, 224)', confirm: 'Are you confirm to enable?'}
+          = submit_tag 'disable', {style: 'font-size: 10px !important; background: rgb(56, 106, 151)', confirm: 'Are you confirm to disable?'}
           = submit_tag 'delete', {style: 'font-size: 10px !important; background: rgb(224, 95, 84)', confirm: 'Are you confirm to delete?'}

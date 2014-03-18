@@ -58,6 +58,10 @@ class ProjectsController < ApplicationController
           Project.destroy(params[:project])
         when 'activate'
           Project.where(:id => params[:project]).update_all(:active => true)
+        when 'deactivate'
+          Project.where(:id => params[:project]).update_all(:active => false)
+        when 'disable'
+          Project.where(:id => params[:project]).update_all(:status => false)
         when 'enable'
           Project.where(:id => params[:project]).update_all(:status => true)
       end

@@ -1,5 +1,5 @@
 %h1 Sponsor Preferences
-.maincontent#maincontent
+.wdn-main#maincontent
   - if @sponsor_preferences.empty?
     %p No Student Preferences.
   - else
@@ -9,7 +9,8 @@
           %th Project
           %th Sponsor
           %th Student
-          %th Rating
+          %th Sponsor Rating
+          %th Student Rating
           %th
       -@sponsor_preferences.each do |sp|
         %tr
@@ -20,4 +21,8 @@
           %td
             %a{href: student_path(sp.student_id)}= sp.student.full_name
           %td= sp.rating
+          - @student_preference = StudentPreference.where(:student_id => sp.student_id, :project_id => sp.project_id).first
+          %td
+            - if !@student_preference.nil?
+              %a{href: student_preference_path(:student_id => sp.student_id, :id => @student_preference.id)}= @student_preference.rating
           %td Show
