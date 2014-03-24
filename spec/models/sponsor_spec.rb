@@ -21,4 +21,28 @@ require 'spec_helper'
 
 describe Sponsor do
 
+  before do
+    @sponsor = Sponsor.new(first_name: "Test", last_name: "Sponsor",
+                           email: "sponsor@test.com")
+  end
+
+  subject { @sponsor }
+
+  it { should respond_to(:first_name) }
+  it { should respond_to(:last_name) }
+  it { should respond_to(:full_name) }
+  it { should respond_to(:organization) }
+  it { should respond_to(:email) }
+  it { should respond_to(:type) }
+  it { should respond_to(:user) }
+  it { should respond_to(:projects) }
+
+  it { should be_valid }
+
+  describe "full name" do
+
+    it "should have a full name" do
+      expect(@sponsor.full_name).to eql("Test Sponsor")
+    end
+  end
 end
