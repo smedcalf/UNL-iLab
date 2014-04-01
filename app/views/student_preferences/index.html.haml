@@ -14,7 +14,7 @@
           %th Sponsor Name
           %th Proposal
           %th Your Preference
-          %th Sponsor Preference
+          -#%th Sponsor Preference
           %th
       -@student_preferences.each do |sp|
         - @project = Project.find(sp.project_id)
@@ -32,11 +32,5 @@
               No Proposal
           %td
             %a{href: student_preference_path(:student_id => current_user.student.id, :id => sp.id)}=sp.rating
-          %td
-            - @sponsor_preference = SponsorPreference.where(:project_id => sp.project_id, :student_id => sp.student_id).first
-            - if @sponsor_preference.nil?
-              Not Yet
-            - else
-              =@sponsor_preference.rating
           %td
             %a.wdn-button.wdn-button-triad{ href: edit_student_preference_path(current_user.student.id, sp.id) } Edit
