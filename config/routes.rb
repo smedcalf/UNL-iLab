@@ -69,6 +69,8 @@ Ilab::Application.routes.draw do
   get    'register', to: 'users#new'
   get    'login', to: 'sessions#new'
   get    'signout', to: 'sessions#destroy'
+  get    'reset-password', to: 'sessions#reset_password'
+  post   'sessions/temporary_password', to: 'sessions#temporary_password'
 
   get    'calendar(/:year(/:month))' => 'calendar#index', :as => :calendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
   post   'calendar/create' => 'calendar#create'

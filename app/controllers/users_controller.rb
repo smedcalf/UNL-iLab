@@ -21,6 +21,7 @@ class UsersController < ApplicationController
             @user = User.find(params[:user])
 					end
       end
+      UserMailer.user_type_confirmation(@user.first).deliver
       redirect_to users_path
     end
   end
@@ -111,7 +112,11 @@ class UsersController < ApplicationController
 			flash.now[:error] = "Password was wrong"
 			render 'edit'
 		end
-	end
+  end
+
+  def reset_password
+
+  end
 
 	private
 

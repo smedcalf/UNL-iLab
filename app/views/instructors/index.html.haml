@@ -1,20 +1,22 @@
 %h1 Instructors
-%table.zentable
-	%tr
-		%thead
-			%th First Name
-			%th Last Name
-			%th Email
-			%th Classname
-			%th Semester
-			%th
-	- @instructors.each do |i|
-		%tr
-			%td= i.first_name
-			%td= i.last_name
-			%td
-				%a{href: "mailto:#{i.email}"}= i.email
-			%td= i.classname
-			%td= i.semester
-			%td
-				%a.wdn-button.wdn-button-triad{ href: instructor_path(i.id) } Show
+= render 'shared/error_messages'
+.wdn-main#maincontent
+    %table.zentable
+        %tr
+            %thead
+                %th First Name
+                %th Last Name
+                %th Email
+                %th Classname
+                %th Semester
+                %th
+        - @instructors.each do |i|
+            %tr
+                %td= i.first_name
+                %td= i.last_name
+                %td
+                    %a{href: "mailto:#{i.email}"}= i.email
+                %td= i.classname
+                %td= i.semester
+                %td
+                    %a.wdn-button.wdn-button-triad{ href: instructor_path(i.id) } Show

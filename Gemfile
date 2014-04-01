@@ -12,6 +12,7 @@ gem 'jquery-ui-rails'
 gem 'event-calendar', :require => 'event_calendar'
 gem "mail", "2.5.4"
 #gem "jquery_context_menu-rails"
+gem "weary"
 
 group :development, :test do
 	gem 'annotate'
