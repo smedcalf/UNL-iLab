@@ -2,15 +2,17 @@ FactoryGirl.define do
 
   sequence(:email) { |n| "email_#{n}@example.com" }
 
+
   factory :user do
     sequence(:name) { |n| "user#{n}" }
     sequence(:email) { |n| "user#{n}@example.com" }
     password "password"
     password_confirmation "password"
+    utype ""
   end
 
   factory :sponsor do
-    user
+    association :user, factory: :user, utype: "sponsor"
     sequence(:first_name) { |n| "First_#{n}" }
     last_name "Sponsor"
     email
@@ -24,7 +26,7 @@ FactoryGirl.define do
   end
 
   factory :student do
-    user
+    association :user, factory: :user, utype: "student"
     sequence(:email) { |n| "student_#{n}@example.com" }
     sequence(:first_name) { |n| "First_#{n}" }
     last_name "Student"
@@ -32,5 +34,10 @@ FactoryGirl.define do
     semester "Spring"
     classname "CSE498"
     availability 1
+  end
+
+  factory :team do
+    project
+    sequence(:name) { |n| "Team #{n}" }
   end
 end
