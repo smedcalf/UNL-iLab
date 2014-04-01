@@ -18,6 +18,8 @@
 #
 
 class Sponsor < ActiveRecord::Base
+  belongs_to :user
+
   has_many :projects
 
 	validates :first_name, presence: true
