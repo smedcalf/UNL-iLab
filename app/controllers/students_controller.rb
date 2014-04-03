@@ -1,6 +1,6 @@
 class StudentsController < ApplicationController
   before_action :signed_in_user
-  before_action :correct_student, only: [:edit, :update]
+  before_action :correct_user, only: [:edit, :update] || :correct_instructor, only: [:edit, :update]
 
   def new
   	@student = Student.new

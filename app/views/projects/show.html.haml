@@ -10,8 +10,6 @@
       Open
     - else
       Close
-  - if current_user.student.nil?
-    %a.wdn-button.wdn-button-triad{href: edit_project_path(@project.id), style: 'float: right;' } Edit
 
 = render 'shared/error_messages'
 %hr
@@ -52,9 +50,8 @@
           %a.c-text{href: "#{@project.proposal.url}", target: '_blank'}= @project.proposal_file_name
         - else
           %p.c-text No Proposal Upload
-
-
-
+- if current_user.student.nil?
+  %a.wdn-button.wdn-button-triad{href: edit_project_path(@project.id) } Edit
 -#.wdn-grid-set
 -#  .wdn-col-one-third= "Create at: #{@project.created_at}"
 -#  .wdn-col-one-third= "Update at: #{@project.updated_at}"
