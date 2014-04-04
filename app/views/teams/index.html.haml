@@ -19,7 +19,7 @@
             %th
         - @all_Teams = ""
         - @teams.each do |t|
-          %tr{ href: team_path(t.id), style: "font-size: 14px" }
+          %tr{ href: team_path(t.id), style: "font-size: 12px" }
             %td{style: 'text-align: center'}= check_box_tag 'team[]', t.id
             %td
               %a{ href: team_path(t.id) }= t.name
@@ -33,10 +33,10 @@
                 %a{ href: student_path(s.id), style: "margin-right: 8px" }= s.full_name
             %td
               %a.wdn-icon-calendar{ href: calendar_team_path(t.id) } Calendar
-              \/
+              |
               %a{ href: work_track_team_path(t.id) } Track
             %td
-              %a.wdn-icon-mail{title: "Email to team", href: "mailto:#{@emails}"}
+              %a.wdn-icon-mail{title: "Email to team", href: "mailto:#{@emails}"} Email
             -@all_Teams = @emails + @all_Teams
       - if instructor?
         %div{style:"float: left"}

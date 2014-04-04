@@ -1,28 +1,41 @@
 %h1 Sponsor Preferences
+%style
+  select {width: auto !important; font-size: 14px !important;}
+  input {width: auto !important; font-size: 14px !important;}
 .wdn-main#maincontent
   - if @sponsor_preferences.empty?
     %p No Student Preferences.
   - else
-    %table.soothing
-      %tr
+    = form_tag("/teams/add-students", method: "post") do
+      = render 'shared/error_messages', object: nil
+      %section.wdn-grid-set{style: "float: right"}
+        = select_tag "team", options_from_collection_for_select(@teams, "id", "name"),
+        :prompt => "Please Select a Team",style: "width: auto", class: "wdn-col-one-half", style: "font-size: 18px !important"
+        = submit_tag "Assign", class: "wdn-col-one-half", style: "font-size: 10px !important; margin: 0 10px;"
+      %table.soothing.display#sponsor_preferences
         %thead
-          %th Project
-          %th Sponsor
-          %th Student
-          %th Sponsor Rating
-          %th Student Rating
-          %th
-      -@sponsor_preferences.each do |sp|
-        %tr
-          %td
-            %a{href: project_path(sp.project_id)}= sp.project.name
-          %td
-            %a{href: sponsor_path(sp.sponsor.id)}= sp.sponsor.full_name
-          %td
-            %a{href: student_path(sp.student_id)}= sp.student.full_name
-          %td= sp.rating
-          - @student_preference = StudentPreference.where(:student_id => sp.student_id, :project_id => sp.project_id).first
-          %td
-            - if !@student_preference.nil?
-              %a{href: student_preference_path(:student_id => sp.student_id, :id => @student_preference.id)}= @student_preference.rating
-          %td Show
+          %tr
+            %th
+            %th Project
+            %th Sponsor
+            %th Student
+            %th Sponsor Rating
+            %th Student Rating
+        -@sponsor_preferences.each do |sp|
+          %tr
+            %td
+              = check_box_tag 'student[]', sp.student_id
+            %td
+              %a{href: project_path(sp.project_id)}= sp.project.name
+            %td
+              %a{href: sponsor_path(sp.sponsor.id)}= sp.sponsor.full_name
+            %td
+              - if sp.student.team_id
+                = "(#{sp.student.team.name})"
+              %a{href: student_path(sp.student_id)}= sp.student.full_name
+
+            %td= sp.rating
+            - @student_preference = StudentPreference.where(:student_id => sp.student_id, :project_id => sp.project_id).first
+            %td
+              - if !@student_preference.nil?
+                %a{href: student_preference_path(:student_id => sp.student_id, :id => @student_preference.id)}= @student_preference.rating

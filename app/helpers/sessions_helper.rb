@@ -119,5 +119,12 @@ module SessionsHelper
 		unless(current_user.id.to_s == params[:id])
 			not_found
 		end
-	end
+  end
+
+  def correct_project_owner
+    project = Project.find(params[:id])
+    unless (current_user.sponsor.id == project.sponsor_id)
+      not_found
+    end
+  end
 end

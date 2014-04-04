@@ -2,11 +2,9 @@ Ilab::Application.routes.draw do
 
   resources :events, controller: :calendar
   resources :instructors do
-    collection do
-      get 'student-preferences', to: 'student_preferences#all', as: :all_student_preferences
-      get 'sponsor-preferences', to: 'sponsor_preferences#all', as: :all_sponsor_preferences
-    end
+
   end
+
   resources :sessions, only: [:new, :create, :destroy, :index]
   resources :static_pages
 
@@ -42,6 +40,8 @@ Ilab::Application.routes.draw do
 
     collection do
       get    'team-assignment', to: 'teams#team_assignment', as: :assignment
+      get    'team-works', to: 'teams#team_work', as: :team_work
+      post   'track', to: 'teams#team_track', as: :team_track
       post   'add-students', to: 'teams#add_students', as: :add
       post   'delete-teams', to: 'teams#delete_teams', as: :delete_multiple
     end
@@ -51,6 +51,7 @@ Ilab::Application.routes.draw do
       get    'task/new', to: 'calendar#new_team_task', :as => :new_task
       get    'work-track', to: 'teams#work_track', as: :work_track
     end
+
   end
 
   resources :users do
@@ -76,6 +77,9 @@ Ilab::Application.routes.draw do
   post   'calendar/create' => 'calendar#create'
   get    'task/new' => 'calendar#new', :as => :new_calendar
   post   '/sponsor_preferences/preference', to: 'sponsor_preferences#preference'
+
+  get 'student-preferences', to: 'student_preferences#all', as: :all_student_preferences
+  get 'sponsor-preferences', to: 'sponsor_preferences#all', as: :all_sponsor_preferences
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

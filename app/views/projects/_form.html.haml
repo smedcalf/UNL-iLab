@@ -8,7 +8,7 @@
   - if current_user.sponsor.nil?
     = f.select :sponsor_id, options_for_select(Sponsor.all.map{ |c| [c.full_name, c.id] }, selected_key = f.object.sponsor_id), :include_blank => "Please select a sponsor"
   - else
-    = f.select :sponsor_id, options_for_select([[current_user.sponsor.full_name, current_user.sponsor.id]])
+    = f.select :sponsor_id, options_for_select([[@project.sponsor.full_name, @project.sponsor_id]])
   .wdn-grid-set
     .bp1-wdn-col-one-third
       %span.required *

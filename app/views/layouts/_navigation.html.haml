@@ -12,8 +12,9 @@
         %ul
           %li
             %a{ href: users_path, title: 'User Registration' } User Registration
-            %a{ href: all_student_preferences_instructors_path, title: 'Student Preference' } Student Preferences
-            %a{ href: all_sponsor_preferences_instructors_path, title: 'Sponsor Preference' } Sponsor Preferences
+            %a{ href: sponsor_preferences_path(current_user.instructor.id), title: 'Student Preference' } Student Application
+            %a{ href: all_student_preferences_path, title: 'Student Preference' } Student Preferences
+            %a{ href: all_sponsor_preferences_path, title: 'Sponsor Preference' } Sponsor Preferences
       %li
         %a.cursor-pointer Projects
         %ul
@@ -27,8 +28,8 @@
         %ul
           %li
             %a{ href: teams_path, title: 'Team Table' } All Teams Table
-            %a{ href: '#', title: 'Team Work History' } Team Work Track
-            %a{ href: '#', title: 'Team Notification' } Team Notification
+            %a{ href: team_work_teams_path, title: 'Team Work History' } Team Work Track
+            -#%a{ href: '#', title: 'Team Notification' } Team Notification
             %a{ href: new_team_path, title: 'Create New Team' } New Team Form
       %li
         %a.cursor-pointer Students

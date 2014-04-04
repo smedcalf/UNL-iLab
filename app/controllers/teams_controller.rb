@@ -69,12 +69,23 @@ class TeamsController < ApplicationController
         team.save
         flash[:success] = "Student has been successfully assigned."
     end
-    redirect_to assignment_teams_path
+    redirect_to :back
   end
 
   def team_assignment
     @students = Student.all
     @teams = Team.all.sort_by { |t| t.name }
+  end
+
+  def team_work
+    @teams = Team.all
+  end
+
+  def team_track
+    #fdsfsd
+    @team = Team.find(params[:id])
+    @tasks = Event.where("team_id = #{params[:id]}")
+    render partial: "work_track", locals: { tasks: @tasks, team: @team}
   end
 
   def work_track

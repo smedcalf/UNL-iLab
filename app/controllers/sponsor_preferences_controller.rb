@@ -1,7 +1,13 @@
 class SponsorPreferencesController < ApplicationController
   def index
-    @sponsor = current_user.sponsor
-    @projects = Project.where(sponsor_id: params[:sponsor_id])
+    if current_user.instructor?
+      @sponsor = current_user.instructor
+      @projects = Project.all
+    else
+      @sponsor = current_user.sponsor
+      @projects = Project.where(sponsor_id: params[:sponsor_id])
+    end
+
   end
 
   def new
@@ -21,7 +27,12 @@ class SponsorPreferencesController < ApplicationController
   end
 
   def student
-    @sponsor = current_user.sponsor
+    if current_user.instructor?
+      @sponsor = current_user.instructor
+    else
+      @sponsor = current_user.sponsor
+    end
+
     @project_id = params[:id]
     @student_preferences = StudentPreference.where(:project_id => params[:id])
     render partial: "student", locals: { student_preferences: @student_preferences, project_id: @project_id }
@@ -46,7 +57,11 @@ class SponsorPreferencesController < ApplicationController
       end
     end
 
-    @sponsor = current_user.sponsor
+    if current_user.instructor?
+      @sponsor = current_user.instructor
+    else
+      @sponsor = current_user.sponsor
+    end
     @project_id = params[:project_id]
     @student_preferences = StudentPreference.where(project_id: @project_id)
     flash[:success] = "Your rating was successfully saved!"
@@ -54,6 +69,7 @@ class SponsorPreferencesController < ApplicationController
   end
 
   def all
+    @teams = Team.all
     @sponsor_preferences = SponsorPreference.all
   end
 

@@ -3,22 +3,21 @@
   - if @student_preferences.empty?
     %p No Student Preferences.
   - else
-    %table.cool
-      %tr
-        %thead
+    %table.display.cool#student_preferences
+      %thead
+        %tr
           %th Student
           %th Project
           %th Sponsor
           %th Rating
-          %th
       -@student_preferences.each do |sp|
         %tr
-        %td
-          %a{href: student_path(sp.student_id)}= sp.student.full_name
-        %td
-          %a{href: project_path(sp.project_id)}= sp.project.name
-        %td
-          %a{href: sponsor_path(sp.sponsor.id)}= sp.sponsor.full_name
-        %td
-          %a{href: student_preference_path(:student_id => sp.student_id, :id => sp.id)}= sp.rating
-        %td Show
+          %td
+            %a{href: student_path(sp.student_id)}= sp.student.full_name
+          %td
+            %a{href: project_path(sp.project_id)}= sp.project.name
+          %td
+            %a{href: sponsor_path(sp.sponsor.id)}= sp.sponsor.full_name
+          %td
+            %a{href: "javascript: void(0)", onclick: "window.open('#{student_preference_path(:student_id => sp.student_id, :id => sp.id)}','name','height=750,width=1000');", disabled: true}= sp.rating
+    #student_application

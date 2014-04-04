@@ -97,6 +97,65 @@ jQuery ->
     iDisplayLength : -1
   )
 
+  $('table#sponsor_preferences').dataTable(
+    sDom: 'T<"clear">lfrtip',
+    aoColumns: [
+      {"bSortable": false},
+      null,
+      null,
+      null,
+      null,
+      null,
+    ]
+    bStateSave: true
+    oTableTools: {
+      "aButtons": [
+        "copy",
+        "print",
+        {
+          "sExtends":    "collection",
+          "sButtonText": 'Export <span class="caret" />',
+          "aButtons":    [ "csv", "xls", "pdf" ],
+          "sSwfPath": "/media/swf/copy_csv_xls_pdf.swf"
+        }
+      ]
+    }
+    bJQueryUI: true
+    aaSorting: [[ 0, "asc" ]]
+    sPaginationType: "full_numbers",
+    aLengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]]
+    iDisplayLength : -1
+  )
+
+  $('table#student_preferences').dataTable(
+    sDom: 'T<"clear">lfrtip',
+    aoColumns: [
+      null,
+      null,
+      null,
+      null,
+    ]
+    bStateSave: true
+    oTableTools: {
+      "aButtons": [
+        "copy",
+        "print",
+        {
+          "sExtends":    "collection",
+          "sButtonText": 'Export <span class="caret" />',
+          "aButtons":    [ "csv", "xls", "pdf" ],
+          "sSwfPath": "media/swf/copy_csv_xls_pdf.swf"
+        }
+      ]
+    }
+    bJQueryUI: true
+    aaSorting: [[ 0, "asc" ]]
+    sPaginationType: "full_numbers",
+    aLengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]]
+    iDisplayLength : -1
+  )
+
+
   $('table#sponsors').dataTable(
     sDom: 'T<"clear">lfrtip',
     aoColumns: [

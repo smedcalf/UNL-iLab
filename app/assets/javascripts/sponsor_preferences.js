@@ -17,4 +17,13 @@ $(document).ready(function(){
             alert('Error');
     });
 
+    $('#team_work').on("ajax:success", function(e, data, status, xhr){
+        var maincontent = $('#maincontent')
+        maincontent.empty();
+        maincontent.append(data);
+    }).bind("ajax:error", function(e, data, status, xhr){
+            alert(data.value)
+            alert('Error');
+    });
+
 })

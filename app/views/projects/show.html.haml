@@ -50,39 +50,7 @@
           %a.c-text{href: "#{@project.proposal.url}", target: '_blank'}= @project.proposal_file_name
         - else
           %p.c-text No Proposal Upload
-- if current_user.student.nil?
+- if !current_user.instructor.nil? || current_user.sponsor.id == @project.sponsor_id
   %a.wdn-button.wdn-button-triad{href: edit_project_path(@project.id) } Edit
--#.wdn-grid-set
--#  .wdn-col-one-third= "Create at: #{@project.created_at}"
--#  .wdn-col-one-third= "Update at: #{@project.updated_at}"
--#.maincontent#maincontent
--#  .wdn-grid-set-fifths
--#    .wdn-col-one-fifth
--#      %h4.inline Project Name
--#    .wdn-col-four-fifths.line-padding= @project.name
--#  .wdn-grid-set-fifths
--#    .wdn-col-one-fifth
--#      %h4.inline Sponsor Name
--#    .wdn-col-four-fifths.line-padding
--#      %a{href: sponsor_path(@project.sponsor)}= Sponsor.find(@project.sponsor).full_name
--#  .wdn-grid-set-fifths
--#    .wdn-col-one-fifth
--#      %h4.inline Initial Capacity
--#    .wdn-col-four-fifths.line-padding= @project.initial_capacity
--#  .wdn-grid-set-fifths
--#    .wdn-col-one-fifth
--#      %h4.inline Current Capacity
--#    .wdn-col-four-fifths= @project.current_capacity
--#  .wdn-grid-set-fifths
--#    .wdn-col-one-fifth
--#      %h4.inline Semester
--#    .wdn-col-four-fifths.line-padding= @project.semester
--#  .wdn-grid-set-fifths
--#    .wdn-col-one-fifth
--#      %h4.inline Proposal
--#    .wdn-col-four-fifths.line-padding
--#      - if @project.proposal?
--#        %a{href: "#{@project.proposal.url}", target: '_blank'}= @project.proposal_file_name
--#      - else
--#        No Proposal Upload
+
 
