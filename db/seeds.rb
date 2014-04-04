@@ -17,21 +17,21 @@ end
 
 # Create admin
 # User 1
-u = User.create(name: "admin", password: "password", 
-			password_confirmation: "password", utype: "instructor")
+u = User.create(name: "admin", password: "password", email: "admin@example.com",
+  password_confirmation: "password", utype: "instructor")
 
-print_errors("Admin creation errors", u)
+  print_errors("Admin creation errors", u)
 
 #Instructor 1
-i = Instructor.create(email: "instructor@example.com", classname: "Test Class 101",
-	semester: "Fall", first_name: "Bill", last_name: "Instructor", user_id: 1)
+  i = Instructor.create(email: "instructor@example.com", classname: "Test Class 101",
+                        semester: "Fall 2014", first_name: "Bill", last_name: "Instructor", user_id: 1)
 
-print_errors("Instructor creation errors", i)
+  print_errors("Instructor creation errors", i)
 
-2.times do |i|
-	# User 2, 3
-	u = User.create(name: "sponsor" + (i + 1).to_s, password: "password", 
-				password_confirmation: "password", utype: "sponsor")
+  2.times do |i|
+    # User 2, 3
+    u = User.create(name: "sponsor" + (i + 1).to_s, password: "password", email: "sponsor" + (1+ i).to_s + "@example.com",
+                    password_confirmation: "password", utype: "sponsor")
 
 	print_errors("User creation errors (Sponsor)", u)
 
@@ -47,7 +47,7 @@ end
 2.times do |i|
 	# Project 1, 2
 	p = Project.create(name: "Project " + (i + 1).to_s, initial_capacity: 4,
-		sponsor: Sponsor.find_by_id(i + 1), current_capacity: 4, semester: "Fall",
+		sponsor: Sponsor.find_by_id(i + 1), current_capacity: 4, semester: "Fall 2014",
 		active: 1, status: 1)
 	print_errors("Project creation errors", p)
 end
@@ -63,7 +63,7 @@ end
 
 8.times do |i|
 	# User 4, 5, 6, 7, 8, 9, 10, 11
-	u = User.create(name: "student" + (i + 1).to_s, password: "password", 
+	u = User.create(name: "student" + (i + 1).to_s, password: "password", email: "student" + (i + 1).to_s + "@example.com",
 				password_confirmation: "password", utype: "student")
 
 	print_errors("User creation errors (student)", u)
@@ -71,7 +71,7 @@ end
 	s = Student.create(email: "student" + (i + 1).to_s + "@example.com",
 				first_name: (i + 1).to_s, last_name: "Student", major: "Computer Science",
 				availability: 1, team_id: i.even? ? 1 : 2, user_id: i + 4,
-				semester: "Fall", classname: "CSCE 486/488")
+				semester: "Fall 2014", classname: "CSCE 486/488")
 
 	print_errors("Studen creation errors", s)
 end
