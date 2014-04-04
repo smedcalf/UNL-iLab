@@ -1,7 +1,8 @@
 class ProjectsController < ApplicationController
   before_action :signed_in_user
-  before_action :correct_project_owner, only: [:create, :new, :edit, :update, :manage_projects] ||
-      :signed_in_instructor, only: [:create, :new, :edit, :update, :manage_projects]
+  before_action :correct_project_owner || :signed_in_instructor, only: [:edit, :update]
+  before_action :signed_in_instructor, only:  [:new, :create, :manage_projects]
+  
   def index
     if current_user.sponsor.nil?
       @projects = Project.all
