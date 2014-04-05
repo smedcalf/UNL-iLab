@@ -12,6 +12,67 @@ module SessionsHelper
 		self.current_user = user
 	end
 
+  def sign_in_cse
+    @course = ""
+    token = "DDFEFE94-87E1-484A-B5CC-DC6145CFBF13"
+    cse486_url = URI.parse("https://cse-apps.unl.edu/cseauth/auth/authenticate?" +
+                               "token=#{token}&" +
+                               "username=#{params[:session][:name]}&" +
+                               "password=#{params[:session][:password]}&" +
+                               "courses=CSCE498")
+    cse488_url = URI.parse("https://cse-apps.unl.edu/cseauth/auth/authenticate?" +
+                               "token=#{token}&" +
+                               "username=#{params[:session][:name]}&" +
+                               "password=#{params[:session][:password]}&" +
+                               "courses=CSCE488")
+    cse487_url = URI.parse("https://cse-apps.unl.edu/cseauth/auth/authenticate?" +
+                               "token=#{token}&" +
+                               "username=#{params[:session][:name]}&" +
+                               "password=#{params[:session][:password]}&" +
+                               "courses=CSCE487")
+    cse489_url = URI.parse("https://cse-apps.unl.edu/cseauth/auth/authenticate?" +
+                               "token=#{token}&" +
+                               "username=#{params[:session][:name]}&" +
+                               "password=#{params[:session][:password]}&" +
+                               "courses=CSCE489")
+    req486 = Weary::Request.new cse486_url.to_s, :GET
+    result486 = req486.perform do |res|
+      res.body
+    end
+
+    req487 = Weary::Request.new cse487_url.to_s, :GET
+    result487 = req487.perform do |res|
+      res.body
+    end
+
+    req488 = Weary::Request.new cse488_url.to_s, :GET
+    result488 = req488.perform do |res|
+      res.body
+    end
+
+    req489 = Weary::Request.new cse489_url.to_s, :GET
+    result489 = req489.perform do |res|
+      res.body
+    end
+
+    if result486.body == "success"
+      @course = "CSCE486"
+    end
+
+    if result487.body == "success"
+      @course = "CSCE487"
+    end
+
+    if result488.body == "success"
+      @course = "CSCE488"
+    end
+
+    if result489.body == "success"
+      @course = "CSCE489"
+    end
+
+  end
+
 	def signed_in?
 		!current_user.nil?
 	end
