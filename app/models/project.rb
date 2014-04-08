@@ -35,20 +35,15 @@ class Project < ActiveRecord::Base
 
   has_attached_file :proposal
 
-
-  def sponsor
-    Sponsor.find(self.sponsor_id)
-  end
-
   private
-  def set_defaults
-    if self.new_record?
-      self.initial_capacity = 4 if self.initial_capacity.blank?
-      self.current_capacity = self.initial_capacity
-      self.active = 0 if self.active.blank?
-      self.status = 0 if self.status.blank?
-    end
-  end
 
+    def set_defaults
+      if self.new_record?
+        self.initial_capacity = 4 if self.initial_capacity.blank?
+        self.current_capacity = self.initial_capacity
+        self.active = false if self.active.blank?
+        self.status = false if self.status.blank?
+      end
+    end
 
 end
