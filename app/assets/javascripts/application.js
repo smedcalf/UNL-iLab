@@ -16,4 +16,6 @@
 //= require dataTables/extras/TableTools
 //= require dataTables/extras/ZeroClipboard.js
 //= require jquery.ui.datepicker
+//= require dataTables/extras/columnFilter.js
+//= require dataTables/jquery.dataTables.columnFilter
 //= require_tree .

@@ -1,0 +1,46 @@
+%h1{style:"margin-bottom: 0px"}
+  = "Request from " + @request.student.full_name
+  %span.wdn-button.wdn-button-complement{style: 'margin-left:10px; font-size: 8px;'}
+    - if @request.approved
+      Approved
+    - elsif @request.active
+      Pending
+    - else
+      Disapproved
+
+= render 'shared/error_messages'
+%hr
+.wdn-main#maincontent
+  .wdn-col-one-third= "Create at: #{@request.created_at.strftime("%Y-%m-%d %H:%M:%S")}"
+  .wdn-col-one-third= "Update at: #{@request.updated_at.strftime("%Y-%m-%d %H:%M:%S")}"
+  %table.table-info
+    %thead
+      %th
+        %p.t-text Name:
+      %th
+        %p.c-text= @request.student.full_name
+    %thead
+      %th
+        %p.t-text Approved:
+      %th
+        %p.c-text= @request.approved
+    %thead
+      %th
+        %p.t-text Active:
+      %th
+        %p.c-text= @request.active
+    %thead
+      %th
+        %p.t-text Start Date:
+      %th
+        %p.c-text= @request.start_date.strftime("%Y-%m-%d")
+    %thead
+      %th
+        %p.t-text End Date:
+      %th
+        %p.c-text= @request.end_date.strftime("%Y-%m-%d")
+
+- if !current_user.instructor.nil? || current_user.student.id == @request.student_id
+  %a.wdn-button.wdn-button-triad{href: edit_request_path(@request.id) } Edit
+
+

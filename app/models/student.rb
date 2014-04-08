@@ -26,6 +26,7 @@ class Student < ActiveRecord::Base
 	belongs_to :user
 	has_many :student_preferences, dependent: :destroy
   has_many :sponsor_preferences, dependent: :destroy
+  has_one :request
 
 	validates :email, :first_name, :last_name,  :major,
             :semester, :classname, :availability, presence: true

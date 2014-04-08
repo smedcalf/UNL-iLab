@@ -1,0 +1,25 @@
+%style
+  select {width: auto !important;}
+= form_for @request, url: { action: @url }, :html => {:multipart => true} do |f|
+  = render 'shared/error_messages', object: @request
+
+  %span.required *
+  = f.label :student_id, 'Student Name'
+  %br
+  = f.select :student_id, options_for_select(@students.all.map{ |s| [s.full_name, s.id] }, selected_key = f.object.student_id)
+  %br
+  %span.required *
+  = f.label :start_date, "Start Date"
+  %br
+  = f.date_select :start_date, class: "date_picker"
+  %br
+  %span.required *
+  = f.label :end_date, "End Date"
+  %br
+  = f.date_select :end_date, class: "date_picker"
+  %br
+  %ol
+    %li
+    %span.required *
+    denotes required field
+  = f.submit "Submit"

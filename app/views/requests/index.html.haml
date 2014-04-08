@@ -1,0 +1,56 @@
+%h1 Requests
+%style
+  select {width: auto !important; font-size: 14px !important;}
+  input {width: auto !important; font-size: 14px !important;}
+
+.wdn-main#maincontent
+  - if @requests.empty?
+    No request.
+  - else
+    = form_tag("requests/manage-requests", method: "post") do
+      = render 'shared/error_messages'
+      %table.display#requests
+        %thead
+          %tr
+            %th
+              = check_box_tag 'checkAll', ""
+            %th First Name
+            %th Last Name
+            %th Team
+            %th Start Date
+            %th End Date
+            %th Approved
+            %th Active
+            %th
+        %tbody
+          - @requests.each do |r|
+            %tr.thumb
+              %td
+                = check_box_tag 'request[]', r.id
+                %span.callout.top-left
+                  = image_tag r.student.avatar_url, width: 130, height: 155
+                  %hr
+                    .disclaimer=r.student.full_name
+              %td= r.student.first_name
+              %td= r.student.last_name
+              %td
+                - if r.student.team
+                  %a{ href: team_path(r.student.team.id) }= r.student.team_name
+                - else
+                  Not Assigned
+              -#%td= s.major
+              %td= r.start_date.strftime("%Y-%m-%d")
+              %td= r.end_date.strftime("%Y-%m-%d")
+              %td= r.approved
+              %td= r.active
+              %td
+                %a{ href: request_path(r.id), style: "border-bottom: 0px", title: "show request" } &#10147; View
+
+      -#= label_tag  "team", "Assign to"
+      %section.wdn-grid-set
+      %span{ style: 'font-size: 25px; color: #979797' } &#8627;
+      = submit_tag 'activate', {style: 'font-size: 10px !important; background: rgb(79, 199, 146)', confirm: 'Are you confirm to activate?'}
+      = submit_tag 'deactivate', {style: 'font-size: 10px !important; background: rgb(46, 124, 90)', confirm: 'Are you confirm to deactivate?'}
+      = submit_tag 'approve', {style: 'font-size: 10px !important; background: rgb(84, 157, 224)', confirm: 'Are you confirm to approve?'}
+      = submit_tag 'disapprove', {style: 'font-size: 10px !important; background: rgb(56, 106, 151)', confirm: 'Are you confirm to disapprove?'}
+      = submit_tag 'delete', {style: 'font-size: 10px !important; background: rgb(224, 95, 84)', confirm: 'Are you confirm to delete?'}

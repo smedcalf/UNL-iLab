@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140313173129) do
+ActiveRecord::Schema.define(version: 20140408192226) do
 
   create_table "events", force: true do |t|
     t.string   "name"
@@ -55,6 +55,16 @@ ActiveRecord::Schema.define(version: 20140313173129) do
   end
 
   add_index "projects", ["sponsor_id", "sponsor_type"], name: "index_projects_on_sponsor_id_and_sponsor_type"
+
+  create_table "requests", force: true do |t|
+    t.integer  "student_id"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.boolean  "approved"
+    t.boolean  "active"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "sponsor_preferences", force: true do |t|
     t.integer  "student_id"

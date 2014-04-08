@@ -7,6 +7,9 @@ class SponsorsController < ApplicationController
 
   def new
     @sponsor = Sponsor.new
+    if !current_user.instructor?
+      @sponsor.email = current_user.email
+    end
     @url = "create"
   end
 

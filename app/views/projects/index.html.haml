@@ -12,7 +12,8 @@
       %table.display#projects
         %thead
           %tr
-            %th
+            %th{style: 'text-align: center'}
+              = check_box_tag 'checkAll', ""
             %th Project Name
             %th Sponsor Name
             %th Semester

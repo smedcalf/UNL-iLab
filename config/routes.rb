@@ -15,6 +15,12 @@ Ilab::Application.routes.draw do
     end
   end
 
+  resources :requests do
+    collection do
+      post  'manage-requests', to: 'requests#manage_requests', as: :manage
+    end
+  end
+
   resources :sponsors do
     resources :preferences, controller: :sponsor_preferences do
       collection do

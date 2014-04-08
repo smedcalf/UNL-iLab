@@ -5,6 +5,9 @@ class InstructorsController < ApplicationController
 
 	def new
 		@instructor = Instructor.new
+    if !current_user.instructor?
+      @instructor.email = current_user.email
+    end
 	end
 
 	def index

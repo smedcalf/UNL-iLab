@@ -26,4 +26,16 @@ $(document).ready(function(){
             alert('Error');
     });
 
+    $('#checkAll').click(function() {
+        if (this.checked) {
+            $('.display :checkbox').each(function() {
+                this.checked = true;
+            });
+        } else {
+            $(':checkbox').each(function() {
+                this.checked = false;
+            });
+        }
+    });
+
 })

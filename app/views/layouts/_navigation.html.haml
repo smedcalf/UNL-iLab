@@ -12,6 +12,7 @@
         %ul
           %li
             %a{ href: users_path, title: 'User Registration' } User Registration
+            %a{ href: requests_path, title: "Room Request"} Room 28 Request
             %a{ href: sponsor_preferences_path(current_user.instructor.id), title: 'Student Preference' } Student Application
             %a{ href: all_student_preferences_path, title: 'Student Preference' } Student Preferences
             %a{ href: all_sponsor_preferences_path, title: 'Sponsor Preference' } Sponsor Preferences
@@ -42,8 +43,8 @@
         %a.cursor-pointer Links
         %ul
           %li
-            %a{ href: "https://drive.google.com/‎", title: "Google Drive" } Google Drive
-            %a{ href: "https://trello.com‎", title: "Team cooperation tool"} Trello
+            %a{ href: "http://drive.google.com/‎", title: "Google Drive" } Google Drive
+            %a{ href: "https://trello.com/‎", title: "Team cooperation tool"} Trello
   - elsif current_user.utype == 'sponsor' && !current_user.sponsor.nil?
     %ul
       %li
@@ -103,6 +104,7 @@
         %a.cursor-pointer Links
         %ul
           %li
+            %a{ href: requests_path, title: "Room 28 Request" } Room 28 Request
             %a{ href: "https://drive.google.com/‎", title: "Google Drive" } Google Drive
             %a{ href: "https://trello.com", title: "Team cooperation tool"} Trello
   - else

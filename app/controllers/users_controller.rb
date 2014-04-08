@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 
   def manage_users
     if params[:user].nil?
-      flash[:error] = "No sutdent was selected."
+      flash[:error] = "No student was selected."
       redirect_to users_path
     else
       case params[:commit]
