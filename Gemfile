@@ -1,18 +1,17 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.2'
+gem 'rails', '4.1.0'
+
 gem 'bcrypt-ruby'
-gem 'ruby-trello'
-gem 'paperclip'
+gem 'event-calendar', :require => 'event_calendar'
 require 'securerandom'
 gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
-gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-ui-rails'
-gem 'event-calendar', :require => 'event_calendar'
-gem "mail", "2.5.4"
-#gem "jquery_context_menu-rails"
-gem "weary"
+gem 'mail', '2.5.4'
+gem 'ruby-trello'
+gem 'paperclip'
+gem 'weary'
 
 group :development, :test do
 	gem 'annotate'
@@ -29,11 +28,12 @@ group :development, :test do
 	gem 'sqlite3'
 end
 
+gem 'coffee-rails'
 gem 'haml-rails'
-gem 'jbuilder', '~> 1.2'
+gem 'jbuilder'
 gem 'jquery-rails'
-gem 'sass-rails', '~> 4.0.0'
-gem 'uglifier', '>= 1.3.0'
+gem 'sass-rails'
+gem 'uglifier'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
