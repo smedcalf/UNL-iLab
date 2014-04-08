@@ -32,6 +32,7 @@ class Student < ActiveRecord::Base
             :semester, :classname, :availability, presence: true
 
   has_attached_file :avatar
+	do_not_validate_attachment_file_type :avatar
 
 	def full_name
 		"#{self.first_name} #{self.last_name}"
