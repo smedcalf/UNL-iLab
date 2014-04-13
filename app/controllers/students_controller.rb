@@ -1,6 +1,6 @@
 class StudentsController < ApplicationController
   before_action :signed_in_user
-  before_action :correct_student, only: [:edit, :update] || :correct_instructor, only: [:edit, :update]
+  before_action :correct_student || :correct_instructor, only: [:edit, :update]
 
   def new
   	@student = Student.new
@@ -67,8 +67,10 @@ class StudentsController < ApplicationController
     set_student
     @url = "update"
     if @student.update_attributes(student_params)
+      flash[:success] = "Student profile was updated."
       redirect_to student_path(@student.id)
     else
+      flash[:error] = @student.errors.full_messages.join(", ").html_safe
       render 'edit'
     end
   end

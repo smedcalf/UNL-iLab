@@ -46,6 +46,7 @@ class CalendarController < ApplicationController
     if @event.save
       flash[:success] = "Your event was successfully created."
       if @event.team_id
+        UserMailer.team_task_confirmation(@event).deliver
         redirect_to calendar_team_path(@event.team_id)
       else
         redirect_to calendar_path

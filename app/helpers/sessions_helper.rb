@@ -163,8 +163,7 @@ module SessionsHelper
 	end
 
 	def correct_student
-		unless (current_user.student? &&
-			current_user.student.id.to_s == params[:id])
+		unless ((current_user.student? && current_user.student.id.to_s == params[:id] ) || current_user.instructor?)
 			not_found
 		end
 	end

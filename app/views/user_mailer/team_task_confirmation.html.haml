@@ -1,16 +1,15 @@
-%h1= "Event: " + @event.name
-= render 'shared/error_messages'
+%h2= "Task: " + @event.name
 
 - if @event.completed
-  %span.wdn-button.wdn-button-complete{style: 'font-size: 8px; vertical-align: top'} Completed
+  %span{style: 'font-size: 10px; vertical-align: top'} Completed
 - else
-  %span.wdn-button.wdn-button-incomplete{style: 'font-size: 8px; vertical-align: top'} Imcompleted
+  %span{style: 'font-size: 10px; vertical-align: top'} Imcompleted
 - if @event.team_id != 0 && !@event.team_id.nil?
-  %span.wdn-button.wdn-button-team{style: 'font-size: 8px; vertical-align: top'}
-    Team Task
+  %span{style: 'font-size: 10px; vertical-align: top'}
+    %u Team Task
 - else
-  %span.wdn-button.wdn-button-personal{style: 'font-size: 8px; vertical-align: top'}
-    Personal Task
+  %span{style: 'font-size: 10px; vertical-align: top'}
+    %u Personal Task
 
 %hr
 .wdn-main#maincontent
@@ -20,18 +19,18 @@
     %a{href: "mailto:#{@profile.email}", title: "Email to #{@profile.full_name}"}= @profile.full_name
   .wdn-col-one-third= "Create at: #{@event.created_at.strftime("%Y-%m-%d %H:%M:%S")}"
   .wdn-col-one-third= "Update at: #{@event.updated_at.strftime("%Y-%m-%d %H:%M:%S")}"
-  %table.table-info{style: "width: 100%"}
+  %table.table-info{style: "width: 100%; text-align: left"}
     %thead
       %th{style: "width: 20%"}
         %p.t-text Event Name:
       %th
         %p.c-text= @event.name
-    - if @event.team_id != 0 && !@event.team_id.nil?
+    - if !@event.team_id.nil?
       %thead
         %th{style: "width: 20%"}
           %p.t-text Assigned to:
         %th
-          %a.c-text{href: team_path(@event.team_id)}= Team.find(@event.team_id).name
+          %p.c-text= @team.name
     %thead
       %th
         %p.t-text Priority:
@@ -65,11 +64,3 @@
           %a.c-text{href: "#{@event.url}", target: '_blank'}= @event.url
         - else
           %p.c-text No url
-- if @editable
-  %a.wdn-button.wdn-button-triad{href: edit_event_path(@event.id) } Edit
-  =link_to "Delete", event_path(@event), :method => :delete, class: "wdn-button wdn-button-energetic", confirm: "Are you confirm to delete this task?"
-  - if @event.team_id
-    %a.wdn-button.wdn-button-complement{style: "float: right; background: #c0c0c0", href: work_track_team_path(:id => @event.team_id) } Back to Calendar
-  - else
-    %a.wdn-button.wdn-button-complement{style: "float: right; background: #c0c0c0", href: calendar_path } Back to Calendar
--#%a.wdn-button.wdn-button-incomplete{href: calendar_path, style: "float: right" } Back to Calendar

@@ -23,8 +23,9 @@
   = f.select :priority, options_for_select([["High", 3], ["Medium", 2], ["Low", 1]], @event.priority)
   %br
   - if current_user.utype == "student"
-    = f.check_box :team_id
-    = f.label :team_id, "To Team"
+    = f.label :team_id, "Assigned To"
+    -@teams = Team.where(:id => current_user.student.team_id)
+    = f.select :team_id, options_for_select(@teams.all.map{ |t| [t.name, t.id] }, @event.team_id), :include_blank => 'Personal Task'
   - elsif current_user.utype == "sponsor"
     -@teams = Team.where(:project_id => Project.where(:sponsor_id => current_user.sponsor.id).ids)
     = f.label :team_id

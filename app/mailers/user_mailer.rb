@@ -14,4 +14,29 @@ class UserMailer < ActionMailer::Base
     @user = user
     mail(:to => user.email, :subject => "From iLab: Reset Password to #{@password}")
   end
+
+  def team_task_confirmation(event)
+    @event = event
+    @emails = ""
+    @students = Student.where(team_id: @event.team_id)
+    @students.each do |s|
+      @emails = @emails + ', ' + s.email
+    end
+    @user = User.find(@event.user_id)
+    case @user.utype
+      when "instructor"
+        @author = @user.instructor.full_name
+      when "student"
+        @author = @user.student.full_name
+      when "sponsor"
+        @author = @user.sponsor.full_name
+    end
+
+    @url = event_path(@event.id)
+    @team = Team.find(@event.team_id)
+
+    mail(:to => @emails, :subject => "From ilab: New team task was created")
+
+  end
+
 end
