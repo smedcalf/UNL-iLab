@@ -188,4 +188,20 @@ module SessionsHelper
       not_found
     end
   end
+
+  def project_open
+    if current_user.utype == "student"
+      if params[:project_id]
+        project = Project.find(params[:project_id])
+      else
+        student_preference = StudentPreference.find_by_id(params[:id])
+        project = student_preference.project
+      end
+
+      unless (project.status)
+        flash[:warning] = "Project has been closed to apply!"
+        redirect_to :back
+      end
+    end
+  end
 end

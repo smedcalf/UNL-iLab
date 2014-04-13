@@ -19,6 +19,7 @@ class User < ActiveRecord::Base
 	has_one :student, dependent: :destroy
 	has_one :instructor, dependent: :destroy
 	has_one :sponsor, dependent: :destroy
+  has_many :events, dependent: :destroy
 
 	validates :name, presence: true, uniqueness: { case_sensitive: false }
   validates :email, presence: true, :uniqueness => true

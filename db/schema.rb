@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140408192226) do
+ActiveRecord::Schema.define(version: 20140413195509) do
 
   create_table "events", force: true do |t|
     t.string   "name"
@@ -62,6 +62,14 @@ ActiveRecord::Schema.define(version: 20140408192226) do
     t.datetime "end_date"
     t.boolean  "approved"
     t.boolean  "active"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "solutions", force: true do |t|
+    t.string   "semester"
+    t.string   "name"
+    t.text     "csv"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

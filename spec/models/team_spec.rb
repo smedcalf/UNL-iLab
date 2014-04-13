@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: teams
+#
+#  id           :integer          not null, primary key
+#  name         :string(255)
+#  project_id   :integer
+#  google_drive :string(255)
+#  trello_link  :string(255)
+#
+
 require 'spec_helper'
 
 describe Team do

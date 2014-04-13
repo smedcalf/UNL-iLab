@@ -4,7 +4,7 @@
   input {width: auto !important; font-size: 14px !important;}
 .wdn-main#maincontent
   - if @sponsor_preferences.empty?
-    %p No Student Preferences.
+    %p No Sponsor Preferences.
   - else
     = form_tag("/teams/add-students", method: "post") do
       = render 'shared/error_messages', object: nil

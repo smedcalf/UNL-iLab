@@ -1,5 +1,6 @@
 class CalendarController < ApplicationController
-  
+
+  #TODO Calendar not working any more
   def index
     @month = (params[:month] || (Time.zone || Time).now.month).to_i
     @year = (params[:year] || (Time.zone || Time).now.year).to_i
@@ -13,6 +14,7 @@ class CalendarController < ApplicationController
       end
     else
       @event_strips = Event.event_strips_for_month(@shown_month, :conditions => "user_id = #{current_user.id} AND team_id is null")
+      #@event_strips = EventCalendar.event_strips_for_month(@shown_month)
     end
   end
 

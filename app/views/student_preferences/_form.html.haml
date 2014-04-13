@@ -1,9 +1,14 @@
 = form_for @student_preference, url: { action: @url } do |f|
   = render 'shared/error_messages', object: @student_preference
   %span.required *
-  = f.hidden_field :student_id, :value => current_user.student.id
-  = f.label :student_name, "Student"
-  = f.text_field :student_name, :value => current_user.student.full_name, :disabled => true
+  - if current_user.utype == "student"
+    = f.hidden_field :student_id, :value => current_user.student.id
+    = f.label :student_name, "Student"
+    = f.text_field :student_name, :value => current_user.student.full_name, :disabled => true
+  - else
+    = f.hidden_field :student_id, :value => @student_preference.student_id
+    = f.label :student_name, "Student"
+    = f.text_field :student_name, :value => @student_preference.student.full_name, :disabled => true
   %span.required *
   = f.label :project_id, "Project"
   = f.select :project_id, options_for_select(@projects, @project.id)

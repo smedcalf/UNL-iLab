@@ -2,7 +2,12 @@ Ilab::Application.routes.draw do
 
   resources :events, controller: :calendar
   resources :instructors do
-
+    resources :preferences, controller: :sponsor_preferences do
+      collection do
+        post 'student', to: 'sponsor_preferences#student', as: :student
+        post 'update', to: 'sponsor_preferences#update_preferences', as: :update
+      end
+    end
   end
 
   resources :sessions, only: [:new, :create, :destroy, :index]
@@ -30,6 +35,7 @@ Ilab::Application.routes.draw do
     end
   end
 
+  #TODO this is confusing with student preference as collection
   resources :students do
     resources :preferences, controller: :student_preferences
 
