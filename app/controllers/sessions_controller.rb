@@ -34,7 +34,6 @@ class SessionsController < ApplicationController
         redirect_to :back
       end
     else
-      fdsds
       flash[:error] = "Invalid Username/Password"
 			redirect_to root_url
     end
