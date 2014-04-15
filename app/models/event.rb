@@ -22,7 +22,7 @@ class Event < ActiveRecord::Base
   belongs_to :user, dependent: :destroy
 
   validates :name, :description, :user_id, :start_at, :end_at, presence: true
-  scope :completed, :conditions=>['completed = true']
-  scope :incomplete, :conditions=>['completed = false']
 
+  scope :completed, lambda { :completed == true }
+  scope :incomplete, lambda { :completed == false }
 end
