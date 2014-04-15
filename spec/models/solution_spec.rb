@@ -13,5 +13,14 @@
 require 'spec_helper'
 
 describe Solution do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  before do
+    @solution = Solution.new()
+  end
+
+  it { should respond_to(:semester) }
+  it { should respond_to(:name) }
+  it { should respond_to(:csv) }
+
+  it { should be_valid }
 end
