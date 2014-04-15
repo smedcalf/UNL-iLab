@@ -274,3 +274,13 @@ tr.even td.sorting_1 {
   width: 100%;
   color: transparent;
 }
+
+.dataTables_filter input {
+  width: auto !important;
+  font-size: 14px !important;
+}
+
+.dataTables_length select {
+  width: auto !important;
+  font-size: 14px !important;
+}

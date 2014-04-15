@@ -1,6 +1,11 @@
 Ilab::Application.routes.draw do
 
-  resources :events, controller: :calendar
+  resources :events, controller: :calendar do
+    collection do
+      post 'mark-completed', to: 'calendar#mark_as_completed', as: :complete
+      post 'mark-incomplete', to: 'calendar#mark_as_incomplete', as: :incomplete
+    end
+  end
   resources :instructors do
     resources :preferences, controller: :sponsor_preferences do
       collection do
@@ -25,6 +30,8 @@ Ilab::Application.routes.draw do
       post  'manage-requests', to: 'requests#manage_requests', as: :manage
     end
   end
+
+  resources :solutions
 
   resources :sponsors do
     resources :preferences, controller: :sponsor_preferences do
@@ -92,6 +99,8 @@ Ilab::Application.routes.draw do
 
   get 'student-preferences', to: 'student_preferences#all', as: :all_student_preferences
   get 'sponsor-preferences', to: 'sponsor_preferences#all', as: :all_sponsor_preferences
+
+  post    '/student_preferences/delete-student-preferences', to: 'student_preferences#destroy'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

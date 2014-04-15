@@ -93,6 +93,30 @@ class CalendarController < ApplicationController
     end
   end
 
+  def mark_as_completed
+    if params[:incomplete_task] == ""
+      flash[:error] = 'No task was selected'
+      #redirect_to assignment_teams_path
+    else
+      Event.where(:id => params[:incomplete_task]).update_all(:completed => true)
+      flash[:success] = "Tasks have been successfully saved."
+    end
+    redirect_to :back
+
+  end
+
+  def mark_as_incomplete
+    if params[:complete_task] == ""
+      flash[:error] = 'No task was selected'
+      #redirect_to assignment_teams_path
+    else
+      Event.where(:id => params[:completed_task]).update_all(:completed => false)
+      flash[:success] = "Tasks have been successfully saved."
+    end
+    redirect_to :back
+
+  end
+
   def new_team_task
     @team_id = params[:id]
     @event = Event.new
