@@ -23,7 +23,7 @@ class StudentPreferencesController < ApplicationController
     @student_preference = StudentPreference.new(student_preference_params)
     if @student_preference.save
       flash[:success] = "Your rating was saved"
-      redirect_to student_preference_path(:student_id => current_user.student.id, :id => @student_preference.id)
+      redirect_to student_preference_path(:student_id => current_user.student.id, :id => @student_preference.id, :project_id => @student_preference.project_id)
     else
       flash[:error] = @student_preference.errors.full_messages.join(", ").html_safe
       redirect_to :back
@@ -50,7 +50,10 @@ class StudentPreferencesController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
+    StudentPreference.destroy(params[:student_preference])
+    redirect_to :back
+    flash[:success] = "Student preferences successfully deleted!"
   end
 
   def all

@@ -1,0 +1,13 @@
+%h1= "#{@solution.name} Assigned Solution"
+
+- @header = @solution_records.first.split(',')
+%table
+  - @header.each do |h|
+    %th= h
+  - @num = 1
+  - @solution_records.each do |s|
+    %tr
+    - next @num = 0 if @num == 1
+    - @entry = s.split(',')
+    - @entry.each do |e|
+      %td= e

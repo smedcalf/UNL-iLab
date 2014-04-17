@@ -131,6 +131,7 @@ jQuery ->
   $('table#student_preferences').dataTable(
     sDom: 'T<"clear">lfrtip',
     aoColumns: [
+      {"bSortable": false},
       null,
       null,
       null,
@@ -218,6 +219,7 @@ jQuery ->
   $('table#incomplete_tasks').dataTable(
     sDom: '<"clear">lfrtip',
     aoColumns: [
+      {"bSortable": false},
       null,
       null,
       null,

@@ -6,31 +6,39 @@
   - if @student_preferences.empty?
     You haven't applied for any projects
   - else
-    %table.zentable.cool
-      %tr
-        %thead
-          %th
-          %th Project Name
-          %th Sponsor Name
-          %th Proposal
-          %th Your Preference
-          -#%th Sponsor Preference
-          %th
-      -@student_preferences.each do |sp|
-        - @project = Project.find(sp.project_id)
-        - @sponsor = Sponsor.find(@project.sponsor_id)
+    = form_tag("/student_preferences/delete-student-preferences", method: "post") do
+      = render 'shared/error_messages'
+      %table.zentable.cool.display
         %tr
-          %td{style: 'text-align: center'}= check_box_tag 'student_preference[]', sp.id
-          %td
-            %a{ href: project_path(@project.id), title: 'Show Project' }=@project.name
-          %td
-            %a{href: sponsor_path(@sponsor.id)}= @sponsor.full_name
-          %td
-            - if @project.proposal?
-              %a{href: "#{@project.proposal.url}"}= @project.proposal_file_name
-            - else
-              No Proposal
-          %td
-            %a{href: student_preference_path(:student_id => current_user.student.id, :id => sp.id)}=sp.rating
-          %td
-            %a.wdn-button.wdn-button-triad{ href: edit_student_preference_path(current_user.student.id, sp.id) } Edit
+          %thead
+            %th
+              = check_box_tag 'checkAll', ""
+            %th Project Name
+            %th Sponsor Name
+            %th Proposal
+            %th Your Preference
+            -#%th Sponsor Preference
+            %th
+        -@student_preferences.each do |sp|
+          - @project = Project.find(sp.project_id)
+          - @sponsor = Sponsor.find(@project.sponsor_id)
+          %tr
+            %td
+              = check_box_tag 'student_preference[]', sp.id
+            %td
+              %a{ href: project_path(@project.id), title: 'Show Project' }=@project.name
+            %td
+              %a{href: sponsor_path(@sponsor.id)}= @sponsor.full_name
+            %td
+              - if @project.proposal?
+                %a{href: "#{@project.proposal.url}"}= @project.proposal_file_name
+              - else
+                No Proposal
+            %td
+              %a{href: student_preference_path(:student_id => current_user.student.id, :id => sp.id)}=sp.rating
+            %td
+              %a.wdn-button.wdn-button-triad{ href: edit_student_preference_path(current_user.student.id, sp.id) } Edit
+      %section.wdn-grid-set
+      %span{ style: 'font-size: 25px; color: #979797' } &#8627;
+      = submit_tag 'Delete', {style: 'font-size: 10px !important; background: rgb(224, 95, 84)', confirm: 'Are you sure you want to delete this student?'}
+
