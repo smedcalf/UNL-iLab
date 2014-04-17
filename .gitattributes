@@ -1,1 +1,3 @@
 *.rb filter=spabs
+*.html.haml filter=spabs
+*.js filter=spabs
