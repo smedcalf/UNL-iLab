@@ -192,6 +192,8 @@ module SessionsHelper
     if current_user.utype == "student"
       if params[:project_id]
         project = Project.find(params[:project_id])
+      elsif params[:student_preference]
+        project = Project.find(params[:student_preference][:project_id])
       else
         student_preference = StudentPreference.find_by_id(params[:id])
         project = student_preference.project

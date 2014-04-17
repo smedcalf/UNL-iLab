@@ -58,14 +58,19 @@ class ProjectsController < ApplicationController
       case params[:commit]
         when 'delete'
           Project.destroy(params[:project])
+          flash["success"] = "Selected Projects were deleted."
         when 'activate'
           Project.where(:id => params[:project]).update_all(:active => true)
+          flash["success"] = "Selected Projects were activated."
         when 'deactivate'
           Project.where(:id => params[:project]).update_all(:active => false)
+          flash["success"] = "Selected Projects were deactivated."
         when 'disable'
           Project.where(:id => params[:project]).update_all(:status => false)
+          flash["success"] = "Selected Projects were disabled to apply."
         when 'enable'
           Project.where(:id => params[:project]).update_all(:status => true)
+          flash["success"] = "Selected Projects were enabled to apply."
       end
       redirect_to projects_path
     end
