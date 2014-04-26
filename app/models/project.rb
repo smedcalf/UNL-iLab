@@ -34,6 +34,7 @@ class Project < ActiveRecord::Base
   after_initialize :set_defaults
 
   has_attached_file :proposal
+  do_not_validate_attachment_file_type :proposal
 
   private
 

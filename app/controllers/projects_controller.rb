@@ -20,8 +20,10 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
     #@project.sponsor = Sponsor.find(project_params[:sponsor_id])
-    if @project.save
-      flash[:success] = "New project was created."
+    if @project.valid? && @project.save
+      @team = Team.new(:name => @project.name, :project => @project)
+      @team.save
+      flash[:success] = "New project was created and new team was created."
       redirect_to projects_path
     else
       flash[:error] = @project.errors.full_messages.join(", ").html_safe
