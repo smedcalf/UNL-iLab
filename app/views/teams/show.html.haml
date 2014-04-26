@@ -4,20 +4,34 @@
 - else
   %h1= @team.name
   %hr
-  .maincontent#maincontent
+  .wdn-main#maincontent
     %h4 Members
-    %ul
-    - @team.students.each do |s|
-      %li
-        %a{href: student_path(s.id) }= s.full_name
+    = form_tag("/teams/unassign-students", method: "post") do
+      = render 'shared/error_messages'
+      %table
+        %thead
+          %th
+          %th Name
+          %th Email
+        - @team.students.each do |s|
+          %tr
+            %td
+              = check_box_tag 'student[]', s.id
+            %td
+              %a{href: student_path(s.id) }= s.full_name
+            %td
+              %a.wdn-icon-mail{href: "mailto:#{s.email}"}= s.email
+      %div{style:"float: left"}
+      %span{style: 'font-size: 25px;'} &#8627;
+      = submit_tag "Unassign", {style: 'font-size: 10px !important; background: rgb(224, 95, 84)', confirm: 'Are you confirm to unassign students?'}
     - if instructor? || sponsor? || (@team.has_user? current_user)
       - if @team.google_drive.present?
-        %p
-          %b
-            %a{href: @team.google_drive} Google Drive
+        %h5
+          Google Drive:
+          %a{href: @team.google_drive, style: "font-weight: 100"}= @team.google_drive
       - if @team.trello_link.present?
-        %p
-          %b
-            %a{href: @team.trello_link} Trello
+        %h5
+          Trello:
+          %a{href: @team.trello_link, style: "font-weight: 100"}= @team.trello_link
 - if instructor?
   %a.wdn-button.wdn-button-triad{ href: edit_team_path(@team.id)} Edit

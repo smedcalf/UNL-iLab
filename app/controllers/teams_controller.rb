@@ -57,17 +57,29 @@ class TeamsController < ApplicationController
 
   def add_students
     if params[:team] == ""
-      flash[:error] = 'No team was selected'
+      flash[:error] = 'No team was selected.'
       #redirect_to assignment_teams_path
     elsif params[:student].nil?
-           flash[:error] = "No student was selected"
+           flash[:error] = "No student was selected."
            #redirect_to assignment_teams_path
     else
         team = Team.find_by_id(params[:team])
         Student.where(:id => params[:student]).update_all(:status => true)
+
         team.students << Student.find(params[:student])
         team.save
         flash[:success] = "Student has been successfully assigned."
+    end
+    redirect_to :back
+  end
+
+  def unassign_students
+    if params[:student].nil?
+      flash[:error] = "No student was selected."
+    else
+      Student.where(:id => params[:student]).update_all(:status => false)
+      Student.where(:id => params[:student]).update_all(:team_id => nil)
+      flash[:success] = "Student has been successfully unassigned."
     end
     redirect_to :back
   end

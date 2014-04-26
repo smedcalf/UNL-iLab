@@ -1,17 +1,12 @@
 %h1 Sponsor Preferences
-%style
-  select {width: auto !important; font-size: 14px !important;}
-  input {width: auto !important; font-size: 14px !important;}
+
 .wdn-main#maincontent
   - if @sponsor_preferences.empty?
     %p No Sponsor Preferences.
   - else
     = form_tag("/teams/add-students", method: "post") do
-      = render 'shared/error_messages', object: nil
-      %section.wdn-grid-set{style: "float: right"}
-        = select_tag "team", options_from_collection_for_select(@teams, "id", "name"),
-        :prompt => "Please Select a Team",style: "width: auto", class: "wdn-col-one-half", style: "font-size: 18px !important"
-        = submit_tag "Assign", class: "wdn-col-one-half", style: "font-size: 10px !important; margin: 0 10px;"
+      = render 'shared/error_messages'
+
       %table.soothing.display#sponsor_preferences
         %thead
           %tr
@@ -22,7 +17,7 @@
             %th Sponsor Rating
             %th Student Rating
         -@sponsor_preferences.each do |sp|
-          %tr
+          %tr{class: "#{'assigned' if sp.student.team }"}
             %td
               = check_box_tag 'student[]', sp.student_id
             %td
@@ -39,3 +34,7 @@
             %td
               - if !@student_preference.nil?
                 %a{href: student_preference_path(:student_id => sp.student_id, :id => @student_preference.id)}= @student_preference.rating
+      %section.wdn-grid-set{style: "float: right"}
+      = select_tag "team", options_from_collection_for_select(@teams, "id", "name"),
+      :prompt => "Please Select a Team",style: "width: auto", class: "wdn-col-one-half", style: "font-size: 18px !important"
+      = submit_tag "Assign", class: "wdn-col-one-half", style: "font-size: 10px !important; margin: 0 10px;"

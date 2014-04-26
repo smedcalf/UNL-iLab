@@ -284,3 +284,8 @@ tr.even td.sorting_1 {
   width: auto !important;
   font-size: 14px !important;
 }
+
+tr.assigned {
+  background: rgba(190, 228, 207, 1) !important;
+  opacity: 0.85;
+}

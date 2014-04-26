@@ -183,7 +183,7 @@ module SessionsHelper
 
   def correct_project_owner
     project = Project.find(params[:id])
-    unless (current_user.sponsor.id == project.sponsor_id)
+    unless ((current_user.sponsor && current_user.sponsor.id == project.sponsor_id) || current_user.utype == "instructor")
       not_found
     end
   end

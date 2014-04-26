@@ -62,6 +62,7 @@ Ilab::Application.routes.draw do
       get    'team-works', to: 'teams#team_work', as: :team_work
       post   'track', to: 'teams#team_track', as: :team_track
       post   'add-students', to: 'teams#add_students', as: :add
+      post   'unassign-students', to: 'teams#unassign_students', as: :unassign
       post   'delete-teams', to: 'teams#delete_teams', as: :delete_multiple
     end
 
