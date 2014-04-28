@@ -1,4 +1,111 @@
 %h1 Edit Student
 
 .wdn-main#maincontent
-  = render 'form'
+  = form_for @student, url: { action: @url }  do |f|
+    = render 'shared/error_messages', object: @student
+    %span.required *
+    = f.label :email, "Email"
+    = f.text_field :email
+    %span.required *
+    = f.label :first_name, "First Name"
+    = f.text_field :first_name
+    %span.required *
+    = f.label :last_name, "Last Name"
+    = f.text_field :last_name
+    %span.required *
+    = f.label :avatar, "Avatar (photo)"
+    = f.file_field :avatar
+    - if current_user.utype == "student"
+      %fieldset.wdn-grid-set
+        %legend If you want to change following information, please contact instructor or admin
+        .bp1-wdn-col-one-fourth
+          %span.required *
+          = f.label "Major"
+          %ol
+            %li
+              = f.radio_button :major, "Computer Science", :disabled => true
+              = f.label :major_computer_science, "Computer Science"
+            %li
+              = f.radio_button :major, "Computer Engineering", :disabled => true
+              = f.label :major_computer_engineering, "Computer Engineering"
+        .bp1-wdn-col-one-fourth
+          %span.required *
+          = f.label :classname, "Course"
+          %ol
+            %li
+              = f.radio_button :classname, "CSCE 486/488", :disabled => true
+              = f.label :classname_csce_486488, "CSCE 486/488"
+            %li
+              = f.radio_button :classname, "CSCE 487/489", :disabled => true
+              = f.label :classname_csce_487489, "CSCE 487/489"
+        .bp1-wdn-col-one-fourth
+          %span.required *
+          = f.label "Semester"
+          - @year = Time.now.year
+          - @semester_fall = "semester_fall_#{@year}"
+          - @semester_spring = "semester_spring_#{@year}"
+          %ol
+            %li
+              = f.radio_button :semester, "Fall #{@year}", :disabled => true
+              = f.label @semester_fall, "Fall #{@year}"
+            %li
+              = f.radio_button :semester, "Spring #{@year}", :disabled => true
+              = f.label @semester_spring, "Spring #{@year}"
+        .bp1-wdn-col-one-fourth
+          %span.required *
+          = f.label "Availability"
+          %ol
+            %li
+              = f.radio_button :availability, "1",:disabled => true
+              = f.label :availability_1, "One Semester"
+            %li
+              = f.radio_button :availability, "2",:disabled => true
+              = f.label :availability_2, "Two Semesters"
+    - else
+      .wdn-grid-set
+        .bp1-wdn-col-one-fourth
+          %span.required *
+          = f.label "Major"
+          %ol
+            %li
+              = f.radio_button :major, "Computer Science"
+              = f.label :major_computer_science, "Computer Science"
+            %li
+              = f.radio_button :major, "Computer Engineering"
+              = f.label :major_computer_engineering, "Computer Engineering"
+        .bp1-wdn-col-one-fourth
+          %span.required *
+          = f.label :classname, "Course"
+          %ol
+            %li
+              = f.radio_button :classname, "CSCE 486/488"
+              = f.label :classname_csce_486488, "CSCE 486/488"
+            %li
+              = f.radio_button :classname, "CSCE 487/489"
+              = f.label :classname_csce_487489, "CSCE 487/489"
+        .bp1-wdn-col-one-fourth
+          %span.required *
+          = f.label "Semester"
+          - @year = Time.now.year
+          - @semester_fall = "semester_fall_#{@year}"
+          - @semester_spring = "semester_spring_#{@year}"
+          %ol
+            %li
+              = f.radio_button :semester, "Fall #{@year}"
+              = f.label @semester_fall, "Fall #{@year}"
+            %li
+              = f.radio_button :semester, "Spring #{@year}"
+              = f.label @semester_spring, "Spring #{@year}"
+        .bp1-wdn-col-one-fourth
+          %span.required *
+          = f.label "Availability"
+          %ol
+            %li
+              = f.radio_button :availability, "1"
+              = f.label :availability_1, "One Semester"
+            %li
+              = f.radio_button :availability, "2"
+              = f.label :availability_2, "Two Semesters"
+    = f.submit "Submit"
+    %span.required *
+    denotes required field
