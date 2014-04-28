@@ -1,0 +1,2 @@
+module InstructorTermsHelper
+end

@@ -1,5 +1,7 @@
 %h1 Teams
 
+%hr
+
 .wdn-main#maincontent
   - if @teams.empty?
     %p No team was created.
@@ -22,7 +24,8 @@
             %td{style: 'text-align: center'}= check_box_tag 'team[]', t.id
             %td
               %a{ href: team_path(t.id) }= t.name
-            %td= t.project.name
+            %td
+              %a{ href: project_path(t.project_id)}= t.project.name
             %td
               %a{ href: "#{t.google_drive}", target: "_blank"} Google Drive
             %td

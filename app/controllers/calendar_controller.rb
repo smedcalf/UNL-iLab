@@ -70,7 +70,7 @@ class CalendarController < ApplicationController
           @editable = true
         end
       when "student"
-        if current_user.student.team_id == @event.team_id
+        if current_user.student.team_id == @event.team_id || current_user.id == @event.user_id
           @editable = true
         end
     end
@@ -126,6 +126,7 @@ class CalendarController < ApplicationController
     end
   end
 
+  #TODO: Destroy doesn't work any more
   def destroy
     @event = Event.find(params[:id])
 

@@ -9,16 +9,18 @@ class UsersController < ApplicationController
 
   def manage_users
     if params[:user].nil?
-      flash[:error] = "No student was selected."
+      flash[:error] = "No user was selected."
       redirect_to users_path
     else
       case params[:commit]
         when 'delete'
           User.destroy(params[:user])
+          flash[:success] = "Selected users have been removed."
         when 'assign'
 					if acceptable_utype
           	User.where(:id => params[:user]).update_all(:utype => params[:utype])
             @user = User.find(params[:user])
+            flash[:success] = "User type has been successfully assigned."
 					end
       end
       UserMailer.user_type_confirmation(@user.first).deliver
@@ -129,9 +131,10 @@ class UsersController < ApplicationController
 		end
 
 		def acceptable_utype
-			if (params[:utype] == "instructor" ||
-				 params[:utype] == "student" ||
-				 params[:utype] == "sponsor")
+			if (params[:utype] == "admin" ||
+          params[:utype] == "instructor" ||
+          params[:utype] == "student" ||
+          params[:utype] == "sponsor")
 				return true
 			end
 			false

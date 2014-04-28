@@ -67,7 +67,7 @@
           %p.c-text No url
 - if @editable
   %a.wdn-button.wdn-button-triad{href: edit_event_path(@event.id) } Edit
-  =link_to "Delete", event_path(@event), :method => :delete, class: "wdn-button wdn-button-energetic", confirm: "Are you confirm to delete this task?"
+  =link_to "Delete", event_path, :method => :delete, class: "wdn-button wdn-button-energetic", confirm: "Are you confirm to delete this task?"
   - if @event.team_id
     %a.wdn-button.wdn-button-complement{style: "float: right; background: #c0c0c0", href: work_track_team_path(:id => @event.team_id) } Back to Calendar
   - else

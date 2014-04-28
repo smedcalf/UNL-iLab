@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
 	end
 
 	def instructor?
-		 self.utype == "instructor"
+		 self.utype == "instructor" || self.utype == "admin"
 	end
 
 	def student?

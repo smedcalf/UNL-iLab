@@ -1,4 +1,7 @@
 = form_for @instructor, url: { action: @url } do |f|
+  - if current_user.utype == "instructor"
+    %legend If you want to update/add semester, please contact admin
+
   = render 'shared/error_messages', object: @instructor
   %span.required *
   = f.label :email, "Email"

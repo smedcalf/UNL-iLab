@@ -54,5 +54,13 @@ class Student < ActiveRecord::Base
 		else
 			self.avatar.url
 		end
-	end
+  end
+
+  private
+
+    def set_defaults
+      if self.new_record?
+        self.status = 0 if self.status.blank?
+      end
+    end
 end

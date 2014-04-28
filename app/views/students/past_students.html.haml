@@ -1,10 +1,10 @@
-%h1 Students
+%h1 Past Students
 
 %hr
 
 .wdn-main#maincontent
   - if @students.empty?
-    No student was created.
+    No previous student.
   - else
     = form_tag("/students/manage-students", method: "post") do
       = render 'shared/error_messages'
@@ -17,7 +17,6 @@
             %th Last Name
             %th Email
             %th Team
-            -#%th Major
             %th Semester
             %th Availability
             %th
@@ -48,5 +47,6 @@
       -#= label_tag  "team", "Assign to"
       %section.wdn-grid-set
       %span{ style: 'font-size: 25px; color: #979797' } &#8627;
-      = submit_tag 'deactivate', {style: 'font-size: 10px !important; background: rgb(84, 129, 224)', confirm: 'Are you sure you want to deactivate these students?'}
-      = submit_tag 'delete', {style: 'font-size: 10px !important; background: rgb(224, 95, 84)', confirm: 'Are you sure you want to delete this student?'}
+      = submit_tag 'reactivate', {style: 'font-size: 10px !important; background: rgb(76, 190, 126)', confirm: 'Are you sure you want to delete this student?'}
+      - if current_user.utype == "admin"
+        = submit_tag 'delete', {style: 'font-size: 10px !important; background: rgb(224, 95, 84)', confirm: 'Are you sure you want to delete this student?'}

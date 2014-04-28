@@ -15,6 +15,12 @@ Ilab::Application.routes.draw do
     end
   end
 
+  resources :instructor_terms do
+    collection do
+      post 'add-semester', to: 'instructor_terms#addSemester', as: :add_semester
+    end
+  end
+
   resources :sessions, only: [:new, :create, :destroy, :index]
   resources :static_pages
 
@@ -47,7 +53,8 @@ Ilab::Application.routes.draw do
     resources :preferences, controller: :student_preferences
 
     collection do
-      post  'delete-students', to: 'students#destroy', as: :delete_multiple
+      post  'manage-students', to: 'students#manage_students', as: :manage_students
+      get   'past-students', to: 'students#past_students', as: :past_students
     end
 
     member do

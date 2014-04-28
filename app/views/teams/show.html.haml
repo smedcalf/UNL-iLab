@@ -10,20 +10,23 @@
       = render 'shared/error_messages'
       %table
         %thead
-          %th
+          - if current_user.utype != "student" && current_user.utype != "sponsor"
+            %th
           %th Name
           %th Email
         - @team.students.each do |s|
           %tr
-            %td
-              = check_box_tag 'student[]', s.id
+            - if current_user.utype != "student" && current_user.utype != "sponsor"
+              %td
+                = check_box_tag 'student[]', s.id
             %td
               %a{href: student_path(s.id) }= s.full_name
             %td
               %a.wdn-icon-mail{href: "mailto:#{s.email}"}= s.email
-      %div{style:"float: left"}
-      %span{style: 'font-size: 25px;'} &#8627;
-      = submit_tag "Unassign", {style: 'font-size: 10px !important; background: rgb(224, 95, 84)', confirm: 'Are you confirm to unassign students?'}
+      - if current_user.utype != "student" && current_user.utype != "sponsor"
+        %div{style:"float: left"}
+        %span{style: 'font-size: 25px;'} &#8627;
+        = submit_tag "Unassign", {style: 'font-size: 10px !important; background: rgb(224, 95, 84)', confirm: 'Are you confirm to unassign students?'}
     - if instructor? || sponsor? || (@team.has_user? current_user)
       - if @team.google_drive.present?
         %h5
@@ -33,5 +36,5 @@
         %h5
           Trello:
           %a{href: @team.trello_link, style: "font-weight: 100"}= @team.trello_link
-- if instructor?
+- if current_user.utype != "student" && current_user.utype != "sponsor"
   %a.wdn-button.wdn-button-triad{ href: edit_team_path(@team.id)} Edit

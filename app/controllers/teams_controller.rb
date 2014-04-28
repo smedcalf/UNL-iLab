@@ -35,11 +35,21 @@ class TeamsController < ApplicationController
   end
 
   def index
-    if current_user.sponsor.nil?
-      @teams = Team.all
-    else
+    if current_user.utype == "instructor"
+      @teams = []
+      @instructor_terms = InstructorTerm.where(:instructor_id => current_user.instructor.id)
+      @instructor_terms.each do |it|
+        Team.all.each do |t|
+          if t.project.semester == it.semester
+          @teams << t
+          end
+        end
+      end
+    elsif current_user.sponsor
       @projects = Project.where(:sponsor_id => current_user.sponsor.id)
       @teams = Team.where(:project_id => @projects.ids)
+    else
+      @teams = Team.all
     end
   end
 

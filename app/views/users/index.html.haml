@@ -2,7 +2,7 @@
 
 = render 'shared/error_messages'
 
-.maincontent#maincontent
+.wdn-main#maincontent
   -if @users.empty?
     No User was created.
   -else
@@ -25,6 +25,6 @@
               =link_to "See Details", u
       %div{style:"float: left"}
         %span{style: 'font-size: 25px;'} &#8627;
-        = select_tag 'utype', options_for_select([['Please Select...', ''], ['Instructor', 'instructor'], ['Student', 'student'], ['Sponsor', 'sponsor']]), {style: 'font-size: 14px; width: 40%'}
+        = select_tag 'utype', options_for_select([['Please Select...', ''], ['admin', 'admin'],['Instructor', 'instructor'], ['Student', 'student'], ['Sponsor', 'sponsor']]), {style: 'font-size: 14px; width: auto'}
         = submit_tag 'assign', {style: 'font-size: 10px !important; background: rgb(79, 199, 146)'}
         = submit_tag 'delete', {style: 'font-size: 10px !important; background: rgb(224, 95, 84)', confirm: 'Are you confirm to delete?'}

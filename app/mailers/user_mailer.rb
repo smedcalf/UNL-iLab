@@ -1,18 +1,22 @@
 class UserMailer < ActionMailer::Base
   default from: "InnovationLab@cse.unl.edu"
+  default to: "wangzhen614@gmail.com"
 
   def registration_confirmation(user)
-    mail(:to => user.email, :subject => "From iLab: Registration Confirmation")
+    #mail(:to => user.email, :subject => "From iLab: Registration Confirmation")
+    mail(:to => "wangzhen614@gmail.com", :subject => "From iLab: Registration Confirmation")
   end
 
   def user_type_confirmation(user)
-    mail(:to => user.email, :subject => "From iLab: Your User Type was set as #{user.utype.upcase}")
+    #mail(:to => user.email, :subject => "From iLab: Your User Type was set as #{user.utype.upcase}")
+    mail(:to => "wangzhen614@gmail.com", :subject => "From iLab: Your User Type was set as #{user.utype.upcase}")
   end
 
   def reset_password_confirmation(user, password)
     @password = password
     @user = user
-    mail(:to => user.email, :subject => "From iLab: Reset Password to #{@password}")
+    #mail(:to => user.email, :subject => "From iLab: Reset Password to #{@password}")
+    mail(:to => "wangzhen614@gmail.com", :subject => "From iLab: Reset Password to #{@password}")
   end
 
   def team_task_confirmation(event)
@@ -35,7 +39,8 @@ class UserMailer < ActionMailer::Base
     @url = event_path(@event.id)
     @team = Team.find(@event.team_id)
 
-    mail(:to => @emails, :subject => "From ilab: New team task was created")
+    #mail(:to => @emails, :subject => "From ilab: New team task was created")
+    mail(:to => "wangzhen614@gmail.com", :subject => "From ilab: New team task was created")
 
   end
 

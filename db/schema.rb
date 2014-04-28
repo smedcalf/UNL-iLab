@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140413195509) do
+ActiveRecord::Schema.define(version: 20140426170837) do
 
   create_table "events", force: true do |t|
     t.string   "name"
@@ -26,6 +26,15 @@ ActiveRecord::Schema.define(version: 20140413195509) do
     t.boolean  "completed",   default: false, null: false
     t.integer  "user_id"
   end
+
+  create_table "instructor_terms", force: true do |t|
+    t.integer  "instructor_id"
+    t.string   "semester"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "instructor_terms", ["instructor_id"], name: "index_instructor_terms_on_instructor_id"
 
   create_table "instructors", force: true do |t|
     t.string   "email"

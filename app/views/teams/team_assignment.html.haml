@@ -1,15 +1,13 @@
 %h1 Team Assignment
 
+%hr
+
 .wdn-main#maincontent
   - if @students.empty?
     No student was created.
   - else
     = form_tag("/teams/add-students", method: "post") do
-      = render 'shared/error_messages', object: nil
-      %section.wdn-grid-set{style: "float: right"}
-        = select_tag "team", options_from_collection_for_select(@teams, "id", "name"),
-        :prompt => "Please Select a Team",style: "width: auto", class: "wdn-col-one-half", style: "font-size: 18px !important"
-        = submit_tag "Assign", class: "wdn-col-one-half", style: "font-size: 10px !important; margin: 0 10px;"
+      = render 'shared/error_messages'
       %table.display#students
         %thead
           %tr
@@ -48,3 +46,7 @@
                 %a{ href: student_path(s.id), style: "border-bottom: 0px", title: "show student" } &#10147;
 
       -#= label_tag  "team", "Assign to"
+      %section.wdn-grid-set{style: "float: right"}
+      = select_tag "team", options_from_collection_for_select(@teams, "id", "name"),
+      :prompt => "Please Select a Team",style: "width: auto", class: "wdn-col-one-half", style: "font-size: 18px !important"
+      = submit_tag "Assign", class: "wdn-col-one-half", style: "font-size: 10px !important; margin: 0 10px;"

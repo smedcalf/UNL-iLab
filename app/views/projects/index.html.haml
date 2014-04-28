@@ -1,5 +1,7 @@
 %h1 Projects
 
+%hr
+
 .wdn-main.maincontent#maincontent
   - if @projects.empty?
     %p No project was created.
@@ -32,7 +34,7 @@
                 - if p.proposal?
                   %a{href: "#{p.proposal.url}", title: "#{p.proposal_file_name}"}= truncate(p.proposal_file_name, :length => 20, :omission => '...')
                 - else
-                  No Proposal Upload
+                  No Proposal
               %td
                 - if p.active
                   Active

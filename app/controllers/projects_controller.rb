@@ -4,10 +4,18 @@ class ProjectsController < ApplicationController
   before_action :signed_in_instructor, only:  [:new, :create, :manage_projects]
 
   def index
-    if current_user.sponsor.nil?
-      @projects = Project.all
-    else
+    if current_user.utype == "instructor"
+      @projects = []
+      @instructor_terms = InstructorTerm.where(:instructor_id => current_user.instructor.id)
+      @instructor_terms.each do |it|
+        Project.where(:semester => it.semester).each do |p|
+          @projects << p
+        end
+      end
+    elsif current_user.utype == "sponsor"
       @projects = current_user.sponsor.projects
+    else
+      @projects = Project.all
     end
   end
 

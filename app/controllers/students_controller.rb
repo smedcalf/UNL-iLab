@@ -1,6 +1,22 @@
 class StudentsController < ApplicationController
   before_action :signed_in_user
+  before_action :instructor?, only: [:index]
   before_action :correct_student || :correct_instructor, only: [:edit, :update]
+
+  #!TODO previous_students
+  def past_students
+    if current_user.utype == "admin"
+      @students = Student.all.where(['status < ?', 0])
+    else
+      @students = []
+      @instructor_terms = InstructorTerm.where(:instructor_id => current_user.instructor.id)
+      @instructor_terms.each do |it|
+        Student.where(:semester => it.semester, :status => -1).each do |s|
+          @students << s
+        end
+      end
+    end
+  end
 
   def new
   	@student = Student.new
@@ -59,8 +75,17 @@ class StudentsController < ApplicationController
   end
 
   def index
-  	@students = Student.all
-    @teams = Team.all.sort_by { |t| t.name }
+    if current_user.utype == "admin"
+      @students = Student.all.where(['status >= ?', 0])
+    else
+      @students = []
+      @instructor_terms = InstructorTerm.where(:instructor_id => current_user.instructor.id)
+      @instructor_terms.each do |it|
+        Student.where(:semester => it.semester, :status => '>= 0').each do |s|
+          @students << s
+        end
+      end
+    end
   end
 
   def update
@@ -75,9 +100,26 @@ class StudentsController < ApplicationController
     end
   end
 
-  def destroy
-    Student.destroy(params[:student])
-    redirect_to students_path
+  def manage_students
+    if params[:student].nil?
+      flash[:error] = 'No student was selected!'
+      redirect_to students_path
+    else
+      case params[:commit]
+        when 'delete'
+          Student.destroy(params[:student])
+          flash["success"] = "Selected Students were deleted."
+          redirect_to students_path
+        when 'deactivate'
+          Student.where(:id => params[:student]).update_all(:status => -1)
+          flash["success"] = "Selected Students were deactivated, please check past students"
+          redirect_to past_students_students_path
+        when 'reactivate'
+          Student.where(:id => params[:student]).update_all(:status => 0)
+          flash["success"] = "Selected Students were reactivated, please check current students"
+          redirect_to students_path
+      end
+    end
   end
 
   def apply

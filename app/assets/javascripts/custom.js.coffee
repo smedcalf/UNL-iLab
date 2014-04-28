@@ -122,7 +122,7 @@ jQuery ->
       ]
     }
     bJQueryUI: true
-    aaSorting: [[ 0, "asc" ]]
+    aaSorting: [[ 1, "asc" ]]
     sPaginationType: "full_numbers",
     aLengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]]
     iDisplayLength : -1
@@ -151,7 +151,7 @@ jQuery ->
       ]
     }
     bJQueryUI: true
-    aaSorting: [[ 0, "asc" ]]
+    aaSorting: [[ 1, "asc" ]]
     sPaginationType: "full_numbers",
     aLengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]]
     iDisplayLength : -1
@@ -240,7 +240,7 @@ jQuery ->
 #      ]
 #    }
     bJQueryUI: true
-    aaSorting: [[ 0, "desc" ]]
+    aaSorting: [[ 1, "desc" ]]
     sPaginationType: "full_numbers",
     aLengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]]
     iDisplayLength : -1
@@ -258,6 +258,33 @@ jQuery ->
       null,
       null,
       {"bSortable": false}
+    ]
+    bStateSave: true
+    oTableTools: {
+      "aButtons": [
+        "copy",
+        "print",
+        {
+          "sExtends":    "collection",
+          "sButtonText": 'Export <span class="caret" />',
+          "aButtons":    [ "csv", "xls", "pdf" ],
+          "sSwfPath": "media/swf/copy_csv_xls_pdf.swf"
+        }
+      ]
+    }
+    bJQueryUI: true
+    aaSorting: [[ 1, "desc" ]]
+    sPaginationType: "full_numbers",
+    aLengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]]
+    iDisplayLength : -1
+  )
+
+  $('table#instructorTerms').dataTable(
+    sDom: 'T<"clear">lfrtip',
+    aoColumns: [
+      {"bSortable": false}
+      null,
+      null
     ]
     bStateSave: true
     oTableTools: {

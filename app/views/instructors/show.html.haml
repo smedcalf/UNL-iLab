@@ -1,9 +1,15 @@
 %h1
-	%strong= @instructor.full_name
+  %strong= @instructor.full_name
 = render 'shared/error_messages'
-%hr
-%h4= "Email: #{@instructor.email}"
-%h4= "Classname: #{@instructor.classname}"
-%h4= "Semeseter: #{@instructor.semester}"
-- if current_instructor?(@instructor.id)
-	%a.wdn-button.wdn-button-triad{ href: edit_instructor_path(@instructor.id) } Edit
+.wdn-main#maincontent
+  %hr
+  %h4
+    Email:
+    %a.wdn-icon-mail{href: "mailto:#{@instructor.email}"}= @instructor.email
+  %h4= "Classname: #{@instructor.classname}"
+  %h4
+    Semeseter:
+    -@instructor.instructor_terms.each do |it|
+      %span{style: "margin-right: 10px;"}= it.semester
+-if current_instructor?(@instructor.id)
+  %a.wdn-button.wdn-button-triad{ href: edit_instructor_path(@instructor.id) } Edit
