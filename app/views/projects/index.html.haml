@@ -47,7 +47,7 @@
                   Disabled
               %td
                 %a.wdn-button.wdn-button-triad{ href: project_path(p.id), style: 'font-size: 10px !important;' } Show
-      - if current_user.sponsor.nil?
+      - if current_user.instructor? || current_user.admin?
         %div{style:"float: left"}
           %span{style: 'font-size: 25px;'} &#8627;
           = select_tag 'option', options_for_select(@project_manage_options.collect {|p| [ p['label'], p['value'] ] }), {style: "width: auto"}

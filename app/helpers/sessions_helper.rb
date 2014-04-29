@@ -95,6 +95,10 @@ module SessionsHelper
 		self.current_user = nil
 	end
 
+	def admin?
+		current_user.admin?
+	end
+
 	def student?
 		current_user.student?
 	end
