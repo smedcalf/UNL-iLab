@@ -139,11 +139,11 @@ class CalendarController < ApplicationController
 
   private
 
-  def event_params
-    params.require(:event).permit(:name, :description, :url, :priority, :team_id, :completed, :start_at, :end_at)
-  end
+    def event_params
+      params.require(:event).permit(:name, :description, :url, :priority, :team_id, :completed, :start_at, :end_at)
+    end
 
-  def set_event
-    @event = Event.find_by_id(params[:id])
-  end
+    def set_event
+      @event = Event.find_by_id(params[:id])
+    end
 end
