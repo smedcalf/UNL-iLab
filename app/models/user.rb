@@ -45,6 +45,10 @@ class User < ActiveRecord::Base
 		self.utype == "sponsor"
   end
 
+	def admin?
+		self.utype == "admin"
+	end
+
   def profile
     if instructor?
       self.instructor
