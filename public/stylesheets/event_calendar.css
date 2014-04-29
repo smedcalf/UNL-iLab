@@ -159,6 +159,10 @@ a.ec-day-link {
   
 }
 
+.ec-day-names {
+    font-size: 10px;
+}
+
 .ec-completed-true {
     background: #008A2C !important;
 }

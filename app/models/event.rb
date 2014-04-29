@@ -19,7 +19,7 @@
 class Event < ActiveRecord::Base
   has_event_calendar
 
-  belongs_to :user, dependent: :destroy
+  belongs_to :user
 
   validates :name, :description, :user_id, :start_at, :end_at, presence: true
 

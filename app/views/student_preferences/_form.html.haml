@@ -14,8 +14,7 @@
   = f.select :project_id, options_for_select(@projects, @project.id)
   %span.required *
   = f.label :rating, "Rating"
-  = f.select :rating, [0,1,2,3,4,5], :prompt => "Please Select"
-  -# TODO add upload coverletters and resume
+  = f.select :rating, options_for_select(@rating_options.collect {|p| [ p['label'], p['value'] ] }, @student_preference.rating)
   %span.required *
   = f.label :cover_letter, "Cover Letter"
   = f.file_field :cover_letter

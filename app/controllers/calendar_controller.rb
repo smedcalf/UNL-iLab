@@ -1,6 +1,5 @@
 class CalendarController < ApplicationController
 
-  #TODO Calendar not working any more
   def index
     @month = (params[:month] || (Time.zone || Time).now.month).to_i
     @year = (params[:year] || (Time.zone || Time).now.year).to_i
@@ -14,7 +13,6 @@ class CalendarController < ApplicationController
       end
     else
       @event_strips = Event.event_strips_for_month(@shown_month, :conditions => "user_id = #{current_user.id} AND team_id is null")
-      #@event_strips = EventCalendar.event_strips_for_month(@shown_month)
     end
   end
 
@@ -38,7 +36,7 @@ class CalendarController < ApplicationController
     @event = Event.new(event_params)
     @event.user_id = current_user.id
     if current_user.utype == "student"
-      if event_params[:team_id]
+      if event_params[:team_id] != ""
         @event.team_id = current_user.student.team_id
       end
     end
@@ -126,11 +124,11 @@ class CalendarController < ApplicationController
     end
   end
 
-  #TODO: Destroy doesn't work any more
   def destroy
     @event = Event.find(params[:id])
 
     Event.destroy(params[:id])
+    flash[:success] = "Event has been deleted. "
 
     if @event.team_id
       redirect_to calendar_team_path(@event.team_id)

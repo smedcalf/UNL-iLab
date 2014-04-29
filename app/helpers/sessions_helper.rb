@@ -199,7 +199,7 @@ module SessionsHelper
         project = student_preference.project
       end
 
-      unless (project.status)
+      unless (project.status || current_user.instructor? || current_user.utype == "admin")
         flash[:warning] = "Project has been closed to apply!"
         redirect_to :back
       end

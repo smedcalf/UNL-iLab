@@ -13,16 +13,17 @@
 
       %tbody
         - @instructors.each do |i|
-          %tr
-            %td= check_box_tag 'instructor[]', i.id
-            %td
-              %a{href: instructor_path(i.id)}=i.full_name
-            %td
-              - i.instructor_terms.each do |it|
-                %span{style: "margin-left: 10px; border-bottom: 1px solid"}= it.semester
+          -if i.user.utype == "instructor"
+            %tr
+              %td= check_box_tag 'instructor[]', i.id
+              %td
+                %a{href: instructor_path(i.id)}=i.full_name
+              %td
+                - i.instructor_terms.each do |it|
+                  %span{style: "margin-left: 10px; border-bottom: 1px solid"}= it.semester
 
     %div{style:"float: left; width: 100%"}
       %span{style: 'font-size: 25px;'} &#8627;
-      = select_tag 'semester', options_for_select(@semester_options.collect {|p| [ p['label'], p['value'] ] }), {style: 'font-size: 12px; width: auto'}
-      = submit_tag 'add', {style: 'font-size: 8px !important; background: rgb(79, 199, 146)'}
-      = submit_tag 'unassign', {style: 'font-size: 8px !important; background: rgb(224, 95, 84)', confirm: 'Are you confirm to unassign?'}
+      = select_tag 'semester', options_for_select(@semester_options.collect {|p| [ p['label'], p['value'] ] }), prompt: 'Please Select a Semester', style: "width: auto"
+      = submit_tag 'add', {style: 'font-size: 10px !important; background: rgb(79, 199, 146)'}
+      = submit_tag 'unassign', {style: 'font-size: 10px !important; background: rgb(224, 95, 84)', confirm: 'Are you confirm to unassign?'}

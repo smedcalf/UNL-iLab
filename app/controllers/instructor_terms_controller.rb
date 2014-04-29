@@ -51,17 +51,17 @@ class InstructorTermsController < ApplicationController
     end
   end
 
-    def semester_options
-      if Time.now.month >= 8
-        @current_year = Time.now.year
-        @last_year = Time.now.year + 1
-      else
-        @current_year = Time.now.year
-        @last_year = Time.now.year - 1
-      end
-      @semester_options = [{"value" => "Fall #{@last_year}", "label" => "Fall #{@last_year}"},
-                           {"value" => "Spring #{@last_year}", "label" => "Spring #{@last_year}"},
-                           {"value" => "Fall #{@current_year}", "label" => "Fall #{@current_year}"},
-                           {"value" => "Spring #{@current_year}", "label" => "Spring #{@current_year}"}]
+  def semester_options
+    if Time.now.month >= 8
+      @current_year = Time.now.year
+      @last_year = Time.now.year + 1
+    else
+      @current_year = Time.now.year
+      @last_year = Time.now.year - 1
     end
+    @semester_options = [{"value" => "Fall #{@last_year}", "label" => "Fall #{@last_year}"},
+                         {"value" => "Spring #{@last_year}", "label" => "Spring #{@last_year}"},
+                         {"value" => "Fall #{@current_year}", "label" => "Fall #{@current_year}"},
+                         {"value" => "Spring #{@current_year}", "label" => "Spring #{@current_year}"}]
+  end
 end

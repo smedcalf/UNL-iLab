@@ -27,6 +27,7 @@ Ilab::Application.routes.draw do
   # Messy routes
   resources :projects do
     collection do
+      get   'past-projects', to: 'projects#past', as: :past
       post  'manage-projects', to: 'projects#manage_projects', as: :manage
     end
   end

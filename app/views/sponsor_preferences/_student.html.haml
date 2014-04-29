@@ -15,7 +15,9 @@
           %th Project Name
           %th Proposal
           %th Student Preference
-          %th Sponsor Preference
+          %th
+            Sponsor Preference
+            .caption I think this student is a good fit for my project
           -#%th
       -@student_preferences.each do |sp|
         %tr
@@ -35,9 +37,9 @@
             - @sponsor_preference = sp.student.sponsor_preferences.find{ |s| s.project == sp.project }
 
             - if @sponsor_preference.nil?
-              = select_tag "rating[#{sp.id}][]", options_for_select([0, 1, 2, 3, 4, 5]), :prompt => "Please Select", :class => "no-margin"
+              = select_tag "rating[#{sp.id}][]", options_for_select(@rating_options.collect {|p| [ p['label'], p['value'] ] }), :prompt => "Please Select", :class => "no-margin"
             - else
-              = select_tag "rating[#{sp.id}][]", options_for_select([0, 1, 2, 3, 4, 5], @sponsor_preference.rating), :class => "no-margin"
+              = select_tag "rating[#{sp.id}][]", options_for_select(@rating_options.collect {|p| [ p['label'], p['value'] ] }, @sponsor_preference.rating), :class => "no-margin"
           -#%td
           -#  %a.wdn-button.wdn-button-triad{ href: edit_student_preference_path(sp.id) } Edit
     = f.submit "Save", style: "float: right; background: rgb(231, 172, 126)"

@@ -27,6 +27,7 @@ class SponsorPreferencesController < ApplicationController
   end
 
   def student
+    rating_options
     if current_user.instructor?
       @sponsor = current_user.instructor
     else
@@ -39,6 +40,7 @@ class SponsorPreferencesController < ApplicationController
   end
 
   def update_preferences
+    rating_options
     params[:rating].each do |key, value|
       @student_preference = StudentPreference.find(key.to_i)
       student_id = @student_preference.student_id
@@ -81,6 +83,24 @@ class SponsorPreferencesController < ApplicationController
 
     def sponsor_student_preference
       @sponsor_preference = SponsorPreference.find_by_id(params[:id])
+    end
+
+    def rating_options
+      if Student.count >= 10
+        @rating_options = [{"value" => "", "label" => "Please select..."},
+                           {"value" => "0", "label" => "0 Absolutely Disagree"},
+                           {"value" => "1", "label" => "1 Strongly Disagree"},
+                           {"value" => "2", "label" => "2 Disagree"},
+                           {"value" => "3", "label" => "3 Neither Agree nor Disagree"},
+                           {"value" => "4", "label" => "4 Agree"},
+                           {"value" => "5", "label" => "5 Strongly Agree"}]
+      else
+        @rating_options = [{"value" => "", "label" => "Please select..."},
+                           {"value" => "0", "label" => "0 Absolutely Disagree"},
+                           {"value" => "1", "label" => "1 Disagree"},
+                           {"value" => "2", "label" => "2 Agree"},
+                           {"value" => "3", "label" => "3 Strongly Agree"}]
+      end
     end
 
 end
