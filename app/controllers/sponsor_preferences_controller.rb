@@ -1,4 +1,6 @@
 class SponsorPreferencesController < ApplicationController
+  before_action :can_view_preferences
+
   def index
     if current_user.instructor?
       @sponsor = current_user.instructor
@@ -15,11 +17,6 @@ class SponsorPreferencesController < ApplicationController
 
   def show
   end
-
-  # def application
-  #   @projects = Project.where(:sponsor_id => params[:id])
-  #   @url = "preference"
-  # end
 
   def application
     @projects = Project.where(:sponsor_id => params[:sponsor_id])
@@ -103,4 +100,7 @@ class SponsorPreferencesController < ApplicationController
       end
     end
 
+    def can_view_preferences
+      sponsor? || instructor?
+    end
 end
