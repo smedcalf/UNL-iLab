@@ -51,6 +51,6 @@
         %div{style:"float: left"}
           %span{style: 'font-size: 25px;'} &#8627;
           = select_tag 'option', options_for_select(@project_manage_options.collect {|p| [ p['label'], p['value'] ] }), {style: "width: auto"}
-          = submit_tag 'submit', {style: 'font-size: 10px !important;', confirm: 'Are you confirm the option?', title: "Submit selected projects to be enabled/disabled.", class: "tooltip"}
-          = submit_tag 'deactivate', {style: 'font-size: 10px !important; background: rgb(255, 104, 3)', confirm: 'Are you sure you want to deactivate the selected projects?', title: "Deactivate projects, then it will disappear and show in the past projects.", class: "tooltip"}
+          = submit_tag 'submit', {style: 'font-size: 10px !important; background: #26C7BA;', confirm: 'Are you confirm the option?', title: "Submit selected projects to be enabled/disabled.", class: "tooltip"}
+          = submit_tag 'deactivate', {style: 'font-size: 10px !important; background: rgb(95, 129, 202)', confirm: 'Are you sure you want to deactivate the selected projects?', title: "Deactivate projects, then it will disappear and show in the past projects.", class: "tooltip"}
           = submit_tag 'delete', {style: 'font-size: 10px !important; background: rgb(224, 95, 84)', confirm: 'Are you sure you want to delete the selected projects?', title: "Delete selected projects.", class: "tooltip"}

@@ -38,5 +38,5 @@
         %p.t-text Cover Letter:
       %th
         %a.c-text{href: @student_preference.cover_letter.url, target: "_blank"}=@student_preference.cover_letter_file_name
-- if current_user.utype == "instructor" || current_user.utype == "student" && current_user.student.id = @student_preference.student_id
+- if current_user.utype == "instructor" || current_user.utype == "admin" || current_user.utype == "student" && current_user.student.id = @student_preference.student_id
   %a.wdn-button.wdn-button-triad{href: edit_student_preference_path(:student_id => @student_preference.student_id, :id => @student_preference.id) } Edit

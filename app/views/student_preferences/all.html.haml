@@ -28,8 +28,8 @@
             %td
               %a{href: sponsor_path(sp.sponsor.id)}= sp.sponsor.full_name
             %td
-              %a{href: "javascript: void(0)", onclick: "window.open('#{student_preference_path(:student_id => sp.student_id, :id => sp.id)}','name','height=750,width=1000');", disabled: true}= sp.rating
+              %a.tooltip{href: student_preference_path(:student_id => sp.student_id, :id => sp.id), title: "Click to review student application"}= sp.rating
       %section.wdn-grid-set
       %span{ style: 'font-size: 25px; color: #979797' } &#8627;
-      = submit_tag 'Delete', {style: 'font-size: 10px !important; background: rgb(224, 95, 84)', confirm: 'Are you sure you want to delete this student?'}
+      = submit_tag 'Delete', {style: 'font-size: 10px !important; background: rgb(224, 95, 84)', confirm: 'Are you sure you want to delete selected students\' preferences?'}
 

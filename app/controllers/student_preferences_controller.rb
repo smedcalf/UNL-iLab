@@ -10,7 +10,7 @@ class StudentPreferencesController < ApplicationController
   def new
     rating_options
     @student = Student.find_by_user_id(current_user.id)
-    @projects = Project.where(:semester => @student.semester).map { |project| [project.name, project.id] }
+    @projects = Project.where(:semester => @student.semester, :status => true).map { |project| [project.name, project.id] }
     @project = Project.find(params[:project_id])
     @student_preference = StudentPreference.new
     @url = 'create'
@@ -53,9 +53,13 @@ class StudentPreferencesController < ApplicationController
   end
 
   def destroy
-    StudentPreference.destroy(params[:student_preference])
+    if params[:student_preference]
+      StudentPreference.destroy(params[:student_preference])
+      flash[:success] = "Student preferences successfully deleted!"
+    else
+      flash[:error] = "Please select ratings you want to delete."
+    end
     redirect_to :back
-    flash[:success] = "Student preferences successfully deleted!"
   end
 
   def all
