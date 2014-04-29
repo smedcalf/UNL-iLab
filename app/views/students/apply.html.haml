@@ -11,8 +11,7 @@
           %th Project Name
           %th Sponsor Name
           %th Proposal
-          %th Active
-          %th Status
+          %th Enrollment
           %th Preference
           %th
       -@projects.each do |p|
@@ -30,11 +29,6 @@
             - else
               No Proposal
           %td
-            - if p.active
-              Available
-            - else
-              Not Available
-          %td
             - if p.status
               Open
             - else
@@ -50,7 +44,7 @@
           - else
             %td
               - @sp = StudentPreference.where(:student_id => current_user.student.id, :project_id => p.id).first
-              %a{href: student_preference_path(:student_id => current_user.student.id, :id => @sp.id)}=@sp.rating
+              %a.tooltip{title: "Click to review your application", href: student_preference_path(:student_id => current_user.student.id, :id => @sp.id)}=@sp.rating
             %td
               -#- if p.status
               %a.wdn-button.wdn-button-triad{ href: edit_student_preference_path(current_user.student.id, @sp.id) } Edit

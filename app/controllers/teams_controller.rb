@@ -41,7 +41,7 @@ class TeamsController < ApplicationController
       @instructor_terms.each do |it|
         Team.all.each do |t|
           if t.project.semester == it.semester
-          @teams << t
+            @teams << t
           end
         end
       end
