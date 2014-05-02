@@ -9,7 +9,7 @@
     {
       "uid": "9dd9e835aebe1060ba7190ad2b2ed951",
       "css": "search",
-      "code": 128269,
+      "code": 59394,
       "src": "fontawesome"
     },
     {
@@ -97,9 +97,21 @@
       "src": "fontawesome"
     },
     {
+      "uid": "815503841e980c848f55e0271deacead",
+      "css": "link",
+      "code": 59423,
+      "src": "entypo"
+    },
+    {
       "uid": "28f124a10127a47b9d9472699193d75a",
       "css": "print",
-      "code": 59394,
+      "code": 59649,
+      "src": "entypo"
+    },
+    {
+      "uid": "91426c82d94428a33353e495418435e3",
+      "css": "share",
+      "code": 59420,
       "src": "entypo"
     },
     {
@@ -111,7 +123,7 @@
     {
       "uid": "767fede84586366cd7d6c835be745454",
       "css": "phone",
-      "code": 128241,
+      "code": 59650,
       "src": "entypo"
     },
     {
@@ -159,7 +171,7 @@
     {
       "uid": "w3nzesrlbezu6f30q7ytyq919p6gdlb6",
       "css": "home",
-      "code": 128296,
+      "code": 59651,
       "src": "typicons"
     },
     {
@@ -187,9 +199,21 @@
       "src": "iconic"
     },
     {
+      "uid": "ec3648a34c41b70671dc38dbb72deb04",
+      "css": "twitter",
+      "code": 59421,
+      "src": "mfglabs"
+    },
+    {
       "uid": "ccf7ed45e7f05a89376f38abaa9d7d13",
       "css": "twitter-circled",
       "code": 61527,
+      "src": "mfglabs"
+    },
+    {
+      "uid": "53d4dc777eeba379412efba3ee1cac9e",
+      "css": "facebook",
+      "code": 59422,
       "src": "mfglabs"
     },
     {

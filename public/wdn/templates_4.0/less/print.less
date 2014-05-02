@@ -24,18 +24,19 @@ a:after {
 }
 
 .skipnav,
+.wdn-icon-menu,
 #wdn_social,
 #wdn_app_wrapper,
 #wdn_site_title span span,
-#wdn_resources, 
-#wdn_navigation_bar, 
+#wdn_resources,
+#wdn_navigation_bar,
 #footer { 
     .hide()
 }
 
 #header {
-	background: none;
 	padding-bottom: 1em;
+	background: none;
 	border-bottom: 2px solid;
 }
 
@@ -44,7 +45,8 @@ a:after {
 	width: auto;
 	height: auto;
 	margin: 0;
-	background: none;
+	top: 0;
+	left: 0;
 	
 	a {
 		.hide();
@@ -61,10 +63,10 @@ a:after {
 
 #wdn_institution_title {
 	.reset();
-    display: block;
-    color: @base-text;
-    .rem(18); 
-    .sans-serif-font();
+	display: block;
+	color: @base-text;
+	.rem(18);
+	.sans-serif-font();
 }
 
 #wdn_site_title {
@@ -72,8 +74,8 @@ a:after {
 	margin: -1em 0 0 0;
 	text-align: left;
 	.rem(30);
+}
 	
-	abbr[title]:before {
-		.rem(24);
-	}
+abbr[title]:before {
+	.rem(24);
 }
