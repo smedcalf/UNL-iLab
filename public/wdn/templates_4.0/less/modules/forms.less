@@ -17,7 +17,7 @@
     &[disabled] {
     	cursor: not-allowed;
         background-color: mix(@color, #666666, 45%);
-        color: darken(#FFFFFF, 10%);
+        color: darken(#FFFFFF, 5%);
         .box-shadow(0 2px 0px mix(@color, #666666, 30%));
     }
 }
@@ -39,10 +39,10 @@
     .transition(background-color 0.2s);
     .colorize-button(@neutral);
     
-    a& {
-    	// needed to make the selector more specific
-    	color: #ffffff;
-    	border: none;
+    .wdn-main a& {
+        // needed to make the selector more specific
+        color: #ffffff;
+        border: none;
     }
 }
 
