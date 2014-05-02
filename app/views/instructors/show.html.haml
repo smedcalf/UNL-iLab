@@ -11,5 +11,5 @@
     Semeseter:
     -@instructor.instructor_terms.each do |it|
       %span{style: "margin-right: 10px;"}= it.semester
--if current_instructor?(@instructor.id)
+-if current_instructor?(@instructor.id) || current_user.utype == "admin"
   %a.wdn-button.wdn-button-triad{ href: edit_instructor_path(@instructor.id) } Edit

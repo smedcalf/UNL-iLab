@@ -49,7 +49,7 @@ class UsersController < ApplicationController
       end
     elsif @user.sponsor?
       if @user.sponsor.nil?
-
+        redirect_to new_sponsor_path
       else
         redirect_to sponsor_path(@user.sponsor.id)
       end
