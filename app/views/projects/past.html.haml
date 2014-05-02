@@ -47,7 +47,7 @@
                   Disabled
               %td
                 %a.wdn-button.wdn-button-triad{ href: project_path(p.id), style: 'font-size: 10px !important;' } Show
-      - if current_user.sponsor.nil?
+      - if current_user.admin?
         %div{style:"float: left"}
           %span{style: 'font-size: 25px;'} &#8627;
           = submit_tag 'activate', {style: 'font-size: 10px !important; background: rgb(56, 185, 108)', confirm: 'Are you confirm to activate selected projects?', title: "Activate selected projects.", class: "tooltip"}
