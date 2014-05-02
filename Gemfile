@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '2.0.0'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.3'
 
@@ -9,6 +11,7 @@ require 'securerandom'
 gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
 gem 'jquery-ui-rails'
 gem 'mail', '2.5.4'
+gem 'rails_12factor'
 gem 'ruby-trello'
 gem 'paperclip'
 gem 'weary'
@@ -38,6 +41,10 @@ gem 'uglifier'
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
+end
+
+group :production do
+	gem 'pg'
 end
 
 # Use Capistrano for deployment

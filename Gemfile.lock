@@ -132,6 +132,7 @@ GEM
       activesupport (>= 3.0.0)
       cocaine (~> 0.5.3)
       mime-types
+    pg (0.17.1)
     polyglot (0.3.4)
     promise (0.3.0)
     pry (0.9.12.6)
@@ -154,6 +155,11 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.0.3)
       sprockets-rails (~> 2.0.0)
+    rails_12factor (0.0.2)
+      rails_serve_static_assets
+      rails_stdout_logging
+    rails_serve_static_assets (0.0.2)
+    rails_stdout_logging (0.0.3)
     railties (4.0.3)
       actionpack (= 4.0.3)
       activesupport (= 4.0.3)
@@ -244,9 +250,11 @@ DEPENDENCIES
   jquery-ui-rails
   mail (= 2.5.4)
   paperclip
+  pg
   pry-debugger
   pry-rails
   rails (= 4.0.3)
+  rails_12factor
   rspec-rails
   ruby-trello
   sass-rails

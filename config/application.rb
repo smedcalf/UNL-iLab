@@ -20,7 +20,9 @@ module Ilab
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
-    config.console = Pry
+    unless Rails.env == "production"
+      config.console = Pry
+    end
 
     config.generators do |g|
         g.assets false
