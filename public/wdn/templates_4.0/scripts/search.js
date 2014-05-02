@@ -55,7 +55,7 @@ define(['jquery', 'wdn', 'require', 'modernizr', 'navigation'], function($, WDN,
 					
 				if (!Modernizr.placeholder) {
 					WDN.loadJQuery(function() {
-						require(['plugins/placeholder/jquery.placeholder.min'], function() {
+						require(['plugins/placeholder/jquery.placeholder.min.js'], function() {
 							domQ.placeholder();
 						});
 					});

@@ -20,11 +20,6 @@
 	overflow: hidden;
 }
 
-.mejs-fullscreen {
-	/* set it to not show scroll bars so 100% will work */
-	overflow: hidden !important;
-}
-
 .mejs-container-fullscreen {
 	position: fixed;
 	left: 0;
@@ -187,7 +182,7 @@
 
 /* :focus for accessibility */
 .mejs-controls .mejs-button button:focus {
-	outline: dotted 1px #999;
+	outline: solid 1px yellow;
 }
 
 /* End: CONTROL BAR */
@@ -233,7 +228,6 @@
 
 /* Start: Progress Bar */
 .mejs-controls div.mejs-time-rail {
-	direction: ltr;
 	width: 200px;
 	padding-top: 5px;
 }

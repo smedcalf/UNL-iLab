@@ -29,7 +29,7 @@
 <!-- Place optional header elements here -->
 <link rel="home" href="http://wdn.unl.edu" />
 <script type="text/javascript"><!--
-require(['jquery', 'wdn', 'require', 'legacy', 'navigation'], function($, WDN, require, legacy, navigation) {
+require(['../../../../../../../../../RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/jquery-rails-3.1.0/vendor/assets/javascripts/jquery', 'wdn', 'require', 'legacy', 'navigation'], function($, WDN, require, legacy, navigation) {
     navigation.fetchSiteNavigation('http://wdn.unl.edu/', function(data, textStatus) {
     	if (textStatus == 'success') {
     		$(function() {

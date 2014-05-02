@@ -2,29 +2,19 @@
 
 // Enable OpenType features
 .kern {
-    -webkit-font-feature-settings+: "kern"; /* No variation */
-       -moz-font-feature-settings+: "kern" 1; /* Firefox 15.0 onwards explicitly set feature values */
-            font-feature-settings+: "kern"; /* No variation */
+   -webkit-font-feature-settings: "kern"; /* No variation */
+       -moz-font-feature-settings: "kern=1"; /* Firefox 4.0 to 14.0 */
+       -moz-font-feature-settings: "kern"; /* Firefox 15.0 onwards */
+       -moz-font-feature-settings: "kern" 1; /* Firefox 15.0 onwards explicitly set feature values */
+            font-feature-settings: "kern"; /* No variation */
 }
 
 .ligatures {
-    -webkit-font-feature-settings+: "liga"; /* No variation */
-       -moz-font-feature-settings+: "liga" 1; /* Firefox 15.0 onwards explicitly set feature values */
-            font-feature-settings+: "liga"; /* No variation */
-}
-
-// GENERAL
-
-.wdn-brand {
-    .brand-font;
-}
-
-.wdn-sans-serif {
-    .sans-serif-font;
-}
-
-.wdn-list-reset {
-    .list-reset;
+    -webkit-font-feature-settings: "liga"; /* No variation */
+       -moz-font-feature-settings: "liga=1"; /* Firefox 4.0 to 14.0 */
+       -moz-font-feature-settings: "liga"; /* Firefox 15.0 onwards */
+       -moz-font-feature-settings: "liga" 1; /* Firefox 15.0 onwards explicitly set feature values */
+            font-feature-settings: "liga"; /* No variation */
 }
 
 // HEADERS
@@ -57,37 +47,21 @@ p, span, div, ul, li, section, img {
     }
 }
 
-.wdn-heading, .wdn-impact {
-    .heading-font;
-}
-
 // All caps, Gotham header
-.wdn-sans-caps {
+
+.wdn-alt-header, .wdn-subhead {
     .sans-serif-font;
     line-height: 1.333;
     text-transform: uppercase;
-    letter-spacing: 0.02em;  
 }
 
 .wdn-alt-header {
-    .wdn-sans-caps;
     .rem(13,16);
-}
-
-.wdn-list-header {
-    .wdn-alt-header;
-    padding: 1em 0 0.254em;
-    border-bottom: 1px solid #d0cec6;
-
-    @media @bp2 {
-        padding: 1.333em 0 0.254em;
-    }
 }
 
 // SUBHEADS
 
 .wdn-subhead {
-    .wdn-sans-caps;
     display: block;
     margin: 0.75em 0;       
     color: fadeout(@base-text, 20%);
@@ -125,24 +99,40 @@ p {
     margin: 1rem 0;
 }
 
-// Magazine-style, larger introduction paragraph
-.wdn-intro-p {
-  .rem(17,21);
+.wdn-heading {
+    .heading-font;
 }
 
-p.small {
-  .rem(12,13);
+.wdn-impact {
+    .heading-font;
+}
+
+.wdn-brand {
+    .brand-font;
+}
+
+.wdn-sans-serif {
+    .sans-serif-font;
+}
+
+.wdn-list-reset {
+    .list-reset;
+}
+
+// Magazine-style, larger introduction paragraph
+.wdn-intro-p {
+    .rem(17,21);
 }
 
 // ICON FONT - see /wdn/templates_4.0/fonts/fontello/readme.md
 
  @font-face {
   font-family: 'wdn-icon';
-  src: url('../fonts/fontello/wdn-icon.eot?64658978');
-  src: url('../fonts/fontello/wdn-icon.eot?64658978#iefix') format('embedded-opentype'),
-       url('../fonts/fontello/wdn-icon.woff?64658978') format('woff'),
-       url('../fonts/fontello/wdn-icon.ttf?64658978') format('truetype'),
-       url('../fonts/fontello/wdn-icon.svg?64658978#wdn-icon') format('svg');
+  src: url('../../../../../app/assets/fonts/fontello/wdn-icon.eot?64658978');
+  src: url('../../../../../app/assets/fonts/fontello/wdn-icon.eot?64658978#iefix') format('embedded-opentype'),
+       url('../../../../../app/assets/fonts/fontello/wdn-icon.woff?64658978') format('woff'),
+       url('../../../../../app/assets/fonts/fontello/wdn-icon.ttf?64658978') format('truetype'),
+       url('../../../../../app/assets/fonts/fontello/wdn-icon.svg?64658978#wdn-icon') format('svg');
   font-weight: normal;
   font-style: normal;
 }

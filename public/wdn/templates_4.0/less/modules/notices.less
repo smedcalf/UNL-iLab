@@ -1,13 +1,10 @@
-@import "../_mixins/all.less";
+@import "../_mixins/all";
 
 .notice-color(@color, @border) when (lightness(@color) >= 50%) {
     background: @color;
     border-color: @border;
     .close {
         color: @dark-neutral;
-        a, a:hover {
-            color: @dark-neutral;
-        }
     }
     .message {
         color: @dark-neutral;
@@ -22,9 +19,6 @@
     border-color: @border;
     .close {
         color: #fff;
-        a, a:hover {
-            color: #fff;
-        }
     }
     .message {
         color: #fff;
@@ -124,7 +118,6 @@
             text-decoration: none;
             position: relative;
             z-index: 1;
-            color: #000;
         }
     }
 

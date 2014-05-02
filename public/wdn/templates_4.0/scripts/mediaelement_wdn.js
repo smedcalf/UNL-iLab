@@ -5,7 +5,7 @@
 define(['jquery', 'wdn', 'require'], function($, WDN, require) {
 	var pluginPath = './plugins/mediaelement/',
 	initd = false;
-
+	
 	return {
 		initialize: function(callback) {
 			var options = {
@@ -21,24 +21,35 @@ define(['jquery', 'wdn', 'require'], function($, WDN, require) {
 			if (!body.length || !body[0].className.match(/(^|\s)debug(\s|$)/)) {
 				min = '.min';
 			}
-
+			
 			if (!initd) {
 				WDN.loadCSS(require.toUrl(pluginPath + 'css/mediaelementplayer' + min + '.css'));
 				initd = true;
 			}
 
+			//Prevent captions from being auto-displayed
+			$('.wdn_player').each(function() {
+				if (this.textTracks) {
+					for (i=0; i<this.textTracks.length; i++) {
+						this.textTracks[i].mode = "hidden";
+					}
+				}
+			});
+			
 			var ready = function() {
 				$('video.wdn_player, audio.wdn_player').each(function() {
 					$(this).mediaelementplayer(options);
 				});
-
+				
 				if (callback) {
 					callback();
 				}
 			};
-
-			require([pluginPath + 'mediaelement-and-player' + min], function() {
-				require([pluginPath + 'mep-feature-googleanalytics'], ready);
+			
+			WDN.loadJQuery(function() {
+				require([pluginPath + 'mediaelement-and-player' + min], function() {
+					require([pluginPath + 'mep-feature-googleanalytics'], ready);
+				});
 			});
 		}
 	};

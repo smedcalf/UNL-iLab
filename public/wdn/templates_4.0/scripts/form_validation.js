@@ -3,7 +3,7 @@ define(['wdn', 'require'], function(WDN, require) {
 		initialize: function(callback) {
 			WDN.loadCSS(WDN.getTemplateFilePath('css/layouts/formvalidator.css'));
 			WDN.loadJQuery(function() {
-				require(['plugins/validator/jquery.validator.min'], callback);
+				require(['plugins/validator/jquery.validator.min.js'], callback);
 			});
 		}
 	};
