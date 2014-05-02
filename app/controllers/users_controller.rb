@@ -74,7 +74,7 @@ class UsersController < ApplicationController
 		@user = User.new(user_params)
 
 		unless User.any?
-			@user.utype = "instructor"
+			@user.utype = "admin"
 		end
 
 		if @user.save
