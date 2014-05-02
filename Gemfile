@@ -43,5 +43,9 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+group :production do
+	gem 'pg'
+end
+
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
