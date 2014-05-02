@@ -7,6 +7,10 @@
         width: 60rem;
     }
     
+    h3 {
+        color: #fff;
+    }
+    
     li {
         display: inline-block;
         text-transform: none;
@@ -34,7 +38,7 @@
                     font-style: normal;
                     font-weight: normal;
                     text-indent: 99em;
-                    content: '🔨';
+                    content: '\e903';
                     speak: none;
                     display: inline-block;
                     text-decoration: inherit;
@@ -90,10 +94,20 @@
             border-right: 12px solid transparent;
             border-bottom: 12px solid #fff;
             position: absolute;
-            left: ~"-webkit-calc(50% - 12px)";
-            left: ~"-moz-calc(50% - 12px)";
-            left: ~"calc(50% - 12px)";
+            left: 50%;
+            margin-left: -12px;
             bottom: -8px;
+        }
+    }
+
+    // Styles specific to the mobile view
+    @media @bp-nav-hidden {
+        min-height: 35px;
+        padding: 0.75em @mobile-pad 0;
+        color: #fff;
+
+        .selected a:after {
+            border-bottom-color: #e1dfd7;
         }
     }
 
@@ -105,6 +119,7 @@
             border-bottom-color: #5f5f4e;
         }
     }
+
 
     a {
         display: inline-block;

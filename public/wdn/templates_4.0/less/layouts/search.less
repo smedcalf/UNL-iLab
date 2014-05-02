@@ -1,24 +1,43 @@
 #wdn_search {
 
+    @media @bp-nav-hidden {
+        position: fixed;        
+        z-index: (@nav-z-index + 1);
+        top: 0;
+        left: (@nav-width * -1); // Hide off-screen
+        height: 56px;
+        width: @nav-width;
+        padding: 0 @mobile-pad;
+        background-color: @heading-text; 
+        border-bottom: 2px solid darken(@heading-text, 5%);
+        .transition(left @nav-transition-duration ease);
+    }
+
     .wdn-icon-search {
-        text-indent: -999em;
         position: absolute;
+        display: inline;
         text-align: left;
-        font-size: 1em;
+        text-indent: -999em;        
+        .rem(16);
         
         &:before {
             text-indent: 999em;
         }
         
         @media @bp-nav-hidden {
-            color: #e7b5b5;
-            margin-top: -2px;
+            color: @heading-text;
+            margin-left: 7px;
+            color: #fff;
+
+            &:before {
+                color: #444341;
+            }            
         }
 
         @media @bp-nav-full {
-            text-indent: 0;
             position: static;
-            
+            text-indent: 0;
+
             &:before {
                 text-indent: 0;
             }
@@ -31,13 +50,10 @@
 }
 
 #wdn_search_form {
-    position: absolute;
     z-index: 1; // Ensure we're above the site title
 
     @media @bp-nav-hidden {
-        left: 50%;
-        top: 50px;
-        margin-left: -95px;
+        top: 0.75em;
     }
 
     @media @bp-nav-full {
@@ -49,15 +65,15 @@
     }
 }
 
-#q {
+#wdn_search_query {
     width: 5px;
     border: 1px solid #d1ceb3;
     padding: 5px 5px 5px 22px;
-    .brand-font();
+    .sans-serif-font();
     .rem(16);
-    text-transform: uppercase;
     line-height: 1;
     color: darken(#d1ceb3, 45%);
+    background: transparent;
     .transition(width 0.3s ease);
 
     &:focus {
@@ -65,32 +81,37 @@
     }
 
     @media @bp-nav-hidden {
-        width: 160px;
-        border: 0;
-        padding: 3px 10px 0 22px;
+
+        width: 100%;
+        .box-sizing(border-box);
+        border: 1px solid #bcbab3;
+        border-left-width: 28px;
+        border-radius: 4px;
+        padding: 6px 10px;
         line-height: normal;
-        color: #e7b5b5;
-        background-color: transparent;
+        color: #b4b2ac;
+        .rem(13);
 
         &::-webkit-input-placeholder {
-            color: #e7b5b5;
+            color: #bcbab3;
         }
 
-        &:-moz-placeholder { /* Firefox 18- */
-            color: #e7b5b5;
+        &:-moz-placeholder {
+            color: #bcbab3;
         }
 
-        &::-moz-placeholder { /* Firefox 19+ */
-            color: #e7b5b5;
+        &::-moz-placeholder {
+            color: #bcbab3;
         }
 
         &:-ms-input-placeholder {  
-            color: #e7b5b5;
+            color: #bcbab3;
         }
 
         &:focus {
             outline: none;
-            color: #fff;
+            border-color: #e4e1d9;
+            color: #e4e1d9;
         }
     }
 
@@ -98,29 +119,31 @@
         width: 0;
         padding: 0;
         border-color: fadeout(#d1ceb3, 100%);
+        .brand-font();
+        text-transform: uppercase;
         //line-height: normal;
         background-color: fadeout(#fff, 100%);
 
         &::-webkit-input-placeholder {
-           opacity: 0.8;
+           opacity: 0;
            color: darken(#d1ceb3, 25%);
            padding-top: 2px;
         }
 
-        &:-moz-placeholder { /* Firefox 18- */
-           opacity: 0.8;
+        &:-moz-placeholder {
+           opacity: 0;
            color: darken(#d1ceb3, 25%);
            padding-top: 2px;
         }
 
-        &::-moz-placeholder { /* Firefox 19+ */
-           opacity: 0.8; 
+        &::-moz-placeholder {
+           opacity: 0; 
            color: darken(#d1ceb3, 25%);
            padding-top: 2px;
         }
 
         &:-ms-input-placeholder {  
-           opacity: 0.8; 
+           opacity: 0; 
            color: darken(#d1ceb3, 25%);
            padding-top: 2px;
         }
@@ -130,6 +153,22 @@
             padding: 2px 5px;
             border-color: darken(#d1ceb3, 10%);
             background-color: fadeout(#fff, 5%);
+            
+            &::-webkit-input-placeholder {
+               opacity: 0.8;
+            }
+    
+            &:-moz-placeholder {
+               opacity: 0.8;
+            }
+    
+            &::-moz-placeholder {
+               opacity: 0.8; 
+            }
+    
+            &:-ms-input-placeholder {  
+               opacity: 0.8; 
+            }
         }
     }
 
