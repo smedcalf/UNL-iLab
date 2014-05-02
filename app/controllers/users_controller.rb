@@ -21,9 +21,9 @@ class UsersController < ApplicationController
           	User.where(:id => params[:user]).update_all(:utype => params[:utype])
             @user = User.find(params[:user])
             flash[:success] = "User type has been successfully assigned."
+            UserMailer.user_type_confirmation(@user.first).deliver
 					end
       end
-      UserMailer.user_type_confirmation(@user.first).deliver
       redirect_to users_path
     end
   end
