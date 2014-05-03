@@ -20,7 +20,7 @@
 class Sponsor < ActiveRecord::Base
   belongs_to :user
 
-  has_many :projects
+  has_many :projects, dependent: :destroy
 
 	validates :first_name, presence: true
 	validates :last_name, presence: true

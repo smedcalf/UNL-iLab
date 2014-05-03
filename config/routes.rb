@@ -72,6 +72,7 @@ Ilab::Application.routes.draw do
       post   'add-students', to: 'teams#add_students', as: :add
       post   'unassign-students', to: 'teams#unassign_students', as: :unassign
       post   'delete-teams', to: 'teams#delete_teams', as: :delete_multiple
+      get    'team-assign-system', to: 'teams#opram_system', as: :opram_system
     end
 
     member do

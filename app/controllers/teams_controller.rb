@@ -1,6 +1,6 @@
 class TeamsController < ApplicationController
   before_action :signed_in_user
-  before_action :signed_in_instructor, except: [:index, :show, :work_track]
+  before_action :signed_in_instructor, except: [:index, :show, :work_track, :opram_system]
   
   def new
     @team = Team.new
@@ -97,6 +97,16 @@ class TeamsController < ApplicationController
   def team_assignment
     @students = Student.all
     @teams = Team.all.sort_by { |t| t.name }
+  end
+
+  def opram_system
+    temp = current_user.name + " " + Time.now.to_s
+    key = ActiveSupport::KeyGenerator.new('token').generate_key("UNL-ilab")
+    crypt = ActiveSupport::MessageEncryptor.new(key)
+    encrypted_data = crypt.encrypt_and_sign(temp)
+    AutoToken.create(:token => encrypted_data)
+    url = "http://csce.unl.edu:8080/OPRAM/?token=#{encrypted_data}"
+    redirect_to url
   end
 
   def team_work

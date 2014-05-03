@@ -59,6 +59,8 @@ class CalendarController < ApplicationController
     @event = Event.find(params[:id])
     @editable = false
     case current_user.utype
+      when "admin"
+        @editable = true
       when "instructor"
         @editable = true
       when "sponsor"

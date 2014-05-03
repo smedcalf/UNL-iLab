@@ -1,50 +1,67 @@
 - if signed_in?
   - if current_user.utype == "admin" && !current_user.instructor.nil?
     %ul
-      %li
+      %li.first.expanded
         %a{ href: '/' } Home
         %ul
-          %li
+          %li.first.leaf
             %a{ href: "http://unl.edu", title: 'UNL Homepage'} UNL Homepage
+          %li.last.leaf
             %a{ href: "http://cse.unl.edu/InnovationLab", title: 'Innovation Lab Homepage' } Innovation Lab
-      %li
+      %li.expanded
         %a.cursor-pointer Application
         %ul
-          %li
+          %li.first.leaf
             %a{ href: users_path, title: 'User Registration' } User Registration
+          %li.leaf
             %a{ href: instructor_terms_path, title: 'Instructor Term Allocation' } Instructor Term Allocation
+          %li.leaf
             %a{ href: all_student_preferences_path, title: 'Student Preference' } Student Preferences
+          %li.last.leaf
             %a{ href: all_sponsor_preferences_path, title: 'Sponsor Preference' } Sponsor Preferences
-      %li
+      %li.expanded
         %a.cursor-pointer Projects
         %ul
-          %li
+          %li.first.leaf
             %a{ href: projects_path, title: 'Projects table' } Projects Table
+          %li.leaf
             %a{ href: sponsors_path, title: 'Sponsor Table' } Sponsors Table
+          %li.leaf
             %a{ href: teams_path, title: 'Team Table' } Teams Table
+          %li.leaf
             %a{ href: team_work_teams_path, title: 'Team Work History' } Team Work Track
+          %li.last.leaf
             %a{ href: past_projects_path, title: 'Past Projects table' } Past Projects Table
-      %li
+      %li.expanded
         %a.cursor-pointer Students
         %ul
-          %li
+          %li.first.leaf
             %a{ href: students_path, title: 'Current Student Table' } Current Students Table
+          %li.leaf
             %a{ href: sponsor_preferences_path(current_user.instructor.id), title: 'Student Preference' } Student Application
+          %li.leaf
             %a{ href: requests_path, title: "Room Request"} Room 28 Request
+          %li.last.leaf
             %a{ href: past_students_students_path, title: 'Past Student Table' } Past Students Table
-      %li
+      %li.expanded
         %a.cursor-pointer Forms
         %ul
-          %li
+          %li.first.leaf
             %a{ href: new_project_path, title: 'create New Project' } New Project Form
+          %li.leaf
             %a{ href: new_sponsor_path, title: 'Create New Sponsor' } New Sponsor Form
+          %li.leaf
             %a{ href: new_student_path, title: 'Create New student' } New Student Form
+          %li.last.leaf
             %a{ href: new_team_path, title: 'Create New Team' } New Team Form
-      %li
+      %li.expanded
         %a.cursor-pointer Links
         %ul
-          %li
+          %li.first.leaf
+            %a{ href: opram_system_teams_path, title: "team assign system"} Team Assign System
+          %li.leaf
             %a{ href: "http://drive.google.com/‎", title: "Google Drive" } Google Drive
+          %li.last.leaf
             %a{ href: "https://trello.com/‎", title: "Team cooperation tool"} Trello
   - elsif current_user.utype == "instructor" && !current_user.instructor.nil?
     %ul
@@ -93,6 +110,7 @@
         %a.cursor-pointer Links
         %ul
           %li
+            %a{ href: opram_system_teams_path, title: "team assign system"} Team Assign System
             %a{ href: "http://drive.google.com/‎", title: "Google Drive" } Google Drive
             %a{ href: "https://trello.com/‎", title: "Team cooperation tool"} Trello
   - elsif current_user.utype == 'sponsor' && !current_user.sponsor.nil?

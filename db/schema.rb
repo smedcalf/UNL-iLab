@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140426170837) do
+ActiveRecord::Schema.define(version: 20140503195538) do
+
+  create_table "auto_tokens", force: true do |t|
+    t.text     "token"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "events", force: true do |t|
     t.string   "name"

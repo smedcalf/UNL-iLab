@@ -6,7 +6,7 @@ ruby '2.0.0'
 gem 'rails', '4.0.3'
 
 gem 'bcrypt-ruby'
-gem 'event-calendar', :require => 'event_calendar'
+gem 'event-calendar', :require => 'event_calendar', :git => 'https://github.com/wangzhen0614/event_calendar.git'
 require 'securerandom'
 gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
 gem 'jquery-ui-rails'
@@ -44,7 +44,8 @@ group :doc do
 end
 
 group :production do
-	gem 'pg'
+	#gem 'pg'
+  gem 'mysql'
 end
 
 # Use Capistrano for deployment
