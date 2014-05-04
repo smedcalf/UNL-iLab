@@ -1,0 +1,22 @@
+%h1
+  = "#{@semester} #{@name.capitalize} Solution"
+  = link_to "Auto Assign", auto_assign_solution_path, :method => :post, :class => "wdn-button wdn-button-complete", :style => "float: right"
+
+%hr
+
+.wdn-main#maincontent
+  - if @solution
+    %table.display#test
+      %thead
+        %tr
+          %th First Name
+          %th Last Name
+          %th Project
+      %tbody
+        - @solution.each do |s|
+          %tr
+            %td= s["first_name"]
+            %td= s["last_name"]
+            %td= s["project"]
+  - else
+    No solution available

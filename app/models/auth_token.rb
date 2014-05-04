@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: auto_tokens
+# Table name: auth_tokens
 #
 #  id         :integer          not null, primary key
 #  token      :text
@@ -8,8 +8,5 @@
 #  updated_at :datetime
 #
 
-require 'spec_helper'
-
-describe AutoToken do
-  pending "add some examples to (or delete) #{__FILE__}"
+class AuthToken < ActiveRecord::Base
 end

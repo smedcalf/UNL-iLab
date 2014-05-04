@@ -1,0 +1,15 @@
+= render 'shared/error_messages'
+- if @solution
+  %table
+    %thead
+      %th First Name
+      %th Last Name
+      %th Project
+    - @solution_entry = @solution.csv.split(/\r?\n/)
+    - @solution_entry.each do |s|
+      %tr
+      - @entry = s.split(',')
+      - @entry.each do |e|
+        %td= e
+
+%a.wdn-button{href: solution_path(@solution)} Show in Datatable

@@ -18,25 +18,29 @@ class SponsorsController < ApplicationController
     @user = User.new(:name => params[:sponsor][:email].partition("@").first, :email => params[:sponsor][:email],
                      :password => @pwd, :password_confirmation => @pwd, :utype => "sponsor")
     @sponsor = Sponsor.new(sponsor_params)
-    if @user.valid?
-      if @sponsor.valid?
-        @user.save
+
+    if @sponsor.valid?
         if current_user.sponsor?
           @sponsor.user_id = current_user.id
+          @sponsor.save
+          redirect_to user_path(current_user)
         else
-          @sponsor.user_id = @user.id
+          if @user.valid?
+            @user.save
+            @sponsor.user_id = @user.id
+            @sponsor.save
+            flash[:success] = "New sponsor has been created successfully. Username: #{@user.name}, Password: #{@pwd}"
+            UserMailer.user_account_confirmation(@user, @pwd).deliver
+            redirect_to sponsors_path
+          else
+            flash.now[:error] = @user.errors.full_messages.join(", ").html_safe
+            render 'new'
+          end
         end
-        @sponsor.save
-        flash[:success] = "New sponsor has been created successfully. Username: #{@user.name}, Password: #{@pwd}"
-        redirect_to sponsors_path
       else
         flash[:error] = @sponsor.errors.full_messages.join(", ").html_safe
         render 'new'
       end
-    else
-      flash.now[:error] = @user.errors.full_messages.join(", ").html_safe
-      render 'new'
-    end
   end
 
   def show

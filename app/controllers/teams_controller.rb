@@ -1,6 +1,7 @@
 class TeamsController < ApplicationController
   before_action :signed_in_user
-  before_action :signed_in_instructor, except: [:index, :show, :work_track, :opram_system]
+  before_action :signed_in_instructor, except: [:index, :show, :work_track]
+  before_action :team_access, only: [:work_track, :team_track]
   
   def new
     @team = Team.new
@@ -40,7 +41,7 @@ class TeamsController < ApplicationController
       @instructor_terms = InstructorTerm.where(:instructor_id => current_user.instructor.id)
       @instructor_terms.each do |it|
         Team.all.each do |t|
-          if t.project.semester == it.semester
+          if t.project.semester == it.semester && t.project.active
             @teams << t
           end
         end
@@ -48,8 +49,16 @@ class TeamsController < ApplicationController
     elsif current_user.sponsor
       @projects = Project.where(:sponsor_id => current_user.sponsor.id)
       @teams = Team.where(:project_id => @projects.ids)
+    elsif current_user.student
+      redirect_to root_path
+      flash[:warning] = "You don't have the permission"
     else
-      @teams = Team.all
+      @teams=[]
+      Team.all.each do |t|
+        if t.project.active
+          @teams << t
+        end
+      end
     end
   end
 
@@ -101,11 +110,11 @@ class TeamsController < ApplicationController
 
   def opram_system
     temp = current_user.name + " " + Time.now.to_s
-    key = ActiveSupport::KeyGenerator.new('token').generate_key("UNL-ilab")
+    key = ActiveSupport::KeyGenerator.new('token').generate_key("UNL-cse-ilab")
     crypt = ActiveSupport::MessageEncryptor.new(key)
     encrypted_data = crypt.encrypt_and_sign(temp)
-    AutoToken.create(:token => encrypted_data)
-    url = "http://csce.unl.edu:8080/OPRAM/?token=#{encrypted_data}"
+    AuthToken.create(:token => encrypted_data)
+    url = opram_url + "?token=#{encrypted_data}"
     redirect_to url
   end
 
@@ -121,7 +130,6 @@ class TeamsController < ApplicationController
   end
 
   def work_track
-    #@tasks = Event.where{(team_id == params[:id]) | (user_id == current_user.id)}
     @tasks = Event.where("team_id = #{params[:id]}")
   end
 

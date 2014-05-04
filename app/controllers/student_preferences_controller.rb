@@ -22,11 +22,16 @@ class StudentPreferencesController < ApplicationController
 
   def create
     @student_preference = StudentPreference.new(student_preference_params)
-    if @student_preference.save
-      flash[:success] = "Your rating was saved"
-      redirect_to student_preference_path(:student_id => current_user.student.id, :id => @student_preference.id, :project_id => @student_preference.project_id)
+    if !StudentPreference.where(:student_id => @student_preference.student_id, :project_id => @student_preference.project_id).any?
+      if @student_preference.save
+        flash[:success] = "Your rating was saved"
+        redirect_to student_preference_path(:student_id => current_user.student.id, :id => @student_preference.id, :project_id => @student_preference.project_id)
+      else
+        flash[:error] = @student_preference.errors.full_messages.join(", ").html_safe
+        redirect_to :back
+      end
     else
-      flash[:error] = @student_preference.errors.full_messages.join(", ").html_safe
+      flash[:error] = "You have rated this project"
       redirect_to :back
     end
   end
@@ -78,7 +83,23 @@ class StudentPreferencesController < ApplicationController
   end
 
   def rating_options
-    if Student.count >= 10
+    if current_user.student?
+      if Student.where(:semester => current_user.student.semester).count > 10
+        @rating_options = [{"value" => "", "label" => "Please select..."},
+                           {"value" => "0", "label" => "0 Absolutely Disagree"},
+                           {"value" => "1", "label" => "1 Strongly Disagree"},
+                           {"value" => "2", "label" => "2 Disagree"},
+                           {"value" => "3", "label" => "3 Neither Agree nor Disagree"},
+                           {"value" => "4", "label" => "4 Agree"},
+                           {"value" => "5", "label" => "5 Strongly Agree"}]
+      else
+        @rating_options = [{"value" => "", "label" => "Please select..."},
+                           {"value" => "0", "label" => "0 Absolutely Disagree"},
+                           {"value" => "1", "label" => "1 Disagree"},
+                           {"value" => "2", "label" => "2 Agree"},
+                           {"value" => "3", "label" => "3 Strongly Agree"}]
+      end
+    else
       @rating_options = [{"value" => "", "label" => "Please select..."},
                          {"value" => "0", "label" => "0 Absolutely Disagree"},
                          {"value" => "1", "label" => "1 Strongly Disagree"},
@@ -86,12 +107,6 @@ class StudentPreferencesController < ApplicationController
                          {"value" => "3", "label" => "3 Neither Agree nor Disagree"},
                          {"value" => "4", "label" => "4 Agree"},
                          {"value" => "5", "label" => "5 Strongly Agree"}]
-    else
-      @rating_options = [{"value" => "", "label" => "Please select..."},
-                         {"value" => "0", "label" => "0 Absolutely Disagree"},
-                         {"value" => "1", "label" => "1 Disagree"},
-                         {"value" => "2", "label" => "2 Agree"},
-                         {"value" => "3", "label" => "3 Strongly Agree"}]
     end
 
   end

@@ -5,7 +5,7 @@ class InstructorsController < ApplicationController
 
 	def new
 		@instructor = Instructor.new
-    if !current_user.instructor?
+    if current_user.utype != "admin"
       @instructor.email = current_user.email
     end
 	end

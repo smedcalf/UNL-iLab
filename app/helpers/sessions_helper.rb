@@ -209,4 +209,31 @@ module SessionsHelper
       end
     end
   end
+
+  def team_access
+    @team = Team.find(params[:id])
+    case current_user.utype
+      when "sponsor"
+        if @team.project.sponsor_id != current_user.sponsor.id
+          flash[:warning] = "You don't have the permission"
+          redirect_to root_path
+        end
+      when "student"
+        if current_user.student.team_id != @team.id
+          flash[:warning] = "You don't have the permission"
+          redirect_to root_path
+        end
+    end
+  end
+
+  def opram_url
+    "http://csce.unl.edu:8080/OPRAM/"
+  end
+
+  private
+
+    def cse_authentication_token
+      "DDFEFE94-87E1-484A-B5CC-DC6145CFBF13"
+    end
+
 end

@@ -5,54 +5,55 @@
 .wdn-main#maincontent
   %a.wdn-icon-plus.wdn-button.wdn-button-triad{href: new_task_team_path(:id => @team.id), style: "padding-left: 4px; padding-right: 4px; float: right; margin-left: 10px"} Create Task
   %a.wdn-button.wdn-button-energetic.wdn-icon-calendar{href: calendar_team_path(:id => @team.id), style: "padding-left: 4px; padding-right: 4px; float: right; margin-right: 10px"} Calendar
-  - if @tasks.nil?
-    No Incomplete Task now
-    %br
-  - else
-    %h4 Incomplete Task
-    - @incomplete_tasks = @tasks.where(:completed => false)
-    - @complete_tasks = @tasks.where(:completed => true)
-    - if @tasks.where(:completed => false).empty?
-      No Incomplete Tasks
+  .wdn-light-complement-band{style: "padding: 10px"}
+    - if @tasks.nil?
+      No Incomplete Task now
       %br
     - else
-      = form_tag("/events/mark-completed", method: "post") do
-        %table.display#incomplete_tasks
-          %thead
-            %tr
-              %th
-                -#= check_box_tag 'checkAll', ""
-              %th Priority
-              %th Due at
-              %th Start at
-              %th Name
-              %th
-          %tbody
-            -@incomplete_tasks.each do |t|
+      %h4 Incomplete Task
+      - @incomplete_tasks = @tasks.where(:completed => false)
+      - @complete_tasks = @tasks.where(:completed => true)
+      - if @tasks.where(:completed => false).empty?
+        No Incomplete Tasks
+        %br
+      - else
+        = form_tag("/events/mark-completed", method: "post") do
+          %table.display#incomplete_tasks
+            %thead
               %tr
-                %td
-                  = check_box_tag 'incomplete_task[]', t.id
-                %td
-                  - if t.priority == 3
-                    - @priority = "HIGH"
-                  - elsif t.priority == 2
-                    -@priority = "MEDIUM"
-                  - else
-                    -@priority = "LOW"
-                  %div{class: "td-priority-#{t.priority}", title: @priority}=t.priority
-                %td= t.end_at.strftime("%Y-%m-%d")
-                %td= t.start_at.strftime("%Y-%m-%d")
-                %td= t.name
-                %td
-                  %a.tooltip{href: event_path(t.id), title: t.description} See details
-        %section.wdn-grid-set
-        %div{ style: 'font-size: 25px; color: #979797; float: left' }
-          &#8627;
-        = submit_tag "Mark as Completed", style: "font-size: 10px !important"
+                %th
+                  -#= check_box_tag 'checkAll', ""
+                %th Priority
+                %th Due at
+                %th Start at
+                %th Name
+                %th
+            %tbody
+              -@incomplete_tasks.each do |t|
+                %tr
+                  %td
+                    = check_box_tag 'incomplete_task[]', t.id
+                  %td
+                    - if t.priority == 3
+                      - @priority = "HIGH"
+                    - elsif t.priority == 2
+                      -@priority = "MEDIUM"
+                    - else
+                      -@priority = "LOW"
+                    %div{class: "td-priority-#{t.priority}", title: @priority}=t.priority
+                  %td= t.end_at.strftime("%Y-%m-%d")
+                  %td= t.start_at.strftime("%Y-%m-%d")
+                  %td= t.name
+                  %td
+                    %a.tooltip{href: event_path(t.id), title: t.description} See details
+          %section.wdn-grid-set
+          %div{ style: 'font-size: 25px; color: #979797; float: left' }
+            &#8627;
+          = submit_tag "Mark as Completed", style: "font-size: 10px !important"
 
-  %br
+    %br
 
-  .wdn-light-complement-band
+
     %h4 Completed Task
     -if @tasks.where(:completed => true).empty?
       No Completed Tasks

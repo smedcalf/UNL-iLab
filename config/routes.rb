@@ -38,7 +38,17 @@ Ilab::Application.routes.draw do
     end
   end
 
-  resources :solutions
+  resources :solutions do
+
+    collection do
+      post 'saved-solutions', to: 'solutions#saved', as: :saved
+      get 'solution-names', to: 'solutions#names', as: :names
+    end
+
+    member do
+      post 'auto-assign', to: 'solutions#auto_assign', as: :auto_assign
+    end
+  end
 
   resources :sponsors do
     resources :preferences, controller: :sponsor_preferences do

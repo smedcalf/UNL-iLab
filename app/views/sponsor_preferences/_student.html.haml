@@ -35,7 +35,7 @@
             - @sponsor_preference = sp.student.sponsor_preferences.find{ |s| s.project == sp.project }
 
             - if @sponsor_preference.nil?
-              = select_tag "rating[#{sp.id}][]", options_for_select(@rating_options.collect {|p| [ p['label'], p['value'] ] }), :prompt => "Please Select", :class => "no-margin"
+              = select_tag "rating[#{sp.id}][]", options_for_select(@rating_options.collect {|p| [ p['label'], p['value'] ] }), :class => "no-margin"
             - else
               = select_tag "rating[#{sp.id}][]", options_for_select(@rating_options.collect {|p| [ p['label'], p['value'] ] }, @sponsor_preference.rating), :class => "no-margin"
           -#%td

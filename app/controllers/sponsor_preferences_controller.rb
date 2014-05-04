@@ -24,6 +24,7 @@ class SponsorPreferencesController < ApplicationController
   end
 
   def student
+    @project_id = params[:id]
     rating_options
     if current_user.instructor?
       @sponsor = current_user.instructor
@@ -31,13 +32,11 @@ class SponsorPreferencesController < ApplicationController
       @sponsor = current_user.sponsor
     end
 
-    @project_id = params[:id]
     @student_preferences = StudentPreference.where(:project_id => params[:id])
     render partial: "student", locals: { student_preferences: @student_preferences, project_id: @project_id }
   end
 
   def update_preferences
-    rating_options
     params[:rating].each do |key, value|
       @student_preference = StudentPreference.find(key.to_i)
       student_id = @student_preference.student_id
@@ -62,9 +61,11 @@ class SponsorPreferencesController < ApplicationController
       @sponsor = current_user.sponsor
     end
     @project_id = params[:project_id]
+    rating_options
     @student_preferences = StudentPreference.where(project_id: @project_id)
     flash[:success] = "Your rating was successfully saved!"
     render partial: "student", locals: { student_preferences: @student_preferences, flash: flash, project_id: @project_id }
+    flash.discard
   end
 
   def all
@@ -83,7 +84,12 @@ class SponsorPreferencesController < ApplicationController
     end
 
     def rating_options
-      if Student.count >= 10
+      if !@project_id.nil?
+        @project = Project.find(@project_id)
+      else
+        @project = Project.find(params[:id])
+      end
+      if Student.where(:semester => @project.semester).count > 10
         @rating_options = [{"value" => "", "label" => "Please select..."},
                            {"value" => "0", "label" => "0 Absolutely Disagree"},
                            {"value" => "1", "label" => "1 Strongly Disagree"},

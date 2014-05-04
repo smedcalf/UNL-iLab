@@ -31,6 +31,10 @@ class Student < ActiveRecord::Base
 	validates :email, :first_name, :last_name,  :major,
             :semester, :classname, :availability, presence: true
 
+  validates :email, uniqueness: true
+
+  after_initialize :set_defaults
+
   has_attached_file :avatar
 	do_not_validate_attachment_file_type :avatar
 
@@ -60,7 +64,7 @@ class Student < ActiveRecord::Base
 
     def set_defaults
       if self.new_record?
-        self.status = 0 if self.status.blank?
+        self.status = 0 if self.status.nil?
       end
     end
 end

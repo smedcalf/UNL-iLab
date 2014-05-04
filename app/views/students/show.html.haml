@@ -19,7 +19,7 @@
         %a{href: @student.team.trello_link} Trello
   %h4
     Email:
-    %a{href: "mailto:#{@student.email}"}= @student.email
+    %a.wdn-icon-mail{href: "mailto:#{@student.email}"}= @student.email
   %h4= "Major: #{@student.major}"
   %h4= "Semester: #{@student.semester}"
   %h4= "Availability: #{pluralize(@student.availability, "semester")}"

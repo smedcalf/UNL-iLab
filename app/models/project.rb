@@ -33,8 +33,15 @@ class Project < ActiveRecord::Base
 
   after_initialize :set_defaults
 
+  before_save :rename_proposal
   has_attached_file :proposal
   do_not_validate_attachment_file_type :proposal
+
+
+  def rename_proposal
+    extension = File.extname(proposal_file_name).downcase
+    self.proposal.instance_write :file_name, "#{self.name}-Proposal#{extension}"
+  end
 
   private
 

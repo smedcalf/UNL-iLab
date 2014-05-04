@@ -8,7 +8,7 @@
   - else
     = form_tag("/students/manage-students", method: "post") do
       = render 'shared/error_messages'
-      %table.display#students
+      %table.display#students{style: "font-size: 14px"}
         %thead
           %tr
             %th

@@ -19,6 +19,13 @@ class UserMailer < ActionMailer::Base
     mail(:to => "wangzhen614@gmail.com", :subject => "From iLab: Reset Password to #{@password}")
   end
 
+  def user_account_confirmation(user, password)
+    @password = password
+    @user = user
+    #mail(:to => user.email, :subject => "From iLab: Your user account was created")
+    mail(:to => "wangzhen614@gmail.com", :subject => "From iLab: Your user account was created")
+  end
+
   def team_task_confirmation(event)
     @event = event
     @emails = ""

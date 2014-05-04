@@ -74,7 +74,7 @@ jQuery ->
       null,
       null,
       {"bSortable": false},
-      {"bSortable": false},
+      null,
       {"bSortable": false},
       {"bSortable": false}
     ]
@@ -305,6 +305,29 @@ jQuery ->
     aLengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]]
     iDisplayLength : -1
   )
+
+  $('table#test').dataTable(
+    sDom: 'T<"clear">lfrtip',
+    bStateSave: true
+    oTableTools: {
+      "aButtons": [
+        "copy",
+        "print",
+        {
+          "sExtends":    "collection",
+          "sButtonText": 'Export <span class="caret" />',
+          "aButtons":    [ "csv", "xls", "pdf" ],
+          "sSwfPath": "media/swf/copy_csv_xls_pdf.swf"
+        }
+      ]
+    }
+    bJQueryUI: true
+    aaSorting: [[ 1, "desc" ]]
+    sPaginationType: "full_numbers",
+    aLengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]]
+    iDisplayLength : -1
+  )
+
   $(".date_picker").datepicker()
 
 

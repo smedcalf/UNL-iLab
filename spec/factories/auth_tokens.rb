@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: auto_tokens
+# Table name: auth_tokens
 #
 #  id         :integer          not null, primary key
 #  token      :text
@@ -8,5 +8,9 @@
 #  updated_at :datetime
 #
 
-class AutoToken < ActiveRecord::Base
+# Read about factories at https://github.com/thoughtbot/factory_girl
+
+FactoryGirl.define do
+  factory :auth_token do
+  end
 end

@@ -1,4 +1,5 @@
 %h1 Teams
+= render 'shared/error_messages'
 
 %hr
 
@@ -8,11 +9,11 @@
   - else
     = form_tag("teams/delete-teams", method: "post") do
       %table.cool.display#teams
-        %thead
+        %thead{style: "font-size: 16px"}
           %tr
             %th
               = check_box_tag 'checkAll', ""
-            %th Name
+            %th Team
             %th Project
             %th Google Drive
             %th Team Members
@@ -27,18 +28,21 @@
             %td
               %a{ href: project_path(t.project_id)}= t.project.name
             %td
-              %a{ href: "#{t.google_drive}", target: "_blank"} Google Drive
+              -if t.google_drive
+                %a{ href: "#{t.google_drive}", target: "_blank"} Google Drive
+              -else
+                %a{ href: edit_team_path(t) } Add
             %td
               - @emails = ""
               - t.students.each do |s|
                 -@emails = s.email+ ";" + @emails
                 %a{ href: student_path(s.id), style: "margin-right: 8px" }= s.full_name
             %td
-              %a.wdn-icon-calendar{ href: calendar_team_path(t.id) } Calendar
+              %a.tooltip.wdn-icon-calendar{ href: calendar_team_path(t.id), title: "View Team Calendar" } Calendar
               |
-              %a{ href: work_track_team_path(t.id) } Track
+              %a.tooltip{ href: work_track_team_path(t.id), title: "Track Team Workflow" } Track
             %td
-              %a.wdn-icon-mail{title: "Email to team", href: "mailto:#{@emails}"} Email
+              %a.tooltip{title: "Email to team", href: "mailto:#{@emails}"} Email
             -@all_Teams = @emails + @all_Teams
       - if instructor?
         %div{style:"float: left"}

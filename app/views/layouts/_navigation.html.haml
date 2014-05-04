@@ -58,11 +58,13 @@
         %a.cursor-pointer Links
         %ul
           %li.first.leaf
-            %a{ href: opram_system_teams_path, title: "team assign system"} Team Assign System
+            %a{ href: opram_system_teams_path, target: "_blank", title: "team assign system"} Team Assign System
           %li.leaf
-            %a{ href: "http://drive.google.com/‎", title: "Google Drive" } Google Drive
+            %a{ href: solutions_path, title: "Saved Assign Solutions" } Saved Assign Solutions
+          %li.leaf
+            %a{ href: "http://drive.google.com", title: "Google Drive" } Google Drive
           %li.last.leaf
-            %a{ href: "https://trello.com/‎", title: "Team cooperation tool"} Trello
+            %a{ href: "https://trello.com", title: "Team cooperation tool"} Trello
   - elsif current_user.utype == "instructor" && !current_user.instructor.nil?
     %ul
       %li
@@ -110,7 +112,7 @@
         %a.cursor-pointer Links
         %ul
           %li
-            %a{ href: opram_system_teams_path, title: "team assign system"} Team Assign System
+            %a{ href: opram_system_teams_path, target: "_blank", title: "team assign system"} Team Assign System
             %a{ href: "http://drive.google.com/‎", title: "Google Drive" } Google Drive
             %a{ href: "https://trello.com/‎", title: "Team cooperation tool"} Trello
   - elsif current_user.utype == 'sponsor' && !current_user.sponsor.nil?

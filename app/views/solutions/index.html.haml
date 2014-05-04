@@ -1,13 +1,29 @@
-%h1= "#{@solution.name} Assigned Solution"
+%h1= "Saved Solutions"
 
-- @header = @solution_records.first.split(',')
-%table
-  - @header.each do |h|
-    %th= h
-  - @num = 1
-  - @solution_records.each do |s|
-    %tr
-    - next @num = 0 if @num == 1
-    - @entry = s.split(',')
-    - @entry.each do |e|
-      %td= e
+.zenbox
+  =form_tag(saved_solutions_path, remote: true, id: "solution") do
+    = hidden_field_tag :authenticity_token, form_authenticity_token
+    %table
+      %tr
+        %td Semester:
+        %td Name:
+        %td
+      %tr
+        %td= select_tag :semester, options_for_select(@semesters), :class => "no-margin", :prompt => "Please select a semester"
+        %td#names= select_tag :name, options_for_select(""), :class => "no-margin", :prompt => "Please select a semester"
+        %td=submit_tag "Check"
+
+.wdn-main#maincontent
+-#
+-#
+-#- @header = @solution_records.first.split(',')
+-#%table
+-#  %thead
+-#    %th First Name
+-#    %th Last Name
+-#    %th Project
+-#  - @solution_records.each do |s|
+-#    %tr
+-#    - @entry = s.split(',')
+-#    - @entry.each do |e|
+-#      %td= e

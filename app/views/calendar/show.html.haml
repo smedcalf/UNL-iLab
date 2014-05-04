@@ -16,8 +16,7 @@
 .wdn-main#maincontent
   .wdn-col-one-third
     Create by:
-    -@profile = User.find(@event.user_id).profile
-    %a{href: "mailto:#{@profile.email}", title: "Email to #{@profile.full_name}"}= @profile.full_name
+    %a{href: user_path(@user), title: "See user profile"}= @user.name
   .wdn-col-one-third= "Create at: #{@event.created_at.strftime("%Y-%m-%d %H:%M:%S")}"
   .wdn-col-one-third= "Update at: #{@event.updated_at.strftime("%Y-%m-%d %H:%M:%S")}"
   %table.table-info{style: "width: 100%"}

@@ -8,7 +8,7 @@
   - else
     = form_tag("projects/manage-projects", method: "post") do
       = render 'shared/error_messages'
-      %table.display#projects
+      %table.display#projects{style: "font-size: 14px"}
         %thead
           %tr
             %th{style: 'text-align: center'}

@@ -43,15 +43,16 @@ class StudentsController < ApplicationController
     else
 
       @pwd = SecureRandom.hex(4)
-      @user = User.new(:name => params[:student][:email], :email => params[:student][:email],
+      @user = User.new(:name => params[:student][:email].partition("@").first, :email => params[:student][:email],
                        :password => @pwd, :password_confirmation => @pwd, :utype => "student")
       @student = Student.new(student_params)
       if @user.valid?
-        @student.user_id = @user.id
         if @student.valid?
           @user.save
+          @student.user_id = @user.id
           flash[:success] = "Congratulations!!! New student was created successfully! Username: #{@user.name}  Password: #{@pwd}"
           @student.save
+          #UserMailer.user_account_confirmation(@user, @pwd).deliver
           redirect_to students_path
         else
           flash.now[:error] = @student.errors.full_messages.join(", ").html_safe

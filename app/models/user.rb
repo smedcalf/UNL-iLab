@@ -11,6 +11,10 @@
 #  remember_tokens :string(255)
 #  email           :string(255)
 #
+# Indexes
+#
+#  id  (id)
+#
 
 class User < ActiveRecord::Base
 	has_secure_password

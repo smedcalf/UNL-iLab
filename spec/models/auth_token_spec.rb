@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: auto_tokens
+# Table name: auth_tokens
 #
 #  id         :integer          not null, primary key
 #  token      :text
@@ -8,9 +8,8 @@
 #  updated_at :datetime
 #
 
-# Read about factories at https://github.com/thoughtbot/factory_girl
+require 'spec_helper'
 
-FactoryGirl.define do
-  factory :auto_token do
-  end
+describe AuthToken do
+  pending "add some examples to (or delete) #{__FILE__}"
 end
