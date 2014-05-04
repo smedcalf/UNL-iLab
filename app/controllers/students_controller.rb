@@ -52,7 +52,7 @@ class StudentsController < ApplicationController
           @student.user_id = @user.id
           flash[:success] = "Congratulations!!! New student was created successfully! Username: #{@user.name}  Password: #{@pwd}"
           @student.save
-          #UserMailer.user_account_confirmation(@user, @pwd).deliver
+          UserMailer.user_account_confirmation(@user, @pwd).deliver
           redirect_to students_path
         else
           flash.now[:error] = @student.errors.full_messages.join(", ").html_safe

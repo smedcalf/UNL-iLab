@@ -5,7 +5,7 @@ class TeamsController < ApplicationController
   
   def new
     @team = Team.new
-    @projects = Project.all
+    @projects = Project.where(:active => true)
   end
 
   def create
@@ -105,7 +105,12 @@ class TeamsController < ApplicationController
 
   def team_assignment
     @students = Student.all
-    @teams = Team.all.sort_by { |t| t.name }
+    @teams=[]
+    Team.all.each do |t|
+      if t.project.active
+        @teams << t
+      end
+    end
   end
 
   def opram_system
