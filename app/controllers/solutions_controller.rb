@@ -1,4 +1,5 @@
 class SolutionsController < ApplicationController
+  before_action :signed_in_instructor
 
   def index
     @semesters = []
