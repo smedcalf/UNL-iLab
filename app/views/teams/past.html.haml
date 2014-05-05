@@ -1,0 +1,52 @@
+%h1 Teams
+= render 'shared/error_messages'
+
+%hr
+
+.wdn-main#maincontent
+  - if @teams.empty?
+    %p No team was created.
+  - else
+    = form_tag("teams/delete-teams", method: "post") do
+      %table.cool.display#teams
+        %thead{style: "font-size: 16px"}
+          %tr
+            %th
+              = check_box_tag 'checkAll', ""
+            %th Team
+            %th Project
+            %th Semester
+            %th Team Members
+            %th
+            %th
+        - @all_Teams = ""
+        - @teams.each do |t|
+          %tr{ href: team_path(t.id), style: "font-size: 12px" }
+            %td{style: 'text-align: center'}= check_box_tag 'team[]', t.id
+            %td
+              %a{ href: team_path(t.id) }= t.name
+            %td
+              %a{ href: project_path(t.project_id)}= t.project.name
+            -#%td
+            -#  -if t.google_drive
+            -#    %a{ href: "#{t.google_drive}", target: "_blank"} Google Drive
+            -#  -else
+            -#    %a{ href: edit_team_path(t) } Add
+            %td= t.semester
+            %td
+              - @emails = ""
+              - t.students.each do |s|
+                -@emails = s.email+ ";" + @emails
+                %a{ href: student_path(s.id), style: "margin-right: 8px" }= s.full_name
+            %td
+              %a.tooltip.wdn-icon-calendar{ href: calendar_team_path(t.id), title: "View Team Calendar" } Calendar
+              |
+              %a.tooltip{ href: work_track_team_path(t.id), title: "Track Team Workflow" } Track
+            %td
+              %a.tooltip{title: "Email to team", href: "mailto:#{@emails}"} Email
+            -@all_Teams = @emails + @all_Teams
+      - if instructor?
+        %div{style:"float: left"}
+          %span{ style: 'font-size: 25px; color: #979797' } &#8627;
+          = submit_tag 'Delete', {style: 'font-size: 10px !important; background: rgb(224, 95, 84)', confirm: 'Are you sure you want to delete this team?'}
+          %a.wdn-button.wdn-button-triad{ style: "font-size: 10px !important;", href: "mailto:#{@all_Teams}" } Email All Teams

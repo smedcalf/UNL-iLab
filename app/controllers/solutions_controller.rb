@@ -54,7 +54,9 @@ class SolutionsController < ApplicationController
     @solution.each do |s|
       @student = Student.where(first_name: s["first_name"], last_name: s["last_name"]).first
       @team = Team.where(name: s["project"]).first
-      @student.update_attributes(:team => @team)
+      if @student.status == 0
+        @student.update_attributes(:team => @team)
+      end
     end
 
     flash[:success] = "Teams were successfully formed!"

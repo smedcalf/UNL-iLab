@@ -62,6 +62,33 @@ class TeamsController < ApplicationController
     end
   end
 
+  def past
+    if current_user.utype == "instructor"
+      @teams = []
+      @instructor_terms = InstructorTerm.where(:instructor_id => current_user.instructor.id)
+      @instructor_terms.each do |it|
+        Team.all.each do |t|
+          if t.project.semester == it.semester && !t.project.active
+            @teams << t
+          end
+        end
+      end
+    elsif current_user.sponsor
+      @projects = Project.where(:sponsor_id => current_user.sponsor.id)
+      @teams = Team.where(:project_id => @projects.ids)
+    elsif current_user.student
+      redirect_to root_path
+      flash[:warning] = "You don't have the permission"
+    else
+      @teams=[]
+      Team.all.each do |t|
+        if !t.project.active
+          @teams << t
+        end
+      end
+    end
+  end
+
   def update
     set_team
     @url = "update"

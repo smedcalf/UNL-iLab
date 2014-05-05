@@ -6,6 +6,7 @@ Ilab::Application.routes.draw do
       post 'mark-incomplete', to: 'calendar#mark_as_incomplete', as: :incomplete
     end
   end
+
   resources :instructors do
     resources :preferences, controller: :sponsor_preferences do
       collection do
@@ -83,6 +84,7 @@ Ilab::Application.routes.draw do
       post   'unassign-students', to: 'teams#unassign_students', as: :unassign
       post   'delete-teams', to: 'teams#delete_teams', as: :delete_multiple
       get    'team-assign-system', to: 'teams#opram_system', as: :opram_system
+      get    'past-teams', to: 'teams#past', as: :past
     end
 
     member do

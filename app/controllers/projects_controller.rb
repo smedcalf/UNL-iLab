@@ -48,7 +48,7 @@ class ProjectsController < ApplicationController
     if @project.valid? && @project.save
       @team = Team.new(:name => @project.name, :project => @project)
       @team.save
-      flash[:success] = "New project was created and new team was created."
+      flash[:success] = "New project was created and new team was created. And team called #{@team.name} was automatically created, please check teams table."
       redirect_to projects_path
     else
       flash[:error] = @project.errors.full_messages.join(", ").html_safe

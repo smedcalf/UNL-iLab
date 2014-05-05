@@ -30,8 +30,10 @@
             %a{ href: teams_path, title: 'Team Table' } Teams Table
           %li.leaf
             %a{ href: team_work_teams_path, title: 'Team Work History' } Team Work Track
-          %li.last.leaf
+          %li.leaf
             %a{ href: past_projects_path, title: 'Past Projects table' } Past Projects Table
+          %li.last.leaf
+            %a{ href: past_teams_path, title: 'Past Team Table' } Past Teams Table
       %li.expanded
         %a.cursor-pointer Students
         %ul
@@ -50,10 +52,10 @@
             %a{ href: new_project_path, title: 'create New Project' } New Project Form
           %li.leaf
             %a{ href: new_sponsor_path, title: 'Create New Sponsor' } New Sponsor Form
-          %li.leaf
+          %li.leaf.leaf
             %a{ href: new_student_path, title: 'Create New student' } New Student Form
-          %li.last.leaf
-            %a{ href: new_team_path, title: 'Create New Team' } New Team Form
+          -#%li.last.leaf
+            -#%a{ href: new_team_path, title: 'Create New Team' } New Team Form
       %li.expanded
         %a.cursor-pointer Links
         %ul
@@ -62,9 +64,9 @@
           %li.leaf
             %a{ href: solutions_path, title: "Saved Assign Solutions" } Saved Assign Solutions
           %li.leaf
-            %a{ href: "http://drive.google.com", title: "Google Drive" } Google Drive
+            %a{ href: "http://drive.google.com/#", title: "Google Drive" } Google Drive
           %li.last.leaf
-            %a{ href: "https://trello.com", title: "Team cooperation tool"} Trello
+            %a{ href: "https://trello.com/#", title: "Team cooperation tool"} Trello
   - elsif current_user.utype == "instructor" && !current_user.instructor.nil?
     %ul
       %li
@@ -100,6 +102,7 @@
             %a{ href: teams_path, title: 'Team Table' } Teams Table
             %a{ href: assignment_teams_path, title: 'Assign Student to Team' } Team Assignment
             %a{ href: team_work_teams_path, title: 'Team Work History' } Team Work Track
+            %a{ href: past_teams_path, title: 'Past Team Table' } Past Teams Table
             -#%a{ href: '#', title: 'Team Notification' } Team Notification
       %li
         %a.cursor-pointer Students
@@ -113,8 +116,9 @@
         %ul
           %li
             %a{ href: opram_system_teams_path, target: "_blank", title: "team assign system"} Team Assign System
-            %a{ href: "http://drive.google.com/‎", title: "Google Drive" } Google Drive
-            %a{ href: "https://trello.com/‎", title: "Team cooperation tool"} Trello
+            %a{ href: solutions_path, title: "Saved Assign Solutions" } Saved Assign Solutions
+            %a{ href: "http://drive.google.com/#‎", title: "Google Drive" } Google Drive
+            %a{ href: "https://trello.com/‎#", title: "Team cooperation tool"} Trello
   - elsif current_user.utype == 'sponsor' && !current_user.sponsor.nil?
     %ul
       %li
@@ -145,8 +149,8 @@
         %a.cursor-pointer Links
         %ul
           %li
-            %a{ href: "https://drive.google.com/‎", title: "Google Drive" } Google Drive
-            %a{ href: "https://trello.com‎", title: "Team cooperation tool"} Trello
+            %a{ href: "https://drive.google.com/#‎", title: "Google Drive" } Google Drive
+            %a{ href: "https://trello.com/#‎", title: "Team cooperation tool"} Trello
   - elsif current_user.utype == 'student' && !current_user.student.nil?
     %ul
       %li
@@ -176,8 +180,8 @@
         %ul
           %li
             %a{ href: requests_path, title: "Room 28 Request" } Room 28 Request
-            %a{ href: "https://drive.google.com/‎", title: "Google Drive" } Google Drive
-            %a{ href: "https://trello.com", title: "Team cooperation tool"} Trello
+            %a{ href: "https://drive.google.com/#‎", title: "Google Drive" } Google Drive
+            %a{ href: "https://trello.com/#", title: "Team cooperation tool"} Trello
   - else
     %ul
       %li

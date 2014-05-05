@@ -82,7 +82,7 @@ class StudentsController < ApplicationController
       @students = []
       @instructor_terms = InstructorTerm.where(:instructor_id => current_user.instructor.id)
       @instructor_terms.each do |it|
-        Student.where(:semester => it.semester, :status => '>= 0').each do |s|
+        Student.where("semester = '#{it.semester}' AND status >= 0").each do |s|
           @students << s
         end
       end
@@ -118,6 +118,14 @@ class StudentsController < ApplicationController
         when 'reactivate'
           Student.where(:id => params[:student]).update_all(:status => 0)
           flash["success"] = "Selected Students were reactivated, please check current students"
+          redirect_to students_path
+        when 'disable'
+          Student.where(:id => params[:student]).update_all(:status => 1)
+          flash["success"] = "Selected Students were disabled."
+          redirect_to students_path
+        when 'enable'
+          Student.where(:id => params[:student]).update_all(:status => 0)
+          flash["success"] = "Selected Students were enabled."
           redirect_to students_path
       end
     end

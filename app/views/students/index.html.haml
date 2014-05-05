@@ -2,12 +2,13 @@
 
 %hr
 
+= render 'shared/error_messages'
+
 .wdn-main#maincontent
   - if @students.empty?
     No student was created.
   - else
     = form_tag("/students/manage-students", method: "post") do
-      = render 'shared/error_messages'
       %table.display#students{style: "font-size: 14px"}
         %thead
           %tr
@@ -17,13 +18,12 @@
             %th Last Name
             %th Email
             %th Team
-            -#%th Major
             %th Semester
             %th Availability
             %th
         %tbody
           - @students.each do |s|
-            %tr.thumb
+            %tr.thumb{class: "student-status-#{s.status}"}
               %td
                 = check_box_tag 'student[]', s.id
                 %span.callout.top-left
@@ -43,10 +43,12 @@
               %td= s.semester
               %td= s.availability
               %td
-                %a{ href: student_path(s.id), style: "border-bottom: 0px", title: "show student" } &#10147; View
+                %a.tooltip{ href: student_path(s.id), style: "border-bottom: 0px;", title: "View student profile" } ಠ_ಠ
 
       -#= label_tag  "team", "Assign to"
       %section.wdn-grid-set
       %span{ style: 'font-size: 25px; color: #979797' } &#8627;
-      = submit_tag 'deactivate', {style: 'font-size: 10px !important; background: rgb(84, 129, 224)', confirm: 'Are you sure you want to deactivate these students?'}
+      = submit_tag 'enable', {style: 'font-size: 10px !important; background: rgb(116, 212, 62)', confirm: 'Are you sure you want to enable these students?', class: "tooltip", title: "Enable the selected students from being assigned to project."}
+      = submit_tag 'disable', {style: 'font-size: 10px !important; background: rgb(74, 178, 219)', confirm: 'Are you sure you want to disable these students?', class: "tooltip", title: "Disable the selected students from being assigned to project."}
+      = submit_tag 'deactivate', {style: 'font-size: 10px !important; background: rgb(84, 129, 224)', confirm: 'Are you sure you want to deactivate these students?', class: "tooltip", title: "Deactivate the selected students, move to the past students table."}
       = submit_tag 'delete', {style: 'font-size: 10px !important; background: rgb(224, 95, 84)', confirm: 'Are you sure you want to delete this student?'}
