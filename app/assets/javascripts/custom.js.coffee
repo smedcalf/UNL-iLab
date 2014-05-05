@@ -73,7 +73,7 @@ jQuery ->
       {"bSortable": false},
       null,
       null,
-      {"bSortable": false},
+      null,
       null,
       {"bSortable": false},
       {"bSortable": false}
@@ -306,7 +306,23 @@ jQuery ->
     iDisplayLength : -1
   )
 
-  $('table#test').dataTable(
+  $('table#solutions').dataTable(
+    sDom: '<"clear">lfrtip',
+    bStateSave: true
+    aoColumns: [
+      null,
+      null,
+      {"bSortable": false},
+      {"bSortable": false}
+    ]
+    bJQueryUI: true
+    aaSorting: [[ 1, "desc" ]]
+    sPaginationType: "full_numbers",
+    aLengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]]
+    iDisplayLength : -1
+  )
+
+  $('table#solution_table').dataTable(
     sDom: 'T<"clear">lfrtip',
     bStateSave: true
     oTableTools: {

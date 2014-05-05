@@ -1,12 +1,12 @@
 %h1
   = "#{@semester} #{@name.capitalize} Solution"
-  = link_to "Auto Assign", auto_assign_solution_path, :method => :post, :class => "wdn-button wdn-button-complete", :style => "float: right"
+  = link_to "Auto Assign", auto_assign_solution_path, :method => :post, :class => "wdn-button wdn-button-complete tooltip", :style => "float: right", :title => "Auto Assign all Students above to Projects"
 
 %hr
 
 .wdn-main#maincontent
   - if @solution
-    %table.display#test
+    %table.display#solution_table
       %thead
         %tr
           %th First Name

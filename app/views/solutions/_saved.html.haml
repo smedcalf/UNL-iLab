@@ -1,15 +1,20 @@
 = render 'shared/error_messages'
-- if @solution
-  %table
-    %thead
-      %th First Name
-      %th Last Name
-      %th Project
-    - @solution_entry = @solution.csv.split(/\r?\n/)
-    - @solution_entry.each do |s|
-      %tr
-      - @entry = s.split(',')
-      - @entry.each do |e|
-        %td= e
+.wdn-main#maincontent
+  - if @solution
+    %table.display#solution_table
+      %thead
+        %tr
+          %th First Name
+          %th Last Name
+          %th Project
+      %tbody
+        - @solution.each do |s|
+          %tr
+            %td= s["first_name"]
+            %td= s["last_name"]
+            %td= s["project"]
+  - else
+    No solution available
 
-%a.wdn-button{href: solution_path(@solution)} Show in Datatable
+%a.wdn-button.tooltip{href: solution_path(@solution_id), title: "Show in Datatable where you can generate csv/excel/pdf"} Show in Datatable
+= link_to "Auto Assign", auto_assign_solution_path(@solution_id), :method => :post, :class => "wdn-button wdn-button-complete tooltip", :title => "Auto Assign all Students above to Projects"

@@ -15,7 +15,7 @@
               = check_box_tag 'checkAll', ""
             %th Team
             %th Project
-            %th Google Drive
+            %th Semester
             %th Team Members
             %th
             %th
@@ -27,11 +27,12 @@
               %a{ href: team_path(t.id) }= t.name
             %td
               %a{ href: project_path(t.project_id)}= t.project.name
-            %td
-              -if t.google_drive
-                %a{ href: "#{t.google_drive}", target: "_blank"} Google Drive
-              -else
-                %a{ href: edit_team_path(t) } Add
+            -#%td
+            -#  -if t.google_drive
+            -#    %a{ href: "#{t.google_drive}", target: "_blank"} Google Drive
+            -#  -else
+            -#    %a{ href: edit_team_path(t) } Add
+            %td= t.semester
             %td
               - @emails = ""
               - t.students.each do |s|

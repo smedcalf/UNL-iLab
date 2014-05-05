@@ -15,25 +15,29 @@ class SponsorPreferencesController < ApplicationController
   def new
   end
 
-  def show
-  end
-
   def application
     @projects = Project.where(:sponsor_id => params[:sponsor_id])
     @url = "preference"
   end
 
   def student
-    @project_id = params[:id]
-    rating_options
-    if current_user.instructor?
-      @sponsor = current_user.instructor
-    else
-      @sponsor = current_user.sponsor
-    end
+    if params[:id]
+      @project_id = params[:id]
+      rating_options
+      if current_user.instructor?
+        @sponsor = current_user.instructor
+      else
+        @sponsor = current_user.sponsor
+      end
 
-    @student_preferences = StudentPreference.where(:project_id => params[:id])
-    render partial: "student", locals: { student_preferences: @student_preferences, project_id: @project_id }
+      @student_preferences = StudentPreference.where(:project_id => params[:id])
+      render partial: "student", locals: { student_preferences: @student_preferences, project_id: @project_id }
+    else
+      flash[:error] = "Please select a project."
+      @student_preferences = false
+      render partial: "student", locals: { student_preferences: @student_preferences, flash: flash }
+    end
+    flash.discard
   end
 
   def update_preferences

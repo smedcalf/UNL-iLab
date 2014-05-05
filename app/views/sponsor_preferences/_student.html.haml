@@ -1,15 +1,14 @@
 -#=javascript_include_tag 'sponsor_preferences'
-- if @student_preferences.empty?
-  No one applied for this project
-- else
+= render 'shared/error_messages'
 
-  = render 'shared/error_messages'
+- if @student_preferences
+
   = form_for :preferences, url: update_sponsor_preferences_path(@sponsor.id),
    method: 'post', remote: true, html: { class: "sponsor-preferences" } do |f|
     = hidden_field_tag :project_id, @project_id
-    %table.primary
+    %table.primary.display
       %tr
-        %thead
+        %thead{style: "font-size: 16px"}
           -#%th
           %th Student Name
           %th Project Name
@@ -41,3 +40,6 @@
           -#%td
           -#  %a.wdn-button.wdn-button-triad{ href: edit_student_preference_path(sp.id) } Edit
     = f.submit "Save", style: "float: right; background: rgb(231, 172, 126)"
+
+- else
+  No students applied for this project

@@ -19,5 +19,9 @@ class Team < ActiveRecord::Base
 		if user.student?
 			students.include? user.student
 		end
-	end
+  end
+
+  def semester
+    self.project.semester
+  end
 end
