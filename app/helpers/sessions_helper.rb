@@ -19,7 +19,7 @@ module SessionsHelper
                                "token=#{token}&" +
                                "username=#{params[:session][:name]}&" +
                                "password=#{params[:session][:password]}&" +
-                               "courses=CSCE498")
+                               "courses=CSCE486")
     cse488_url = URI.parse("https://cse-apps.unl.edu/cseauth/auth/authenticate?" +
                                "token=#{token}&" +
                                "username=#{params[:session][:name]}&" +
@@ -87,12 +87,16 @@ module SessionsHelper
 	end
 
 	def sign_out
-		remember_tokens = current_user.remember_tokens.split("|")
-		remember_token = cookies[:remember_token]
-		remember_tokens.delete User.encrypt(remember_token)
-		current_user.update_attribute(:remember_tokens, remember_tokens.join("|") )
-		cookies.delete(:remember_token)
-		self.current_user = nil
+    if !current_user.nil?
+      remember_tokens = current_user.remember_tokens.split("|")
+      remember_token = cookies[:remember_token]
+      remember_tokens.delete User.encrypt(remember_token)
+      current_user.update_attribute(:remember_tokens, remember_tokens.join("|") )
+      cookies.delete(:remember_token)
+      self.current_user = nil
+    else
+      redirect_to root_path
+    end
 	end
 
 	def admin?
@@ -226,12 +230,15 @@ module SessionsHelper
     end
   end
 
+
+  #TODO change opram url
   def opram_url
     "http://csce.unl.edu:8080/OPRAM/"
   end
 
   private
 
+    #TODO change cse_authentication_token
     def cse_authentication_token
       "DDFEFE94-87E1-484A-B5CC-DC6145CFBF13"
     end
