@@ -48,7 +48,8 @@
       -#= label_tag  "team", "Assign to"
       %section.wdn-grid-set
       %span{ style: 'font-size: 25px; color: #979797' } &#8627;
-      = submit_tag 'enable', {style: 'font-size: 10px !important; background: rgb(116, 212, 62)', confirm: 'Are you sure you want to enable these students?', class: "tooltip", title: "Enable the selected students from being assigned to project."}
-      = submit_tag 'disable', {style: 'font-size: 10px !important; background: rgb(74, 178, 219)', confirm: 'Are you sure you want to disable these students?', class: "tooltip", title: "Disable the selected students from being assigned to project."}
+      -#= submit_tag 'enable', {style: 'font-size: 10px !important; background: rgb(116, 212, 62)', confirm: 'Are you sure you want to enable these students?', class: "tooltip", title: "Enable the selected students from being assigned to project."}
+      -#= submit_tag 'disable', {style: 'font-size: 10px !important; background: rgb(74, 178, 219)', confirm: 'Are you sure you want to disable these students?', class: "tooltip", title: "Disable the selected students from being assigned to project."}
+      = submit_tag 'unassign', {style: 'font-size: 10px !important; background: rgb(74, 178, 219)', confirm: 'Are you sure you want to unassign these students?', class: "tooltip", title: "Unassign the selected students from projects."}
       = submit_tag 'deactivate', {style: 'font-size: 10px !important; background: rgb(84, 129, 224)', confirm: 'Are you sure you want to deactivate these students?', class: "tooltip", title: "Deactivate the selected students, move to the past students table."}
       = submit_tag 'delete', {style: 'font-size: 10px !important; background: rgb(224, 95, 84)', confirm: 'Are you sure you want to delete this student?'}

@@ -109,23 +109,27 @@ class StudentsController < ApplicationController
       case params[:commit]
         when 'delete'
           Student.destroy(params[:student])
-          flash["success"] = "Selected Students were deleted."
+          flash[:success] = "Selected Students were deleted."
           redirect_to students_path
         when 'deactivate'
           Student.where(:id => params[:student]).update_all(:status => -1)
-          flash["success"] = "Selected Students were deactivated, please check past students"
+          flash[:success] = "Selected Students were deactivated, please check past students"
           redirect_to past_students_students_path
         when 'reactivate'
           Student.where(:id => params[:student]).update_all(:status => 0)
-          flash["success"] = "Selected Students were reactivated, please check current students"
+          flash[:success] = "Selected Students were reactivated, please check current students"
           redirect_to students_path
         when 'disable'
           Student.where(:id => params[:student]).update_all(:status => 1)
-          flash["success"] = "Selected Students were disabled."
+          flash[:success] = "Selected Students were disabled."
           redirect_to students_path
         when 'enable'
           Student.where(:id => params[:student]).update_all(:status => 0)
-          flash["success"] = "Selected Students were enabled."
+          flash[:success] = "Selected Students were enabled."
+          redirect_to students_path
+        when 'unassign'
+          Student.where(:id => params[:student]).update_all(:team_id => nil)
+          flash[:success] = "Selected Students were unassigned."
           redirect_to students_path
       end
     end
