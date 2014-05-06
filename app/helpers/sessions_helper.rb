@@ -14,25 +14,26 @@ module SessionsHelper
 
   def sign_in_cse
     @course = ""
+    @username = params[:session][:name].gsub(/[^a-zA-Z0-9\-]/,"")
     token = "DDFEFE94-87E1-484A-B5CC-DC6145CFBF13"
     cse486_url = URI.parse("https://cse-apps.unl.edu/cseauth/auth/authenticate?" +
                                "token=#{token}&" +
-                               "username=#{params[:session][:name]}&" +
+                               "username=#{@username}&" +
                                "password=#{params[:session][:password]}&" +
                                "courses=CSCE486")
     cse488_url = URI.parse("https://cse-apps.unl.edu/cseauth/auth/authenticate?" +
                                "token=#{token}&" +
-                               "username=#{params[:session][:name]}&" +
+                               "username=#{@username}&" +
                                "password=#{params[:session][:password]}&" +
                                "courses=CSCE488")
     cse487_url = URI.parse("https://cse-apps.unl.edu/cseauth/auth/authenticate?" +
                                "token=#{token}&" +
-                               "username=#{params[:session][:name]}&" +
+                               "username=#{@username}&" +
                                "password=#{params[:session][:password]}&" +
                                "courses=CSCE487")
     cse489_url = URI.parse("https://cse-apps.unl.edu/cseauth/auth/authenticate?" +
                                "token=#{token}&" +
-                               "username=#{params[:session][:name]}&" +
+                               "username=#{@username}&" +
                                "password=#{params[:session][:password]}&" +
                                "courses=CSCE489")
     req486 = Weary::Request.new cse486_url.to_s, :GET
