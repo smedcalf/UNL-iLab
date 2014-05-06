@@ -46,8 +46,31 @@ class UserMailer < ActionMailer::Base
     @url = event_path(@event.id)
     @team = Team.find(@event.team_id)
 
-    #mail(:to => @emails, :subject => "From ilab: New team task was created")
-    mail(:to => "wangzhen614@gmail.com", :subject => "From ilab: New team task was created")
+    if @event.created_at != @event.updated_at
+      @subject = "From iLab: Team task was updated"
+    else
+      @subject = "From iLab: New team task was created"
+    end
+
+    #mail(:to => @emails, :subject => @subject)
+    mail(:to => "wangzhen614@gmail.com", :subject => @subject)
+
+  end
+
+  def personal_task_confirmation(event)
+    @event = event
+    @email = @event.user.email
+
+    @url = event_path(@event.id)
+
+    if @event.created_at != @event.updated_at
+      @subject = "From iLab: Personal task was updated"
+    else
+      @subject = "From iLab: Personal task was created"
+    end
+
+    #mail(:to => @email, :subject => "From ilab: New team task was created")
+    mail(:to => "wangzhen614@gmail.com", :subject => @subject)
 
   end
 

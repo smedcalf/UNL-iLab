@@ -47,6 +47,7 @@ class CalendarController < ApplicationController
         UserMailer.team_task_confirmation(@event).deliver
         redirect_to calendar_team_path(@event.team_id)
       else
+        UserMailer.personal_task_confirmation(@event).deliver
         redirect_to calendar_path
       end
     else
@@ -87,6 +88,11 @@ class CalendarController < ApplicationController
     @url = "update"
     if @event.update_attributes(event_params)
       flash[:success] = "Event has successfully updated!"
+      if @event.team_id
+        UserMailer.team_task_confirmation(@event).deliver
+      else
+        UserMailer.personal_task_confirmation(@event).deliver
+      end
       redirect_to event_path(@event.id)
     else
       flash[:error] = @event.errors.full_messages
