@@ -15,12 +15,16 @@
           %th Name
           %th Email
         - @team.students.each do |s|
-          %tr
+          %tr.thumb
             - if current_user.utype != "student" && current_user.utype != "sponsor"
               %td
                 = check_box_tag 'student[]', s.id
             %td
               %a{href: student_path(s.id) }= s.full_name
+              %span.callout.top-left
+                = image_tag s.avatar_url, width: 130, height: 155
+                %hr
+                  .disclaimer=s.full_name
             %td
               %a.wdn-icon-mail{href: "mailto:#{s.email}"}= s.email
       - if current_user.utype != "student" && current_user.utype != "sponsor"
