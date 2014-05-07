@@ -11,10 +11,6 @@
 #  remember_tokens :string(255)
 #  email           :string(255)
 #
-# Indexes
-#
-#  id  (id)
-#
 
 require 'spec_helper'
 

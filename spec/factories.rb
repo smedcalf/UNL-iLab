@@ -23,6 +23,7 @@ FactoryGirl.define do
     sequence(:name) { |n| "project_#{n}" }
     initial_capacity 4
     semester "Spring"
+    proposal File.new(Rails.root.join("spec", "fixtures", "resume.txt"))
   end
 
   factory :student do

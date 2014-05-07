@@ -3,13 +3,13 @@
 # Table name: solutions
 #
 #  id           :integer          not null, primary key
-#  semester     :string(255)      not null
-#  name         :string(255)      not null
-#  csv          :text(2147483647) not null
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#  student_data :binary(214748364
-#  project_data :binary(214748364
+#  semester     :string(255)
+#  name         :string(255)
+#  csv          :text(4294967295)
+#  created_at   :datetime
+#  updated_at   :datetime
+#  student_data :binary(16777216)
+#  project_data :binary(16777216)
 #
 
 # Read about factories at https://github.com/thoughtbot/factory_girl
