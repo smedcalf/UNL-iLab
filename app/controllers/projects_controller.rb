@@ -4,19 +4,9 @@ class ProjectsController < ApplicationController
 
   def index
     project_manage_options
-    if current_user.utype == "instructor"
-      @projects = []
-      @instructor_terms = InstructorTerm.where(:instructor_id => current_user.instructor.id)
-      @instructor_terms.each do |it|
-        Project.where(:semester => it.semester, :active => true).each do |p|
-          @projects << p
-        end
-      end
-    elsif current_user.utype == "sponsor"
-      @projects = current_user.sponsor.projects.where(:active => true)
-    else
-      @projects = Project.where(:active => true)
-    end
+
+    # set active projects defined in application_controller
+    set_active_projects
   end
 
   def past

@@ -5,7 +5,9 @@ class TeamsController < ApplicationController
   
   def new
     @team = Team.new
-    set_projects
+
+    # Set active projects defined in application controller
+    set_active_projects
   end
 
   def create
@@ -32,7 +34,7 @@ class TeamsController < ApplicationController
 
   def edit
     set_team
-    set_projects
+    set_active_projects
     @url = "update"
   end
 
@@ -141,6 +143,7 @@ class TeamsController < ApplicationController
     end
   end
 
+  #TODO OPRAM SYSTEM CALL FUNCTION
   def opram_system
     temp = current_user.name + " " + Time.now.to_s
     key = ActiveSupport::KeyGenerator.new('token').generate_key("UNL-cse-ilab")
@@ -179,7 +182,6 @@ class TeamsController < ApplicationController
   end
 
   def team_track
-    #fdsfsd
     @team = Team.find(params[:id])
     @tasks = Event.where("team_id = #{params[:id]}")
     render partial: "work_track", locals: { tasks: @tasks, team: @team}
@@ -204,20 +206,4 @@ class TeamsController < ApplicationController
       @team = Team.find_by_id(params[:id])
     end
 
-    # Available projects
-    def set_projects
-      if current_user.utype == "instructor"
-        @projects = []
-        @instructor_terms = InstructorTerm.where(:instructor_id => current_user.instructor.id)
-        @instructor_terms.each do |it|
-          Project.where(:semester => it.semester, :active => true).each do |p|
-            @projects << p
-          end
-        end
-      elsif current_user.utype == "sponsor"
-        @projects = current_user.sponsor.projects.where(:active => true)
-      else
-        @projects = Project.where(:active => true)
-      end
-    end
 end

@@ -2,12 +2,13 @@ class SponsorPreferencesController < ApplicationController
   before_action :can_view_preferences
 
   def index
+    # set active projects defined in application_controller
+    set_active_projects
+
     if current_user.instructor?
       @sponsor = current_user.instructor
-      @projects = Project.all
     else
       @sponsor = current_user.sponsor
-      @projects = Project.where(sponsor_id: params[:sponsor_id])
     end
 
   end
@@ -16,7 +17,8 @@ class SponsorPreferencesController < ApplicationController
   end
 
   def application
-    @projects = Project.where(:sponsor_id => params[:sponsor_id])
+    # set active projects defined in application_controller
+    set_active_projects
     @url = "preference"
   end
 
