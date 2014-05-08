@@ -52,6 +52,9 @@ Ilab::Application.routes.draw do
   end
 
   resources :sponsors do
+    collection do
+      post  'manage-sponsors', to: 'sponsors#manage_sponsors', as: :manage
+    end
     resources :preferences, controller: :sponsor_preferences do
       collection do
         post 'student', to: 'sponsor_preferences#student', as: :student

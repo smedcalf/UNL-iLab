@@ -95,9 +95,9 @@ module SessionsHelper
       current_user.update_attribute(:remember_tokens, remember_tokens.join("|") )
       cookies.delete(:remember_token)
       self.current_user = nil
-    else
       redirect_to root_path
     end
+    redirect_to root_path
 	end
 
 	def admin?

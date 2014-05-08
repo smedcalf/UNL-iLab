@@ -8,24 +8,29 @@
   - if @sponsors.empty?
     %p No Sponsor was created.
   - else
-    %table.display#sponsors
-      %thead
-        %tr
-          %th
-          %th First Name
-          %th Last Name
-          %th Organization
-          %th Email
-          %th
-      %tbody
-        -@sponsors.each do |s|
+    = form_tag("/sponsors/manage-sponsors", method: "post") do
+      %table.display#sponsors
+        %thead
           %tr
-            %td
-              = check_box_tag 'sponsor[]', s.id
-            %td= s.first_name
-            %td= s.last_name
-            %td= s.organization
-            %td
-              %a.wdn-icon-mail{:href => "mailto:" + s.email }= s.email
-            %td
-              %a.wdn-button.wdn-button-triad{ href: sponsor_path(s.id) } Show
+            %th= check_box_tag 'checkAll', ""
+            %th First Name
+            %th Last Name
+            %th Organization
+            %th Email
+            %th
+        %tbody
+          -@sponsors.each do |s|
+            %tr
+              %td
+                = check_box_tag 'sponsor[]', s.id
+              %td
+                %a{ href: sponsor_path(s) }= s.first_name
+              %td= s.last_name
+              %td= s.organization
+              %td
+                %a.wdn-icon-mail{:href => "mailto:" + s.email }= s.email
+              %td
+                %a.wdn-button.wdn-button-triad{ href: edit_sponsor_path(s.id) } Edit
+      %section.wdn-grid-set
+        %span{ style: 'font-size: 25px; color: #979797' } &#8627;
+        = submit_tag 'delete', {style: 'font-size: 10px !important; background: rgb(224, 95, 84)', confirm: 'Are you sure you want to delete this student?'}

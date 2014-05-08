@@ -63,6 +63,21 @@ class SponsorsController < ApplicationController
     end
   end
 
+  def manage_sponsors
+    if params[:sponsor].nil?
+      flash[:error] = 'No sponsor was selected!'
+      redirect_to sponsors_path
+    else
+      case params[:commit]
+        when 'delete'
+          Sponsor.destroy(params[:sponsor])
+          flash[:success] = "Selected Sponsors were deleted."
+          redirect_to sponsors_path
+      end
+    end
+
+  end
+
   def preference
     @projects = Project.where(:sponsor_id => User.find(params[:id]).sponsor)
     @student_preferences = StudentPreference.where(:project_id => @projects.ids)

@@ -16,7 +16,7 @@
 .wdn-main#maincontent
   .wdn-col-one-third
     Create by:
-    %a{href: user_path(@user), title: "See user profile"}= @user.name
+    %a{href: user_path(@user), title: "See user profile"}= @user.profile.full_name
   .wdn-col-one-third= "Create at: #{@event.created_at.strftime("%Y-%m-%d %H:%M:%S")}"
   .wdn-col-one-third= "Update at: #{@event.updated_at.strftime("%Y-%m-%d %H:%M:%S")}"
   %table.table-info{style: "width: 100%"}

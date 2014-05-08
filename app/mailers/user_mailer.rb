@@ -34,14 +34,7 @@ class UserMailer < ActionMailer::Base
       @emails = @emails + ', ' + s.email
     end
     @user = User.find(@event.user_id)
-    case @user.utype
-      when "instructor"
-        @author = @user.instructor.full_name
-      when "student"
-        @author = @user.student.full_name
-      when "sponsor"
-        @author = @user.sponsor.full_name
-    end
+    @author = @user.profile.full_name
 
     @url = event_path(@event.id)
     @team = Team.find(@event.team_id)

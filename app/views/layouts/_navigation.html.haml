@@ -49,6 +49,8 @@
         %a.cursor-pointer Forms
         %ul
           %li.first.leaf
+            %a{ href: new_instructor_path, title: 'create New Project' } New Instructor Form
+          %li.first.leaf
             %a{ href: new_project_path, title: 'create New Project' } New Project Form
           %li.leaf
             %a{ href: new_sponsor_path, title: 'Create New Sponsor' } New Sponsor Form
@@ -62,7 +64,7 @@
           %li.first.leaf
             %a{ href: opram_system_teams_path, target: "_blank", title: "team assign system"} Team Assign System
           %li.leaf
-            %a{ href: solutions_path, title: "Saved Assign Solutions" } Saved Assign Solutions
+            %a{ href: solutions_path, title: "Saved Assign Solutions" } View Saved Solutions
           %li.leaf
             %a{ href: "http://drive.google.com/#", title: "Google Drive" } Google Drive
           %li.last.leaf
@@ -116,7 +118,7 @@
         %ul
           %li
             %a{ href: opram_system_teams_path, target: "_blank", title: "team assign system"} Team Assign System
-            %a{ href: solutions_path, title: "Saved Assign Solutions" } Saved Assign Solutions
+            %a{ href: solutions_path, title: "Saved Assign Solutions" } View Saved Solutions
             %a{ href: "http://drive.google.com/#‎", title: "Google Drive" } Google Drive
             %a{ href: "https://trello.com/‎#", title: "Team cooperation tool"} Trello
   - elsif current_user.utype == 'sponsor' && !current_user.sponsor.nil?
