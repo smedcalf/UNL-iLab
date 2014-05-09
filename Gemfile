@@ -36,7 +36,8 @@ gem 'jbuilder', '2.0.6'
 gem 'jquery-rails', '3.1.0'
 gem 'sass-rails', '4.0.3'
 gem 'uglifier', '2.5.0'
-
+gem 'execjs' 
+gem 'therubyracer'
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', '0.4.0', require: false
