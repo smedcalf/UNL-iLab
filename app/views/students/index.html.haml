@@ -8,7 +8,7 @@
   - if @students.empty?
     No student was created.
   - else
-    = form_tag("/students/manage-students", method: "post") do
+    = form_tag(manage_students_students_path, method: "post") do
       %table.display#students{style: "font-size: 14px"}
         %thead
           %tr

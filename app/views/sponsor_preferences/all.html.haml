@@ -6,7 +6,7 @@
   - if @sponsor_preferences.empty?
     %p No Sponsor Preferences.
   - else
-    = form_tag("/teams/add-students", method: "post") do
+    = form_tag(add_teams_path, method: "post") do
       = render 'shared/error_messages'
 
       %table.soothing.display#sponsor_preferences

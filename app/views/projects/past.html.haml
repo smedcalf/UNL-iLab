@@ -6,7 +6,7 @@
   - if @projects.empty?
     %p No past project now.
   - else
-    = form_tag("/projects/manage-projects", method: "post") do
+    = form_tag(manage_projects_path, method: "post") do
       = render 'shared/error_messages'
       %table.display#projects
         %thead

@@ -6,7 +6,7 @@
   %hr
   .wdn-main#maincontent
     %h4 Members
-    = form_tag("/teams/unassign-students", method: "post") do
+    = form_tag(unassign_teams_path, method: "post") do
       = render 'shared/error_messages'
       %table
         %thead

@@ -8,7 +8,7 @@
   - if @sponsors.empty?
     %p No Sponsor was created.
   - else
-    = form_tag("/sponsors/manage-sponsors", method: "post") do
+    = form_tag(manage_sponsors_path, method: "post") do
       %table.display#sponsors
         %thead
           %tr

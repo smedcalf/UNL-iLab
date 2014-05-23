@@ -6,7 +6,7 @@
   - if @students.empty?
     No student was created.
   - else
-    = form_tag("/teams/add-students", method: "post") do
+    = form_tag(add_teams_path, method: "post") do
       = render 'shared/error_messages'
       %table.display#students
         %thead

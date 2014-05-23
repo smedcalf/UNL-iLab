@@ -7,7 +7,7 @@
   - if @teams.empty?
     %p No team was created.
   - else
-    = form_tag("teams/delete-teams", method: "post") do
+    = form_tag(delete_multiple_teams_path, method: "post") do
       %table.cool.display#teams
         %thead{style: "font-size: 16px"}
           %tr

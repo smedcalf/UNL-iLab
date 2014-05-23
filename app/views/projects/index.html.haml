@@ -6,7 +6,7 @@
   - if @projects.empty?
     %p No project was created.
   - else
-    = form_tag("projects/manage-projects", method: "post") do
+    = form_tag(manage_projects_path, method: "post") do
       = render 'shared/error_messages'
       %table.display#projects{style: "font-size: 14px"}
         %thead

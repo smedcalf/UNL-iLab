@@ -6,7 +6,7 @@
   - if @student_preferences.empty?
     %p No Student Preferences.
   - else
-    = form_tag("/student_preferences/delete-student-preferences", method: "post") do
+    = form_tag(delete_student_preferences_path, method: "post") do
       = render 'shared/error_messages'
       %table.display.cool#student_preferences
         %thead

@@ -27,7 +27,7 @@
                                     .wdn-profile-options
                                         %a.wdn-icon-user.wdn-idm-login{href: change_password_user_path(current_user), title: "Change Password"}= current_user.name
                                         |
-                                        %a{href: "#{root_url}signout", title: 'logout'} Logout
+                                        %a{href: signout_path, title: 'logout'} Logout
                                         %a.wdn-icon-calendar{href: calendar_path, style: "margin-left: 10px" } Calendar
                             = render 'wdn/wdnTools'
                         %span#wdn_institution_title University of Nebraska&ndash;Lincoln

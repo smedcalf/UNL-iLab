@@ -125,7 +125,7 @@ Ilab::Application.routes.draw do
   get 'student-preferences', to: 'student_preferences#all', as: :all_student_preferences
   get 'sponsor-preferences', to: 'sponsor_preferences#all', as: :all_sponsor_preferences
 
-  post    '/student_preferences/delete-student-preferences', to: 'student_preferences#destroy'
+  post    '/student_preferences/delete-student-preferences', to: 'student_preferences#destroy', as: :delete_student_preferences
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

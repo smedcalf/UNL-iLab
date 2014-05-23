@@ -6,7 +6,7 @@
   - if @students.empty?
     No previous student.
   - else
-    = form_tag("/students/manage-students", method: "post") do
+    = form_tag(manage_students_students_path, method: "post") do
       = render 'shared/error_messages'
       %table.display#students
         %thead
