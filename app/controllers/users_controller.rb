@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 	before_action :signed_in_user, except: [:new, :create]
-	before_action :correct_user, only: [:edit, :update]
+	before_action :correct_user_or_admin, only: [:edit, :update]
 
 	def new
 		@user = User.new

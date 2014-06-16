@@ -188,6 +188,12 @@ module SessionsHelper
 		end
   end
 
+  def correct_user_or_admin
+    unless(current_user.id.to_s == params[:id] || current_user.admin?)
+      not_found
+    end
+  end
+
   def correct_project_owner
     project = Project.find(params[:id])
     unless ((current_user.sponsor && current_user.sponsor.id == project.sponsor_id) || current_user.utype == "instructor")

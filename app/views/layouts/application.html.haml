@@ -25,7 +25,7 @@
                             -if signed_in?
                                 .wdn-resource-label.wdn-resource-login-trigger.loggedin#wdn_identity_management{role: 'navigation'}
                                     .wdn-profile-options
-                                        %a.wdn-icon-user.wdn-idm-login{href: change_password_user_path(current_user), title: "Change Password"}= current_user.name
+                                        %a.wdn-icon-user.wdn-idm-login{href: user_path(current_user), title: "Change Password"}= current_user.name
                                         |
                                         %a{href: signout_path, title: 'logout'} Logout
                                         %a.wdn-icon-calendar{href: calendar_path, style: "margin-left: 10px" } Calendar

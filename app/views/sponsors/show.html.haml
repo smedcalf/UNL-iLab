@@ -29,3 +29,5 @@
         %p.c-text=@sponsor.organization
 - if current_user.utype != "student" || current_user.id == @sponsor.user_id
   %a.wdn-button.wdn-button-triad{href: edit_sponsor_path(@sponsor.id) } Edit
+  - if current_user.utype != "student" || current_user.id == @sponsor.user_id
+    %a.wdn-button.wdn-button-triad{href: edit_user_path(@sponsor.user_id) } Change Password

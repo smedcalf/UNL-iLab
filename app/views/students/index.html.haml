@@ -14,15 +14,13 @@
           %tr
             %th
               = check_box_tag 'checkAll', ""
-            %th First Name
-            %th Last Name
+            %th Name
             %th Email
             %th Team
             %th Semester
             %th Availability
-            %th
         %tbody
-          - @students.each do |s|
+          - @students.sort! { |a,b| a.last_name.downcase <=> b.last_name.downcase  }.each do |s|
             %tr.thumb{class: "student-status-#{s.status}"}
               %td
                 = check_box_tag 'student[]', s.id
@@ -30,8 +28,8 @@
                   = image_tag s.avatar_url, width: 130, height: 155
                   %hr
                     .disclaimer=s.full_name
-              %td= s.first_name
-              %td= s.last_name
+              %td
+                %a{ href: student_path(s.id) }= s.full_name
               %td
                 %a.wdn-icon-mail{href: "mailto:#{s.email}"}= s.email
               %td
@@ -42,8 +40,7 @@
               -#%td= s.major
               %td= s.semester
               %td= s.availability
-              %td
-                %a.tooltip{ href: student_path(s.id), style: "border-bottom: 0px;", title: "View student profile" } ಠ_ಠ
+
 
       -#= label_tag  "team", "Assign to"
       %section.wdn-grid-set
