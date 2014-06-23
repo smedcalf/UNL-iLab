@@ -5,6 +5,23 @@ class ApplicationController < ActionController::Base
 
   include SessionsHelper
 
+  before_filter :session_expires, :except => [:new, :create, :destroy]
+  before_filter :update_session_time, :except => [:create, :destroy]
+
+  def session_expires
+    @time_left = (session[:expires_at].to_i - Time.now.to_i).to_i
+    unless @time_left > 0
+      sign_out
+      reset_session
+      flash[:error] = 'Session expired'
+      redirect_to :controller => 'sessions', :action => 'new'
+    end
+  end
+
+  def update_session_time
+    session[:expires_at] = 1.minutes.from_now
+  end
+
 	def not_found
   	raise ActionController::RoutingError.new('Not Found')
   end
