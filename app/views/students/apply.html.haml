@@ -17,6 +17,7 @@
       -@projects.each do |p|
         -next if p.semester != current_user.student.semester
         -next if p.active != true
+        -next if p.status != true
         %tr
           -#%td{style: 'text-align: center'}= check_box_tag 'project[]', p.id
           %td

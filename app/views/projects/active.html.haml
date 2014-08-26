@@ -1,10 +1,10 @@
-%h1 Approved Projects
+%h1 Active Projects
 
-%hr Projects Approved for Student Application
+%hr Currently Active Projects
 
 .wdn-main.maincontent#maincontent
   - if @projects.empty?
-    %p No approved projects now.
+    %p No active projects now.
   - else
     = form_tag(manage_projects_path, method: "post") do
       = render 'shared/error_messages'
@@ -38,16 +38,12 @@
                   No Proposal
               %td
                 - if p.active
-                  Approved
+                  Active
               %td
               %td
                 = button_to "delete", delete_projects_path(:id => p.id), :method => :post
-      %section.wdn-grid-set
       - if current_user.instructor? || current_user.admin?
         %div{style:"float: left"}
           %span{style: 'font-size: 25px;'} &#8627;
-          = select_tag 'option', options_for_select(@approve_project_manage_options.collect {|p| [ p['label'], p['value'] ] }), {style: "width: auto"}
+          = select_tag 'option', options_for_select(@project_manage_options.collect {|p| [ p['label'], p['value'] ] }), {style: "width: auto"}
           = submit_tag 'submit', {style: 'font-size: 10px !important', confirm: 'Are you confirm the option?', title: "Submit selected projects.", class: "tooltip"}
-          //= submit_tag 'activate', {style: 'font-size: 10px !important; background: rgb(56, 185, 108)', confirm: 'Are you sure you want to move selected projects to active?', title: "activate selected projects.", class: "tooltip"}
-          //= submit_tag 'archive', {style: 'font-size: 10px !important; background: rgb(95, 129, 202)', confirm: 'Are you sure you want to archive the selected projects?', title: "Archive projects, then it will disappear and show in the past projects.", class: "tooltip"}
-          //= submit_tag 'delete', {style: 'font-size: 10px !important; background: rgb(224, 95, 84)', confirm: 'Are you confirm to delete selected projects?', title: "Delete selected projects.", class: "tooltip"}

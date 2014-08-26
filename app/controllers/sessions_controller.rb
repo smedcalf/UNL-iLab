@@ -47,6 +47,9 @@ class SessionsController < ApplicationController
   def reset_password
   end
 
+  def help
+  end
+
   def temporary_password
     @user = User.where(:name => params[:session][:name], :email => params[:session][:email]).first
     if @user.nil?

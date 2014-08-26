@@ -76,6 +76,7 @@ class StudentsController < ApplicationController
   end
 
   def index
+    student_manage_options
     if current_user.utype == "admin"
       @students = Student.all.where(['status >= ?', 0])
     else
@@ -105,8 +106,8 @@ class StudentsController < ApplicationController
     if params[:student].nil?
       flash[:error] = 'No student was selected!'
       redirect_to students_path
-    else
-      case params[:commit]
+    elsif
+      case params[:option]
         when 'delete'
           Student.destroy(params[:student])
           flash[:success] = "Selected Students were deleted."
@@ -132,6 +133,17 @@ class StudentsController < ApplicationController
           flash[:success] = "Selected Students were unassigned."
           redirect_to students_path
       end
+    else
+      case params[:commit]
+        when 'delete'
+          Student.destroy(params[:student])
+          flash[:success] = "Selected Students were deleted."
+          redirect_to students_path
+        when 'reactivate'
+          Student.where(:id => params[:student]).update_all(:status => 0)
+          flash[:success] = "Selected Students were reactivated, please check current students"
+          redirect_to students_path
+      end
     end
   end
 
@@ -149,4 +161,15 @@ class StudentsController < ApplicationController
     def set_student
       @student = Student.find_by_id(params[:id])
     end
+
+  def student_manage_options
+    if current_user.utype == "admin" || current_user.utype == "instructor"
+      @student_manage_options = [{"value" => "", "label" => "Please select..."},
+                                 {"value" => "unassign", "label" => "Unassign"},
+                                 {"value" => "deactivate", "label" => "Deactivate"},
+                                 {"value" => "delete", "label" => "Delete"}]
+    else
+      @student_manage_options = [{"value" => "", "label" => "You don't have authority to manage project"}]
+    end
+  end
 end

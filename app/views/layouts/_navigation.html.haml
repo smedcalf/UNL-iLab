@@ -1,99 +1,104 @@
 - if signed_in?
   - if current_user.utype == "admin" && !current_user.instructor.nil?
     %ul
-      %li.first.expanded
-        %a{ href: '/' } Home
-        %ul
-          %li.first.leaf
-            %a{ href: "http://unl.edu", title: 'UNL Homepage'} UNL Homepage
-          %li.last.leaf
-            %a{ href: "http://cse.unl.edu/InnovationLab", title: 'Innovation Lab Homepage' } Innovation Lab
       %li.expanded
-        %a.cursor-pointer Application
+        %a.cursor-pointer Instructors
         %ul
           %li.first.leaf
-            %a{ href: users_path, title: 'User Registration' } User Registration
+            %a{ href: users_path, title: 'Assign Role to User' } Assign User Roles
           %li.leaf
-            %a{ href: instructor_terms_path, title: 'Instructor Term Allocation' } Instructor Term Allocation
+            %a{ href: requests_path, title: "Room Request"} Manage Room 28 Requests
           %li.leaf
-            %a{ href: all_student_preferences_path, title: 'Student Preference' } Student Preferences
+            %a{ href: instructor_terms_path, title: 'Instructor Term Allocation' } Show Instructor Terms
           %li.last.leaf
-            %a{ href: all_sponsor_preferences_path, title: 'Sponsor Preference' } Sponsor Preferences
+            %a{ href: new_instructor_path, title: 'Create New Instructor' } Create Instructor
       %li.expanded
-        %a.cursor-pointer Projects
+        %a.cursor-pointer Sponsors
         %ul
           %li.first.leaf
-            %a{ href: projects_path, title: 'Projects table' } Projects Table
+            %a{ href: all_sponsor_preferences_path, title: 'Sponsor Preferences' } Show Sponsor Preferences
           %li.leaf
-            %a{ href: sponsors_path, title: 'Sponsor Table' } Sponsors Table
+            %a{ href: sponsor_preferences_path(current_user.instructor.id), title: 'Set Preferences' } Set Preferences
           %li.leaf
-            %a{ href: teams_path, title: 'Team Table' } Teams Table
-          -#%li.leaf
-          -#  %a{ href: team_work_teams_path, title: 'Team Work History' } Team Work Track
-          %li.leaf
-            %a{ href: past_projects_path, title: 'Past Projects table' } Past Projects Table
+            %a{ href: sponsors_path, title: 'Sponsor Table' } Show Current Sponsors
           %li.last.leaf
-            %a{ href: past_teams_path, title: 'Past Team Table' } Past Teams Table
+            %a{ href: new_sponsor_path, title: 'Create New Sponsor' } Create Sponsor
       %li.expanded
         %a.cursor-pointer Students
         %ul
           %li.first.leaf
-            %a{ href: students_path, title: 'Current Student Table' } Current Students Table
+            %a{ href: all_student_preferences_path, title: 'Student Preference' } Show Student Preferences
           %li.leaf
-            %a{ href: sponsor_preferences_path(current_user.instructor.id), title: 'Student Preference' } Student Application
+            %a{ href: students_path, title: 'Current Student Table' } Show Current Students
           %li.leaf
-            %a{ href: requests_path, title: "Room Request"} Room 28 Request
-          %li.last.leaf
-            %a{ href: past_students_students_path, title: 'Past Student Table' } Past Students Table
+            %a{ href: past_students_students_path, title: 'Past Student Table' } Show Past Students
+          %li.leaf
+            %a{ href: new_student_path, title: 'Create New Student' } Create Student
       %li.expanded
-        %a.cursor-pointer Forms
+        %a.cursor-pointer Teams
         %ul
           %li.first.leaf
-            %a{ href: new_instructor_path, title: 'create New Project' } New Instructor Form
+            %a{ href: teams_path, title: 'Team Table' } Show Active Teams
+          %li.last.leaf
+            %a{ href: past_teams_path, title: 'Past Teams Table' } Show Past Teams
+      %li.expanded
+        %a.cursor-pointer Projects
+        %ul
           %li.first.leaf
-            %a{ href: new_project_path, title: 'create New Project' } New Project Form
+            %a{ href: active_projects_path, title: 'Active Projects Table' } Show Active Projects
           %li.leaf
-            %a{ href: new_sponsor_path, title: 'Create New Sponsor' } New Sponsor Form
-          %li.leaf.leaf
-            %a{ href: new_student_path, title: 'Create New student' } New Student Form
-          -#%li.last.leaf
-            -#%a{ href: new_team_path, title: 'Create New Team' } New Team Form
+            %a{ href: projects_path, title: 'Approved Projects Table' } Show Approved Projects
+          %li.leaf
+            %a{ href: pending_projects_path, title: 'Pending Projects Table' } Show Pending Projects
+          %li.leaf
+            %a{ href: past_projects_path, title: 'Past Projects Table' } Show Past Projects
+          %li.last.leaf
+            %a{ href: new_project_path, title: 'Create New Project' } Create Project
+          -#%li.leaf
+          -#  %a{ href: team_work_teams_path, title: 'Team Work History' } Team Work Track
       %li.expanded
         %a.cursor-pointer Links
         %ul
           %li.first.leaf
-            %a{ href: opram_system_teams_path, target: "_blank", title: "team assign system"} Team Assign System
+            %a{ href: opram_system_teams_path, target: "_blank", title: "Team Assign System"} Team Assign System
           %li.leaf
             %a{ href: solutions_path, title: "Saved Assign Solutions" } View Saved Solutions
           %li.leaf
             %a{ href: "http://drive.google.com/#", title: "Google Drive" } Google Drive
+          %li.leaf
+            %a{ href: "https://trello.com/#", title: "Team Cooperation Tool"} Trello
+          %li.leaf
+            %a{ href: "http://unl.edu", title: 'UNL Homepage'} UNL Homepage
           %li.last.leaf
-            %a{ href: "https://trello.com/#", title: "Team cooperation tool"} Trello
+            %a{ href: help_path, title: 'Help Page'} Help Page
   - elsif current_user.utype == "instructor" && !current_user.instructor.nil?
     %ul
       %li
-        %a{ href: '/' } Home
-        %ul
-          %li
-            %a{ href: "http://unl.edu", title: 'UNL Homepage'} UNL Homepage
-            %a{ href: "http://cse.unl.edu/InnovationLab", title: 'Innovation Lab Homepage' } Innovation Lab
-      %li
-        %a.cursor-pointer Application
+        %a.cursor-pointer Sponsors
         %ul
           %li
             -#%a{ href: users_path, title: 'User Registration' } User Registration
             -#%a{ href: instructor_terms_path, title: 'Instructor Term Allocation' } Instructor Term Allocation
             -#%a{ href: requests_path, title: "Room Request"} Room 28 Request
-            %a{ href: sponsor_preferences_path(current_user.instructor.id), title: 'Student Preference' } Student Application
-            %a{ href: all_student_preferences_path, title: 'Student Preference' } Student Preferences
-            %a{ href: all_sponsor_preferences_path, title: 'Sponsor Preference' } Sponsor Preferences
+            %a{ href: sponsors_path, title: 'Sponsors Table' } Show Current Sponsors
+            %a{ href: all_sponsor_preferences_path, title: 'Sponsor Preference' } Show Sponsor Preferences
+            %a{ href: sponsor_preferences_path(current_user.instructor.id), title: 'Set Preferences' } Set Preferences
+      %li
+        %a.cursor-pointer Students
+        %ul
+          %li
+            %a{ href: all_student_preferences_path, title: 'Student Preference' } Show Student Preferences
+            %a{ href: students_path, title: 'Student Table' } Show Current Students
+            %a{ href: past_students_students_path, title: 'Past Student Table' } Show Past Students
+            %a{ href: new_student_path, title: 'Create New Student' } Create Student
       %li
         %a.cursor-pointer Projects
         %ul
           %li
-            %a{ href: projects_path, title: 'Projects table' } Current Projects Table
-            %a{ href: sponsors_path, title: 'Sponsors Table' } Current Sponsors Table
-            %a{ href: past_projects_path, title: 'Past Projects table' } Past Projects Table
+            %a{ href: active_projects_path, title: 'Active Projects Table' } Show Active Projects
+            %a{ href: projects_path, title: 'Projects Table' } Show Approved Projects
+            %a{ href: pending_projects_path, title: 'Pending Projects Table' } Show Pending Projects
+            %a{ href: past_projects_path, title: 'Past Projects Table' } Show Past Projects
             -#%a{ href: new_sponsor_path, title: 'Create New Sponsor' } New Sponsor Form
             -#%a{ href: new_project_path, title: 'create New Project' } New Project Form
       %li
@@ -101,50 +106,38 @@
         %ul
           %li
             -#%a{ href: new_team_path, title: 'Create New Team' } New Team Form
-            %a{ href: teams_path, title: 'Team Table' } Teams Table
-            %a{ href: assignment_teams_path, title: 'Assign Student to Team' } Team Assignment
-            %a{ href: team_work_teams_path, title: 'Team Work History' } Team Work Track
-            %a{ href: past_teams_path, title: 'Past Team Table' } Past Teams Table
+            %a{ href: teams_path, title: 'Team Table' } Show Active Teams
+            %a{ href: assignment_teams_path, title: 'Assign Student to Team' } Set Team Assignment
+            %a{ href: team_work_teams_path, title: 'Team Work History' } Track Team Work
+            %a{ href: past_teams_path, title: 'Past Team Table' } Show Past Teams
             -#%a{ href: '#', title: 'Team Notification' } Team Notification
-      %li
-        %a.cursor-pointer Students
-        %ul
-          %li
-            %a{ href: students_path, title: 'Student Table' } Current Students Table
-            %a{ href: new_student_path, title: 'Create New student' } New Student Form
-            %a{ href: past_students_students_path, title: 'Past Student Table' } Past Students Table
       %li
         %a.cursor-pointer Links
         %ul
           %li
-            %a{ href: opram_system_teams_path, target: "_blank", title: "team assign system"} Team Assign System
+            %a{ href: opram_system_teams_path, target: "_blank", title: "Team Assign System"} Team Assign System
             %a{ href: solutions_path, title: "Saved Assign Solutions" } View Saved Solutions
             %a{ href: "http://drive.google.com/#‎", title: "Google Drive" } Google Drive
-            %a{ href: "https://trello.com/‎#", title: "Team cooperation tool"} Trello
+            %a{ href: "https://trello.com/‎#", title: "Team Cooperation Tool"} Trello
+            %a{ href: "http://unl.edu", title: 'UNL Homepage'} UNL Homepage
   - elsif current_user.utype == 'sponsor' && !current_user.sponsor.nil?
     %ul
       %li
-        %a{ href: '/' } Home
+        %a{ href: '#', title: 'Application Tables' } Sponsors
         %ul
           %li
-            %a{ href: "http://unl.edu", title: 'UNL Homepage'} UNL Homepage
-            %a{ href: "http://cse.unl.edu/InnovationLab", title: 'Innovation Lab Homepage' } Innovation Lab
+            %a{ href: sponsor_preferences_path(current_user.sponsor.id), title: 'Set Preferences' } Set Preferences
       %li
-        %a{ href: '#', title: 'Application Tables' } Application
+        %a.cursor-pointer Projects
         %ul
           %li
-            %a{ href: sponsor_preferences_path(current_user.sponsor.id), title: 'Student Preference' } Student Application
-      %li
-        %a.cursor-pointer Project
-        %ul
-          %li
-            %a{ href: projects_path, title: 'Projects table' } Current Project Table
+            %a{ href: projects_path, title: 'Projects Available for Application' } Show Approved Projects
             -#%a{ href: new_project_path, title: 'create New Project' } New Project Form
       %li
-        %a.cursor-pointer Team
+        %a.cursor-pointer Teams
         %ul
           %li
-            %a{ href: teams_path, title: 'Team Memeber List' } Team Table
+            %a{ href: teams_path, title: 'Team Member List' } Show Active Teams
             -#%a{ href: team_work_teams_path, title: 'Team Work History' } Team Work Track
             -#%a{ href: '#', title: 'Team Notification' } Team Notification
       %li
@@ -152,38 +145,37 @@
         %ul
           %li
             %a{ href: "https://drive.google.com/#‎", title: "Google Drive" } Google Drive
-            %a{ href: "https://trello.com/#‎", title: "Team cooperation tool"} Trello
+            %a{ href: "https://trello.com/#‎", title: "Team Cooperation Tool"} Trello
+            %a{ href: "http://unl.edu", title: 'UNL Homepage'} UNL Homepage
   - elsif current_user.utype == 'student' && !current_user.student.nil?
     %ul
-      %li
-        %a{ href: '/' } Home
-        %ul
-          %li
-            %a{ href: "http://unl.edu", title: 'UNL Homepage'} UNL Homepage
-            %a{ href: "http://cse.unl.edu/InnovationLab", title: 'Innovation Lab Homepage' } Innovation Lab
       -#- if current_user.student.team_id.nil?
       %li
         %a.cursor-pointer Projects
         %ul
           %li
-            %a{ href: apply_student_path(current_user.student.id), title: 'Apply for projects' } Project Apply
-            %a{ href: student_preferences_path(current_user.student.id), title: 'Application Status' } Application Status
+            %a{ href: apply_student_path(current_user.student.id), title: 'Apply For Project' } Apply For Project
+            %a{ href: student_preferences_path(current_user.student.id), title: 'Review Application Status' } Show Project Preferences
       - if !current_user.student.team_id.nil?
         %li
-          %a.cursor-pointer Team
+          %a.cursor-pointer Teams
           %ul
             %li
-              %a{ href: new_task_team_path(current_user.student.team_id)} Create New Task
-              %a{ href: team_path(Team.find(current_user.student.team_id)), title: 'Team member' } Team Members
-              -#%a{ href: '#', title: 'Team Notification' } Team Notification
-              %a{ href: work_track_team_path(current_user.student.team_id), title: 'Team Work History' } Team Work Track
+              -if current_user.student.team
+                %a{ href: new_task_team_path(current_user.student.team_id)} Create New Task
+                %a{ href: team_path(Team.find(current_user.student.team_id)), title: 'Team Members' } Show Team Members
+                -#%a{ href: '#', title: 'Team Notification' } Team Notification
+                %a{ href: work_track_team_path(current_user.student.team_id), title: 'Team Work History' } Track Team Work
+              -else
+                *** No Team ***
       %li
         %a.cursor-pointer Links
         %ul
           %li
-            %a{ href: requests_path, title: "Room 28 Request" } Room 28 Request
+            %a{ href: requests_path, title: "Room 28 Request" } Request Room 28
             %a{ href: "https://drive.google.com/#‎", title: "Google Drive" } Google Drive
             %a{ href: "https://trello.com/#", title: "Team cooperation tool"} Trello
+            %a{ href: "http://unl.edu", title: 'UNL Homepage'} UNL Homepage
   - else
     %ul
       %li

@@ -44,7 +44,7 @@ class TeamsController < ApplicationController
       @instructor_terms = InstructorTerm.where(:instructor_id => current_user.instructor.id)
       @instructor_terms.each do |it|
         Team.all.each do |t|
-          if t.project.semester == it.semester && t.project.active
+          if t.project.semester == it.semester && t.project.active && !t.project.status
             @teams << t
           end
         end
@@ -58,7 +58,7 @@ class TeamsController < ApplicationController
     else
       @teams=[]
       Team.all.each do |t|
-        if t.project.active
+        if t.project.active && !t.project.status
           @teams << t
         end
       end
@@ -112,12 +112,32 @@ class TeamsController < ApplicationController
            flash[:error] = "No student was selected."
            #redirect_to assignment_teams_path
     else
-        team = Team.find_by_id(params[:team])
-        Student.where(:id => params[:student]).update_all(:status => true)
+      case params[:commit]
+        when 'assign'
+          Student.where(:id => params[:student]).update_all(:status => true)
 
-        team.students << Student.find(params[:student])
-        team.save
-        flash[:success] = "Student has been successfully assigned."
+          team = Team.find_by_id(params[:team])
+          team.students << Student.find(params[:student])
+          team.save
+
+          project = Project.find_by_id(team.project_id)
+          project.current_capacity = team.students.count
+          project.save
+          if project.current_capacity <= project.initial_capacity
+            flash[:success] = "Student has been successfully assigned."
+          else
+            flash[:warning] = "Student has been successfully assigned. However, your team capacity has exceeded it's limit"
+          end
+        when 'unassign'
+          Student.where(:id => params[:student]).update_all(:status => false)
+          Student.where(:id => params[:student]).update_all(:team_id => nil)
+
+          team = Team.find_by_id(params[:team])
+          project = Project.find_by_id(team.project_id)
+          project.current_capacity = team.students.count
+          project.save
+          flash[:success] = "Student has been successfully unassigned."
+      end
     end
     redirect_to :back
   end

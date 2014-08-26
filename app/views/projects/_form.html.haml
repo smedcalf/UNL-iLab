@@ -26,10 +26,10 @@
     - if current_user.sponsor.nil?
       .bp1-wdn-col-one-third
         =f.check_box :active
-        =f.label :active, 'Active Now'
+        =f.label :active, 'Approve for student application'
         %br
-        =f.check_box :status
-        =f.label :status, 'Enable for Apply'
+        =f.hidden_field :status
+        - @status = true
 
     .bp1-wdn-col-one-third
       %ul

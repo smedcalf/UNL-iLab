@@ -75,7 +75,7 @@ class StudentPreferencesController < ApplicationController
   private
 
   def student_preference_params
-    params.require(:student_preference).permit(:student_id, :project_id, :rating, :resume, :cover_letter)
+    params.require(:student_preference).permit(:student_id, :project_id, :rating, :resume, :cover_letter, :github_url, :google_plus_url)
   end
 
   def set_student_preference
@@ -84,29 +84,23 @@ class StudentPreferencesController < ApplicationController
 
   def rating_options
     if current_user.student?
-      if Student.where(:semester => current_user.student.semester).count > 10
+      #if Student.where(:semester => current_user.student.semester).count > 10
         @rating_options = [{"value" => "", "label" => "Please select..."},
-                           {"value" => "0", "label" => "0 Absolutely Disagree"},
-                           {"value" => "1", "label" => "1 Strongly Disagree"},
-                           {"value" => "2", "label" => "2 Disagree"},
-                           {"value" => "3", "label" => "3 Neither Agree nor Disagree"},
-                           {"value" => "4", "label" => "4 Agree"},
-                           {"value" => "5", "label" => "5 Strongly Agree"}]
-      else
-        @rating_options = [{"value" => "", "label" => "Please select..."},
-                           {"value" => "0", "label" => "0 Absolutely Disagree"},
-                           {"value" => "1", "label" => "1 Disagree"},
-                           {"value" => "2", "label" => "2 Agree"},
-                           {"value" => "3", "label" => "3 Strongly Agree"}]
-      end
+                           {"value" => "0", "label" => "Low Priority"},
+                           {"value" => "1", "label" => "Below Average Priority"},
+                           {"value" => "2", "label" => "Average Priority"},
+                           {"value" => "3", "label" => "Above Average Priority"},
+                           {"value" => "4", "label" => "High Priority"},
+                           {"value" => "5", "label" => "Highest Priority"}]
+
     else
       @rating_options = [{"value" => "", "label" => "Please select..."},
-                         {"value" => "0", "label" => "0 Absolutely Disagree"},
-                         {"value" => "1", "label" => "1 Strongly Disagree"},
-                         {"value" => "2", "label" => "2 Disagree"},
-                         {"value" => "3", "label" => "3 Neither Agree nor Disagree"},
-                         {"value" => "4", "label" => "4 Agree"},
-                         {"value" => "5", "label" => "5 Strongly Agree"}]
+                         {"value" => "0", "label" => "Low Priority"},
+                         {"value" => "1", "label" => "Below Average Priority"},
+                         {"value" => "2", "label" => "Average Priority"},
+                         {"value" => "3", "label" => "Above Average Priority"},
+                         {"value" => "4", "label" => "High Priority"},
+                         {"value" => "5", "label" => "Highest Priority"}]
     end
 
   end

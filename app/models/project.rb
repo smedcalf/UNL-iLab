@@ -34,7 +34,7 @@ class Project < ActiveRecord::Base
   after_initialize :set_defaults
 
   before_save :rename_proposal
-  has_attached_file :proposal
+  has_attached_file :proposal, :url => "/:class/:attachment/:id/:basename.:extension"
   do_not_validate_attachment_file_type :proposal
 
 
@@ -47,10 +47,11 @@ class Project < ActiveRecord::Base
 
     def set_defaults
       if self.new_record?
+        self.proposal_file_name = "" if self.proposal_file_name.nil?
         self.initial_capacity = 4 if self.initial_capacity.blank?
         self.current_capacity = self.initial_capacity
         self.active = false if self.active.blank?
-        self.status = false if self.status.blank?
+        self.status = true if self.status.blank?
       end
     end
 

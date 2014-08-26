@@ -1,0 +1,113 @@
+%h1
+  %strong Help Page
+
+= render 'shared/error_messages'
+
+%hr
+.wdn-main#maincontent
+  %table.display.cool#projects
+    %thead
+      %tr
+        %th Task
+        %th Instructions
+    %tbody
+      %tr
+        %td
+          %a.t-text{ href: users_path, style: 'font-size: 15px;', title: 'Assign Role to User' } Assign Role to User:
+        %td
+          %p Instructors > Assign Roles > Check Users > Select Role > Submit
+      %tr
+        %td
+          %a.t-text{ href: requests_path, style: 'font-size: 15px;', title: 'Request Room' } Approve Room Request:
+        %td
+          %p Instructors > Manage Room 28 Requests > Check Requests > Select Approve > Submit
+      %tr
+        %td
+          %a.t-text{ href: instructor_terms_path, style: 'font-size: 15px;', title: 'Instructor Term' } Assign Instructor Terms:
+        %td
+          %p Instructors > Show Instructor Terms > Check Instructors > Select Term > Add/Unassign
+      %tr
+        %td
+          %a.t-text{ href: new_instructor_path, style: 'font-size: 15px;', title: 'New Instructor' } Create New Instructor:
+        %td
+          %p Instructors > Create Instructor > Fill Required Fields > Submit
+      %tr
+        %td
+          %a.t-text{ href: all_sponsor_preferences_path, style: 'font-size: 15px;', title: 'Sponsor Preferences' }  Assign Student Teams:
+        %td
+          %p Sponsors > Show Sponsor Preferences > Check Student(s) > Select Team > Assign/Unassign
+      %tr
+        %td
+          %a.t-text{ href: sponsor_preferences_path(current_user.instructor.id), style: 'font-size: 15px;', title: 'Sponsor Preferences' }  Set Preferences for a Project:
+        %td
+          %p Sponsors > Set Preferences > Select Project > Assign Preferences > Save
+      %tr
+        %td
+          %a.t-text{ href: sponsors_path, style: 'font-size: 15px;', title: 'Show Sponsors' }  See All Sponsors:
+        %td
+          %p Sponsors > Show Sponsors > Select Project > Assign Preferences > Save
+      %tr
+        %td
+          %a.t-text{ href: sponsors_path, style: 'font-size: 15px;', title: 'Show Sponsors' }  Edit a Sponsor:
+        %td
+          %p Sponsors > Show Current Sponsors > Edit > Fill Required Fields > Submit
+      %tr
+        %td
+          %a.t-text{ href: sponsors_path, style: 'font-size: 15px;', title: 'Show Sponsors' }  Delete a Sponsor:
+        %td
+          %p Sponsors > Show Current Sponsors > Check Sponsor(s) > Delete
+      %tr
+        %td
+          %a.t-text{ href: new_sponsor_path, style: 'font-size: 15px;', title: 'New Sponsor' } Create New Sponsor:
+        %td
+          %p Sponsors > Create Sponsor > Fill Required Fields > Submit
+      %tr
+        %td
+          %a.t-text{ href: all_student_preferences_path, style: 'font-size: 15px;', title: 'Student Preferences' }  See Student's Project Rating
+        %td
+          %p Students > Show Student Preferences
+      %tr
+        %td
+          %a.t-text{ href: students_path, style: 'font-size: 15px;', title: 'Show Students' }  See Active Students:
+        %td
+          %p Students > Show Current Students
+      %tr
+        %td
+          %a.t-text{ href: students_path, style: 'font-size: 15px;', title: 'Show Students' }  Deactivate/Delete Students:
+        %td
+          %p Students > Show Current Students > Check Student(s) > Select Deactivate/Delete > Submit
+      %tr
+        %td
+          %a.t-text{ href: past_students_students_path, style: 'font-size: 15px;', title: 'Show Past Students' }  Reactivate Students:
+        %td
+          %p Students > Show Past Students > Check Student(s) > Select Reactivate > Submit
+      %tr
+        %td
+          %a.t-text{ href: new_student_path, style: 'font-size: 15px;', title: 'Create New Student' }  Create New Student:
+        %td
+          %p Students > Create Student > Fill Required Fields > Submit
+      %tr
+        %td
+          %a.t-text{ href: teams_path, style: 'font-size: 15px;', title: 'Show Active Teams' }  See Currently Active Teams:
+        %td
+          %p Teams > Show Active Teams
+      %tr
+        %td
+          %a.t-text{ href: past_teams_path, style: 'font-size: 15px;', title: 'Show Past Teams' }  See Past Teams
+        %td
+          %p Teams > Show Past Teams
+      %tr
+        %td
+          %a.t-text{ href: teams_path, style: 'font-size: 15px;', title: 'Show Active Teams' }  Delete Teams
+        %td
+          %p Teams > Show Active/Past Teams > Check Team(s) > Select Delete
+      %tr
+        %td
+          %a.t-text{ href: teams_path, style: 'font-size: 15px;', title: 'Show Active Teams' }  Email a Team
+        %td
+          %p Teams > Show Active/Past Teams > Check Team(s) > Select Email All Teams
+
+
+
+
+

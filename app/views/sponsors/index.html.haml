@@ -9,7 +9,7 @@
     %p No Sponsor was created.
   - else
     = form_tag(manage_sponsors_path, method: "post") do
-      %table.display#sponsors
+      %table.display.cool#sponsors
         %thead
           %tr
             %th= check_box_tag 'checkAll', ""

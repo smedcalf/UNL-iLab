@@ -1,8 +1,15 @@
 class ProjectsController < ApplicationController
   before_action :signed_in_user
-  before_action :signed_in_instructor, only:  [:edit, :update, :new, :create, :manage_projects]
+  before_action :signed_in_instructor, only:  [:edit, :update, :new, :create, :manage_projects, :pending]
 
   def index
+    approve_project_manage_options
+
+    # set active projects defined in application_controller
+    set_approved_projects
+  end
+
+  def active
     project_manage_options
 
     # set active projects defined in application_controller
@@ -10,19 +17,36 @@ class ProjectsController < ApplicationController
   end
 
   def past
-    project_manage_options
+    past_project_manage_options
     if current_user.utype == "instructor"
       @projects = []
       @instructor_terms = InstructorTerm.where(:instructor_id => current_user.instructor.id)
       @instructor_terms.each do |it|
-        Project.where(:semester => it.semester, :active => false).each do |p|
+        Project.where(:semester => it.semester, :active => false, :status => false).each do |p|
           @projects << p
         end
       end
     elsif current_user.utype == "sponsor"
       @projects = current_user.sponsor.projects
     else
-      @projects = Project.where(:active => false)
+      @projects = Project.where(:active => false, :status => false)
+    end
+  end
+
+  def pending
+    pending_project_manage_options
+    if current_user.utype == "instructor"
+      @projects = []
+      @instructor_terms = InstructorTerm.where(:instructor_id => current_user.instructor.id)
+      @instructor_terms.each do |it|
+        Project.where(:semester => it.semester, :active => false, :status => true).each do |p|
+          @projects << p
+        end
+      end
+    elsif current_user.utype == "sponsor"
+      @projects = current_user.sponsor.projects
+    else
+      @projects = Project.where(:active => false, :status => true)
     end
   end
 
@@ -38,8 +62,14 @@ class ProjectsController < ApplicationController
     if @project.valid? && @project.save
       @team = Team.new(:name => @project.name, :project => @project)
       @team.save
-      flash[:success] = "New project was created and new team was created. And team called #{@team.name} was automatically created, please check teams table."
-      redirect_to projects_path
+      if @project.active?
+        flash[:success] = "New project was created and new team was created. And team called #{@team.name} was automatically created, please check teams table."
+        redirect_to projects_path
+      else
+        flash[:success] = "New project was created and new team was created. And team called #{@team.name} was automatically created, please check teams table."
+        redirect_to pending_projects_path
+      end
+
     else
       flash[:error] = @project.errors.full_messages.join(", ").html_safe
       render 'new'
@@ -48,6 +78,13 @@ class ProjectsController < ApplicationController
 
   def show
     set_project
+  end
+
+  def delete
+    @project = Project.find_by_id(params[:id])
+    Project.destroy(@project)
+    flash[:success] = "Selected Projects were deleted."
+    redirect_to(:back)
   end
 
   def edit
@@ -70,29 +107,49 @@ class ProjectsController < ApplicationController
   def manage_projects
     if params[:project].nil?
       flash[:error] = 'No project was selected!'
-      redirect_to projects_path
+      redirect_to(:back)
     else
       case params[:option]
-        when 'disable'
-          Project.where(:id => params[:project]).update_all(:status => false)
-          flash[:success] = "Selected Projects were disabled to apply."
-        when 'enable'
-          Project.where(:id => params[:project]).update_all(:status => true)
-          flash[:success] = "Selected Projects were enabled to apply."
+        when 'archive'
+          Project.where(:id => params[:project]).update_all(:active => false, :status => false)
+          flash[:success] = "Selected Projects were archived. Please check your past projects"
+          redirect_to past_projects_path and return
+        when 'activate'
+          Project.where(:id => params[:project]).update_all(:active => true, :status => false)
+          flash[:success] = "Selected Projects were activated."
+          redirect_to active_projects_path and return
+        when 'pending'
+          Project.where(:id => params[:project]).update_all(:active => false, :status => true)
+          flash[:success] = "Selected Projects are now pending approval."
+          redirect_to pending_projects_path and return
+        when 'approve'
+          Project.where(:id => params[:project]).update_all(:active =>true, :status => true)
+          flash[:success] = "Selected Projects were approved to apply."
+          redirect_to projects_path and return
         else
           case params[:commit]
             when 'delete'
               Project.destroy(params[:project])
               flash[:success] = "Selected Projects were deleted."
-            when 'deactivate'
-              Project.where(:id => params[:project]).update_all(:active => false)
-              flash[:success] = "Selected Projects were deactivated. Please check your past projects"
+            when 'archive'
+              Project.where(:id => params[:project]).update_all(:active => false, :status => false)
+              flash[:success] = "Selected Projects were archived. Please check your past projects"
+              redirect_to past_projects_path and return
             when 'activate'
-              Project.where(:id => params[:project]).update_all(:active => true)
+              Project.where(:id => params[:project]).update_all(:active => true, :status => false)
               flash[:success] = "Selected Projects were activated."
+              redirect_to active_projects_path and return
+            when 'approve'
+              Project.where(:id => params[:project]).update_all(:active =>true, :status => true)
+              flash[:success] = "Selected Projects were approved for application."
+              redirect_to projects_path and return
+            when 'pending'
+              Project.where(:id => params[:project]).update_all(:active => false, :status => true)
+              flash[:success] = "Selected Projects are now pending approval."
+              redirect_to pending_projects_path and return
           end
       end
-      redirect_to projects_path
+      redirect_to(:back)
     end
   end
 
@@ -110,10 +167,44 @@ class ProjectsController < ApplicationController
     def project_manage_options
       if current_user.utype == "admin" || current_user.utype == "instructor"
         @project_manage_options = [{"value" => "", "label" => "Please select..."},
-                                  {"value" => "enable", "label" => "Enable"},
-                                  {"value" => "disable", "label" => "Disable"}]
+                                  {"value" => "approve", "label" => "Approve"},
+                                  {"value" => "pending", "label" => "Pending"},
+                                  {"value" => "archive", "label" => "Archive"}]
       else
         @project_manage_options = [{"value" => "", "label" => "You don't have authority to manage project"}]
+      end
+    end
+
+    def past_project_manage_options
+      if current_user.utype == "admin" || current_user.utype == "instructor"
+        @past_project_manage_options = [{"value" => "", "label" => "Please select..."},
+                                  {"value" => "activate", "label" => "Activate"},
+                                  {"value" => "approve", "label" => "Approve"},
+                                  {"value" => "pending", "label" => "Pending"}]
+      else
+        @past_project_manage_options = [{"value" => "", "label" => "You don't have authority to manage project"}]
+      end
+    end
+
+    def pending_project_manage_options
+      if current_user.utype == "admin" || current_user.utype == "instructor"
+        @pending_project_manage_options = [{"value" => "", "label" => "Please select..."},
+                                        {"value" => "activate", "label" => "Activate"},
+                                        {"value" => "approve", "label" => "Approve"},
+                                        {"value" => "archive", "label" => "Archive"}]
+      else
+        @pending_project_manage_options = [{"value" => "", "label" => "You don't have authority to manage project"}]
+      end
+    end
+
+    def approve_project_manage_options
+      if current_user.utype == "admin" || current_user.utype == "instructor"
+        @approve_project_manage_options = [{"value" => "", "label" => "Please select..."},
+                                        {"value" => "activate", "label" => "Activate"},
+                                        {"value" => "pending", "label" => "Pending"},
+                                        {"value" => "archive", "label" => "Archive"}]
+      else
+        @approve_project_manage_options = [{"value" => "", "label" => "You don't have authority to manage project"}]
       end
     end
 

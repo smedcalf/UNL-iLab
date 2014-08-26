@@ -8,7 +8,7 @@
   - else
     = form_tag("requests/manage-requests", method: "post") do
       = render 'shared/error_messages'
-      %table.display#requests
+      %table.display.cool#requests
         %thead
           %tr
             %th
@@ -43,13 +43,10 @@
               %td= r.approved
               %td= r.active
               %td
-                %a{ href: request_path(r.id), style: "border-bottom: 0px", title: "show request" } &#10147; View
+                %a.wdn-button{ href: request_path(r.id), style: 'font-size: 10px !important; background: #357EC7', title: "show request" } Show
 
-      -#= label_tag  "team", "Assign to"
       %section.wdn-grid-set
-      %span{ style: 'font-size: 25px; color: #979797' } &#8627;
-      = submit_tag 'activate', {style: 'font-size: 10px !important; background: rgb(79, 199, 146)', confirm: 'Are you confirm to activate?'}
-      = submit_tag 'deactivate', {style: 'font-size: 10px !important; background: rgb(46, 124, 90)', confirm: 'Are you confirm to deactivate?'}
-      = submit_tag 'approve', {style: 'font-size: 10px !important; background: rgb(84, 157, 224)', confirm: 'Are you confirm to approve?'}
-      = submit_tag 'disapprove', {style: 'font-size: 10px !important; background: rgb(56, 106, 151)', confirm: 'Are you confirm to disapprove?'}
-      = submit_tag 'delete', {style: 'font-size: 10px !important; background: rgb(224, 95, 84)', confirm: 'Are you confirm to delete?'}
+      %div{style:"float: left"}
+        %span{ style: 'font-size: 25px;'} &#8627;
+        = select_tag 'option', options_for_select(@request_manage_options.collect {|p| [ p['label'], p['value'] ] }), {style: "width: auto"}
+        = submit_tag 'submit', {style: 'font-size: 10px !important', confirm: 'Are you confirm the option?', title: "Submit selected request.", class: "tooltip"}

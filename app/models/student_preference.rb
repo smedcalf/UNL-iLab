@@ -14,6 +14,8 @@
 #  resume_content_type       :string(255)
 #  resume_file_name          :string(255)
 #  resume_file_size          :integer
+#  google_plus_url           :string(255)
+#  github_url                :string(255)
 #
 
 class StudentPreference < ActiveRecord::Base
@@ -34,6 +36,8 @@ class StudentPreference < ActiveRecord::Base
 	validates :student_id, presence: true
 	validates :rating, presence: true
 
+  after_initialize :set_defaults
+
   def rename_cover_letter
     extension = File.extname(cover_letter_file_name).downcase
     self.cover_letter.instance_write :file_name, "#{self.student.full_name}-#{self.project.name}-CoverLetter#{extension}"
@@ -42,5 +46,14 @@ class StudentPreference < ActiveRecord::Base
   def rename_resume
     extension = File.extname(resume_file_name).downcase
     self.resume.instance_write :file_name, "#{self.student.full_name}-#{self.project.name}-Resume#{extension}"
+  end
+
+  private
+
+  def set_defaults
+    if self.new_record?
+      self.github_url = "" if self.github_url.blank?
+      self.google_plus_url = "" if self.google_plus_url.blank?
+    end
   end
 end

@@ -1,6 +1,6 @@
 %h1 Sponsor Preferences
 
-%hr
+%hr Sponsor Ratings For All Applications
 
 .wdn-main#maincontent
   - if @sponsor_preferences.empty?
@@ -8,18 +8,18 @@
   - else
     = form_tag(add_teams_path, method: "post") do
       = render 'shared/error_messages'
-
-      %table.soothing.display#sponsor_preferences
+      %table.display.cool#teams
         %thead
           %tr
             %th
             %th Project
             %th Sponsor
             %th Student
+            %th Status
             %th Sponsor Rating
             %th Student Rating
         -@sponsor_preferences.each do |sp|
-          %tr{class: "#{'assigned' if sp.student.team }"}
+          %tr
             %td
               = check_box_tag 'student[]', sp.student_id
             %td
@@ -27,16 +27,21 @@
             %td
               %a{href: sponsor_path(sp.sponsor.id)}= sp.sponsor.full_name
             %td
-              - if sp.student.team_id
+              - if sp.student.team
                 = "(#{sp.student.team.name})"
               %a{href: student_path(sp.student_id)}= sp.student.full_name
-
+            %td
+              - if sp.student.team
+                Assigned
+              - else
+                Not Assign
             %td= sp.rating
             - @student_preference = StudentPreference.where(:student_id => sp.student_id, :project_id => sp.project_id).first
             %td
               - if !@student_preference.nil?
                 %a{href: student_preference_path(:student_id => sp.student_id, :id => @student_preference.id)}= @student_preference.rating
-      %section.wdn-grid-set{style: "float: right"}
-      = select_tag "team", options_from_collection_for_select(@teams, "id", "name"),
-      :prompt => "Please Select a Team",style: "width: auto", class: "wdn-col-one-half", style: "font-size: 18px !important"
-      = submit_tag "Assign", class: "wdn-col-one-half", style: "font-size: 10px !important; margin: 0 10px;"
+      %section.wdn-grid-set{style: "float: left"}
+        = select_tag "team", options_from_collection_for_select(@teams, "id", "name"),
+        :prompt => "Select a Team",style: "width: 50px", class: "wdn-col-one-half", style: "font-size: 18px !important"
+        = submit_tag "assign", class: "wdn-col-one-half", style: "font-size: 10px !important; margin: 0 10px;"
+        = submit_tag "unassign", class: "wdn-col-one-half", style: "font-size: 10px !important; margin: 0 10px; background: rgb(224, 95, 84)"

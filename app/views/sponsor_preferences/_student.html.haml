@@ -6,7 +6,7 @@
   = form_for :preferences, url: update_sponsor_preferences_path(@sponsor.id),
    method: 'post', remote: true, html: { class: "sponsor-preferences" } do |f|
     = hidden_field_tag :project_id, @project_id
-    %table.primary.display
+    %table.display.cool
       %tr
         %thead{style: "font-size: 16px"}
           -#%th
@@ -14,7 +14,7 @@
           %th Project Name
           %th Proposal
           %th Student Preference
-          %th I think this student is a good fit for my project
+          %th This student is a good fit for my project
           -#%th
       -@student_preferences.each do |sp|
         %tr
@@ -39,7 +39,7 @@
               = select_tag "rating[#{sp.id}][]", options_for_select(@rating_options.collect {|p| [ p['label'], p['value'] ] }, @sponsor_preference.rating), :class => "no-margin"
           -#%td
           -#  %a.wdn-button.wdn-button-triad{ href: edit_student_preference_path(sp.id) } Edit
-    = f.submit "Save", style: "float: right; background: rgb(231, 172, 126)"
+    = f.submit "Save", style: "float: right; background:"
 
 - else
   No students applied for this project

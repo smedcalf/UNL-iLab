@@ -4,11 +4,11 @@
 
 .wdn-main.maincontent#maincontent
   - if @projects.empty?
-    %p No past project now.
+    %p No archived projects now.
   - else
     = form_tag(manage_projects_path, method: "post") do
       = render 'shared/error_messages'
-      %table.display#projects
+      %table.display.cool#projects
         %thead
           %tr
             %th{style: 'text-align: center'}
@@ -18,37 +18,33 @@
             %th Semester
             %th Initial Capacity
             %th Proposal
-            %th Active
             %th Status
+            %th
             %th
         %tbody
           -@projects.each do |p|
             %tr
               %td{style: 'text-align: center'}= check_box_tag 'project[]', p.id
-              %td= p.name
+              %td
+                %a{ href: project_path(p.id) }= p.name
               %td
                 %a{href: sponsor_path(p.sponsor_id)}= Sponsor.find(p.sponsor_id).full_name
               %td= p.semester
               %td= p.initial_capacity
               %td
-                - if p.proposal?
+                - if p.proposal_file_name != "#{p.name}-Proposal"
                   %a{href: "#{p.proposal.url}", title: "#{p.proposal_file_name}"}= truncate(p.proposal_file_name, :length => 20, :omission => '...')
                 - else
                   No Proposal
               %td
-                - if p.active
-                  Active
-                - else
-                  Inactive
+                - if !p.active
+                  Archived
               %td
-                - if p.status
-                  Enabled
-                - else
-                  Disabled
               %td
-                %a.wdn-button.wdn-button-triad{ href: project_path(p.id), style: 'font-size: 10px !important;' } Show
-      - if current_user.admin?
+                = button_to "delete", delete_projects_path(:id => p.id), :method => :post
+      - if current_user.instructor? || current_user.admin?
         %div{style:"float: left"}
           %span{style: 'font-size: 25px;'} &#8627;
-          = submit_tag 'activate', {style: 'font-size: 10px !important; background: rgb(56, 185, 108)', confirm: 'Are you confirm to activate selected projects?', title: "Activate selected projects.", class: "tooltip"}
-          = submit_tag 'delete', {style: 'font-size: 10px !important; background: rgb(224, 95, 84)', confirm: 'Are you confirm to delete selected projects?', title: "Delete selected projects.", class: "tooltip"}
+          = select_tag 'option', options_for_select(@past_project_manage_options.collect {|p| [ p['label'], p['value'] ] }), {style: "width: auto"}
+          = submit_tag 'submit', {style: 'font-size: 10px !important', confirm: 'Are you confirm the option?', title: "Submit selected projects.", class: "tooltip"}
+

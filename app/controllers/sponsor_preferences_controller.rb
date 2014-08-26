@@ -3,7 +3,7 @@ class SponsorPreferencesController < ApplicationController
 
   def index
     # set active projects defined in application_controller
-    set_active_projects
+    set_approved_projects
 
     if current_user.instructor?
       @sponsor = current_user.instructor

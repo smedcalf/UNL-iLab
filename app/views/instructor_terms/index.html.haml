@@ -4,7 +4,7 @@
 
 .wdn-main#maincontent
   =form_tag("instructor_terms/add-semester", method: "post") do
-    %table.display#instructorTerms
+    %table.display.cool#instructorTerms
       %thead
         %tr
           %th= check_box_tag 'checkAll', ""
@@ -25,5 +25,5 @@
     %div{style:"float: left; width: 100%"}
       %span{style: 'font-size: 25px;'} &#8627;
       = select_tag 'semester', options_for_select(@semester_options.collect {|p| [ p['label'], p['value'] ] }), prompt: 'Please Select a Semester', style: "width: auto"
-      = submit_tag 'add', {style: 'font-size: 10px !important; background: rgb(79, 199, 146)'}
+      = submit_tag 'add', {style: 'font-size: 10px !important;'}
       = submit_tag 'unassign', {style: 'font-size: 10px !important; background: rgb(224, 95, 84)', confirm: 'Are you confirm to unassign?'}

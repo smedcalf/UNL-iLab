@@ -29,7 +29,10 @@ Ilab::Application.routes.draw do
   resources :projects do
     collection do
       get   'past-projects', to: 'projects#past', as: :past
+      get   'pending-projects', to: 'projects#pending', as: :pending
+      get   'active-projects', to: 'projects#active', as: :active
       post  'manage-projects', to: 'projects#manage_projects', as: :manage
+      post  'delete-projects', to: 'projects#delete', as: :delete
     end
   end
 
@@ -114,6 +117,7 @@ Ilab::Application.routes.draw do
   get    'register', to: 'users#new'
   get    'login', to: 'sessions#new'
   get    'signout', to: 'sessions#destroy'
+  get    'help', to: 'sessions#help'
   get    'reset-password', to: 'sessions#reset_password'
   post   'sessions/temporary_password', to: 'sessions#temporary_password'
 

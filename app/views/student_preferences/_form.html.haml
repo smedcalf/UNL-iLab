@@ -13,7 +13,7 @@
   = f.label :project_id, "Project"
   = f.select :project_id, options_for_select(@projects, @project.id)
   %span.required *
-  = f.label :rating, "I am interested in working on this project."
+  = f.label :rating, "What Priority is this Project for you?"
   = f.select :rating, options_for_select(@rating_options.collect {|p| [ p['label'], p['value'] ] }, @student_preference.rating)
   %span.required *
   = f.label :cover_letter, "Cover Letter"
@@ -21,6 +21,10 @@
   %span.required *
   = f.label :resume, "Resume"
   = f.file_field :resume
+  = f.label :github_url, "GitHub Url"
+  = f.text_field :github_url, :value => @student_preference.github_url, :disabled => false
+  = f.label :google_plus_url, "Google Plus Url"
+  = f.text_field :google_plus_url, :value => @student_preference.google_plus_url, :disabled => false
   %ol
     %li
     %span.required *

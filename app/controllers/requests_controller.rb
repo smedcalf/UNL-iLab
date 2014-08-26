@@ -1,6 +1,7 @@
 class RequestsController < ApplicationController
 
   def index
+    request_manage_options
     if current_user.instructor?
       @requests = Request.all
     else
@@ -69,7 +70,7 @@ class RequestsController < ApplicationController
       flash[:error] = 'No request was selected!'
       redirect_to requests_path
     else
-      case params[:commit]
+      case params[:options]
         when 'delete'
           Request.destroy(params[:request])
         when 'activate'
@@ -80,6 +81,8 @@ class RequestsController < ApplicationController
           Request.where(:id => params[:request]).update_all(:approved => true)
         when 'disapprove'
           Request.where(:id => params[:request]).update_all(:approved => false)
+        when 'show'
+          redirect_to request_path(:id => params[:request]) and return
       end
       redirect_to requests_path
     end
@@ -93,5 +96,17 @@ class RequestsController < ApplicationController
 
   def set_request
     @request = Request.find_by_id(params[:id])
+  end
+  def request_manage_options
+    if current_user.utype == "admin" || current_user.utype == "instructor"
+      @request_manage_options = [{"value" => "", "label" => "Please select..."},
+                                 {"value" => "activate", "label" => "Activate"},
+                                 {"value" => "deactivate", "label" => "Deactivate"},
+                                 {"value" => "approve", "label" => "Approve"},
+                                 {"value" => "disapprove", "label" => "Disapprove"},
+                                 {"value" => "delete", "label" => "Delete"}]
+    else
+      @request_manage_options = [{"value" => "", "label" => "You don't have authority to manage requests"}]
+    end
   end
 end

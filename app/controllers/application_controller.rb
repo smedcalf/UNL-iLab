@@ -19,11 +19,27 @@ class ApplicationController < ActionController::Base
   end
 
   def update_session_time
-    session[:expires_at] = 1.minutes.from_now
+    session[:expires_at] = 10.minutes.from_now
   end
 
 	def not_found
   	raise ActionController::RoutingError.new('Not Found')
+  end
+
+  def set_approved_projects
+    if current_user.utype == "instructor"
+      @projects = []
+      @instructor_terms = InstructorTerm.where(:instructor_id => current_user.instructor.id)
+      @instructor_terms.each do |it|
+        Project.where(:semester => it.semester, :active => true, :status => true).each do |p|
+          @projects << p
+        end
+      end
+    elsif current_user.utype == "sponsor"
+      @projects = current_user.sponsor.projects.where(:active => true, :status => true)
+    else
+      @projects = Project.where(:active => true, :status => true)
+    end
   end
 
   def set_active_projects
@@ -31,14 +47,14 @@ class ApplicationController < ActionController::Base
       @projects = []
       @instructor_terms = InstructorTerm.where(:instructor_id => current_user.instructor.id)
       @instructor_terms.each do |it|
-        Project.where(:semester => it.semester, :active => true).each do |p|
+        Project.where(:semester => it.semester, :active => true, :status => false).each do |p|
           @projects << p
         end
       end
     elsif current_user.utype == "sponsor"
-      @projects = current_user.sponsor.projects.where(:active => true)
+      @projects = current_user.sponsor.projects.where(:active => true, :status => false)
     else
-      @projects = Project.where(:active => true)
+      @projects = Project.where(:active => true, :status => false)
     end
   end
 
