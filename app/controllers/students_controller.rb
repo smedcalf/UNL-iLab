@@ -103,13 +103,29 @@ class StudentsController < ApplicationController
   end
 
   def manage_students
+    @student = Student.find(params[:student])
     if params[:student].nil?
       flash[:error] = 'No student was selected!'
       redirect_to students_path
     elsif
       case params[:option]
         when 'delete'
-          Student.destroy(params[:student])
+          @student.each do |student|
+            user = User.find(student.user_id)
+            if user.student?
+              team = Team.find_by_project_id(student.team.project_id)
+              if team != nil
+                Student.where(:id => student.id).update_all(:status => false)
+                Student.where(:id => student.id).update_all(:team_id => nil)
+                project = Project.find_by_id(team.project_id)
+                if project != nil
+                  project.current_capacity = team.students.count
+                  project.save
+                end
+              end
+            end
+            User.destroy(user)
+          end
           flash[:success] = "Selected Students were deleted."
           redirect_to students_path
         when 'deactivate'

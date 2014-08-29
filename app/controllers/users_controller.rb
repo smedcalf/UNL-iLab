@@ -14,6 +14,22 @@ class UsersController < ApplicationController
     else
       case params[:commit]
         when 'delete'
+          @user = User.find(params[:user])
+          @user.each do |user|
+            if user.student?
+              student = Student.find_by_user_id(user.id)
+              team = Team.find_by_project_id(student.team.project_id)
+              if team != nil
+                Student.where(:id => student.id).update_all(:status => false)
+                Student.where(:id => student.id).update_all(:team_id => nil)
+                project = Project.find_by_id(team.project_id)
+                if project != nil
+                  project.current_capacity = team.students.count
+                  project.save
+                end
+              end
+            end
+          end
           User.destroy(params[:user])
           flash[:success] = "Selected users have been removed."
         when 'assign'
