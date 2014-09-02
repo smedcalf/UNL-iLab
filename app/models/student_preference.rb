@@ -44,6 +44,10 @@ class StudentPreference < ActiveRecord::Base
 	validates :rating, presence: true
 
   def has_high_rating?
+    unless rating
+      return false
+    end
+    
     # Only require students to submit cover letters and resumes for their top 3 choices (ratings 3-5)
     return rating > 2
   end

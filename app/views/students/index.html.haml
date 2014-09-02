@@ -19,6 +19,8 @@
             %th Team
             %th Semester
             %th Availability
+            %th GitHub
+            %th Google+
         %tbody
           - @students.sort! { |a,b| a.last_name.downcase <=> b.last_name.downcase  }.each do |s|
             %tr.thumb{class: "student-status-#{s.status}"}
@@ -40,8 +42,8 @@
               -#%td= s.major
               %td= s.semester
               %td= s.availability
-
-
+              %td= link_to_if !s.github_url.blank?, "Link", s.github_url
+              %td= link_to_if !s.google_plus_url.blank?, "Link", s.google_plus_url
       -#= label_tag  "team", "Assign to"
       %section.wdn-grid-set
       %div{style:"float: left"}

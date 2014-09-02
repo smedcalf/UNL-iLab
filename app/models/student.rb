@@ -60,6 +60,26 @@ class Student < ActiveRecord::Base
 		end
   end
 
+  def github_url
+  	prefs = student_preferences.where.not(github_url: '').first
+
+  	if prefs
+  		return prefs.github_url
+  	else
+  		return ""
+  	end
+  end
+
+  def google_plus_url
+  	prefs = student_preferences.where.not(google_plus_url: '').first
+
+  	if prefs
+  		return prefs.google_plus_url
+  	else
+  		return ""
+  	end
+  end
+
   private
 
     def set_defaults
