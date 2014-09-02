@@ -34,9 +34,7 @@ class Project < ActiveRecord::Base
   after_initialize :set_defaults
 
   before_save :rename_proposal
-  has_attached_file :proposal, :url => Rails.env == "development" \
-                                        ? "/:class/:attachment/:id/:basename.:extension" \
-                                        : "http://csce.unl.edu/UNL-iLab/:class/:attachment/:id/:basename.:extension"
+  has_attached_file :proposal, :path => ":rails_root/public/:class/:attachment/:id/:basename.:extension", :url => "/:class/:attachment/:id/:basename.:extension"
   do_not_validate_attachment_file_type :proposal
 
 
