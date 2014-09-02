@@ -14,11 +14,11 @@
   = f.select :project_id, options_for_select(@projects, @project.id)
   %span.required *
   = f.label :rating, "What Priority is this Project for you?"
-  = f.select :rating, options_for_select(@rating_options.collect {|p| [ p['label'], p['value'] ] }, @student_preference.rating)
-  %span.required *
+  = f.select :rating, options_for_select(@rating_options.collect {|p| [ p['label'], p['value'] ] }, @student_preference.rating), {}, id: "student_priority_rating"
+  %span.required.student_upload *
   = f.label :cover_letter, "Cover Letter"
   = f.file_field :cover_letter
-  %span.required *
+  %span.required.student_upload *
   = f.label :resume, "Resume"
   = f.file_field :resume
   = f.label :github_url, "GitHub Url"
