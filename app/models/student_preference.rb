@@ -24,8 +24,12 @@ class StudentPreference < ActiveRecord::Base
 
   has_one :sponsor, through: :project, source_type: "Sponsor"
 
-  has_attached_file :cover_letter
-  has_attached_file :resume
+  has_attached_file :cover_letter, :url => Rails.env == "development" \
+                                          ? "/:class/:attachment/:id/:basename.:extension" \
+                                          : "/UNL-iLab/:class/:attachment/:id/:basename.:extension"
+  has_attached_file :resume, :url => Rails.env == "development" \
+                                    ? "/:class/:attachment/:id/:basename.:extension" \
+                                    : "/UNL-iLab/:class/:attachment/:id/:basename.:extension"
 	do_not_validate_attachment_file_type :cover_letter
 	do_not_validate_attachment_file_type :resume
 
