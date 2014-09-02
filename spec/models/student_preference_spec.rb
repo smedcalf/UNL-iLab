@@ -14,6 +14,8 @@
 #  resume_content_type       :string(255)
 #  resume_file_name          :string(255)
 #  resume_file_size          :integer
+#  github_url                :string(255)
+#  google_plus_url           :string(255)
 #
 
 require 'spec_helper'

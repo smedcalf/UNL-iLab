@@ -88,3 +88,6 @@ Icon
 # Zeus
 custom_plan.rb
 zeus.json
+
+# Project uploads
+public/projects
