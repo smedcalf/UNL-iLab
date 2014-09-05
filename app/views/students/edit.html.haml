@@ -15,6 +15,9 @@
     %span.required *
     = f.label :avatar, "Avatar (photo)"
     = f.file_field :avatar
+    - if current_user.utype == "admin" || current_user.utype == "instructor"
+      = f.label :team_id, "Team"
+      = f.select :team_id, options_for_select(@teams.all.map{ |t| [t.name, t.id] }, @student.team_id), :include_blank => 'Not Assigned'
     - if current_user.utype == "student"
       %fieldset.wdn-grid-set
         %legend If you want to change following information, please contact instructor or admin
