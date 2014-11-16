@@ -27,6 +27,7 @@ class Project < ActiveRecord::Base
   has_many :team, dependent: :destroy
   has_many :student_preferences, dependent: :destroy
   has_many :sponsor_preferences, dependent: :destroy
+  has_and_belongs_to_many :instructors
 
   validates :name, :initial_capacity, :semester, :sponsor_id, :presence => true
   validates :name, :uniqueness => true

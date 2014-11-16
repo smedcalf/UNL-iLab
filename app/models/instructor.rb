@@ -17,6 +17,7 @@ class Instructor < ActiveRecord::Base
 
 	belongs_to :user
   has_many :instructor_terms, dependent: :destroy
+  has_and_belongs_to_many :projects
 
 	validates :first_name, presence: true
 	validates :last_name, presence: true
