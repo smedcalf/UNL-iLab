@@ -9,6 +9,7 @@
                 %th Email
                 %th Classname
                 %th Semester
+                %th Projects
                 %th
         - @instructors.each do |i|
             %tr
@@ -18,5 +19,13 @@
                     %a{href: "mailto:#{i.email}"}= i.email
                 %td= i.classname
                 %td= i.semester
+                %td
+                    -if i.projects.empty?
+                        None
+                    -else
+                        -i.projects.each_with_index do |p, n|
+                            %a{href: project_path(p.id)}= p.name
+                            - if n != i.projects.size - 1
+                                %br
                 %td
                     %a.wdn-button.wdn-button-triad{ href: instructor_path(i.id) } Show
