@@ -14,6 +14,10 @@ Ilab::Application.routes.draw do
         #post 'update', to: 'sponsor_preferences#update_preferences', as: :update
       end
     end
+    member do
+      get 'edit-projects', to: 'instructors#edit_projects', as: :edit_projects
+      post 'update-projects', to: 'instructors#update_projects', as: :update_projects
+    end
   end
 
   resources :instructor_terms do
@@ -33,6 +37,10 @@ Ilab::Application.routes.draw do
       get   'active-projects', to: 'projects#active', as: :active
       post  'manage-projects', to: 'projects#manage_projects', as: :manage
       post  'delete-projects', to: 'projects#delete', as: :delete
+    end
+    member do
+      get 'edit-instructors', to: 'projects#edit_instructors', as: :edit_instructors
+      post 'update-instructors', to: 'projects#update_instructors', as: :update_instructors
     end
   end
 

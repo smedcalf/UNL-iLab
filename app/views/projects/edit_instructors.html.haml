@@ -1,0 +1,33 @@
+%h1 Edit Instructor Assignments
+
+%h3= @project.name
+
+= form_tag(update_instructors_project_path(@project.id), method: "post") do
+  %table.zentable
+    %tr
+      %thead
+        %th Assigned to Project?
+        %th First Name
+        %th Last Name
+        %th Email
+        %th Classname
+        %th Semester
+        %th Projects
+    - @instructors.each do |i|
+      %tr
+        %td{style: 'text-align: center'}= check_box_tag "instructor_#{i.id}", i.id, @project.instructors.include?(i)
+        %td= i.first_name
+        %td= i.last_name
+        %td
+          %a{href: "mailto:#{i.email}"}= i.email
+        %td= i.classname
+        %td= i.semester
+        %td
+          -if i.projects.empty?
+            None
+          -else
+            -i.projects.each_with_index do |p, n|
+              %a{href: project_path(p.id)}= p.name
+              - if n != i.projects.size - 1
+                %br
+  = submit_tag("Submit")
