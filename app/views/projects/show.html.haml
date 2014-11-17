@@ -34,6 +34,19 @@
         %p.c-text= @project.semester
     %thead
       %th
+        %p.t-text Instructors:
+      %th
+        %p.c-text
+          -if @project.instructors.empty?
+            None
+          -else
+            -@project.instructors.each_with_index do |ins, n|
+              %a{href: instructor_path(ins.id)}= ins.full_name
+              -# Deliminate instructors with commas for readability
+              -if n != @project.instructors.size - 1
+                ,&nbsp;
+    %thead
+      %th
         %p.t-text Initial Capacity:
       %th
         %p.c-text= @project.initial_capacity
