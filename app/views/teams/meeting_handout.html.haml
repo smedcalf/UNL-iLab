@@ -1,0 +1,25 @@
+%h1= @project.name
+%h2= @team.name
+
+#sponsor
+  %h3 Sponsor
+  %p= @sponsor.organization
+  %p= @sponsor.full_name
+  %p= @sponsor.email
+
+#instructors
+  %h3 Instructors
+  -for instructor in @instructors
+    .instructor
+      %p= 'Professor ' + instructor.full_name
+      %p= instructor.email
+
+#students
+  %h3 Students
+  -for student in @students
+    .student
+      -if student.avatar.exists?
+        %img= student.avatar_url
+      %p= student.full_name
+      %p= student.major
+      %p= student.email

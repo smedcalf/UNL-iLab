@@ -105,6 +105,7 @@ Ilab::Application.routes.draw do
       get    'calendar', to: 'calendar#team_calendar', :as => :calendar
       get    'task/new', to: 'calendar#new_team_task', :as => :new_task
       get    'work-track', to: 'teams#work_track', as: :work_track
+      get    'meeting_handout', to: 'teams#meeting_handout', as: :meeting_handout
     end
 
   end

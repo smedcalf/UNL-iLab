@@ -216,6 +216,14 @@ class TeamsController < ApplicationController
     redirect_to teams_path
   end
 
+  def meeting_handout
+    set_team
+    @project = @team.project
+    @students = @team.students
+    @sponsor = @project.sponsor
+    @instructors = @project.instructors
+  end
+
   private
 
     def team_params
