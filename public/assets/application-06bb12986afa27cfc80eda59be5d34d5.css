@@ -1583,36 +1583,36 @@ div.DTTT_collection a.DTTT_button {
   src: url(/assets/wdn-icon.svg) format("svg");
 }
 
-/* line 27, /usr/local/RailsProjects/UNL-iLab/app/assets/stylesheets/custom.css.scss */
+/* line 27, /Users/knorth/Documents/Git Repos/UNL-iLab/app/assets/stylesheets/custom.css.scss */
 h4 {
   margin-top: auto !important;
 }
 
-/* line 30, /usr/local/RailsProjects/UNL-iLab/app/assets/stylesheets/custom.css.scss */
+/* line 30, /Users/knorth/Documents/Git Repos/UNL-iLab/app/assets/stylesheets/custom.css.scss */
 .inline {
   display: inline-table;
   padding: 0;
   margin: 10px;
 }
 
-/* line 35, /usr/local/RailsProjects/UNL-iLab/app/assets/stylesheets/custom.css.scss */
+/* line 35, /Users/knorth/Documents/Git Repos/UNL-iLab/app/assets/stylesheets/custom.css.scss */
 .content-li {
   list-style: none;
 }
 
-/* line 39, /usr/local/RailsProjects/UNL-iLab/app/assets/stylesheets/custom.css.scss */
+/* line 39, /Users/knorth/Documents/Git Repos/UNL-iLab/app/assets/stylesheets/custom.css.scss */
 .cursor-pointer {
   cursor: pointer;
 }
 
-/* line 43, /usr/local/RailsProjects/UNL-iLab/app/assets/stylesheets/custom.css.scss */
+/* line 43, /Users/knorth/Documents/Git Repos/UNL-iLab/app/assets/stylesheets/custom.css.scss */
 #maincontent {
   min-height: 200px;
   padding-top: 10px;
   padding-bottom: 20px;
 }
 
-/* line 49, /usr/local/RailsProjects/UNL-iLab/app/assets/stylesheets/custom.css.scss */
+/* line 49, /Users/knorth/Documents/Git Repos/UNL-iLab/app/assets/stylesheets/custom.css.scss */
 .content-box {
   padding: 0px 15px 4px 15px !important;
   background-color: rgba(255, 255, 255, 0.7);
@@ -1621,44 +1621,44 @@ h4 {
   min-height: 50px;
 }
 
-/* line 57, /usr/local/RailsProjects/UNL-iLab/app/assets/stylesheets/custom.css.scss */
+/* line 57, /Users/knorth/Documents/Git Repos/UNL-iLab/app/assets/stylesheets/custom.css.scss */
 .tab {
   padding-right: 10px;
 }
 
-/* line 61, /usr/local/RailsProjects/UNL-iLab/app/assets/stylesheets/custom.css.scss */
+/* line 61, /Users/knorth/Documents/Git Repos/UNL-iLab/app/assets/stylesheets/custom.css.scss */
 .tag-button {
   font-size: 8px !important;
   margin: 0px;
 }
 
-/* line 66, /usr/local/RailsProjects/UNL-iLab/app/assets/stylesheets/custom.css.scss */
+/* line 66, /Users/knorth/Documents/Git Repos/UNL-iLab/app/assets/stylesheets/custom.css.scss */
 .caption {
   font-size: 14px;
 }
 
-/* line 70, /usr/local/RailsProjects/UNL-iLab/app/assets/stylesheets/custom.css.scss */
+/* line 70, /Users/knorth/Documents/Git Repos/UNL-iLab/app/assets/stylesheets/custom.css.scss */
 table {
   background: white;
   border: solid #ddd 1px;
 }
 
-/* line 75, /usr/local/RailsProjects/UNL-iLab/app/assets/stylesheets/custom.css.scss */
+/* line 75, /Users/knorth/Documents/Git Repos/UNL-iLab/app/assets/stylesheets/custom.css.scss */
 .line-padding {
   padding-top: 12px !important;
 }
 
-/* line 79, /usr/local/RailsProjects/UNL-iLab/app/assets/stylesheets/custom.css.scss */
+/* line 79, /Users/knorth/Documents/Git Repos/UNL-iLab/app/assets/stylesheets/custom.css.scss */
 .thumb {
   position: relative;
 }
 
-/* line 85, /usr/local/RailsProjects/UNL-iLab/app/assets/stylesheets/custom.css.scss */
+/* line 85, /Users/knorth/Documents/Git Repos/UNL-iLab/app/assets/stylesheets/custom.css.scss */
 .thumb:hover {
   z-index: 1;
 }
 
-/* line 89, /usr/local/RailsProjects/UNL-iLab/app/assets/stylesheets/custom.css.scss */
+/* line 89, /Users/knorth/Documents/Git Repos/UNL-iLab/app/assets/stylesheets/custom.css.scss */
 .thumb span {
   opacity: 0.75;
   z-index: 4;
@@ -1671,27 +1671,27 @@ table {
   width: auto;
 }
 
-/* line 100, /usr/local/RailsProjects/UNL-iLab/app/assets/stylesheets/custom.css.scss */
+/* line 100, /Users/knorth/Documents/Git Repos/UNL-iLab/app/assets/stylesheets/custom.css.scss */
 .thumb:hover span {
   -webkit-transition: all 0.4s ease;
   visibility: visible;
   padding: 4px;
 }
 
-/* line 108, /usr/local/RailsProjects/UNL-iLab/app/assets/stylesheets/custom.css.scss */
+/* line 108, /Users/knorth/Documents/Git Repos/UNL-iLab/app/assets/stylesheets/custom.css.scss */
 .thumb span image {
   resize: auto;
   height: 200px;
 }
 
-/* line 112, /usr/local/RailsProjects/UNL-iLab/app/assets/stylesheets/custom.css.scss */
+/* line 112, /Users/knorth/Documents/Git Repos/UNL-iLab/app/assets/stylesheets/custom.css.scss */
 .callout {
   height: auto;
   width: auto;
   float: left;
 }
 
-/* line 118, /usr/local/RailsProjects/UNL-iLab/app/assets/stylesheets/custom.css.scss */
+/* line 118, /Users/knorth/Documents/Git Repos/UNL-iLab/app/assets/stylesheets/custom.css.scss */
 .callout {
   background-color: #444;
   background-image: -moz-linear-gradient(top, #444444, #444444);
@@ -1707,7 +1707,7 @@ table {
   /*box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset;*/
 }
 
-/* line 134, /usr/local/RailsProjects/UNL-iLab/app/assets/stylesheets/custom.css.scss */
+/* line 134, /Users/knorth/Documents/Git Repos/UNL-iLab/app/assets/stylesheets/custom.css.scss */
 .callout::before {
   content: "";
   width: 0px;
@@ -1716,81 +1716,81 @@ table {
   position: absolute;
 }
 
-/* line 142, /usr/local/RailsProjects/UNL-iLab/app/assets/stylesheets/custom.css.scss */
+/* line 142, /Users/knorth/Documents/Git Repos/UNL-iLab/app/assets/stylesheets/custom.css.scss */
 .callout.top::before {
   left: 45%;
   bottom: -20px;
   border-top: 10px solid #e5e5e5;
 }
 
-/* line 148, /usr/local/RailsProjects/UNL-iLab/app/assets/stylesheets/custom.css.scss */
+/* line 148, /Users/knorth/Documents/Git Repos/UNL-iLab/app/assets/stylesheets/custom.css.scss */
 .callout.bottom::before {
   left: 45%;
   top: -20px;
   border-bottom: 10px solid #e5e5e5;
 }
 
-/* line 154, /usr/local/RailsProjects/UNL-iLab/app/assets/stylesheets/custom.css.scss */
+/* line 154, /Users/knorth/Documents/Git Repos/UNL-iLab/app/assets/stylesheets/custom.css.scss */
 .callout.left::before {
   right: -20px;
   top: 40%;
   border-left: 10px solid #e5e5e5;
 }
 
-/* line 160, /usr/local/RailsProjects/UNL-iLab/app/assets/stylesheets/custom.css.scss */
+/* line 160, /Users/knorth/Documents/Git Repos/UNL-iLab/app/assets/stylesheets/custom.css.scss */
 .callout.right::before {
   left: -20px;
   top: 40%;
   border-right: 10px solid #e5e5e5;
 }
 
-/* line 166, /usr/local/RailsProjects/UNL-iLab/app/assets/stylesheets/custom.css.scss */
+/* line 166, /Users/knorth/Documents/Git Repos/UNL-iLab/app/assets/stylesheets/custom.css.scss */
 .callout.top-left::before {
   left: 7px;
   bottom: -20px;
 }
 
-/* line 172, /usr/local/RailsProjects/UNL-iLab/app/assets/stylesheets/custom.css.scss */
+/* line 172, /Users/knorth/Documents/Git Repos/UNL-iLab/app/assets/stylesheets/custom.css.scss */
 .callout.top-right::before {
   right: 7px;
   bottom: -20px;
   border-top: 10px solid #e5e5e5;
 }
 
-/* line 177, /usr/local/RailsProjects/UNL-iLab/app/assets/stylesheets/custom.css.scss */
+/* line 177, /Users/knorth/Documents/Git Repos/UNL-iLab/app/assets/stylesheets/custom.css.scss */
 .callout.bottom-left::before {
   left: 7px;
   top: -21px;
   border-bottom: 10px solid #444;
 }
 
-/* line 183, /usr/local/RailsProjects/UNL-iLab/app/assets/stylesheets/custom.css.scss */
+/* line 183, /Users/knorth/Documents/Git Repos/UNL-iLab/app/assets/stylesheets/custom.css.scss */
 .disclaimer {
   font-size: 10px;
   text-align: center;
 }
 
-/* line 188, /usr/local/RailsProjects/UNL-iLab/app/assets/stylesheets/custom.css.scss */
+/* line 188, /Users/knorth/Documents/Git Repos/UNL-iLab/app/assets/stylesheets/custom.css.scss */
 select.no-margin {
   margin: 0 !important;
 }
 
-/* line 192, /usr/local/RailsProjects/UNL-iLab/app/assets/stylesheets/custom.css.scss */
+/* line 192, /Users/knorth/Documents/Git Repos/UNL-iLab/app/assets/stylesheets/custom.css.scss */
 .wdn-main {
   border-bottom-style: none;
 }
 
-/* line 196, /usr/local/RailsProjects/UNL-iLab/app/assets/stylesheets/custom.css.scss */
+/* line 196, /Users/knorth/Documents/Git Repos/UNL-iLab/app/assets/stylesheets/custom.css.scss */
 tr.odd td.sorting_1 {
   background-color: #e4dcb6;
 }
 
-/* line 201, /usr/local/RailsProjects/UNL-iLab/app/assets/stylesheets/custom.css.scss */
+/* line 201, /Users/knorth/Documents/Git Repos/UNL-iLab/app/assets/stylesheets/custom.css.scss */
 tr.even td.sorting_1 {
   background-color: #d2caa5;
 }
 
-/* line 206, /usr/local/RailsProjects/UNL-iLab/app/assets/stylesheets/custom.css.scss */
+/* line 206, /Users/knorth/Documents/Git Repos/UNL-iLab/app/assets/stylesheets/custom.css.scss */
 .table-info {
   background: none;
   border: none;
@@ -1798,46 +1798,46 @@ tr.even td.sorting_1 {
   float: left;
 }
 
-/* line 212, /usr/local/RailsProjects/UNL-iLab/app/assets/stylesheets/custom.css.scss */
+/* line 212, /Users/knorth/Documents/Git Repos/UNL-iLab/app/assets/stylesheets/custom.css.scss */
 .t-text {
   font-size: 30px;
   font-weight: bold;
   margin: auto !important;
 }
 
-/* line 217, /usr/local/RailsProjects/UNL-iLab/app/assets/stylesheets/custom.css.scss */
+/* line 217, /Users/knorth/Documents/Git Repos/UNL-iLab/app/assets/stylesheets/custom.css.scss */
 .c-text {
   font-size: 30px;
   margin: auto !important;
   margin-right: 18px !important;
 }
 
-/* line 222, /usr/local/RailsProjects/UNL-iLab/app/assets/stylesheets/custom.css.scss */
+/* line 222, /Users/knorth/Documents/Git Repos/UNL-iLab/app/assets/stylesheets/custom.css.scss */
 .table-info th {
   background: none;
 }
 
-/* line 226, /usr/local/RailsProjects/UNL-iLab/app/assets/stylesheets/custom.css.scss */
+/* line 226, /Users/knorth/Documents/Git Repos/UNL-iLab/app/assets/stylesheets/custom.css.scss */
 .wdn-button-incomplete {
   background: #a0a19c !important;
 }
 
-/* line 230, /usr/local/RailsProjects/UNL-iLab/app/assets/stylesheets/custom.css.scss */
+/* line 230, /Users/knorth/Documents/Git Repos/UNL-iLab/app/assets/stylesheets/custom.css.scss */
 .wdn-button-complete {
   background: #00BD3C !important;
 }
 
-/* line 234, /usr/local/RailsProjects/UNL-iLab/app/assets/stylesheets/custom.css.scss */
+/* line 234, /Users/knorth/Documents/Git Repos/UNL-iLab/app/assets/stylesheets/custom.css.scss */
 .wdn-button-team {
   background: #33bad0 !important;
 }
 
-/* line 238, /usr/local/RailsProjects/UNL-iLab/app/assets/stylesheets/custom.css.scss */
+/* line 238, /Users/knorth/Documents/Git Repos/UNL-iLab/app/assets/stylesheets/custom.css.scss */
 .wdn-button-personal {
   background: #3e73d0 !important;
 }
 
-/* line 241, /usr/local/RailsProjects/UNL-iLab/app/assets/stylesheets/custom.css.scss */
+/* line 241, /Users/knorth/Documents/Git Repos/UNL-iLab/app/assets/stylesheets/custom.css.scss */
 .qtip {
   box-shadow: 0 0 6px #d5d5d5 !important;
   opacity: 0.9 !important;
@@ -1846,56 +1846,367 @@ tr.even td.sorting_1 {
   width: 200px !important;
 }
 
-/* line 264, /usr/local/RailsProjects/UNL-iLab/app/assets/stylesheets/custom.css.scss */
+/* line 264, /Users/knorth/Documents/Git Repos/UNL-iLab/app/assets/stylesheets/custom.css.scss */
 .td-priority-1 {
   background: #ffdc5c !important;
   width: 30%;
   color: transparent;
 }
 
-/* line 270, /usr/local/RailsProjects/UNL-iLab/app/assets/stylesheets/custom.css.scss */
+/* line 270, /Users/knorth/Documents/Git Repos/UNL-iLab/app/assets/stylesheets/custom.css.scss */
 .td-priority-2 {
   background: #FFA500 !important;
   width: 60%;
   color: transparent;
 }
 
-/* line 276, /usr/local/RailsProjects/UNL-iLab/app/assets/stylesheets/custom.css.scss */
+/* line 276, /Users/knorth/Documents/Git Repos/UNL-iLab/app/assets/stylesheets/custom.css.scss */
 .td-priority-3 {
   background: #cc1616 !important;
   width: 100%;
   color: transparent;
 }
 
-/* line 282, /usr/local/RailsProjects/UNL-iLab/app/assets/stylesheets/custom.css.scss */
+/* line 282, /Users/knorth/Documents/Git Repos/UNL-iLab/app/assets/stylesheets/custom.css.scss */
 .dataTables_filter input {
   width: auto !important;
   font-size: 14px !important;
 }
 
-/* line 287, /usr/local/RailsProjects/UNL-iLab/app/assets/stylesheets/custom.css.scss */
+/* line 287, /Users/knorth/Documents/Git Repos/UNL-iLab/app/assets/stylesheets/custom.css.scss */
 .dataTables_length select {
   width: auto !important;
   font-size: 14px !important;
 }
 
-/* line 292, /usr/local/RailsProjects/UNL-iLab/app/assets/stylesheets/custom.css.scss */
+/* line 292, /Users/knorth/Documents/Git Repos/UNL-iLab/app/assets/stylesheets/custom.css.scss */
 tr.assigned {
   background: #bee4cf !important;
   opacity: 0.85;
 }
 
-/* line 296, /usr/local/RailsProjects/UNL-iLab/app/assets/stylesheets/custom.css.scss */
+/* line 296, /Users/knorth/Documents/Git Repos/UNL-iLab/app/assets/stylesheets/custom.css.scss */
 .display {
   font-size: 14px !important;
 }
 
-/* line 300, /usr/local/RailsProjects/UNL-iLab/app/assets/stylesheets/custom.css.scss */
+/* line 300, /Users/knorth/Documents/Git Repos/UNL-iLab/app/assets/stylesheets/custom.css.scss */
 .wdn-main a:hover {
   text-decoration: underline !important;
 }
 
-/* line 304, /usr/local/RailsProjects/UNL-iLab/app/assets/stylesheets/custom.css.scss */
+/* line 304, /Users/knorth/Documents/Git Repos/UNL-iLab/app/assets/stylesheets/custom.css.scss */
+.student-status-1 {
+  background: #EAFFDA !important;
+}
+
+
+// UNL Colors
+
+$scarlet: #CC0000;
+$cream: #F8F5EC;
+
+$triad: #137CBD;
+$light-triad: #1B9AE8;
+$dark-triad: #41708D;
+
+$complement: #008A2C;
+$light-complement: #00BD3C;
+$dark-complement: #38764C;
+
+$neutral: #4A3B13;
+$light-neutral: #554721;
+$dark-neutral: #453E2B;
+
+$energetic: #D4440B;
+$light-energetic: #F35B1F;
+$dark-energetic: #B34E26;
+
+html {
+  background-color: white;
+}
+
+@font-face {
+  font-family:'wdn-icon';
+  src:font-url('wdn-icon.svg') format('svg');
+}
+h4 {
+  margin-top: auto !important;
+}
+.inline {
+  display: inline-table;
+  padding: 0;
+  margin: 10px;
+}
+.content-li {
+  list-style: none;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+#maincontent{
+  min-height: 200px;
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+
+.content-box{
+  padding: 0px 15px 4px 15px !important;
+  background-color: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 0 6px rgb(213, 213, 213);
+  margin-bottom: 10px;
+  min-height: 50px;
+}
+
+.tab {
+  padding-right: 10px;
+}
+
+.tag-button {
+  font-size: 8px !important;
+  margin: 0px;
+}
+
+.caption {
+  font-size: 14px;
+}
+
+table {
+  background: white;
+  border: solid #ddd 1px;
+}
+
+.line-padding{
+  padding-top: 12px !important;
+}
+
+.thumb {
+//  float:left; /* must be floated for same cross browser position of larger image */
+  position:relative;
+//  margin:3px;
+//  margin-right: 10px;
+}
+.thumb:hover {
+//  border:0; /* IE6 needs this to show large image */
+  z-index:1;
+}
+.thumb span {
+  opacity: 0.75;
+  z-index: 4;
+  position:absolute;
+  visibility:hidden;
+  background-color: #444;
+  -webkit-border-radius: 4px;
+  border: 1px;
+  height: auto;
+  width: auto;
+}
+.thumb:hover span {
+  -webkit-transition: all 0.4s ease;
+  visibility:visible;
+  padding: 4px;
+//  top:-75px;
+//  right:0px;
+}
+
+.thumb span image {
+  resize: auto;
+  height: 200px;
+}
+.callout {
+  height: auto;
+  width: auto;
+  float: left;
+}
+
+.callout {
+  background-color: #444;
+  background-image: -moz-linear-gradient(top, #444, #444);
+  position: relative;
+  color: #ccc;
+  padding: 10px;
+  border-radius: 3px;
+  box-shadow: 0px 0px 20px #999;
+  margin: 25px;
+  min-height: 50px;
+  border: 1px solid #333;
+  text-shadow: 0 0 1px #000;
+
+  /*box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset;*/
+}
+
+.callout::before {
+  content: "";
+  width: 0px;
+  height: 0px;
+  border: 0.8em solid transparent;
+  position: absolute;
+}
+
+.callout.top::before {
+  left: 45%;
+  bottom: -20px;
+  border-top: 10px solid #e5e5e5;
+}
+
+.callout.bottom::before {
+  left: 45%;
+  top: -20px;
+  border-bottom: 10px solid #e5e5e5;
+}
+
+.callout.left::before {
+  right: -20px;
+  top: 40%;
+  border-left: 10px solid #e5e5e5;
+}
+
+.callout.right::before {
+  left: -20px;
+  top: 40%;
+  border-right: 10px solid #e5e5e5;
+}
+
+.callout.top-left::before {
+  left: 7px;
+  bottom: -20px;
+//  border-top: 10px solid #444;
+}
+
+.callout.top-right::before {
+  right: 7px;
+  bottom: -20px;
+  border-top: 10px solid #e5e5e5;
+}
+.callout.bottom-left::before {
+  left: 7px;
+  top: -21px;
+  border-bottom: 10px solid #444;
+}
+
+.disclaimer {
+  font-size: 10px;
+  text-align: center;
+}
+
+select.no-margin {
+  margin: 0 !important;
+}
+
+.wdn-main {
+  border-bottom-style: none;
+}
+
+tr.odd td.sorting_1 {
+  background-color: rgb(228, 220, 182);
+//  opacity: 0.6;
+}
+
+tr.even td.sorting_1 {
+  background-color: rgb(210, 202, 165);
+//  opacity: 0.7;
+}
+
+.table-info {
+  background: none;
+  border: none;
+  width: 60%;
+  float: left;
+}
+.t-text {
+  font-size: 30px;
+  font-weight: bold;
+  margin: auto !important;
+}
+.c-text {
+  font-size: 30px;
+  margin: auto !important;
+  margin-right: 18px !important;
+}
+.table-info th {
+  background: none;
+}
+
+.wdn-button-incomplete {
+  background: #a0a19c !important;
+}
+
+.wdn-button-complete {
+  background: #00BD3C !important;
+}
+
+.wdn-button-team {
+  background: #33bad0 !important;
+}
+
+.wdn-button-personal {
+  background: #3e73d0 !important;
+}
+.qtip{
+  box-shadow: 0 0 6px rgb(213, 213, 213) !important;
+  opacity: 0.9 !important;
+  font-size:12px !important;
+  min-height: 35px !important;
+  width: 200px !important;
+}
+
+//.ec-priority-1 {
+////  border-bottom: 4px solid #ffc966 !important;
+//  color: #ffc966;
+//}
+//
+//.ec-priority-2 {
+////  border-bottom: 4px solid #FFA500 !important;
+//  color: #FFA500;
+//}
+//
+//.ec-priority-3 {
+////  border-bottom: 4px solid #cc1616 !important;
+//  color: #cc1616;
+//}
+
+.td-priority-1 {
+  background: #ffdc5c !important;
+  width: 30%;
+  color: transparent;
+}
+
+.td-priority-2 {
+  background: #FFA500 !important;
+  width: 60%;
+  color: transparent;
+}
+
+.td-priority-3 {
+  background: #cc1616 !important;
+  width: 100%;
+  color: transparent;
+}
+
+.dataTables_filter input {
+  width: auto !important;
+  font-size: 14px !important;
+}
+
+.dataTables_length select {
+  width: auto !important;
+  font-size: 14px !important;
+}
+
+tr.assigned {
+  background: rgba(190, 228, 207, 1) !important;
+  opacity: 0.85;
+}
+.display {
+  font-size: 14px !important;
+}
+
+.wdn-main a:hover {
+  text-decoration: underline !important;
+}
+
 .student-status-1 {
   background: #EAFFDA !important;
 }

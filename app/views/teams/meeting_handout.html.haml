@@ -1,5 +1,14 @@
-%h1= @project.name
-%h2= @team.name
+#letterhead
+  -if @color
+    =image_tag 'campus_logo_color.jpg'
+    =image_tag 'wordmark_color.jpg'
+  -else
+    =image_tag 'campus_logo_bw.jpg'
+    =image_tag 'wordmark_bw.jpg' 
+
+#heading
+  %h1= @project.name
+  %h2= @team.name
 
 #sponsor
   %h3 Sponsor

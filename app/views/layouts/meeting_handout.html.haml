@@ -1,0 +1,7 @@
+%html
+    %head
+        %title iLab
+        = stylesheet_link_tag "meeting_handout", media: "all"
+        = stylesheet_link_tag '/wdn/templates_4.0/fonts/fonts.css'
+    %body.fixed{ data: { version: "4.0"} }
+        = yield

@@ -28388,6 +28388,18 @@ $(document).ready(function(){
 
 })
 ;
+$(document).ready(function() {
+	$("#student_priority_rating").change(function() {
+		selected_value = $("#student_priority_rating").val();
+		if (selected_value > 2) {
+			$(".student_upload").show();
+		} else {
+			$(".student_upload").hide();
+		}
+	});
+
+	$(".student_upload").hide();
+});
 // This is a manifest file that'll be compiled into application.js, which will include all the files
 // listed below.
 //

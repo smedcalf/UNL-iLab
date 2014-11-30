@@ -17,4 +17,5 @@
 //= require dataTables/extras/ZeroClipboard.js
 //= require jquery.ui.datepicker
 //= require_tree .
+//= stub meeting_handout
 
