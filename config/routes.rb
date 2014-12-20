@@ -78,7 +78,7 @@ Ilab::Application.routes.draw do
   resources :students do
     resources :preferences, controller: :student_preferences do
       collection do
-        get 'list_preferences_for_student', to: 'student_preferences#list_preferences_for_student', as: :list_preferences_for_student
+        get 'list_preferences_for_student', to: 'student_preferences#list_preferences_for_student', as: :list
       end
     end
 

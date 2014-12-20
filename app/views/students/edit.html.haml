@@ -114,4 +114,4 @@
     denotes required field
   -if current_user.instructor?
     %h3
-      =link_to "Edit student preferences", "/students/#{@student.id}/preferences/list_preferences_for_student"
+      =link_to "Edit student preferences", list_student_preferences_path(@student.id)
