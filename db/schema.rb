@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20141115170500) do
     t.datetime "updated_at"
   end
 
-  add_index "instructor_terms", ["instructor_id"], name: "index_instructor_terms_on_instructor_id"
+  add_index "instructor_terms", ["instructor_id"], name: "index_instructor_terms_on_instructor_id", using: :btree
 
   create_table "instructors", force: true do |t|
     t.string   "email"
@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(version: 20141115170500) do
     t.datetime "updated_at"
   end
 
-  add_index "projects", ["sponsor_id", "sponsor_type"], name: "index_projects_on_sponsor_id_and_sponsor_type"
+  add_index "projects", ["sponsor_id", "sponsor_type"], name: "index_projects_on_sponsor_id_and_sponsor_type", using: :btree
 
   create_table "requests", force: true do |t|
     t.integer  "student_id"
@@ -87,13 +87,13 @@ ActiveRecord::Schema.define(version: 20141115170500) do
   end
 
   create_table "solutions", force: true do |t|
-    t.string   "semester"
-    t.string   "name"
-    t.text     "csv",          limit: 4294967295
+    t.string   "semester",                        null: false
+    t.string   "name",                            null: false
+    t.text     "csv",          limit: 2147483647, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.binary   "student_data", limit: 16777216
-    t.binary   "project_data", limit: 16777216
+    t.binary   "student_data", limit: 2147483647, null: false
+    t.binary   "project_data", limit: 2147483647, null: false
   end
 
   create_table "sponsor_preferences", force: true do |t|
@@ -115,7 +115,7 @@ ActiveRecord::Schema.define(version: 20141115170500) do
     t.integer  "user_id"
   end
 
-  add_index "sponsors", ["email"], name: "index_sponsors_on_email", unique: true
+  add_index "sponsors", ["email"], name: "index_sponsors_on_email", unique: true, using: :btree
 
   create_table "student_preferences", force: true do |t|
     t.integer  "student_id"
@@ -168,5 +168,7 @@ ActiveRecord::Schema.define(version: 20141115170500) do
     t.string   "remember_tokens"
     t.string   "email"
   end
+
+  add_index "users", ["id"], name: "id", using: :btree
 
 end
