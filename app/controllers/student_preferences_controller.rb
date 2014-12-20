@@ -2,17 +2,44 @@ class StudentPreferencesController < ApplicationController
 
   before_action :signed_in_user
   before_action :project_open || :signed_in_instructor, only: [:new, :create, :edit, :update]
+  before_action :signed_in_instructor, only: [:list_preferences_for_student]
+
 
   def index
     @student_preferences = StudentPreference.where(:student_id => current_user.student.id)
   end
 
+  def list_preferences_for_student
+    @student_preferences = StudentPreference.where(:student_id => params[:student_id])
+    @student = Student.find params[:student_id]
+    @projects = Project.where(:semester => @student.semester, :status => true)
+
+    # Get projects the student hasn't already applied to so that instructors can
+    # sign the student up for them if needed
+    @unapplied_projects = []
+    for project in @projects
+      if @student.student_preferences.none? {|pref| pref.project.id == project.id}
+        @unapplied_projects.push project
+      end
+    end
+  end
+
   def new
     rating_options
-    @student = Student.find_by_user_id(current_user.id)
+    if current_user.instructor?
+      @student = Student.find_by_id(params[:student_id])
+    else
+      @student = Student.find_by_user_id(current_user.id)
+    end
+
     @projects = Project.where(:semester => @student.semester, :status => true).map { |project| [project.name, project.id] }
     @project = Project.find(params[:project_id])
     @student_preference = StudentPreference.new
+
+    if current_user.instructor?
+      @student_preference.student = @student
+    end
+
     @url = 'create'
   end
 
@@ -25,7 +52,11 @@ class StudentPreferencesController < ApplicationController
     if !StudentPreference.where(:student_id => @student_preference.student_id, :project_id => @student_preference.project_id).any?
       if @student_preference.save
         flash[:success] = "Your rating was saved"
-        redirect_to student_preference_path(:student_id => current_user.student.id, :id => @student_preference.id, :project_id => @student_preference.project_id)
+        if current_user.instructor?
+          redirect_to student_preference_path(:student_id => @student_preference.student.id, :id => @student_preference.id, :project_id => @student_preference.project_id)
+        else
+          redirect_to student_preference_path(:student_id => current_user.student.id, :id => @student_preference.id, :project_id => @student_preference.project_id)
+        end
       else
         flash[:error] = @student_preference.errors.full_messages.join(", ").html_safe
         redirect_to :back

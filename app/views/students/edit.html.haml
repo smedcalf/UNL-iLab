@@ -112,3 +112,6 @@
     = f.submit "Submit"
     %span.required *
     denotes required field
+  -if current_user.instructor?
+    %h3
+      =link_to "Edit student preferences", "/students/#{@student.id}/preferences/list_preferences_for_student"

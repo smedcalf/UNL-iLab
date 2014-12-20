@@ -76,7 +76,11 @@ Ilab::Application.routes.draw do
 
   #TODO this is confusing with student preference as collection
   resources :students do
-    resources :preferences, controller: :student_preferences
+    resources :preferences, controller: :student_preferences do
+      collection do
+        get 'list_preferences_for_student', to: 'student_preferences#list_preferences_for_student', as: :list_preferences_for_student
+      end
+    end
 
     collection do
       post  'manage-students', to: 'students#manage_students', as: :manage_students
