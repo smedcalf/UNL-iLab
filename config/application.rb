@@ -34,7 +34,7 @@ module Ilab
     end
 
     config.assets.paths << Rails.root.join("app", "assets", "fonts")
-    config.assets.precompile += %w( meeting_handout.js )
+    config.assets.precompile += %w( meeting_handout.css )
 
     I18n.enforce_available_locales = false
   end
