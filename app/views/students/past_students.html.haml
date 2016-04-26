@@ -19,6 +19,8 @@
             %th Team
             %th Semester
             %th Availability
+            %th GitHub
+            %th Google+
             %th
         %tbody
           - @students.each do |s|
@@ -41,6 +43,8 @@
               -#%td= s.major
               %td= s.semester
               %td= s.availability
+              %td= link_to_if !s.github_url.blank?, s.github_url, s.github_url
+              %td= link_to_if !s.google_plus_url.blank?, s.google_plus_url, s.google_plus_url
               %td
                 %a{ href: student_path(s.id), style: "border-bottom: 0px", title: "show student" } &#10147; View
 

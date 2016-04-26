@@ -14,6 +14,10 @@ Ilab::Application.routes.draw do
         #post 'update', to: 'sponsor_preferences#update_preferences', as: :update
       end
     end
+    member do
+      get 'edit-projects', to: 'instructors#edit_projects', as: :edit_projects
+      post 'update-projects', to: 'instructors#update_projects', as: :update_projects
+    end
   end
 
   resources :instructor_terms do
@@ -33,6 +37,10 @@ Ilab::Application.routes.draw do
       get   'active-projects', to: 'projects#active', as: :active
       post  'manage-projects', to: 'projects#manage_projects', as: :manage
       post  'delete-projects', to: 'projects#delete', as: :delete
+    end
+    member do
+      get 'edit-instructors', to: 'projects#edit_instructors', as: :edit_instructors
+      post 'update-instructors', to: 'projects#update_instructors', as: :update_instructors
     end
   end
 
@@ -68,7 +76,11 @@ Ilab::Application.routes.draw do
 
   #TODO this is confusing with student preference as collection
   resources :students do
-    resources :preferences, controller: :student_preferences
+    resources :preferences, controller: :student_preferences do
+      collection do
+        get 'list_preferences_for_student', to: 'student_preferences#list_preferences_for_student', as: :list
+      end
+    end
 
     collection do
       post  'manage-students', to: 'students#manage_students', as: :manage_students
@@ -97,6 +109,7 @@ Ilab::Application.routes.draw do
       get    'calendar', to: 'calendar#team_calendar', :as => :calendar
       get    'task/new', to: 'calendar#new_team_task', :as => :new_task
       get    'work-track', to: 'teams#work_track', as: :work_track
+      get    'meeting_handout', to: 'teams#meeting_handout', as: :meeting_handout
     end
 
   end

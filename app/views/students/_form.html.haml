@@ -12,6 +12,8 @@
   %span.required *
   = f.label :avatar, "Avatar (photo)"
   = f.file_field :avatar
+  = f.label :team_id, "Team"
+  = f.select :team_id, options_for_select(@teams.all.map{ |t| [t.name, t.id] }, @student.team_id), :include_blank => 'Not Assigned'
   .wdn-grid-set
     .bp1-wdn-col-one-fourth
       %span.required *

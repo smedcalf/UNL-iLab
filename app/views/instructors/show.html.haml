@@ -11,6 +11,16 @@
     Semeseter:
     -@instructor.instructor_terms.each do |it|
       %span{style: "margin-right: 10px;"}= it.semester
+  %h4
+    Projects:
+    -if @instructor.projects.empty?
+      %span{style: "margin-right: 10px;"} None
+    -else
+      -@instructor.projects.each_with_index do |p, n|
+        %a{href: project_path(p.id)}= p.name
+        -# Deliminate projects with commas for readability
+        -if n != @instructor.projects.size - 1
+          ,&nbsp;
 -if current_instructor?(@instructor.id) || current_user.utype == "admin"
   %a.wdn-button.wdn-button-triad{ href: edit_instructor_path(@instructor.id) } Edit
 -if current_instructor?(@instructor.id) || current_user.utype == "admin"

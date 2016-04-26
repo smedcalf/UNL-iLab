@@ -27,6 +27,7 @@ class Project < ActiveRecord::Base
   has_many :team, dependent: :destroy
   has_many :student_preferences, dependent: :destroy
   has_many :sponsor_preferences, dependent: :destroy
+  has_and_belongs_to_many :instructors
 
   validates :name, :initial_capacity, :semester, :sponsor_id, :presence => true
   validates :name, :uniqueness => true
@@ -34,7 +35,10 @@ class Project < ActiveRecord::Base
   after_initialize :set_defaults
 
   before_save :rename_proposal
-  has_attached_file :proposal, :url => "/:class/:attachment/:id/:basename.:extension"
+  has_attached_file :proposal, :path => ":rails_root/public/:class/:attachment/:id/:basename.:extension",\
+                    :url => Rails.env == "development"\
+                    ? "/:class/:attachment/:id/:basename.:extension"\
+                    : "/UNL-iLab/:class/:attachment/:id/:basename.:extension"
   do_not_validate_attachment_file_type :proposal
 
 

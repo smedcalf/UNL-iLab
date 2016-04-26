@@ -16,6 +16,7 @@
             %th Project Name
             %th Sponsor Name
             %th Semester
+            %th Instructors
             %th Initial Capacity
             %th Proposal
             %th Status
@@ -30,6 +31,14 @@
               %td
                 %a{href: sponsor_path(p.sponsor_id)}= Sponsor.find(p.sponsor_id).full_name
               %td= p.semester
+              %td
+                -if p.instructors.empty?
+                  None
+                -else
+                  -p.instructors.each_with_index do |ins, n|
+                    %a{href: instructor_path(ins.id)}= ins.full_name
+                    -if n != p.instructors.size - 1
+                      %br
               %td= p.initial_capacity
               %td
                 - if p.proposal_file_name != "#{p.name}-Proposal"

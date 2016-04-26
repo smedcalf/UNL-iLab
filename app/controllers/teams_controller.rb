@@ -3,6 +3,8 @@ class TeamsController < ApplicationController
   before_action :signed_in_instructor, except: [:index, :show, :work_track]
   before_action :team_access, only: [:work_track, :team_track]
   
+  layout "meeting_handout", only: [:meeting_handout]
+
   def new
     @team = Team.new
 
@@ -214,6 +216,15 @@ class TeamsController < ApplicationController
   def delete_teams
     Team.destroy(params[:team])
     redirect_to teams_path
+  end
+
+  def meeting_handout
+    set_team
+    @project = @team.project
+    @students = @team.students
+    @sponsor = @project.sponsor
+    @instructors = @project.instructors
+    @color = params[:color] ? true : false
   end
 
   private

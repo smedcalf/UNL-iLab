@@ -23,6 +23,7 @@ class StudentsController < ApplicationController
     if !current_user.instructor?
       @student.email = current_user.email
     end
+    @teams = Team.all
     @url = "create"
   end
 
@@ -73,6 +74,7 @@ class StudentsController < ApplicationController
   def edit
     set_student
     @url = "update"
+    @teams = Team.all
   end
 
   def index
@@ -170,8 +172,15 @@ class StudentsController < ApplicationController
   private
 
   	def student_params
-  		params.require(:student).permit(:email, :first_name, :last_name, :major,
-  			:availability, :semester, :classname, :avatar)
+      # Teachers and admins have the ability to change more of a student's
+      # attributes than students do.
+      if current_user.instructor?
+        params.require(:student).permit(:email, :first_name, :last_name, :major,
+          :availability, :semester, :classname, :avatar, :team_id)
+      else
+        params.require(:student).permit(:email, :first_name, :last_name, :major,
+          :availability, :semester, :classname, :avatar)
+      end
   	end
 
     def set_student

@@ -1,0 +1,51 @@
+%h1= "Application Status for #{@student.full_name}"
+
+%hr 0 = Low Priority . . . .   5 = Highest Priority
+
+= render 'shared/error_messages'
+
+.wdn-main#maincontent
+  - if @student_preferences.empty?
+    = "#{@student.full_name} hasn't applied for any projects."
+  - else
+    = form_tag(delete_student_preferences_path, method: "post") do
+      = render 'shared/error_messages'
+      %table.zentable.cool.display
+        %tr
+          %thead
+            %th
+              = check_box_tag 'checkAll', ""
+            %th Project Name
+            %th Sponsor Name
+            %th Proposal
+            %th Your Preference
+            -#%th Sponsor Preference
+            %th
+        -@student_preferences.each do |sp|
+          - @project = Project.find(sp.project_id)
+          - @sponsor = Sponsor.find(@project.sponsor_id)
+          %tr
+            %td
+              = check_box_tag 'student_preference[]', sp.id
+            %td
+              %a{ href: project_path(@project.id), title: 'Show Project' }=@project.name
+            %td
+              %a{href: sponsor_path(@sponsor.id)}= @sponsor.full_name
+            %td
+              - if @project.proposal?
+                %a{href: "#{@project.proposal.url}"}= @project.proposal_file_name
+              - else
+                No Proposal
+            %td
+              %a{href: student_preference_path(:student_id => @student.id, :id => sp.id)}=sp.rating
+            %td
+              %a.wdn-button.wdn-button-triad{ href: edit_student_preference_path(@student.id, sp.id) } Edit
+      %section.wdn-grid-set
+      %span{ style: 'font-size: 25px; color: #979797' } &#8627;
+      = submit_tag 'Delete', {style: 'font-size: 10px !important; background: rgb(224, 95, 84)', confirm: 'Are you sure you want to delete the selected preferences?'}
+  -unless @unapplied_projects.empty?
+    %h3= "Apply to projects on #{@student.full_name}'s behalf" 
+    %ul
+      -for project in @unapplied_projects
+        %li=link_to "Apply to  #{project.name}", new_student_preference_path(@student.id, { project_id: project.id } )
+

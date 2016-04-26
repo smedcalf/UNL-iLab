@@ -40,5 +40,9 @@
         %h5
           Trello:
           %a{href: @team.trello_link, style: "font-weight: 100"}= @team.trello_link
+      %h5
+        Meeting Handout:
+        = link_to "Color", {controller: 'teams', action: "meeting_handout", id: @team.id, color: true}
+        = link_to "Black and White", {controller: 'teams', action: "meeting_handout", id: @team.id, color: nil}
 - if current_user.utype != "student" && current_user.utype != "sponsor"
   %a.wdn-button.wdn-button-triad{ href: edit_team_path(@team.id)} Edit

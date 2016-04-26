@@ -1,3 +1,6 @@
 %h1 Edit Project
 
 .wdn-main#maincontent= render 'form', object: @project
+
+- if current_user.instructor?
+  %a{href: edit_instructors_project_path(@project.id)} Asssign Project to Instructors

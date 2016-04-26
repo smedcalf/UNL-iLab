@@ -1,0 +1,45 @@
+#heading.left
+  %h1= @project.name
+  %h2= @team.name
+
+#letterhead.right
+  -if @color
+    =image_tag 'campus_logo_color.jpg'
+    =image_tag 'wordmark_color.jpg'
+  -else
+    =image_tag 'campus_logo_bw.jpg'
+    =image_tag 'wordmark_bw.jpg' 
+
+.clear
+
+#sponsor.left
+  %h3 Sponsor
+  %p= @sponsor.organization
+  %p= @sponsor.full_name
+  %p= @sponsor.email
+
+#instructors.right
+  %h3 Instructors
+  -for instructor in @instructors
+    .instructor
+      %p= 'Professor ' + instructor.full_name
+      %p= instructor.email
+
+.clear
+
+#students
+  %h3 Students
+  -for student in @students
+    .student
+      -if student.avatar.exists?
+        .left
+          =image_tag student.avatar_url, size: "100"
+        .right
+          %p= student.full_name
+          %p= student.major
+          %p= student.email
+        .clear
+      -else
+        %p= student.full_name
+        %p= student.major
+        %p= student.email

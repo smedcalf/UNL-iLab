@@ -1,7 +1,7 @@
 class InstructorsController < ApplicationController
 	before_action :signed_in_user
 	before_action :signed_in_instructor
-	before_action :correct_instructor, only: [:edit, :update]
+	before_action :correct_instructor, only: [:edit, :update, :edit_projects, :update_projects]
 
 	def new
 		@instructor = Instructor.new
@@ -55,6 +55,38 @@ class InstructorsController < ApplicationController
 			render 'edit'
 		end
 	end
+
+  def edit_projects
+    set_instructor
+    @projects = Project.all
+  end
+
+  def update_projects
+    set_instructor
+    if current_user.utype == "admin" || current_user.utype == "instructor"
+      for project in Project.all
+        if params["project_#{project.id}"]
+          if !(@instructor.projects.include? project)
+            @instructor.projects.push project
+          end
+        else
+          @instructor.projects.delete project
+        end
+      end
+
+      if @instructor.save
+        flash[:success] = "Project assignments were successfully saved."
+        @url = "update"
+        redirect_to edit_instructor_path(@instructor.id)
+      else
+        flash[:error] = "There was a problem saving your changes."
+        @projects = Project.all
+        render 'edit_projects'
+      end
+    else
+      flash[:error] = "Access denied"
+    end
+  end
 
 	private
 

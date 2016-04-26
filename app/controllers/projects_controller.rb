@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :signed_in_user
-  before_action :signed_in_instructor, only:  [:edit, :update, :new, :create, :manage_projects, :pending]
+  before_action :signed_in_instructor, only:  [:edit, :update, :new, :create, :manage_projects, :pending, :edit_instructors, :update_instructors]
 
   def index
     approve_project_manage_options
@@ -150,6 +150,38 @@ class ProjectsController < ApplicationController
           end
       end
       redirect_to(:back)
+    end
+  end
+
+  def edit_instructors
+    set_project
+    @instructors = Instructor.all
+  end
+
+  def update_instructors
+    set_project
+    if current_user.utype == "admin" || current_user.utype == "instructor"
+      for instructor in Instructor.all
+        if params["instructor_#{instructor.id}"]
+          if !(@project.instructors.include? instructor)
+            @project.instructors.push instructor
+          end
+        else
+          @project.instructors.delete instructor
+        end
+      end
+
+      if @project.save
+        flash[:success] = "Instructor assignments were successfully saved."
+        @url = "update"
+        redirect_to edit_project_path(@project.id)
+      else
+        flash[:error] = "There was a problem saving your changes."
+        @instructors = Instructor.all
+        render 'edit_projects'
+      end
+    else
+      flash[:error] = "Access denied"
     end
   end
 
